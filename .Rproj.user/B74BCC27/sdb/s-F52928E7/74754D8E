@@ -1,0 +1,17 @@
+{
+    "contents" : "HJ.Biplot <- function(X, dimension = 3, Scaling = 4, sup.rows = NULL, sup.cols = NULL){\n  bip=PCA.Biplot(X, alpha = 2, dimension = dimension, Scaling = Scaling, sup.rows = sup.rows, sup.cols = sup.cols)\n  bip$Type = \"HJ\"\n  bip$call <- match.call()\n  return(bip)\n}\n  ",
+    "created" : 1449074148376.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4051792155",
+    "id" : "74754D8E",
+    "lastKnownWriteTime" : 1449071176,
+    "path" : "~/Dropbox/0 ProgramasR/Paquetes/MultBiplot/R/HJ.Biplot.R",
+    "project_path" : "R/HJ.Biplot.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

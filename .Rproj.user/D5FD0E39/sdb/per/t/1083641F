@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "Datos.Jhonny <- read.delim(\"~/Dropbox/0 Jhonny-Jose/Ecuador Rivers/Datos Jhonny.txt\")\nDatos.Jhonny <- read.delim(\"/Users/villardon/Dropbox/0 Jhonny-Jose/Ecuador Rivers/Datos Jhonny.txt\")\nload(\"Datos Jhonny.Rd\")\nX=Datos.Jhonny[,3:33]\nlibrary(MultBiplot)\ncanbip=CanonicalBiplot(X, group=Datos.Jhonny$site)\ngroup=Datos.Jhonny$site\nfit=manova(as.matrix(X[,2:30])~group)\nsummary(fit, test=\"Wilks\")\nplot(canbip, A1=1, A2=2, margin=0.1, mode=\"a\", MinQualityVars=0.7, voronoi=F, TypeCircle=\"M\", PchInd=16, LabelInd=FALSE, LabelAxes=FALSE, CexInd=0.5,\n     LegendPos=\"topleft\", ShowAxes=FALSE, AddLegend=F, CexGroup=1)\nlibrary(rgl)\nplot3dCanonicalBiplot(canbip, A1=1, A2=2, margin=0.1, mode=\"a\", MinQualityVars=0.7, voronoi=FALSE, TypeCircle=\"M\", PchInd=16, LabelInd=FALSE, LabelAxes=TRUE, LabelGroups=T, CexInd=0.5,\n                      LegendPos=\"topleft\", ShowAxes=F, ConvexHulls=F, PchGroup=16, CexGroup=3, AddLegend=F)\n# axes3d(box=FALSE) \n\nfilename <- writeWebGL(dir = file.path(tempdir(), \"webGL\"), \n                       width = 500, reuse = TRUE)\n# Display the \"reuse\" attribute\nattr(filename, \"reuse\")\n\n# Display the scene in a browser\nif (interactive())\n  browseURL(paste0(\"file://\", filename))\n",
+    "created" : 1446055556421.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2905733501",
+    "id" : "1083641F",
+    "lastKnownWriteTime" : 1446113312,
+    "last_content_update" : 0,
+    "path" : "~/Dropbox/0 Jhonny-Jose/Ecuador Rivers/Analisis.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 0,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

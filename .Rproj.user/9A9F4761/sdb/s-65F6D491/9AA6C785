@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "install.packages(c( \"kde2d\", \"lattice\", \"splom\"))\ninstall.packages(\"http://biplot.usal.es/classicalbiplot/multbiplot-in-r/multbiplotr_0330tar.gz\", repos = NULL, type=\"source\")\n ",
+    "created" : 1467539387812.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2942604493",
+    "id" : "9AA6C785",
+    "lastKnownWriteTime" : 7226435094589303907,
+    "last_content_update" : 1467543515484,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

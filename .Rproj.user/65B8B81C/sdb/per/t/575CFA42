@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "ScreePlot <-  function(bip, Type=\"bar\"){\n  if (is.null(bip$EigenValues)) stop(\"Scree plot is not available for this object\")\n  plot(bip$EigenValues, xlab=\"Axis\", ylab=\"Eigenvalues\", main=paste(bip$Title, \"- Scree Plot\"))\n}",
+    "created" : 1479483035607.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "474915732",
+    "id" : "575CFA42",
+    "lastKnownWriteTime" : 1479483678,
+    "last_content_update" : 1479483678352,
+    "path" : "~/Dropbox/0 ProgramasR/Paquetes/MultBiplotR/R/ScreePlot.R",
+    "project_path" : "R/ScreePlot.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 14,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}

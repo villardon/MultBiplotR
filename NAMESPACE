@@ -1,0 +1,62 @@
+export(InitialTransform, Circle, diagonal, DimensionLabels, Factor2Binary, GetBiplotScales, ginv, InBox, matrixsqrt, 
+       matrixsqrtinv, ones, PCA.Biplot, HJ.Biplot, PlotBiplotClusters, textsmart, VarBiplot, CrissCross, wcor,LogFrequencyBiplot, 
+       ConcEllipse,plot.ellipse, Fraction, plot.fraction, InBox, dlines, matrixsqrt, matrixsqrtinv, MGC, DensityBiplot, plot.MGC, summary.MGC, print.MGC,
+       CA, CanonicalBiplot, CCA, CumSum, GetCCAScales, plot.CA.sol, plot.Canonical.Biplot, AddCluster2Biplot,
+       plot.CCA.sol, scores.CCA.sol, summary.Canonical.Biplot, summary.CCA.sol, wa, weighted.quantile, zeros,
+       BinaryProximities, CheckBinaryMatrix, CheckBinaryVector,ContinuousDistances, Dataframe2BinaryMatrix, Factor2Binary, GeneralizedProcrustes, 
+       GowerProximities, Integer2Binary, Numeric2Binary, PrincipalCoordinates, plot.Principal.Coordinates, plot.Procrustes, 
+       SimpleProcrustes, BootstrapDistance, BootstrapScalar, plot.PCoABootstrap, summary.Principal.Coordinates, textsmart, 
+       WeightedPCoA, RidgeBinaryLogistic, RidgeBinaryLogisticFit, ExternalBinaryLogisticBiplot, plot.External.Binary.Logistic.Biplot, RemoveRowsWithNaNs, 
+       ExtractTable, ExpandTable, Matrix2Proximities, EuclideanDistance, SMACOF, MDS, Dhats, BootstrapSmacof, MonotoneRegression, NominalDistances,
+       Convert2ThreeWay, Three2TwoWay, TransformIni, StatisBiplot, ExpandTable, Hermquad, Multiquad,
+       OrdLogBipEM, OrthogonalizeScores, plot.Ordinal.Logistic.Biplot, OrdVarBiplot, ConvertFactors2Integers, CategoricalProximities, CategoricalDistances, logit,
+       Convert2ThreeWay, MultiTableStatistics, MultiTableTransform, plot.Statis, SeparateVarTypes, AddSupVars2Biplot, AddContVars2Biplot,
+       RidgeMultinomialLogisticRegression, RidgeMultinomialLogisticFit, DataFrame2Matrix4Regression, plot3dCanonicalBiplot, plot3d.ContinuousBiplot,
+       RidgeOrdinalLogistic, OrdinalLogisticFit, PlotOrdinalResponses, OrdVarCoordinates, summary.ContinuousBiplot,
+       PLSRfit, Biplot.PLSR, PrettyTicks, NiceNumber, FA.Biplot, UpdateX, UpdateY, Genefold, Initial, Loss, Updatea, VarDisk, UpdateGAMMA,
+       indexC1, ColMeans, UnfoldingSMACOF, dhatsunfol, UpdateUnfol, UpdateUnfolConstr, TransfUnfold, GetConstUnfoldScales, 
+       Unfolding, DistUnfold, lsqisotonic, CanonicalDistanceAnalysis, SelectVarsAnova, ContinuousProximities, SymmetricContinuousDistances,
+       plot.Supplementary.Variables, PlotBinaryVar, BinaryLogBiplotEM, CorrelationCircle, ScreePlot, UpdateMultBiplot, BinaryLogBiplotJoint, plot.Binary.Logistic.Biplot,
+       BinaryLogBiplotMirt, ExpandCoord, CompressCoord, CanonicalStatisBiplot, summary.RidgeBinaryLogistic, print.RidgeBinaryLogistic)
+
+import(scales, geometry, deldir, rgl, mirt, GPArotation)
+importFrom(MASS, kde2d)
+importFrom(MASS, lda)
+importFrom(lattice, splom)
+
+S3method(plot, ContinuousBiplot)
+S3method(plot, Unfolding)
+S3method(print, ContinuousBiplot)
+S3method(plot, ellipse)
+S3method(plot, fraction)
+S3method(plot, MGC)
+S3method(summary, MGC)
+S3method(summary, Ordinal.Logistic.Biplot)
+S3method(print, Ordinal.Logistic.Biplot)
+S3method(plot, Ordinal.Logistic.Biplot)
+S3method(plot, Binary.Logistic.Biplot)
+S3method(summary, Binary.Logistic.Biplot)
+S3method(print, MGC)
+S3method(print, rmlr)  
+S3method(print, CanonicalDistanceAnalysis)  
+S3method(plot, CA.sol)
+S3method(plot, CCA.sol)
+S3method(plot, Canonical.Biplot)
+S3method(print, Canonical.Biplot)
+S3method(summary, Canonical.Biplot)
+S3method(summary, CCA.sol)
+S3method(summary, rmlr)
+S3method(summary, ContinuousBiplot)
+S3method(summary, Principal.Coordinates)
+S3method(plot, ContSupVarsBiplot)
+S3method(plot, Principal.Coordinates)
+S3method(print, Principal.Coordinates)
+S3method(plot, Procrustes)
+S3method(plot, External.Binary.Logistic.Biplot)
+S3method(plot, PCoABootstrap)
+S3method(plot, Statis)
+S3method(summary, Statis)
+S3method(plot3d, ContinuousBiplot)
+S3method(plot, Unfolding)
+S3method(print, RidgeBinaryLogistic)
+S3method(summary, RidgeBinaryLogistic)

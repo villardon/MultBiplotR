@@ -1,0 +1,18 @@
+{
+    "contents" : "PrettyTicks <- function(min=-3, max=3, ntick=5){\n  range=NiceNumber(max-min, FALSE)\n  d=NiceNumber(range/(ntick-1), TRUE)\n  graphmin=floor(min/d)*d\n  graphmax=ceiling(max/d)*d\n  nfrac=max(c(-1*floor(log10(d)), 0))\n  ticks=round(seq(from=graphmin, to=graphmax+0.5*d, by = d), digits=nfrac)\n  result=list(ticks=ticks, labels=as.character(ticks))\n  return(result)\n}",
+    "created" : 1447434005886.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1613670145",
+    "id" : "74C96B22",
+    "lastKnownWriteTime" : 1447434024,
+    "path" : "~/Dropbox/0 ProgramasR/Paquetes/MultBiplot/R/PrettyTicks.R",
+    "project_path" : "R/PrettyTicks.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -1,0 +1,17 @@
+{
+    "contents" : "Biplot.PLSR <- function(plsr, ... ){\n  X=plsr$X\n  Y=plsr$Y\n  \n  I=dim(X)[1]\n  J=dim(X)[2]\n  K=dim(Y)[2]\n  S=dim(plsr$XScores)[2]\n  \n  Biplot = list()\n  Biplot$Title = \" PLSR - Biplot\"\n  Biplot$Type = \"PLSR\" \n  Biplot$Initial_Transformation=plsr$Initial_Transformation\n  Biplot$ncols=J\n  Biplot$nrows=I\n  Biplot$dim=S\n  Biplot$Means = apply(X, 2, mean)\n  Biplot$Medians = apply(X, 2, median)\n  Biplot$Deviations = apply(X, 2, sd)\n  Biplot$Minima = apply(X, 2, min)\n  Biplot$Maxima = apply(X, 2, max)\n  Biplot$P25 = apply(X, 2, quantile)[2, ]\n  Biplot$P75 = apply(X, 2, quantile)[4, ]\n  Biplot$RowCoordinates = plsr$XScores\n  Biplot$ColCoordinates = plsr$XLoadings\n  Cont=CalculateContributions(plsr$ScaledX,plsr$XScores,  plsr$XLoadings )\n  Biplot$RowContributions=Cont$RowContributions\n  Biplot$ColContributions=Cont$ColContributions\n  Biplot$Structure=Cont$Structure\n  class(Biplot)=\"ContinuousBiplot\"\n  YBiplot=list()\n  YBiplot$Title = \" PLSR - Biplot (Y)\"\n  YBiplot$Type = \"PLSR\" \n  YBiplot$Initial_Transformation=plsr$Initial_Transformation\n  YBiplot$ncols=K\n  YBiplot$Means = apply(Y, 2, mean)\n  YBiplot$Medians = apply(Y, 2, median)\n  YBiplot$Deviations = apply(Y, 2, sd)\n  YBiplot$Minima = apply(Y, 2, min)\n  YBiplot$Maxima = apply(Y, 2, max)\n  YBiplot$P25 = apply(Y, 2, quantile)[2, ]\n  YBiplot$P75 = apply(Y, 2, quantile)[4, ]\n  YBiplot$b0 = rep(0,K)\n  \n  YBiplot$ColCoordinates = plsr$YWeights\n  Cont=CalculateContributions(plsr$ScaledY,plsr$XScores,  plsr$YWeights)\n  YBiplot$ColContributions=Cont$ColContributions\n  YBiplot$Structure=Cont$Structure\n  class(YBiplot)=\"ContSupVarsBiplot\"\n  Biplot$ContSupVarsBiplot = YBiplot\n  return(Biplot)\n}",
+    "created" : 1447433459651.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1819024014",
+    "id" : "BACBC670",
+    "lastKnownWriteTime" : 1447433822,
+    "path" : "~/Dropbox/0 ProgramasR/Paquetes/MultBiplot/R/Biplot.PLSR.R",
+    "project_path" : "R/Biplot.PLSR.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

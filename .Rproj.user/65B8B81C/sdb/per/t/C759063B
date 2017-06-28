@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "CorrelationCircle <- function(bip, A1=1, A2=2, Color=\"blue\", ...){\n  if (is.null(bip$Structure)) stop(\"Correlation circle is not available for this object\")\n  B=bip$Structure[,c(A1,A2)]\n  p=dim(B)[1]\n  C=matrix(c(-1, -1, 1, -1, 1, 1, -1, 1), 4, 2, byrow = TRUE)\n  plot(C[,1], C[,2], cex=0, asp=1, xaxt = \"n\", yaxt = \"n\", xlab=paste(\"Axis\", A1), ylab=paste(\"Axis\", A2), bty=\"n\", \n       main=paste(bip$Title, \"- Correlation Circle\"))\n  Labs=rownames(B)\n  for (i in 1:p){\n  arrows(0, 0, B[i,1], B[i,2], length = 0.1, angle = 20, col = Color, ...)\n    ang = atan(B[i,2]/B[i,1]) * 180/pi\n    text(B[i,1], B[i,2], labels=Labs[i], col=Color, srt=ang, offset = 0.2, pos = 1) \n    #text(c1, c2, label, cex = CexPoint, pos = markerpos, , srt = angle, col = Color, ...)\n    }\n  rect(-1, -1, 1, 1)\n  for (i in 1:10){\n    Circle(i/10, lty=3)\n    text(i/10, 0, labels=i/10, cex=0.5)\n    text(0, i/10, labels=i/10, cex=0.5)\n    text(-1*i/10, 0, labels=i/10, cex=0.5)\n    text(0, -1*i/10, labels=i/10, cex=0.5)\n  }\n  \n}",
+    "created" : 1479480760627.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2063325123",
+    "id" : "C759063B",
+    "lastKnownWriteTime" : 1479482904,
+    "last_content_update" : 1479482904782,
+    "path" : "~/Dropbox/0 ProgramasR/Paquetes/MultBiplotR/R/CorrelationCircle.R",
+    "project_path" : "R/CorrelationCircle.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 15,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}

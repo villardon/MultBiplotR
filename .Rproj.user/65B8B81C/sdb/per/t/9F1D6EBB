@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# Instalar y cargar la librería MultBiplotR\ninstall.packages(c(\"scales\", \"geometry\", \"deldir\", \"rgl\", \"mirt\", \"GPARotation\", \"MASS\", \"kde2d\", \"lattice\", \"splom\"))\ninstall.packages(\"http://biplot.usal.es/classicalbiplot/multbiplot-in-r/multbiplotr_03tar.gz\", repos = NULL, type=\"source\")\nlibrary(MultBiplotR)\n\n# Arreglar la matriz de Tofu\nsetwd(\"~/Dropbox/Monica-Jhonny/Analisis06JUNIO2016\")\nTofuCanon=as.data.frame(read.table(\"TofuCanonR.txt\", header = T ))\n\nX=as.matrix(TofuCanon[,-1])\ngroup=TofuCanon$Tratamiento\nlibrary(MultBiplotR)\n\n# Biplot con los 47 genes seleccionados\npcabipcenred=PCA.Biplot(X, Scaling = 4, alpha=0, dimension=2 )\npcabipcenred=AddCluster2Biplot(pcabipcenred, ClusterType = \"us\", Groups = group)\nplot(pcabipcenred, A1=1, A2=2, PlotInd=FALSE, LabelInd=FALSE, PlotVars = FALSE, mode=\"a\", margin=0.2, ShowBox=FALSE, PlotClus=TRUE, ClustCenters=TRUE, TypeClus=\"st\")\nplot(pcabipcenred, A1=1, A2=2, MinQualityVars = 0.6, PlotInd=FALSE, LabelInd=FALSE, CexVar=0.9, PlotVars = TRUE, mode=\"ah\", margin=0.3, PlotClus=TRUE, ClustCenters=TRUE, TypeClus=\"st\")\nExtractContributions(pcabipcenred, Axes=c(1,2), MinContribution=70)$ColContributions\n\ncanbip=CanonicalBiplot(X, group=TofuCanon$Tratamiento)\nplot(canbip, A1=1, A2=2, margin=0, mode=\"a\", MinQualityVars=0.5, voronoi=TRUE, TypeCircle=\"U\", PchInd=16, \n     LabelInd=FALSE, LabelAxes=TRUE, CexInd=0.5, LegendPos=\"topleft\", ShowAxes=FALSE, AddLegend=FALSE, CexGroup=0.6, ShowTitle=FALSE)\n\nlibrary(rgl)\nplot3dCanonicalBiplot(canbip, margin=0.1, mode=\"a\", MinQualityVars=0, voronoi=FALSE, TypeCircle=\"U\", PchInd=16, LabelInd=FALSE, LabelAxes=TRUE, LabelGroups=FALSE, CexInd=1,\n                      LegendPos=\"topleft\", ShowAxes=FALSE, ConvexHulls=FALSE, PchGroup=16, CexGroup=3, AddLegend=FALSE, ColorAxis=\"brown\")\n\n\n\nfilename <- writeWebGL(dir = file.path(tempdir(), \"webGL\"), \n                       width = 500, reuse = TRUE)\n# Display the \"reuse\" attribute\nattr(filename, \"reuse\")\n\n# Display the scene in a browser\nif (interactive())\n  browseURL(paste0(\"file://\", filename))\n",
+    "created" : 1472894513469.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4188712756",
+    "id" : "9F1D6EBB",
+    "lastKnownWriteTime" : 1473024950,
+    "last_content_update" : 1473024950009,
+    "path" : "~/Dropbox/Monica-Jhonny/Analisis06JUNIO2016/CanonicoenR.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

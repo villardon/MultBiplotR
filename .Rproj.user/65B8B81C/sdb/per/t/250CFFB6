@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "AddCluster2Biplot <- function(Bip, NGroups=3, ClusterType=\"hi\", Groups=NULL, Original=FALSE, ...){\n  types = c(\"Hierarchical\", \"K-Means\", \"Gaussian Mixture\", \"User Privided\")\n\n  ClusterTypes=c(\"hi\", \"km\", \"gm\", \"us\")\n  if (is.numeric(ClusterType))\n    ClusterType = ClusterTypes[ClusterType]\n\n  Bip$ClusterType=ClusterType\n\n  if (ClusterType==\"hi\"){\n    if (NGroups<2) stop(\"You need at least 2 groups\")\n\n    if (Original) {\n      if (class(Bip)==\"ContinuousBiplot\")\n        distances = dist(Bip$Scaled_Data)\n      if (class(Bip)==\"External.Binary.Logistic.Biplot\")\n        distances=as.dist(Bip$Proximities)}\n    else distances = dist(Bip$RowCoordinates)\n\n    hc=hclust(distances, ...)\n    Bip$Clusters = as.factor(cutree(hc,NGroups))\n    Bip$ClusterNames=\"Cluster 1\"\n    for (k in 2:NGroups)\n      Bip$ClusterNames =c(Bip$ClusterNames, paste(\"Cluster\",k))\n    hcd=as.dendrogram(hc)\n    Bip$ClusterObject=hc\n\n  }\n\n  if (ClusterType==\"km\"){\n\n    if (Original)\n      hc=kmeans(Bip$Scaled_Data, centers=NGroups, ...)\n      else\n      hc=kmeans(Bip$RowCoordinates, centers=NGroups, ...)\n\n    Bip$ClusterObject=hc\n    Bip$ClusterNames=\"Cluster 1\"\n    for (k in 2:NGroups)\n      Bip$ClusterNames =c(Bip$ClusterNames, paste(\"Cluster\",k))\n    Bip$Clusters = as.factor(hc$cluster)\n  }\n\n  if (ClusterType==\"gm\"){\n    if (Original)\n      hc=MGC(Bip$Scaled_Data, NG=NGroups, ...)\n    else\n      hc=MGC(Bip$RowCoordinates, NG=NGroups, ...)\n\n    Bip$Clusters = as.factor(hc$Classification)\n    Bip$P=hc$P\n  }\n\n  if (ClusterType==\"us\"){\n    if (!is.factor(Groups)) stop(\"Groups have to be defined as a factor\")\n    NGroups=length(levels(Groups))\n    Bip$Clusters = Groups\n    Bip$ClusterNames = levels(Groups)\n  }\n\n  palette(rainbow(NGroups))\n  ClusterColors = palette()\n\n  Bip$ClusterColors=ClusterColors\n\n  if (ClusterType==\"hi\"){\n    clusMember = cutree(hc, NGroups)\n    colLab <- function(n) {\n      if (is.leaf(n)) {\n        a <- attributes(n)\n        labCol <- ClusterColors[clusMember[which(names(clusMember) == a$label)]]\n        attr(n, \"nodePar\") <- c(a$nodePar, lab.col = labCol)\n      }\n    n\n    }\n    Bip$Dendrogram = dendrapply(hcd, colLab)\n  }\n  return(Bip)\n}\n\n\n\n",
+    "created" : 1472895254692.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "923212883",
+    "id" : "250CFFB6",
+    "lastKnownWriteTime" : 1480324037,
+    "last_content_update" : 1480324037612,
+    "path" : "~/Dropbox/0 ProgramasR/Paquetes/MultBiplotR/R/AddCluster2Biplot.R",
+    "project_path" : "R/AddCluster2Biplot.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}
