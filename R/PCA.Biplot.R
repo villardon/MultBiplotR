@@ -1,5 +1,6 @@
 # Classical Biplot for Principal Components Analysis
 PCA.Biplot <- function(X, alpha = 1, dimension = 3, Scaling = 5, sup.rows = NULL, sup.cols = NULL, grouping=NULL) {
+  # Vamos a probar si esta cosa se actualiza
   if (is.data.frame(X)) 
     X = as.matrix(X)
   n = nrow(X)
