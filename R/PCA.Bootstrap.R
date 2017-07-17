@@ -72,6 +72,14 @@ PCA.Bootstrap <- function(X, dimens=2, Scaling = "Standardize columns", B=1000, 
       res$Scores[,,i]= XT %*% acpB$v
     }
   }
+  
+  if (type=="spres"){
+    # Resampling individuals
+    for (i in 1:B){
+    }
+    
+  }
+  
   class(res)="PCA.Bootstrap"
   return(res)
 }
