@@ -10,4 +10,6 @@ print.Canonical.Biplot <- function(object, ...) {
   cat("________________________________________________\n\n")
   cat(paste("Global contrast based on Wilks Lambda :", object$Wilksf, "\n"))
   cat(paste("p-value :", object$Wilksp, "\n"))
+  
+  if (!is.null(object$ContSupVarsBiplot))  cat("\nSome supplementary variables have been added (vector model)\n")
 }

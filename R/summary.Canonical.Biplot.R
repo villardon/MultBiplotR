@@ -59,5 +59,15 @@ summary.Canonical.Biplot <- function(object, ...) {
 	cat("Goodness of fit if the variables (to explain the individuasls) - Cummulative \n")
 	print(round(object$QLRVars*100, digits=3))
 	cat("________________________________________________\n\n")
+	
+	if (!is.null(object$ContSupVarsBiplot)){  cat("\nSUPPLEMENTARY VARIABLES ADDED\n")
+	  cat("\nCorrelations  of the Supplementary Variables with the Canonical Axis\n")
+	  print(round(object$ContSupVarsBiplot$Structure, digits = 3))
+	  cat("\nCorrelations  of the Supplementary Variables with the Canonical Axis\n")
+	  print(round(object$ContSupVarsBiplot$Structure^2, digits = 3))
+	  cat("\nGoodness of fit of the Supplementary Variables (R2)\n")
+	  print(round(object$ContSupVarsBiplot$R2, digits = 3))
+	  
+	  }
 
 }

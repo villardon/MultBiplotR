@@ -25,7 +25,6 @@ plot.Canonical.Biplot <- function(x, A1 = 1, A2 = 2, ScaleGraph = TRUE, PlotGrou
     ColorInd = x$ClusterColors[as.integer(x$groups)]
 
 
-
   if (LabelAxes){
     xlabel = paste("CV", A1, "(", round(x$Inertia[A1], digits=2),"%)")
     ylabel = paste("CV", A2, "(", round(x$Inertia[A2], digits=2),"%)")
@@ -260,6 +259,8 @@ plot.Canonical.Biplot <- function(x, A1 = 1, A2 = 2, ScaleGraph = TRUE, PlotGrou
     plot(tv, add = TRUE, wlines = "tess", xlim = c(xmin, xmax), ylim = c(ymin, ymax),col=VoronoiColor)
   }
 
+  if (!is.null(x$ContSupVarsBiplot))
+    plot(x$ContSupVarsBiplot, F1=A1, F2=A2, xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, mode=mode, TypeScale=TypeScale)
   #par(op)
 }
 

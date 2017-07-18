@@ -11,10 +11,10 @@ AddSupVars2Biplot <- function(bip, X){
   
 }
 
-AddContVars2Biplot <- function(bip, X, Scaling = 5, Fit=NULL){
+AddContVars2Biplot <- function(bip,  X, dims=NULL, Scaling = 5, Fit=NULL){
   n = nrow(X)
   p = ncol(X)
-  dims=dim(bip$RowCoordinates)[2]
+  if (is.null(dims)) dims=dim(bip$RowCoordinates)[2]
   # Setting the properties of data
   if (is.null(rownames(X))) 
     rownames(X) <- rownames(X, do.NULL = FALSE, prefix = "I")
@@ -54,6 +54,12 @@ AddContVars2Biplot <- function(bip, X, Scaling = 5, Fit=NULL){
   b=t(solve(t(DE)%*%DE)%*%t(DE)%*%X)
   Biplot$b0=b[,1]
   Biplot$ColCoordinates=b[,2:(dims+1)]
+  esp=DE %*% t(b)
+  res=X-esp
+  SCR=apply(res^2, 2, sum)
+  SCT=apply(X^2, 2, sum)
+  R2=(1-SCR/SCT)*100
+  Biplot$R2=R2
   class(Biplot)="ContSupVarsBiplot"
   bip$ContSupVarsBiplot=Biplot
   return(bip)
@@ -128,7 +134,6 @@ AddBinVars2Biplot <- function(bip, Y, IncludeConst=TRUE, penalization=0.2, freq=
 
 plot.Supplementary.Variables <- function(bip, F1=1, F2=2, xmin = -3, xmax = 3, ymin = -3, ymax = 3, TypeScale = "Complete", 
                                          ValuesScale = "Original", mode="s", dp = 0, PredPoints=0, ...){
-  
   if (!is.null(bip$ContSupVarsBiplot))
     plot(bip$ContSupVarsBiplot, F1=F1, F2=F2, xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, mode=mode, TypeScale=TypeScale) 
   
