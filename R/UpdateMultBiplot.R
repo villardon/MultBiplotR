@@ -1,4 +1,6 @@
-UpdateMultBiplot <- function(){
-  update.packages(c("scales", "geometry", "deldir", "rgl", "mirt", "GPARotation", "MASS", "kde2d", "lattice", "splom", "dae"))
-  install.packages("http://biplot.usal.es/classicalbiplot/multbiplot-in-r/multbiplotr.gz", repos = NULL, type="source")
+UpdateMultBiplot <- function(dependencies=TRUE, upgrade_dependencies = TRUE){
+  if (!require(devtools))   
+    install.packages("devtools")
+  library(devtools)
+  install_github("villardon/MultBiplotR", dependencies = dependencies, upgrade_dependencies=upgrade_dependencies )
 }
