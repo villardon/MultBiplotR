@@ -74,11 +74,19 @@ PCA.Bootstrap <- function(X, dimens=2, Scaling = "Standardize columns", B=1000, 
   }
   
   if (type=="spres"){
-    # Resampling individuals
+    # Resampling residuals
     for (i in 1:B){
     }
-    
   }
+  
+  
+  
+  #Confidence Intervals for the EigenValues
+  res$MedEigVal=apply(res$EigVal^2, 2,mean)
+  res$ICPercEigVal=apply(pcaboot$EigVal^2, 2,quantile, c(0.025, 0.975))
+  sdev=apply(res$EigVal^2, 2,sd)
+  res$ICBasEigVal=rbind(res$MedEigVal-1.96*sdev,res$MedEigVal+1.96*sdev)
+ 
   
   class(res)="PCA.Bootstrap"
   return(res)

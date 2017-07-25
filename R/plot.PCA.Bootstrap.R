@@ -8,15 +8,17 @@ plot.PCA.Bootstrap <- function(pcaboot, Eigenvalues=TRUE, Inertia=FALSE, EigenVe
     points(1:length(pcaboot$InitialSVD$d),pcaboot$InitialSVD$d^2, cex=1.5, pch=4, col="red")
     MedEig=apply(pcaboot$EigVal^2, 2,mean)
     ICPerc=apply(pcaboot$EigVal^2, 2,quantile, c(0.025, 0.975))
-    expr = errbar(1:length(MedEig), MedEig, ICPerc[1,], ICPerc[2,], add=FALSE, pch=16, xlab="Components", ylab="Eigenvalues")
-    points(1:length(MedEig),pcaboot$InitialSVD$d^2, cex=1.5, pch=4, col="red")
+    expr = errbar(1:length(res$MedEigVal), res$MedEigVal, res$ICPercEigVal[1,], res$ICPercEigVal[2,], add=FALSE, pch=16, xlab="Components", ylab="Eigenvalues")
+    points(1:length(res$MedEigVal),pcaboot$InitialSVD$d^2, cex=1.5, pch=4, col="red")
+    abline(0,0, lty="dashed", col="green")
     title(main="5% CI for the Eigenvalues based on Percentiles")
-    sdev=apply(pcaboot$EigVal^2, 2,sd)
-    expr = errbar(1:length(MedEig), MedEig, MedEig-1.96*sdev,  MedEig+1.96*sdev, add=FALSE, pch=16, xlab="Components", ylab="Eigenvalues")
-    points(1:length(MedEig),pcaboot$InitialSVD$d^2, cex=1.5, pch=4, col="red")
+    expr = errbar(1:length(res$MedEigVal), res$MedEigVal, res$ICBasEigVal[1,], res$ICBasEigVal[2,], add=FALSE, pch=16, xlab="Components", ylab="Eigenvalues")
+    points(1:length(res$MedEigVal),pcaboot$InitialSVD$d^2, cex=1.5, pch=4, col="red")
+    abline(0,0, lty="dashed", col="green")
     title(main="5% CI for the Eigenvalues based on Moments")
   }
   
+
   
   dimens=dim(pcaboot$Vs)[2]
   

@@ -20,6 +20,7 @@ Plots a biplot for continuous data.
                                     FALSE, SizeQualVars = FALSE, ColorQualInd = FALSE,
                                   ColorQualVars = FALSE, PchInd = NULL, PchVar = NULL,
                                   PlotClus = FALSE, TypeClus = "ch", ClustConf = 1,
+                                  ClustLegend = FALSE, ClustLegendPos = "topright",
                                   ClustCenters = FALSE, UseClusterColors = TRUE, 
                                   PlotSupVars = FALSE, ShowBox=FALSE, nticks=5, NonSelectedGray=FALSE, 
                                   PlotUnitCircle=TRUE, PlotContribFA=TRUE, AddArrow=FALSE, ...)
@@ -133,6 +134,12 @@ Type of plot for the clusters. ("ch"- Convex Hull, "el"- Ellipse or "st"- Star)
 }
   \item{ClustConf}{
 Percent of points included in the cluster. only the ClusConf percent of the points nearest to the center will be used to calculate the cluster
+}
+  \item{ClustLegend}{
+Should a legend for the clusters be plotted? Default FALSE
+}
+  \item{ClustLegendPos}{
+Position of the legend for the clusters. Default "topright"
 }
  \item{ClustCenters}{
 Should the cluster centers be plotted

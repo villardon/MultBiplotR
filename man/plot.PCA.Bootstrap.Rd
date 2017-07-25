@@ -48,13 +48,14 @@ The initial estimator and the bootstrap mean are plotted.
 
 For the eigenvectors, loadings and contributions, the graph is divided into as many rows as dimensions, each row contains a plot of the hole set of variables.
 
+The scores are plotted on a two dimensional
+
 
 }
 \value{
 No value returned 
 }
 \references{
-
 
 Daudin, J. J., Duby, C., & Trecourt, P. (1988). Stability of principal component analysis studied by the bootstrap method. Statistics: A journal of theoretical and applied statistics, 19(2), 241-258.
 

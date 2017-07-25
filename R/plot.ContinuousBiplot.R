@@ -11,6 +11,7 @@ plot.ContinuousBiplot <- function(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 
                                     FALSE, SizeQualVars = FALSE, ColorQualInd = FALSE,
                                   ColorQualVars = FALSE, PchInd = NULL, PchVar = NULL,
                                   PlotClus = FALSE, TypeClus = "ch", ClustConf = 1,
+                                  ClustLegend = FALSE, ClustLegendPos = "topright",
                                   ClustCenters = FALSE,  UseClusterColors = TRUE, CexClustCenters=1,
                                   PlotSupVars = FALSE, ShowBox=FALSE, nticks=5, NonSelectedGray=FALSE, 
                                   PlotUnitCircle=TRUE, PlotContribFA=TRUE, AddArrow=FALSE,  ...){
@@ -151,7 +152,7 @@ plot.ContinuousBiplot <- function(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 
   plot(P[, 1], P[, 2], cex = 0, asp = 1, xaxt = xaxt, yaxt = yaxt, xlab="",ylab="", bty="n", ...)
   #op=par(mai=c(0,0,0.5,0))
   #op=par(mar=c(1, 1, 1, 1) + 0.1)
-
+  
   title(main = paste(x$Title,"(Dim", A1,"(",round(x$Inertia[A1], digits=1),"%)-",A2,"(",round(x$Inertia[A2], digits=1),"%))")  , omi = c(0, 0, 0, 0))
   
   if (ShowBox) rect(xmin, ymin, xmax, ymax)
@@ -160,12 +161,31 @@ plot.ContinuousBiplot <- function(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 
     box()}
   
   if (PlotClus) {
-    ColorInd=PlotBiplotClusters(A, x$Clusters, TypeClus = TypeClus, ClusterColors = x$ClusterColors, ClusterNames=x$ClusterNames, centers = ClustCenters, ClustConf=ClustConf, CexClustCenters=CexClustCenters, ...)
+    ColorInd=PlotBiplotClusters(A, x$Clusters, TypeClus = TypeClus, ClusterColors = x$ClusterColors, 
+                                ClusterNames=x$ClusterNames, centers = ClustCenters, ClustConf=ClustConf, 
+                                CexClustCenters=CexClustCenters, Legend=ClustLegend, LegendPos= ClustLegendPos, ...)
     if (x$ClusterType=="gm"){
       ColorInd2=rgb((x$P %*% t(col2rgb(x$ClusterColors)))/255)
       if (UseClusterColors) ColorInd = ColorInd2
       PchInd=rep(16,n)
     }
+  }
+  
+  if (PlotInd) 
+    for (i in 1:n)
+      if (WhatInds[i]){
+        points(A[i, 1], A[i, 2], col = ColorInd[i], cex=CexInd[i], pch = PchInd[i], ...)
+      }
+  
+  if (LabelInd)
+    for (i in 1:n)
+      if (WhatInds[i])
+        if (SmartLabels) 
+          textsmart(cbind(A[i, 1], A[i, 2]), CexPoints = CexInd[i], ColorPoints = ColorInd[i], ...)
+  else text(A[i, 1], A[i, 2], IndLabels[i], cex = CexInd[i], col = ColorInd[i], pos = LabelPos, ...)
+  
+  if ((x$Type == "FA") & (PlotUnitCircle)){
+    Circle(1)
   }
   
   
@@ -204,23 +224,7 @@ plot.ContinuousBiplot <- function(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 
   }
   
   
-  if (PlotInd) 
-    for (i in 1:n)
-      if (WhatInds[i]){
-        points(A[i, 1], A[i, 2], col = ColorInd[i], cex=CexInd[i], pch = PchInd[i], ...)
-      }
   
-  if (LabelInd)
-    for (i in 1:n)
-      if (WhatInds[i])
-        if (SmartLabels) 
-          textsmart(cbind(A[i, 1], A[i, 2]), CexPoints = CexInd[i], ColorPoints = ColorInd[i], ...)
-  else text(A[i, 1], A[i, 2], IndLabels[i], cex = CexInd[i], col = ColorInd[i], pos = LabelPos, ...)
-  
-  
-  if ((x$Type == "FA") & (PlotUnitCircle)){
-    Circle(1)
-  }
   
   if ((x$Type == "FA") & (PlotContribFA)){
     for (i in 1:10){
@@ -228,7 +232,7 @@ plot.ContinuousBiplot <- function(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 
       #text(i/10, 0, labels=i/10, cex=0.5)
       text(0, i/10, labels=i/10, cex=0.5)
       #text(-1*i/10, 0, labels=i/10, cex=0.5)
-     # text(0, -1*i/10, labels=i/10, cex=0.5)
+      # text(0, -1*i/10, labels=i/10, cex=0.5)
     }
   }
   
