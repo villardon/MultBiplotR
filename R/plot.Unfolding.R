@@ -6,7 +6,6 @@ plot.Unfolding <- function(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 0.1, Pl
   dims = x$dimens
   A = x$Y[, c(A1, A2)]
   
-  
   X = x$X[, c(A1, A2)]
   
   SpeciesNames = rownames(A)

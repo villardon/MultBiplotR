@@ -1,6 +1,8 @@
 TransfUnfold <- function(f, trans, offset) {
   n = dim(f)[1]
   m = dim(f)[2]
+  transformations=c("None", "Gaussian", "Column Percent", "Gaussian Columns", "Inverse Square Root", "Divide by Column Maximum")
+  if (is.numeric(trans)) trans=transformations[trans]
   if (trans == "None") 
     P = f
   if (trans == "Gaussian") {

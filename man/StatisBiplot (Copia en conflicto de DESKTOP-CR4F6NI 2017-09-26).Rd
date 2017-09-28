@@ -23,12 +23,11 @@ Initial transformation of the data matrices
 Dimension of the final solution
 }
   \item{SameVar}{
-Are the variables the same for all occasions? If so, Biplot trajectories for each variable will be calculated.
+Are the variables the same for all occasions?
 }
 }
 \details{
 The procedure performs STATIS-ACT methodology for multiple tables with common rows and its associated biplot. When the variables are the same for all occasions trajectories for the variables can also be plotted.
-Basic plotting includes the consensus individuals and all the variables. Traditiona trajectories for individuals and biplot trajectories for variables (when adequate) are optional.
 }
 \value{
 An object of class StatisBiplot
@@ -52,18 +51,10 @@ Jose Luis Vicente Villardon
 
 \examples{
 data(Chemical)
-# Extract continous data from the original data frame.
 x= Chemical[,5:16]
-# Obtaining the three way table as a list
 X=Convert2ThreeWay(x,Chemical$WEEKS, columns=FALSE)
-# Calculating the Biplot associated to STATIS-ACT
-stbip=StatisBiplot(X, SameVar=TRUE)
-# Basic plot of the results
-plot(stbip)
-# Colors By Table
-plot(stbip, VarColorType="ByTable")
-# Colors By Variable
-plot(stbip, VarColorType="ByVar")
-
+stbip=StatisBiplot(X)
+Groups=Chemical$Treatment[1:36]
+canstbip=CanonicalStatisBiplot(X, Groups)
 }
 

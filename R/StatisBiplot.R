@@ -21,6 +21,11 @@ StatisBiplot <- function(X, InitTransform = "Standardize columns", dimens=2, Sam
   if (sum(nri == nr) < ng) 
     stop("The number of rows must be the same in all ocassions")
   
+  if (SameVar){
+    nc = nci[1]
+    if (sum(nci == nc) < ng) 
+      stop("The number of variables can not be the same in all ocassions (use SameVar=FALSE)")
+  }
   #  Extracting the names of the occassions
   OccNames=names(X)
   if (is.null(OccNames)) {
@@ -39,6 +44,16 @@ StatisBiplot <- function(X, InitTransform = "Standardize columns", dimens=2, Sam
   StatisRes=list()
   StatisRes$Title="STATIS-ACT Biplot"
   StatisRes$Type="STATIS-ACT"
+  StatisRes$NTables=ng
+  StatisRes$NRows=nr
+  if (SameVar)
+    StatisRes$NVars=nc
+  else
+    StatisRes$NVars=nci
+  
+  StatisRes$RowLabels=rownames(X[[1]])
+  StatisRes$TableLabels=names(X)
+  if (SameVar) StatisRes$VarLabels=colnames(X[[1]])
   
   X=MultiTableTransform(X, InitTransform = InitTransform)
   #Calculation of the objects
@@ -69,10 +84,10 @@ StatisBiplot <- function(X, InitTransform = "Standardize columns", dimens=2, Sam
   StatisRes$RV = RV
   Inter = svd(RV)
   StatisRes$EigInter = Inter$d
-  names(StatisRes$EigInter)=StudyNames
+  names(StatisRes$EigInter)=paste("Dim",1:length(StudyNames))
 
   StatisRes$InerInter=(Inter$d/sum(Inter$d))*100
-  names(StatisRes$InerInter)=StudyNames
+  names(StatisRes$InerInter)=paste("Dim",1:length(StudyNames))
   StatisRes$InterStructure = -1 * Inter$u %*% diag(sqrt(Inter$d))
   rownames(StatisRes$InterStructure)=StudyNames
   colnames(StatisRes$InterStructure)=paste("Dim", 1:ng)
@@ -223,6 +238,7 @@ StatisBiplot <- function(X, InitTransform = "Standardize columns", dimens=2, Sam
   # Comparing this with the inertia accounted by the biplot for each separate study
   # we have an index of the goodness of the consensus (or compromise) in explaining the 
   # study.
+  StatisRes$Biplot$Structure = cor(StatisRes$Biplot$Non_Scaled_Data, StatisRes$Biplot$RowCoordinates)
   
   class(StatisRes) = "Statis"
   return(StatisRes)

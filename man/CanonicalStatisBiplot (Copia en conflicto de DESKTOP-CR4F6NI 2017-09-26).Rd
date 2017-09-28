@@ -1,20 +1,23 @@
-\name{StatisBiplot}
-\alias{StatisBiplot}
+\name{CanonicalStatisBiplot}
+\alias{CanonicalStatisBiplot}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-STATIS-ACT for multiple tables with common rows and its associated Biplot
+CANONICAL STATIS-ACT for multiple tables with common rows and its associated Biplot
 }
 \description{
 The procedure performs STATIS-ACT methodology for multiple tables with common rows and its associated biplot
 }
 \usage{
-StatisBiplot(X, InitTransform = "Standardize columns", dimens = 2,
+StatisBiplot(X, Groups, InitTransform = "Standardize columns", dimens = 2,
                  SameVar = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{X}{
 A list containing multiple tables with common rows
+}
+  \item{Groups}{
+A factor containing the groups
 }
   \item{InitTransform}{
 Initial transformation of the data matrices
@@ -23,12 +26,11 @@ Initial transformation of the data matrices
 Dimension of the final solution
 }
   \item{SameVar}{
-Are the variables the same for all occasions? If so, Biplot trajectories for each variable will be calculated.
+Are the variables the same for all occasions?
 }
 }
 \details{
 The procedure performs STATIS-ACT methodology for multiple tables with common rows and its associated biplot. When the variables are the same for all occasions trajectories for the variables can also be plotted.
-Basic plotting includes the consensus individuals and all the variables. Traditiona trajectories for individuals and biplot trajectories for variables (when adequate) are optional.
 }
 \value{
 An object of class StatisBiplot
@@ -52,18 +54,12 @@ Jose Luis Vicente Villardon
 
 \examples{
 data(Chemical)
-# Extract continous data from the original data frame.
-x= Chemical[,5:16]
-# Obtaining the three way table as a list
-X=Convert2ThreeWay(x,Chemical$WEEKS, columns=FALSE)
-# Calculating the Biplot associated to STATIS-ACT
-stbip=StatisBiplot(X, SameVar=TRUE)
-# Basic plot of the results
-plot(stbip)
-# Colors By Table
-plot(stbip, VarColorType="ByTable")
-# Colors By Variable
-plot(stbip, VarColorType="ByVar")
-
+x= Chemical[37:144,5:9]
+weeks=as.factor(as.numeric(Chemical$WEEKS[37:144]))
+levels(weeks)=c("W2" , "W3", "W4")
+X=Convert2ThreeWay(x,weeks, columns=FALSE)
+Groups=Chemical$Treatment[1:36]
+canstbip=CanonicalStatisBiplot(X, Groups, SameVar = TRUE)
+plot(canstbip, mode="s", PlotVars=TRUE, ShowBox=TRUE)
 }
 

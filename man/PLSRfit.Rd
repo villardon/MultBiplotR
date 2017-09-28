@@ -5,7 +5,7 @@
 Partial Least Squares Regression (PLSR)
 }
 \description{
-Fits a Partial Least Squares Regression (PLSR) to a set of two continuous data matrices
+Fits a Partial Least Squares Regression (PLSR) to two continuous data matrices
 }
 \usage{
 PLSRfit(Y, X, S = 2, center = TRUE, scale = TRUE, tolerance = 5e-06, maxiter = 100, show = FALSE)
