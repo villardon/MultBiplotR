@@ -2,6 +2,7 @@ PLSR1BinFit <- function(Y, X, S=2, center=TRUE, scale=TRUE, tolerance=0.000005,
                         maxiter=100, show=FALSE, penalization=0)
 {
   
+  if (is.data.frame(X)) X=as.matrix(X)
   if (!CheckBinaryVector(Y)) stop("The response must be binary (0 or 1)")
   result=list()
   I1=dim(X)[1]
@@ -38,7 +39,10 @@ PLSR1BinFit <- function(Y, X, S=2, center=TRUE, scale=TRUE, tolerance=0.000005,
   
   result$ScaledX=X
   result$ScaledY=Y
-
+  result$tolerance=tolerance
+  result$maxiter=maxiter
+  result$penalization=penalization
+  
   T=matrix(0, I, S)
   rownames(T)=inames
   colnames(T)=dimnames
@@ -87,12 +91,13 @@ PLSR1BinFit <- function(Y, X, S=2, center=TRUE, scale=TRUE, tolerance=0.000005,
   
   rownames(P)=xnames
   colnames(P)=dimnames
-  
+
   result$XScores=T
   result$XWeights=W
   result$XLoadings=P
   result$YWeights=fit$beta
   result$XStructure=cor(result$X,T)
+  result$BinaryFit=fit
   class(result)="PLSR1Bin"
   return(result)
 }
@@ -110,6 +115,7 @@ biplot.PLSR1BIN <- function(plsr, ... ){
   Biplot = list()
   Biplot$Title = " PLSR - Biplot"
   Biplot$Type = "PLSR" 
+  Biplot$alpha=0
   Biplot$Initial_Transformation=plsr$Initial_Transformation
   Biplot$ncols=J
   Biplot$nrows=I
@@ -121,34 +127,26 @@ biplot.PLSR1BIN <- function(plsr, ... ){
   Biplot$Maxima = apply(X, 2, max)
   Biplot$P25 = apply(X, 2, quantile)[2, ]
   Biplot$P75 = apply(X, 2, quantile)[4, ]
-  Biplot$RowCoordinates = plsr$XScores
-  Biplot$ColCoordinates = plsr$XLoadings
+  
+  a=plsr$XScores
+  b=plsr$XLoadings
+  sca = sum(a^2)
+  scb = sum(b^2)
+  sca = sca/I
+  scb = scb/J
+  scf = sqrt(sqrt(scb/sca))
+  a = a * scf
+  b = b/scf
+  
+  Biplot$RowCoordinates = a
+  Biplot$ColCoordinates = b
+  
   Cont=CalculateContributions(plsr$ScaledX,plsr$XScores,  plsr$XLoadings )
+  Biplot$Inertia=Cont$Fit*100
   Biplot$RowContributions=Cont$RowContributions
   Biplot$ColContributions=Cont$ColContributions
   Biplot$Structure=Cont$Structure
   class(Biplot)="ContinuousBiplot"
-  
-  YBiplot=list()
-  YBiplot$Title = " PLSR - Biplot (Y)"
-  YBiplot$Type = "PLSR" 
-  YBiplot$Initial_Transformation=plsr$Initial_Transformation
-  YBiplot$ncols=K
-  YBiplot$Means = apply(Y, 2, mean)
-  YBiplot$Medians = apply(Y, 2, median)
-  YBiplot$Deviations = apply(Y, 2, sd)
-  YBiplot$Minima = apply(Y, 2, min)
-  YBiplot$Maxima = apply(Y, 2, max)
-  YBiplot$P25 = apply(Y, 2, quantile)[2, ]
-  YBiplot$P75 = apply(Y, 2, quantile)[4, ]
-  YBiplot$b0 = rep(0,K)
-  
-  YBiplot$ColCoordinates = plsr$YWeights
-  Cont=CalculateContributions(plsr$ScaledY,plsr$XScores,  plsr$YWeights)
-  YBiplot$ColContributions=Cont$ColContributions
-  YBiplot$Structure=Cont$Structure
-  class(YBiplot)="ContSupVarsBiplot"
-  Biplot$ContSupVarsBiplot = YBiplot
-  
+  Biplot=AddBinVars2Biplot(Biplot, plsr$Y, penalization=plsr$penalization, tolerance = plsr$tolerance, maxiter = plsr$maxiter)
   return(Biplot)
 }

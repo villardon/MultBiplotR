@@ -18,11 +18,11 @@ CorrelationCircle <- function(bip, A1=1, A2=2, Colors=NULL, Labs=NULL, ...){
     }
   # rect(-1, -1, 1, 1)
   for (i in 1:10){
-    Circle(i/10, lty=3)
-    text(i/10, 0, labels=i/10, cex=0.5)
-    text(0, i/10, labels=i/10, cex=0.5)
-    text(-1*i/10, 0, labels=i/10, cex=0.5)
-    text(0, -1*i/10, labels=i/10, cex=0.5)
+    Circle(i/10, lty=3, col="red")
+    text(i/10, 0, labels=i/10, cex=0.5, col="red")
+    text(0, i/10, labels=i/10, cex=0.5, col="red")
+    text(-1*i/10, 0, labels=i/10, cex=0.5, col="red")
+    text(0, -1*i/10, labels=i/10, cex=0.5, col="red")
   }
   
 }

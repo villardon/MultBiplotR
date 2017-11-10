@@ -171,22 +171,7 @@ plot.ContinuousBiplot <- function(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 
     }
   }
   
-  if (PlotInd) 
-    for (i in 1:n)
-      if (WhatInds[i]){
-        points(A[i, 1], A[i, 2], col = ColorInd[i], cex=CexInd[i], pch = PchInd[i], ...)
-      }
-  
-  if (LabelInd)
-    for (i in 1:n)
-      if (WhatInds[i])
-        if (SmartLabels) 
-          textsmart(cbind(A[i, 1], A[i, 2]), CexPoints = CexInd[i], ColorPoints = ColorInd[i], ...)
-  else text(A[i, 1], A[i, 2], IndLabels[i], cex = CexInd[i], col = ColorInd[i], pos = LabelPos, ...)
-  
-  if ((x$Type == "FA") & (PlotUnitCircle)){
-    Circle(1)
-  }
+
   
   
   if (PlotVars) {
@@ -238,6 +223,23 @@ plot.ContinuousBiplot <- function(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 
   
   if (PlotSupVars) 
     plot.Supplementary.Variables(x, F1=A1, F2=A2, xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, mode=SupMode, TypeScale=TypeScale)
+  
+  if (PlotInd) 
+    for (i in 1:n)
+      if (WhatInds[i]){
+        points(A[i, 1], A[i, 2], col = ColorInd[i], cex=CexInd[i], pch = PchInd[i], ...)
+      }
+  
+  if (LabelInd)
+    for (i in 1:n)
+      if (WhatInds[i])
+        if (SmartLabels) 
+          textsmart(cbind(A[i, 1], A[i, 2]), CexPoints = CexInd[i], ColorPoints = ColorInd[i], ...)
+  else text(A[i, 1], A[i, 2], IndLabels[i], cex = CexInd[i], col = ColorInd[i], pos = LabelPos, ...)
+  
+  if ((x$Type == "FA") & (PlotUnitCircle)){
+    Circle(1)
+  }
   
   # par(op)
 }

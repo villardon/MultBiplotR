@@ -13,7 +13,7 @@ summary.RidgeBinaryLogistic <- function(x, ...) {
   
   cat("\n Classification Table")
   print(x$Classification)
-  cat("\n % Correct :",x$PercentCorrect)
+  cat("\n % Correct :",x$PercentCorrect*100)
   
   cat("\n\nNull deviance: ", x$NullDeviance, " on", n-1, "degrees of freedom")
   cat("\nResidual deviance: ", x$Deviance, " on", n-p, "degrees of freedom")

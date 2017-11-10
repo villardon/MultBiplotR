@@ -150,5 +150,5 @@ plot.BinSupVarsBiplot <- function(x, F1=1, F2=2, xmin = -3, xmax = 3, ymin = -3,
   
   for (i in 1:p)
     PlotBinaryVar(b0=x$ColumnParameters[i,1], bi1=x$ColumnParameters[i,F1+1], bi2=x$ColumnParameters[i,F2+1], xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax, 
-                  mode=mode, label=ColLabels[i], Color="green")
+                  mode=mode, label=ColLabels[i], Color="blue")
 }
