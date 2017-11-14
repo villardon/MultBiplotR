@@ -1,14 +1,24 @@
-PLSR1BinFit <- function(Y, X, S=2, center=TRUE, scale=TRUE, tolerance=0.000005,
+PLSR1BinFit <- function(Y, X, S=2, InitTransform=5, grouping=NULL, tolerance=0.000005,
                         maxiter=100, show=FALSE, penalization=0)
 {
   
   if (is.data.frame(X)) X=as.matrix(X)
   if (!CheckBinaryVector(Y)) stop("The response must be binary (0 or 1)")
+  
+  ContinuousDataTransform = c("Raw Data", "Substract the global mean", "Double centering", 
+                              "Column centering", "Standardize columns", "Row centering", 
+                              "Standardize rows", "Divide by the column means and center",
+                              "Normalized residuals from independence", "Divide by the range",
+                              "Within groups standardization", "Ranks")
+  if (is.numeric(InitTransform)) 
+    InitTransform = ContinuousDataTransform[InitTransform]
+  
+  
   result=list()
   I1=dim(X)[1]
   J=dim(X)[2]
   
-  if (is.numeric(Y)) {Y= as.matrix(Y)
+  if (is.numeric(Y)) {Y= as.matrix(Y, I1,1)
                       rownames(Y)<-rownames(X)
                       colnames(Y)="Response"}
   I2=dim(Y)[1]
@@ -22,21 +32,15 @@ PLSR1BinFit <- function(Y, X, S=2, center=TRUE, scale=TRUE, tolerance=0.000005,
   result$Method="PLSR1 Binary"
   result$X=X
   result$Y=Y
-  result$center=center
-  result$scale=scale
+  result$Initial_Transformation=InitTransform
+
   
   if (!(I1==I2)) stop('The number of rows of both matrices must be the same')
   else I=I1
   
-  if (center & !scale){
-    X=TransformIni(X,transform=4)
-    result$Initial_Transformation=4
-  }
-  if (center & scale){
-    X=TransformIni(X,transform=5)
-    result$Initial_Transformation=5
-  }
-  
+  Data = InitialTransform(X, transform = InitTransform, grouping=grouping)
+  X = Data$X
+  if (InitTransform=="Within groups standardization") result$Deviations = Data$ColStdDevs
   result$ScaledX=X
   result$ScaledY=Y
   result$tolerance=tolerance
@@ -87,7 +91,7 @@ PLSR1BinFit <- function(Y, X, S=2, center=TRUE, scale=TRUE, tolerance=0.000005,
     X1=X1-t %*% t(p)
   }
   
-  fit=RidgeBinaryLogistic(Y, T)
+  fit=RidgeBinaryLogistic(Y, T, penalization=penalization)
   
   rownames(P)=xnames
   colnames(P)=dimnames
@@ -123,6 +127,7 @@ biplot.PLSR1BIN <- function(plsr, ... ){
   Biplot$Means = apply(X, 2, mean)
   Biplot$Medians = apply(X, 2, median)
   Biplot$Deviations = apply(X, 2, sd)
+  if (plsr$Initial_Transformation == "Within groups standardization")  Biplot$Deviations = plsr$Deviations
   Biplot$Minima = apply(X, 2, min)
   Biplot$Maxima = apply(X, 2, max)
   Biplot$P25 = apply(X, 2, quantile)[2, ]
@@ -144,8 +149,13 @@ biplot.PLSR1BIN <- function(plsr, ... ){
   Cont=CalculateContributions(plsr$ScaledX,plsr$XScores,  plsr$XLoadings )
   Biplot$Inertia=Cont$Fit*100
   Biplot$RowContributions=Cont$RowContributions
-  Biplot$ColContributions=Cont$ColContributions
+  StResponse=cor(plsr$BinaryFit$linterm, plsr$XScores)
+  rownames(StResponse)="Response"
   Biplot$Structure=Cont$Structure
+  Biplot$ColContributions=Cont$ColContributions
+  Biplot$SupStructure=StResponse
+  Biplot$SupColContributions=StResponse^2
+  
   class(Biplot)="ContinuousBiplot"
   Biplot=AddBinVars2Biplot(Biplot, plsr$Y, penalization=plsr$penalization, tolerance = plsr$tolerance, maxiter = plsr$maxiter)
   return(Biplot)

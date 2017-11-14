@@ -116,6 +116,7 @@ InitialTransform <- function(X, sup.rows = NULL, sup.cols = NULL, InitTransform=
     means = apply(X, 2, mean)
     for (i in (1:p)) X[, i] = X[, i]/ means[i]
     X = (diag(n) - matrix(1, n, n)/n) %*% X
+    
   }, `Normalized residuals from independence` = {
     nt = sum(sum(X))
     dr = apply(X,1,sum)
@@ -123,8 +124,10 @@ InitialTransform <- function(X, sup.rows = NULL, sup.cols = NULL, InitTransform=
     esp = (t(t(dr)) %*% dc)/nt
     var = t(t(1 - dr/nt)) %*% (1 - dc/nt)
     xp = ((xp - esp)/sqrt(esp))/sqrt(var)
+    
   },`Divide by the range`={
     X=X%*%diag(1/Data$ColRanges)
+    
   },`Within groups standardization`={
     if (is.null(grouping)) stop("You need a grouping factor for the within groups standardization")
     if (!is.factor(grouping)) stop("The grouping variable must be a factor")
@@ -136,6 +139,7 @@ InitialTransform <- function(X, sup.rows = NULL, sup.cols = NULL, InitTransform=
     TSS=apply(X^2,2,sum)
     BSS=apply(B^2,2,sum)
     WSS=(TSS-BSS)/(n-g)
+    Data$ColStdDevs=sqrt(WSS)
     X=(X- matrix(1,n,1) %*% matrix(Data$ColMeans,1,p))/(matrix(1,n,1) %*% matrix(WSS,1,p))
   },`Ranks`={
     for (i in 1:p)

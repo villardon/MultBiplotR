@@ -62,6 +62,7 @@ PCA.Biplot <- function(X, alpha = 1, dimension = 3, Scaling = 5, sup.rows = NULL
   Biplot$Initial_Transformation = Scaling
   Data = InitialTransform(X, sup.rows, sup.cols, transform = Scaling, grouping=grouping)
   X = Data$X
+  if (Scaling=="Within groups standardization") Biplot$Deviations = Data$ColStdDevs
   rownames(X) = RowNames
   colnames(X) = VarNames
   Biplot$Scaled_Data = X

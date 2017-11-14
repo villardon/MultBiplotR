@@ -20,7 +20,7 @@ export(InitialTransform, Circle, diagonal, DimensionLabels, Factor2Binary, GetBi
        BinaryLogBiplotMirt, ExpandCoord, CompressCoord, CanonicalStatisBiplot, summary.RidgeBinaryLogistic, print.RidgeBinaryLogistic,
        PCA.Bootstrap, ellipse, plot.PCA.Bootstrap, summary.PCA.Bootstrap, CalculateContributions, ColContributionPlot)
 
-import(scales, geometry, deldir, rgl, mirt, GPArotation)
+import(scales, geometry, deldir, mirt, GPArotation)
 importFrom(MASS, kde2d)
 importFrom(MASS, lda)
 importFrom(lattice, splom)

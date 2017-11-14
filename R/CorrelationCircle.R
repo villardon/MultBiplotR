@@ -8,6 +8,14 @@ CorrelationCircle <- function(bip, A1=1, A2=2, Colors=NULL, Labs=NULL, ...){
   if (is.null(Labs)) Labs=rownames(B)
   if (is.null(Colors)) Colors=rep("black", p)
   
+  if (!is.null(bip$SupStructure)){
+    nvs=dim(bip$SupStructure)[1]
+    p=p+nvs
+    B=rbind(B, bip$SupStructure )
+    Colors=c(Colors, rep("green", nvs))
+    Labs=c(Labs, rownames(bip$SupStructure))
+  }
+  
   for (i in 1:p){
   arrows(0, 0, B[i,1], B[i,2], length = 0.1, angle = 20, col = Colors[i], ...)
     ang = atan(B[i,2]/B[i,1]) * 180/pi
@@ -16,7 +24,7 @@ CorrelationCircle <- function(bip, A1=1, A2=2, Colors=NULL, Labs=NULL, ...){
     text(B[i,1], B[i,2], labels=Labs[i], col=Colors[i], srt=ang, offset = 0.2, pos = pos, ...) 
     #text(c1, c2, label, cex = CexPoint, pos = markerpos, , srt = angle, col = Color, ...)
     }
-  # rect(-1, -1, 1, 1)
+  
   for (i in 1:10){
     Circle(i/10, lty=3, col="red")
     text(i/10, 0, labels=i/10, cex=0.5, col="red")
