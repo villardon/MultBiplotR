@@ -50,6 +50,7 @@ FA.Biplot <- function(X, dimension = 3, Extraction="PC", Rotation="varimax",
   Biplot$Type = "FA" 
   Biplot$call <- match.call()
   Biplot$alpha=alpha
+  Biplot$Dimension=dimension
   Biplot$Non_Scaled_Data = X
   Biplot$Means = apply(X, 2, mean)
   Biplot$Medians = apply(X, 2, median)

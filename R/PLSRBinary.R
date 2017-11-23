@@ -1,5 +1,5 @@
 PLSR1BinFit <- function(Y, X, S=2, InitTransform=5, grouping=NULL, tolerance=0.000005,
-                        maxiter=100, show=FALSE, penalization=0)
+                        maxiter=100, show=FALSE, penalization=0, cte =TRUE)
 {
   
   if (is.data.frame(X)) X=as.matrix(X)
@@ -26,7 +26,7 @@ PLSR1BinFit <- function(Y, X, S=2, InitTransform=5, grouping=NULL, tolerance=0.0
   inames=rownames(X)
   ynames=colnames(Y)
   xnames=colnames(X)
-  dimnames=paste("Component", 1:S)
+  dimnames=paste("Comp.", 1:S)
   
   
   result$Method="PLSR1 Binary"
@@ -46,6 +46,7 @@ PLSR1BinFit <- function(Y, X, S=2, InitTransform=5, grouping=NULL, tolerance=0.0
   result$tolerance=tolerance
   result$maxiter=maxiter
   result$penalization=penalization
+  result$IncludeConst=cte
   
   T=matrix(0, I, S)
   rownames(T)=inames
@@ -91,7 +92,7 @@ PLSR1BinFit <- function(Y, X, S=2, InitTransform=5, grouping=NULL, tolerance=0.0
     X1=X1-t %*% t(p)
   }
   
-  fit=RidgeBinaryLogistic(Y, T, penalization=penalization)
+  fit=RidgeBinaryLogistic(Y, T, penalization=penalization, cte=cte)
   
   rownames(P)=xnames
   colnames(P)=dimnames
@@ -120,6 +121,7 @@ biplot.PLSR1BIN <- function(plsr, ... ){
   Biplot$Title = " PLSR - Biplot"
   Biplot$Type = "PLSR" 
   Biplot$alpha=0
+  Biplot$Dimension=S
   Biplot$Initial_Transformation=plsr$Initial_Transformation
   Biplot$ncols=J
   Biplot$nrows=I
@@ -157,6 +159,6 @@ biplot.PLSR1BIN <- function(plsr, ... ){
   Biplot$SupColContributions=StResponse^2
   
   class(Biplot)="ContinuousBiplot"
-  Biplot=AddBinVars2Biplot(Biplot, plsr$Y, penalization=plsr$penalization, tolerance = plsr$tolerance, maxiter = plsr$maxiter)
+  Biplot=AddBinVars2Biplot(Biplot, plsr$Y, penalization=plsr$penalization, tolerance = plsr$tolerance, maxiter = plsr$maxiter, IncludeConst=plsr$IncludeConst)
   return(Biplot)
 }

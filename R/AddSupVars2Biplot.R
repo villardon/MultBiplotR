@@ -70,13 +70,15 @@ plot.ContSupVarsBiplot <- function(x, F1=1, F2=2, xmin = -3, xmax = 3, ymin = -3
                                    ValuesScale = "Original", mode="s", dp = 0, PredPoints=0, PchVar=1, ColorVar=1, ...){
   A =x$RowCoordinates[, c(F1, F2)]
   B=x$ColCoordinates[,c(F1,F2)]
+  
   n = dim(A)[1]
   b0=x$b0
   VarLabels=rownames(B)
   if (mode=="s")
     Scales = GetBiplotScales(x, TypeScale = TypeScale, ValuesScale = ValuesScale)
   
-  p=dim(B)[1]
+  p=dim(x$ColCoordinates)[1]
+  if (is.numeric(B)) B=matrix(B, nrow=p)
   for (j in 1:p) 
     VarBiplot(B[j, 1], B[j, 2], b0=b0[j], xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, label = VarLabels[j], mode = mode, 
               ticks = Scales$Ticks[[j]], ticklabels = Scales$Labels[[j]], ts = TypeScale, PchPoint = PchVar[j], tl=0.01, ...)
@@ -108,7 +110,11 @@ AddBinVars2Biplot <- function(bip, Y, IncludeConst=TRUE, penalization=0.2, freq=
   for (i in 1:p){
     y=Y[,i]
     fit=RidgeBinaryLogistic(y,x,tolerance = tolerance, maxiter = maxiter, penalization=penalization, cte=IncludeConst)
-    Pco$ColumnParameters[i,]=t(fit$beta)
+    if (IncludeConst)
+      Pco$ColumnParameters[i,]=fit$beta
+    else
+      Pco$ColumnParameters[i,]=c(0,fit$beta)
+      
     Res$Deviances[i]=fit$Dif
     Res$Dfs[i]=fit$df
     Res$pvalues[i]=fit$p
@@ -116,9 +122,9 @@ AddBinVars2Biplot <- function(bip, Y, IncludeConst=TRUE, penalization=0.2, freq=
     Res$Nagelkerke[i]=fit$Nagelkerke
     Res$R2[i]=fit$R2
     Res$PercentsCorrec[i]=fit$PercentCorrect
-    
     Pco$TotalPercent=Pco$TotalPercent+sum(y==fit$Prediction)
   }
+  if (IncludeConst)
   rownames(Pco$ColumnParameters)=colnames(Pco$Data)
   Pco$TotalPercent=Pco$TotalPercent/(n*p)
   Pco$DevianceTotal=sum(Res$Deviances)

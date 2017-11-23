@@ -14,6 +14,7 @@ Biplot.PLSR <- function(plsr, ... ){
   Biplot$ncols=J
   Biplot$nrows=I
   Biplot$dim=S
+  Biplot$alpha=0
   Biplot$Means = apply(X, 2, mean)
   Biplot$Medians = apply(X, 2, median)
   Biplot$Deviations = apply(X, 2, sd)
@@ -24,6 +25,7 @@ Biplot.PLSR <- function(plsr, ... ){
   Biplot$RowCoordinates = plsr$XScores
   Biplot$ColCoordinates = plsr$XLoadings
   Cont=CalculateContributions(plsr$ScaledX,plsr$XScores,  plsr$XLoadings )
+  Biplot$Inertia=Cont$Fit*100
   Biplot$RowContributions=Cont$RowContributions
   Biplot$ColContributions=Cont$ColContributions
   Biplot$Structure=Cont$Structure
@@ -43,7 +45,8 @@ Biplot.PLSR <- function(plsr, ... ){
   YBiplot$b0 = rep(0,K)
   
   YBiplot$ColCoordinates = plsr$YWeights
-  Cont=CalculateContributions(plsr$ScaledY,plsr$XScores,  plsr$YWeights)
+  if (K>1)
+  Cont=CalculateContributions(plsr$ScaledY,plsr$YScores,  plsr$YLoadings)
   YBiplot$ColContributions=Cont$ColContributions
   YBiplot$Structure=Cont$Structure
   class(YBiplot)="ContSupVarsBiplot"

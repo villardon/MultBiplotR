@@ -1,7 +1,23 @@
-PLSRfit <- function(Y, X, S=2, center=TRUE, scale=TRUE, tolerance=0.000005, maxiter=100, show=FALSE){
+PLSRfit <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, scaleY=TRUE, tolerance=0.000005, maxiter=100, show=FALSE){
+  
+  if (is.data.frame(X)) X=as.matrix(X)
+  
+  
+  ContinuousDataTransform = c("Raw Data", "Substract the global mean", "Double centering", 
+                              "Column centering", "Standardize columns", "Row centering", 
+                              "Standardize rows", "Divide by the column means and center",
+                              "Normalized residuals from independence", "Divide by the range",
+                              "Within groups standardization", "Ranks")
+  if (is.numeric(InitTransform)) 
+    InitTransform = ContinuousDataTransform[InitTransform]
+  
+  
   result=list()
   I1=dim(X)[1]
   J=dim(X)[2]
+  
+  if (is.numeric(Y)) Y= matrix(Y, ncol=1)
+  
   I2=dim(Y)[1]
   K=dim(Y)[2]
   inames=rownames(X)
@@ -11,30 +27,35 @@ PLSRfit <- function(Y, X, S=2, center=TRUE, scale=TRUE, tolerance=0.000005, maxi
   result$Method="PLSR1"
   result$X=X
   result$Y=Y
-  result$center=center
-  result$scale=scale
-  
+  result$centerY=centerY
+  result$scaleY=scaleY
+  result$Initial_Transformation=InitTransform
   if (!(I1==I2)) stop('The number of rows of both matrices must be the same')
   else I=I1
   
-  if (center & !scale){
-    X=TransformIni(X,transform=4)
+  
+  rownames(Y)<-rownames(X)
+  colnames(Y)="Response"
+  
+  
+  if (centerY & !scaleY){
     Y=TransformIni(Y,transform=4)
-    result$Initial_Transformation=4
   }
-  if (center & scale){
-    X=TransformIni(X,transform=5)
+  if (centerY & scaleY){
     Y=TransformIni(Y,transform=5)
-    result$Initial_Transformation=5
   }
+  
+  Data = InitialTransform(X, transform = InitTransform, grouping=grouping)
+  X = Data$X
+  if (InitTransform=="Within groups standardization") result$Deviations = Data$ColStdDevs
   
   result$ScaledX=X
   result$ScaledY=Y
   uini=svd(X)
-  T=matrix(0, I, S)
+  T=matrix(0, I1, S)
   rownames(T)=inames
   colnames(T)=dimnames
-  U=matrix(0, I, S)
+  U=matrix(0, I1, S)
   rownames(U)=inames
   colnames(U)=dimnames
   W=matrix(0, J, S)
@@ -49,7 +70,7 @@ PLSRfit <- function(Y, X, S=2, center=TRUE, scale=TRUE, tolerance=0.000005, maxi
   for (i in 1:S){
     error=1
     iter=0
-    u=matrix(uini$u[,i],I,1)
+    u=matrix(uini$u[,i],I1,1)
     while ((error>tolerance) & (iter<maxiter)){
       iter=iter+1
       w=(t(X) %*% u)/sum(u^2)

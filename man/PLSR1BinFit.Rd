@@ -62,6 +62,6 @@ X=as.matrix(wine[,4:21])
 colnames(X)= colnames(wine[,4:21])
 y=as.numeric(wine[,2])-1
 PLSwine=PLSR1BinFit(y, X, S=2,penalization = 0.1)
-summary(PLSwine$BinaryFit)
+summary(PLSwine)
 }
 
