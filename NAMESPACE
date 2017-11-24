@@ -18,7 +18,8 @@ export(InitialTransform, Circle, diagonal, DimensionLabels, Factor2Binary, GetBi
        Unfolding, DistUnfold, lsqisotonic, CanonicalDistanceAnalysis, SelectVarsAnova, ContinuousProximities, SymmetricContinuousDistances,
        plot.Supplementary.Variables, PlotBinaryVar, BinaryLogBiplotEM, CorrelationCircle, ScreePlot, UpdateMultBiplot, BinaryLogBiplotJoint, plot.Binary.Logistic.Biplot,
        BinaryLogBiplotMirt, ExpandCoord, CompressCoord, CanonicalStatisBiplot, summary.RidgeBinaryLogistic, print.RidgeBinaryLogistic,
-       PCA.Bootstrap, ellipse, plot.PCA.Bootstrap, summary.PCA.Bootstrap, CalculateContributions, ColContributionPlot, PrinAxesFA)
+       PCA.Bootstrap, ellipse, plot.PCA.Bootstrap, summary.PCA.Bootstrap, CalculateContributions, ColContributionPlot, PrinAxesFA,
+       summary.PLSR1Bin)
 
 import(scales, geometry, deldir, mirt, GPArotation)
 importFrom(MASS, kde2d)
@@ -63,3 +64,4 @@ S3method(plot3d, ContinuousBiplot)
 S3method(plot, Unfolding)
 S3method(print, RidgeBinaryLogistic)
 S3method(summary, RidgeBinaryLogistic)
+S3method(summary, PLSR1Bin)

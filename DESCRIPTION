@@ -9,7 +9,7 @@ Description: Several Multivariate Techniques from a biplot perspective. It is th
 License: GPL (>=2)
 Encoding: latin1
 Repository: CRAN
-Depends:R (>= 2.15.0), scales, geometry, deldir, rgl, mirt, GPArotation
+Depends:R (>= 2.15.0), scales, geometry, deldir, mirt, GPArotation
 Suggests: Hmisc
 Imports: MASS, lattice
 LazyData: yes
