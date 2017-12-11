@@ -3,7 +3,13 @@
 # Universidad de Salamanca
 
 CategoricalDistances <- function(x, y=NULL, coefficient= "GOW", transformation="sqrt(1-S)") {
-  if (!is.matrix(x)) stop("Input must be a matrix")
+  # if (!is.matrix(x)) stop("Input must be a matrix")
+  
+  coefficients = c("GOW", "ESK", "IOF", "OF", "GOO1", "GOO2", "GOO3", "GOO4", "GAM", "LIN", 
+                   "AND", "SMI")
+  if (is.numeric(coefficient)) coefficient=coefficients[coefficient]
+  
+  
   nx=dim(x)[1]
   px=dim(x)[2]
   if (is.null(y)) {y=x
@@ -11,7 +17,12 @@ CategoricalDistances <- function(x, y=NULL, coefficient= "GOW", transformation="
   ny=dim(y)[1]
   py=dim(y)[2]
   
-  ncat=apply(x,2,max)
+  
+  ncat=rep(0,px)
+  
+  for (i in 1:px)
+  ncat[i]=length(levels(x[[i]]))
+  
   
   switch(coefficient, GOW = {
     sim=matrix(0, nx,ny)

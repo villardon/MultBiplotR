@@ -8,7 +8,7 @@ Partial Least Squares Regression with Binary Response
 Fits Partial Least Squares Regression with Binary Response
 }
 \usage{
-PLSR1BinFit(Y, X, S = 2, center = TRUE, scale = TRUE, tolerance = 5e-06, maxiter = 100, show = FALSE, penalization = 0)
+PLSR1BinFit(Y, X, S = 2, center = TRUE, scale = TRUE, tolerance = 5e-06, maxiter = 100, show = FALSE, penalization = 0, Algorithm=1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,7 +22,8 @@ The matrix of independent variables
 The Dimension of the solution
 }
   \item{InitTransform}{
-Initial Transformation of the data
+Initial Transformation of the data}
+
   \item{tolerance}{
 Tolerance for convergence of the algorithm
 }
@@ -34,6 +35,9 @@ Show the steps of the algorithm
 }
   \item{penalization}{
 Penalization for the Ridge Logistic Regression
+}
+  \item{Algorithm}{
+Algorithm used in the calculations
 }
 }
 \details{
@@ -54,9 +58,6 @@ Jose Luis Vicente Villardon
 }
 
 
-\seealso{
- \code{\link{InitialTransform}}
-}
 \examples{
 X=as.matrix(wine[,4:21])
 colnames(X)= colnames(wine[,4:21])

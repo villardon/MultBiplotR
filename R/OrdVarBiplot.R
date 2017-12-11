@@ -1,4 +1,4 @@
-OrdVarBiplot <- function(bi1, bi2,threshold, xmin = -3, xmax = 3, ymin = -3, ymax = 3, label = "Point", mode = "a", CexMarks=0.7,  CexPoint = 0.8, PchPoint = 1, Color = "blue", 
+OrdVarBiplot <- function(bi1, bi2,threshold, xmin = -3, xmax = 3, ymin = -3, ymax = 3, label = "Point", mode = "a", CexMarks=0.7,  CexPoint = 0.8, PchPoint = 1, Color = "green", 
                            tl = 0.03, textpos=1, ...){
 
   b1 = bi1/(bi1^2 + bi2^2)

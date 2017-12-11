@@ -60,8 +60,8 @@ plot.ContinuousBiplot <- function(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 
       AllCols[WhatVars]=1
       WhatVars=AllCols
     }
-  WhatVars=as.logical(WhatVars)   
-  
+  WhatVars=as.logical(WhatVars) 
+
   qlrcols = x$ColContributions[, A1] + x$ColContributions[, A2]
   qlrrows = x$RowContributions[, A1] + x$RowContributions[, A2]
   
@@ -181,7 +181,9 @@ plot.ContinuousBiplot <- function(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 
     if (mode=="s")
       Scales = GetBiplotScales(x, nticks=nticks,  TypeScale = TypeScale, ValuesScale = ValuesScale)
     
-    for (j in 1:p) if (WhatVars[j]) 
+  
+    for (j in 1:p) 
+      if (WhatVars[j]) 
       VarBiplot(B[j, 1], B[j, 2], xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, label = VarLabels[j], mode = mode, CexPoint = CexVar[j], Color = ColorVar[j], 
                 ticks = Scales$Ticks[[j]], ticklabels = Scales$Labels[[j]], ts = TypeScale, PchPoint = PchVar[j], AddArrow=AddArrow, ...)
     

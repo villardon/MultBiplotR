@@ -2,7 +2,6 @@ PLSRfit <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, s
   
   if (is.data.frame(X)) X=as.matrix(X)
   
-  
   ContinuousDataTransform = c("Raw Data", "Substract the global mean", "Double centering", 
                               "Column centering", "Standardize columns", "Row centering", 
                               "Standardize rows", "Divide by the column means and center",
@@ -10,7 +9,6 @@ PLSRfit <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, s
                               "Within groups standardization", "Ranks")
   if (is.numeric(InitTransform)) 
     InitTransform = ContinuousDataTransform[InitTransform]
-  
   
   result=list()
   I1=dim(X)[1]
@@ -33,11 +31,9 @@ PLSRfit <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, s
   if (!(I1==I2)) stop('The number of rows of both matrices must be the same')
   else I=I1
   
-  
   rownames(Y)<-rownames(X)
   colnames(Y)="Response"
-  
-  
+
   if (centerY & !scaleY){
     Y=TransformIni(Y,transform=4)
   }

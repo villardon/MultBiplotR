@@ -4,7 +4,7 @@
 # Revisado: Noviembre/2013
 # Gower, J. (2006) Similarity, dissimilarity and distance - Measures of. Encyclopedia of Statistical Sciences. Vol12. 2nd Edition. Wiley.
 ContinuousDistances <- function(x, y=NULL,  coef = "Pythagorean", r = 1) {
-	distances = c("Pythagorean", "Taxonomic", "City", "Minkowski", "Divergence", "dif_sum", "Camberra", "Bray_Curtis", "Soergel", "Ware_Hedges")
+	distances = c("Pythagorean", "Taxonomic", "City", "Minkowski", "Divergence", "dif_sum", "Camberra", "Bray_Curtis", "Soergel", "Ware_Hedges", "Gower")
 	if (is.numeric(coef)) coef = distances[coef]
   if (is.null(y)) y=x
 	n = nrow(x)
@@ -14,6 +14,7 @@ ContinuousDistances <- function(x, y=NULL,  coef = "Pythagorean", r = 1) {
   NamesX=rownames(x)
   NamesY=rownames(y)
   
+  if (coef=="Gower") rank=apply(rbind(y,x),2,max)-apply(rbind(y,x),2,min)
   if (!(p==q)) stop("The matrices should have the same number of columns")
 
 dis=matrix(0,s,n)
@@ -38,6 +39,8 @@ dis=matrix(0,s,n)
 	    dis[i,j]=sum(abs(y[i,]-x[j,]))/sum(apply(rbind(y[i,],x[j,]),2,max))
 	  },Ware_Hedges = {
 	    dis[i,j]=sum(1-apply(rbind(y[i,],x[j,]),2,min)/apply(rbind(y[i,],x[j,]),2,max))
+	  },Gower = {
+	    dis[i,j]=sum(abs(y[i,]-x[j,])/rank)
 	  })
 	}
 

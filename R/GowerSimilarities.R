@@ -3,42 +3,57 @@
 # Universidad de Salamanca
 # Revisado: Noviembre/2013
 
-GowerSimilarities <- function(x, y=NULL, transformation="sqrt(1-S)") {
+GowerSimilarities <- function(x, y=NULL, Classes=NULL, transformation="sqrt(1-S)", BinCoef= "Simple_Matching", ContCoef="Gower", NomCoef="GOW", OrdCoef="GOW") {
   
-  if (is.data.frame(x)) {
-    n = dim(x)[1]
-    p = dim(x)[2]
-    
-    if (is.null(y)) y=x
-    
-    if (is.data.frame(y)) {
-      n1 = dim(y)[1]
-      p1 = dim(y)[2]
-      
-      if (!(p==p1)) stop("Number of columns of the two matrices are not the same")
-      
-    } else stop("Suplementary data is not organized as a data frame")
-  } else stop("Main data is not organized as a data frame")
+  n = dim(x)[1]
+  p = dim(x)[2]
+  n1 = dim(y)[1]
   
   sim=matrix(0,n,n1)
   
-  for (i in 1:n) for (j in 1:n1) {
-    similarity=matrix(0,p,1)
-    peso=matrix(1,p,1)
-    for (k in 1:p) {
-      if (is.factor(x[[k]])){
-        if (x[i, k] == y[j, k]) similarity[k] = 1
-        if ((length(levels(x[[k]]))==2) & (as.integer(x[i, k])==1) & (as.integer(y[j, k])==1)) peso[k]=0}
-      
-      if (is.numeric(x[[k]])) similarity[k]= 1- (abs(x[i, k] - y[j, k]) / (max(c(x[, k],y[,k]))-min(c(x[, k],y[,k]))))
-      
-      if (is.integer(x[[k]])){
-        if (x[i, k] == y[j, k]) similarity[k] = 1
-        if ((x[i, k]==0) & (y[j, k]==0)) peso[k]=0}
-    }
-    
-    sim[i, j] = sum(similarity * peso)/sum(peso)
-  }
+  ng=0
+  
+  
+  Numericas = which(Classes=="numeric")
+  if (length(Numericas)>0){
+    ng=ng+1
+  NumX=as.matrix(x[, Numericas])
+  NumY=as.matrix(y[, Numericas])
+  NumDis=ContinuousDistances(NumX, NumY,  coef = ContCoef)
+  if (ContCoef != "Gower") NumDis=NumDis/max(NumDis)
+  else
+  NumSim=(length(Numericas) - NumDis)/length(Numericas)
+  sim=sim+NumSim}
+  
+
+  Binarias=which(Classes=="binary")
+  if (length(Binarias)>0){
+    ng=ng+1
+  BinX=as.matrix(x[, Binarias])
+  BinY=as.matrix(y[, Binarias])
+  BinSim=BinaryDistances(BinX, BinY, coefficient= "Simple_Matching", transformation="Identity")
+  sim=sim+BinSim}
+  
+
+  Factores=which(Classes=="factor")
+  if (length(Factores)>0){
+    ng=ng+1
+  CatX=as.data.frame(x[, Factores])
+  CatY=as.data.frame(y[, Factores])
+  CatSim <- CategoricalDistances(CatX, y=CatY, coefficient= NomCoef, transformation="Identity")
+  sim=sim+CatSim}
+  
+  
+  Ordinales=which(Classes=="ordered")
+  if (length(Factores)>0){
+    ng=ng+1
+  OrdX=as.data.frame(x[, Ordinales])
+  OrdY=as.data.frame(y[, Ordinales])
+  OrdSim <- OrdinalDistances(CatX, y=CatY, coefficient= OrdCoef, transformation="Identity")
+  sim=sim+OrdSim}
+  
+  sim=sim/ng
+  
   
   switch(transformation, `Identity` = {
     dis=sim
@@ -68,5 +83,4 @@ GowerSimilarities <- function(x, y=NULL, transformation="sqrt(1-S)") {
 
 
 
-  
-  
+
