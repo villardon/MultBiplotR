@@ -25,7 +25,9 @@ summary.ContinuousBiplot <- function(object, ...) {
   cat("Type of Biplot\n")
   print(object$Type)
   cat("\n Eigenvalues & Explained Variance (Inertia)\n")
+  
   pp=cbind(object$EigenValues[1:object$Dimension], object$Inertia[1:object$Dimension], object$CumInertia[1:object$Dimension])
+  
   colnames(pp)=c("Eigenvalue", "Exp. Var", "Cummulative")
   print(pp)
   

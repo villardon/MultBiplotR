@@ -98,11 +98,15 @@ PLSR1BinFit <- function(Y, X, S=2, InitTransform=5, grouping=NULL, tolerance=0.0
   
   # El algoritmo 2 
   if (Algorithm==2){
-    
     # We have to take the constant into account
-    t=matrix(1, nrow=I, ncol=1)
+    if (cte){
+    t0=matrix(1, nrow=I, ncol=1)
     fit=RidgeBinaryLogistic(Y, t, penalization=penalization, cte=FALSE)
     c0=fit$beta[1]
+    xb=matrix(apply(X,2,mean), ncol=1)
+    X=X-t0%*%t(xb)
+
+    }
     
     for (i in 1:S){
       error=1

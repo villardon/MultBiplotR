@@ -14,8 +14,10 @@ PLSRfit <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, s
   I1=dim(X)[1]
   J=dim(X)[2]
   
-  if (is.numeric(Y)) Y= matrix(Y, ncol=1)
   
+  if (is.numeric(Y) & !is.matrix(Y)) {Y= matrix(Y, ncol=1)
+  colnames(Y)="Response"}
+
   I2=dim(Y)[1]
   K=dim(Y)[2]
   inames=rownames(X)
@@ -32,7 +34,7 @@ PLSRfit <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, s
   else I=I1
   
   rownames(Y)<-rownames(X)
-  colnames(Y)="Response"
+
 
   if (centerY & !scaleY){
     Y=TransformIni(Y,transform=4)
@@ -44,11 +46,12 @@ PLSRfit <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, s
   Data = InitialTransform(X, transform = InitTransform, grouping=grouping)
   X = Data$X
   if (InitTransform=="Within groups standardization") result$Deviations = Data$ColStdDevs
-  
+
   result$ScaledX=X
   result$ScaledY=Y
   uini=svd(X)
   T=matrix(0, I1, S)
+
   rownames(T)=inames
   colnames(T)=dimnames
   U=matrix(0, I1, S)
@@ -63,6 +66,14 @@ PLSRfit <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, s
   P=matrix(0, J, S)
   Q=matrix(0, K, S)
   
+  # Initial Step
+  t0=matrix(1, I,1)
+  c0=t(Y) %*% t0/ sum(t0^2)
+
+  Y=Y-t0%*%t(c0)
+  xb=matrix(apply(X,2,mean), ncol=1)
+  X=X-t0%*%t(xb)
+
   for (i in 1:S){
     error=1
     iter=0
@@ -72,6 +83,7 @@ PLSRfit <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, s
       w=(t(X) %*% u)/sum(u^2)
       w=w/sqrt(sum(w^2))
       t=X %*% w
+      t=t/sum(t^2)
       c=t(Y) %*% t/ sum(t^2)
       newu= Y %*% c
       error=sum((u-newu)^2)
@@ -88,18 +100,21 @@ PLSRfit <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, s
     Q[,i]=q
     X=X-t %*% t(p)
   }
-  
   rownames(P)=xnames
   colnames(P)=dimnames
   rownames(Q)=ynames
   colnames(Q)=dimnames
-  
+  rownames(C)=ynames
+  result$Intercept=c0
   result$XScores=T
   result$XWeights=W
   result$XLoadings=P
   result$YScores=U
   result$YWeights=C
   result$YLoadings=Q
+  result$RegParameters=W%*% t(C)
+  result$ExpectedY= t0%*%t(c0) + T %*% t(C)
+  result$R2=diag(t(result$ExpectedY)%*%result$ExpectedY)/diag(t(Y)%*%Y)
   result$XStructure=cor(result$X,T)
   result$YStructure=cor(result$Y,U)
   result$YXStructure=cor(result$Y,T)
