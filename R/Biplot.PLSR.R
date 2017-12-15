@@ -13,7 +13,7 @@ Biplot.PLSR <- function(plsr, ... ){
   Biplot$Initial_Transformation=plsr$Initial_Transformation
   Biplot$ncols=J
   Biplot$nrows=I
-  Biplot$dim=S
+  Biplot$Dimension=S
   Biplot$alpha=0
   Biplot$Means = apply(X, 2, mean)
   Biplot$Medians = apply(X, 2, median)
@@ -22,14 +22,30 @@ Biplot.PLSR <- function(plsr, ... ){
   Biplot$Maxima = apply(X, 2, max)
   Biplot$P25 = apply(X, 2, quantile)[2, ]
   Biplot$P75 = apply(X, 2, quantile)[4, ]
-  Biplot$RowCoordinates = plsr$XScores
-  Biplot$ColCoordinates = plsr$XLoadings
-  Cont=CalculateContributions(plsr$ScaledX,plsr$XScores,  plsr$XLoadings )
+  
+  a = plsr$XScores
+  b = plsr$XLoadings
+  sca = sum(a^2)
+  scb = sum(b^2)
+  sca = sca/I
+  scb = scb/J
+  scf = sqrt(sqrt(scb/sca))
+  a = a * scf
+  b = b/scf
+  
+  Biplot$RowCoordinates = a
+  Biplot$ColCoordinates = b
+  Cont=CalculateContributions(plsr$ScaledX,plsr$XScores,  plsr$XLoadings)
+  Biplot$EigenValues=Cont$Fit
   Biplot$Inertia=Cont$Fit*100
+  Biplot$CumInertia=cumsum(Biplot$Inertia)
   Biplot$RowContributions=Cont$RowContributions
   Biplot$ColContributions=Cont$ColContributions
   Biplot$Structure=Cont$Structure
   class(Biplot)="ContinuousBiplot"
+  
+  # Adding Y information as a supplementary Biplot
+  
   YBiplot=list()
   YBiplot$Title = " PLSR - Biplot (Y)"
   YBiplot$Type = "PLSR" 
@@ -44,7 +60,7 @@ Biplot.PLSR <- function(plsr, ... ){
   YBiplot$P75 = apply(Y, 2, quantile)[4, ]
   YBiplot$b0 = rep(0,K)
   
-  YBiplot$ColCoordinates = plsr$YWeights
+  YBiplot$ColCoordinates = plsr$YWeights/scf
   if (K>1)
   Cont=CalculateContributions(plsr$ScaledY,plsr$YScores,  plsr$YLoadings)
   YBiplot$ColContributions=Cont$ColContributions

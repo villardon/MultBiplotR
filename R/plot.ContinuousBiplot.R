@@ -13,7 +13,7 @@ plot.ContinuousBiplot <- function(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 
                                   PlotClus = FALSE, TypeClus = "ch", ClustConf = 1,
                                   ClustLegend = FALSE, ClustLegendPos = "topright",
                                   ClustCenters = FALSE,  UseClusterColors = TRUE, CexClustCenters=1,
-                                  PlotSupVars = FALSE, SupMode="a", ShowBox=FALSE, nticks=5, NonSelectedGray=FALSE, 
+                                  PlotSupVars = TRUE, SupMode="a", ShowBox=FALSE, nticks=5, NonSelectedGray=FALSE, 
                                   PlotUnitCircle=TRUE, PlotContribFA=TRUE, AddArrow=FALSE,  ...){
   
   modes=c("p", "a", "b", "h", "ah", "s")
