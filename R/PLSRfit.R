@@ -73,6 +73,9 @@ PLSR <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, scal
   if (is.numeric(Y) & !is.matrix(Y)) {Y= matrix(Y, ncol=1)
   colnames(Y)="Response"}
   
+  if (is.numeric(Y) & !is.matrix(Y)) {Y= matrix(Y, ncol=1)
+  colnames(Y)="Response"}
+  
   I2=dim(Y)[1]
   K=dim(Y)[2]
   inames=rownames(X)
@@ -90,7 +93,6 @@ PLSR <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, scal
   
   rownames(Y)<-rownames(X)
   
-  
   if (centerY & !scaleY){
     Y=TransformIni(Y,transform=4)
   }
@@ -104,6 +106,7 @@ PLSR <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, scal
   
   result$ScaledX=X
   result$ScaledY=Y
+  
   
   fit=PLSRfit(Y, X, S=S, tolerance=tolerance, maxiter=maxiter, show=show)
   
@@ -152,25 +155,86 @@ PLSR <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, scal
       CrossParameters[,i]=fit$W%*% t(fit$C)
       PsParameters[,i] = result$RegParameters +  (I-1) * ( result$RegParameters -fit$W%*% t(fit$C))
     }
+    uini=svd(X)
+    T=matrix(0, I1, S)
     
-    rownames(PsParameters)=xnames
-    rownames(CrossParameters)=xnames
-    result$Crossvalidation=CrossValidation
-    result$CrossR2=CrossR2
-    result$CrossParameters=CrossParameters
-    result$PsParameters = PsParameters
-    stdErr= apply(PsParameters, 1, sd)/sqrt(I)
-    Z=result$RegParameters/stdErr
-    pval=dnorm(Z)
-    EI=result$RegParameters - 1.96 *stdErr
-    ES=result$RegParameters + 1.96 *stdErr
+    rownames(T)=inames
+    colnames(T)=dimnames
+    U=matrix(0, I1, S)
+    rownames(U)=inames
+    colnames(U)=dimnames
+    W=matrix(0, J, S)
+    rownames(W)=xnames
+    colnames(W)=dimnames
+    C=matrix(0, K, S)
+    rownames(C)=ynames
+    colnames(C)=dimnames
+    P=matrix(0, J, S)
+    Q=matrix(0, K, S)
     
-    result$RegParameters=cbind(result$RegParameters, stdErr, Z , pval, EI, ES)
-    colnames(result$RegParameters)=c("Beta", "Std. Error", "Z", "p-val", "CI : Lower", "CI : Upper")
+    # Initial Step
+    t0=matrix(1, I,1)
+    c0=t(Y) %*% t0/ sum(t0^2)
+    
+    Y=Y-t0%*%t(c0)
+    xb=matrix(apply(X,2,mean), ncol=1)
+    X=X-t0%*%t(xb)
+    
+    for (i in 1:S){
+      error=1
+      iter=0
+      u=matrix(uini$u[,i],I1,1)
+      while ((error>tolerance) & (iter<maxiter)){
+        iter=iter+1
+        w=(t(X) %*% u)/sum(u^2)
+        w=w/sqrt(sum(w^2))
+        t=X %*% w
+        t=t/sum(t^2)
+        c=t(Y) %*% t/ sum(t^2)
+        newu= Y %*% c
+        error=sum((u-newu)^2)
+        u=newu
+        if (show) print(c(i, iter, error))
+        
+      }
+      
+      rownames(PsParameters)=xnames
+      rownames(CrossParameters)=xnames
+      result$Crossvalidation=CrossValidation
+      result$CrossR2=CrossR2
+      result$CrossParameters=CrossParameters
+      result$PsParameters = PsParameters
+      stdErr= apply(PsParameters, 1, sd)/sqrt(I)
+      Z=result$RegParameters/stdErr
+      pval=dnorm(Z)
+      EI=result$RegParameters - 1.96 *stdErr
+      ES=result$RegParameters + 1.96 *stdErr
+      
+      result$RegParameters=cbind(result$RegParameters, stdErr, Z , pval, EI, ES)
+      colnames(result$RegParameters)=c("Beta", "Std. Error", "Z", "p-val", "CI : Lower", "CI : Upper")
+    }
+    
+    rownames(P)=xnames
+    colnames(P)=dimnames
+    rownames(Q)=ynames
+    colnames(Q)=dimnames
+    rownames(C)=ynames
+    result$Intercept=c0
+    result$XScores=T
+    result$XWeights=W
+    result$XLoadings=P
+    result$YScores=U
+    result$YWeights=C
+    result$YLoadings=Q
+    result$RegParameters=W%*% t(C)
+    result$ExpectedY= t0%*%t(c0) + T %*% t(C)
+    result$R2=diag(t(result$ExpectedY)%*%result$ExpectedY)/diag(t(Y)%*%Y)
+    result$XStructure=cor(result$X,T)
+    result$YStructure=cor(result$Y,U)
+    result$YXStructure=cor(result$Y,T)
+    class(result)="PLSR"
+    return(result)
   }
-  
-  class(result)="PLSR"
-  return(result)
 }
 
 summary.PLSR <- function(plsr){
@@ -189,12 +253,15 @@ plot.PLSR <- function(plsr, ParameterBoxPlot=FALSE, ParameterCI=TRUE, Correlatio
     if (ParameterCI){
       signif=plsr$RegParameters[,4]>0.05
       plot(1:I, plsr$RegParameters[,1], ylim=range(c(plsr$RegParameters[,5], 
-      plsr$RegParameters[,6])), pch=19, xlab="Variables", ylab="Mean +/- CI", 
-      main="Scatter plot with confidence intervals error", col=signif+1)
+                                                     plsr$RegParameters[,6])), pch=19, xlab="Variables", ylab="Mean +/- CI", 
+           main="Scatter plot with confidence intervals error", col=signif+1)
       arrows(1:I, plsr$RegParameters[,5], 1:I, plsr$RegParameters[,6], length=0.05, angle=90, code=3, col=signif+1)
       text(1:I, plsr$RegParameters[,6], labels = VarLabels, pos=3, col=signif+1)
       abline(h=0, col="red", lty=3)
-     }
+    }
     
   }
 }
+
+
+
