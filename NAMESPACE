@@ -13,7 +13,8 @@ export(InitialTransform, Circle, diagonal, DimensionLabels, Factor2Binary, GetBi
        Convert2ThreeWay, MultiTableStatistics, MultiTableTransform, plot.Statis, SeparateVarTypes, AddSupVars2Biplot, AddContVars2Biplot,
        RidgeMultinomialLogisticRegression, RidgeMultinomialLogisticFit, DataFrame2Matrix4Regression, plot3dCanonicalBiplot, plot3d.ContinuousBiplot,
        RidgeOrdinalLogistic, OrdinalLogisticFit, PlotOrdinalResponses, OrdVarCoordinates, summary.ContinuousBiplot,
-       PLSRfit, PLSR1BinFit, Biplot.PLSR, Biplot.PLSR1BIN, PrettyTicks, NiceNumber, FA.Biplot, UpdateX, UpdateY, Genefold, Initial, Loss, Updatea, VarDisk, UpdateGAMMA,
+       PLSR, PLSRfit, PLSR1BinFit, Biplot.PLSR, Biplot.PLSR1BIN, summary.PLSR, plot.PLSR,
+       PrettyTicks, NiceNumber, FA.Biplot, UpdateX, UpdateY, Genefold, Initial, Loss, Updatea, VarDisk, UpdateGAMMA,
        indexC1, ColMeans, UnfoldingSMACOF, dhatsunfol, UpdateUnfol, UpdateUnfolConstr, TransfUnfold, GetConstUnfoldScales, 
        Unfolding, DistUnfold, lsqisotonic, CanonicalDistanceAnalysis, SelectVarsAnova, ContinuousProximities, SymmetricContinuousDistances,
        plot.Supplementary.Variables, PlotBinaryVar, BinaryLogBiplotEM, CorrelationCircle, ScreePlot, UpdateMultBiplot, BinaryLogBiplotJoint, plot.Binary.Logistic.Biplot,
@@ -32,6 +33,8 @@ S3method(print, ContinuousBiplot)
 S3method(plot, ellipse)
 S3method(plot, fraction)
 S3method(plot, MGC)
+S3method(plot, PLSR)
+S3method(summary, PLSR)
 S3method(summary, MGC)
 S3method(summary, Ordinal.Logistic.Biplot)
 S3method(print, Ordinal.Logistic.Biplot)
