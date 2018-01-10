@@ -1,0 +1,3 @@
+summary.PLSR <- function(plsr){
+  
+}
