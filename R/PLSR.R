@@ -87,7 +87,7 @@ PLSR <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, scal
   result$YStructure=cor(result$Y,fit$U)
   result$YXStructure=cor(result$Y,fit$T)
   
-  if (CrossValidation){
+  if (Validation=="Cross"){
     CrossR2=matrix(0,I,1)
     PsParameters=matrix(0,J,I)
     CrossParameters=matrix(0,J,I)
@@ -106,7 +106,7 @@ PLSR <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, scal
     rownames(PsParameters)=xnames
     rownames(CrossParameters)=xnames
     
-    result$Crossvalidation=CrossValidation
+    result$Validation=Validation
     result$CrossR2=CrossR2
     result$CrossParameters=CrossParameters
     result$PsParameters = PsParameters

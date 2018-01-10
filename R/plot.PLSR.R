@@ -2,7 +2,7 @@ plot.PLSR <- function(plsr, ParameterBoxPlot=FALSE, ParameterCI=TRUE, Correlatio
   
   I=length(plsr$RegParameters[,1])
   VarLabels= rownames(plsr$RegParameters)
-  if (plsr$Crossvalidation){
+  if (plsr$Validation=="Cross"){
     if (ParameterBoxPlot){
       boxplot(t(plsr$CrossParameters), main="Box plot for the Jackkinfe pseudo-samples")
       abline(h=0, col="red")}
