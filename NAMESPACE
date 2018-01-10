@@ -22,7 +22,7 @@ export(InitialTransform, Circle, diagonal, DimensionLabels, Factor2Binary, GetBi
        PCA.Bootstrap, ellipse, plot.PCA.Bootstrap, summary.PCA.Bootstrap, CalculateContributions, ColContributionPlot, PrinAxesFA,
        summary.PLSR1Bin, AddOrdVars2Biplot, AddBinVars2Biplot, plot.ContSupVarsBiplot, plot.Supplementary.Variables, plot.BinSupVarsBiplot, plot.OrdSupVarsBiplot  )
 
-import(scales, geometry, deldir, mirt, GPArotation)
+import(scales, geometry, deldir, mirt, GPArotation, rgl)
 importFrom(MASS, kde2d)
 importFrom(MASS, lda)
 importFrom(lattice, splom)
