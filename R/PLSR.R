@@ -1,4 +1,4 @@
-PLSR <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, scaleY=TRUE, tolerance=0.000005, maxiter=100, show=FALSE, Validation="Cross"){
+PLSR <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, scaleY=TRUE, tolerance=0.000005, maxiter=100, show=FALSE, Validation="Cross", nB=500){
   
   if (is.data.frame(X)) X=as.matrix(X)
   
@@ -93,8 +93,17 @@ PLSR <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, scal
     CrossParameters=matrix(0,J,I)
     t0=matrix(1, I-1,1)
     for (i in 1:I){
-      Y1=matrix(Y[-i,], ncol=K)
-      X1=X[-i,]
+      Y1=matrix(result$Y[-i,], ncol=K)
+      X1=result$X[-i,]
+      
+      if (centerY & !scaleY){
+        Y1=TransformIni(Y1,transform=4)
+      }
+      if (centerY & scaleY){
+        Y1=TransformIni(Y1,transform=5)
+      }
+      Data = InitialTransform(X1, transform = InitTransform, grouping=grouping)
+      X1 = Data$X
       fit=PLSRfit(Y1, X1, S=S, tolerance=tolerance, maxiter=maxiter, show=show)
       ExpectedY= t0%*%t(fit$c0) + fit$T %*% t(fit$C)
       CrossR2[i]=diag(t(ExpectedY)%*%ExpectedY)/diag(t(Y1)%*%Y1)
@@ -119,6 +128,44 @@ PLSR <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, scal
     result$RegParameters=cbind(result$RegParameters, stdErr, Z , pval, EI, ES)
     colnames(result$RegParameters)=c("Beta", "Std. Error", "Z", "p-val", "CI : Lower", "CI : Upper")
   }
+  
+  
+  if (Validation=="Bootstrap"){
+    CrossR2=matrix(0,nB,1)
+    CrossParameters=matrix(0,J,nB)
+    t0=matrix(1, I,1)
+    for (i in 1:nB){
+      muestra=sample.int(I, I, replace=TRUE)
+      Y1=matrix(Y[muestra,], ncol=K)
+      X1=X[muestra,]
+      if (centerY & !scaleY){
+        Y1=TransformIni(Y1,transform=4)
+      }
+      if (centerY & scaleY){
+        Y1=TransformIni(Y1,transform=5)
+      }
+      Data = InitialTransform(X1, transform = InitTransform, grouping=grouping)
+      X1 = Data$X
+      fit=PLSRfit(Y1, X1, S=S, tolerance=tolerance, maxiter=maxiter, show=show)
+      ExpectedY= t0%*%t(fit$c0) + fit$T %*% t(fit$C)
+      CrossR2[i]=diag(t(ExpectedY)%*%ExpectedY)/diag(t(Y1)%*%Y1)
+      CrossParameters[,i]=fit$W%*% t(fit$C)
+    }
+    rownames(CrossParameters)=xnames
+    
+    result$Validation=Validation
+    result$CrossR2=CrossR2
+    result$CrossParameters=CrossParameters
+    stdErr= apply(CrossParameters, 1, sd)
+    Z=result$RegParameters/stdErr
+    pval=dnorm(Z)
+    EI=result$RegParameters - 1.96 *stdErr
+    ES=result$RegParameters + 1.96 *stdErr
+    
+    result$RegParameters=cbind(result$RegParameters, stdErr, Z , round(pval, digits=5), EI, ES)
+    colnames(result$RegParameters)=c("Beta", "Std. Error", "Z", "p-val", "CI : Lower", "CI : Upper")
+  }
+  
   
   class(result)="PLSR"
   return(result)

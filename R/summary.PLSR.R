@@ -16,6 +16,12 @@ summary.PLSR <- function(x){
   print(round(Contrib, digits=3))
   
   cat("________________________________________________\n\n")
-  cat("Regression parameters:")
+  cat("Regression parameters \n")
   print(x$RegParameters)
+  cat("________________________________________________\n\n")
+  cat("Validation type\n")
+  if (is.null(x$Validation))
+    print("None")
+  else
+    print(x$Validation)
 }

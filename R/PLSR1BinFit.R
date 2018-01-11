@@ -1,60 +1,17 @@
-PLSR1BinFit <- function(Y, X, S=2, InitTransform=5, grouping=NULL, tolerance=0.000005,
-                        maxiter=100, show=FALSE, penalization=0, cte =TRUE, Algorithm=1){
+PLSR1BinFit <- function(Y, X, S=2, tolerance=0.000005, maxiter=100, show=FALSE, penalization=0, cte =TRUE, Algorithm=1){
   
-  if (is.data.frame(X)) X=as.matrix(X)
-  if (!CheckBinaryVector(Y)) stop("The response must be binary (0 or 1)")
-  
-  ContinuousDataTransform = c("Raw Data", "Substract the global mean", "Double centering", 
-                              "Column centering", "Standardize columns", "Row centering", 
-                              "Standardize rows", "Divide by the column means and center",
-                              "Normalized residuals from independence", "Divide by the range",
-                              "Within groups standardization", "Ranks")
-  if (is.numeric(InitTransform)) 
-    InitTransform = ContinuousDataTransform[InitTransform]
-  
-  print(Algorithm)
-  result=list()
   I1=dim(X)[1]
   J=dim(X)[2]
   
-  if (is.numeric(Y)) {Y= as.matrix(Y, I1,1)
-  rownames(Y)<-rownames(X)
-  colnames(Y)="Response"}
   I2=dim(Y)[1]
-  K=1
-  inames=rownames(X)
-  ynames=colnames(Y)
-  xnames=colnames(X)
-  dimnames=paste("Comp.", 1:S)
+  K=dim(Y)[2]
+  I=I2
   
-  
-  result$Method="PLSR1 Binary"
-  result$X=X
-  result$Y=Y
-  result$Initial_Transformation=InitTransform
-  
-  
-  if (!(I1==I2)) stop('The number of rows of both matrices must be the same')
-  else I=I1
-  Data = InitialTransform(X, transform = InitTransform, grouping=grouping)
-  X = Data$X
-  if (InitTransform=="Within groups standardization") result$Deviations = Data$ColStdDevs
-  result$ScaledX=X
-  result$ScaledY=Y
-  result$tolerance=tolerance
-  result$maxiter=maxiter
-  result$penalization=penalization
-  result$IncludeConst=cte
-  
-  T=matrix(0, I, S)
-  rownames(T)=inames
-  colnames(T)=dimnames
+  uini=svd(X)
+  T=matrix(0, I1, S)
+  U=matrix(0, I1, S)
   W=matrix(0, J, S)
-  rownames(W)=xnames
-  colnames(W)=dimnames
   C=matrix(0, K, S)
-  rownames(C)=ynames
-  colnames(C)=dimnames
   P=matrix(0, J, S)
   Q=matrix(0, K, S)
   
@@ -92,7 +49,6 @@ PLSR1BinFit <- function(Y, X, S=2, InitTransform=5, grouping=NULL, tolerance=0.0
       X1=X1-t %*% t(p)
     }
     fit=RidgeBinaryLogistic(Y, T, penalization=penalization, cte=cte)
-    result$BinaryFit=fit
     
   }
   
@@ -132,6 +88,8 @@ PLSR1BinFit <- function(Y, X, S=2, InitTransform=5, grouping=NULL, tolerance=0.0
       P[,i]=p
       X=X-t %*% t(p)
     }
+    
+
     
     fit = list()
     null = list()
@@ -175,18 +133,7 @@ PLSR1BinFit <- function(Y, X, S=2, InitTransform=5, grouping=NULL, tolerance=0.0
     fit$Classification=table(Y,fit$Prediction)
     fit$PercentCorrect = sum(fit$Prediction == Y)/I
     class(fit) <- "RidgeBinaryLogistic"
-    result$BinaryFit=fit
   }
-  
-  rownames(P)=xnames
-  colnames(P)=dimnames
-  
-  result$XScores=T
-  result$XWeights=W
-  result$XLoadings=P
-  result$YWeights=fit$beta
-  result$XStructure=cor(result$X,T)
-  
-  class(result)="PLSR1Bin"
+  result=list(c0=c0, T=T, W=W, P=P, U=U, C=C, Q=Q, fit=fit)
   return(result)
 }

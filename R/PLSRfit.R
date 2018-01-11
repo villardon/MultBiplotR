@@ -4,7 +4,6 @@ PLSRfit <- function(Y, X, S=2, tolerance=0.000005, maxiter=100, show=FALSE){
   
   I2=dim(Y)[1]
   K=dim(Y)[2]
-  
   I=I2
   
   uini=svd(X)
