@@ -33,21 +33,24 @@ plot3dCanonicalBiplot <- function(Bip, A1 = 1, A2 = 2, A3=3,  ScaleGraph = TRUE,
     Title=paste("Canonical Biplot", " / ", A1, "-", A2, "-", A3, " (", round(Bip$Eigenvalues[A1,2]+Bip$Eigenvalues[A2,2]+Bip$Eigenvalues[A3,2], digits=2),"%)")
   }
   
+  
   scf = 1
   if (ScaleGraph) {
-    sca = sum(Bip$Group_Coord^2)
-    scb = sum(Bip$Variable_Coord^2)
+    sca = sum(Bip$GroupCoordinates^2)
+    scb = sum(Bip$ColCoordinates^2)
     sca = sca/Bip$g
     scb = scb/Bip$p
     scf = sqrt(sqrt(scb/sca))
   }
   
-  J = Bip$Group_Coord[, c(A1, A2, A3)] * scf
-  H = Bip$Variable_Coord[, c(A1, A2, A3)]/scf
-  V = Bip$Individual_Coord[, c(A1, A2, A3)] * scf
+  J = Bip$GroupCoordinates[, c(A1, A2, A3)] * scf
+  H = Bip$ColCoordinates[, c(A1, A2, A3)]/scf
+  V = Bip$RowCoordinates[, c(A1, A2, A3)] * scf
   
-  n = dim(J)[1]
+  g = dim(J)[1]
   p = dim(H)[1]
+  n = dim(V)[1]
+  
   
   if (is.null(CexInd)) 
     CexInd = 0.8
@@ -59,6 +62,7 @@ plot3dCanonicalBiplot <- function(Bip, A1 = 1, A2 = 2, A3=3,  ScaleGraph = TRUE,
   
   if (is.null(PchInd)) 
     PchInd = 1
+  
   if (is.null(PchVar)) 
     PchVar = rep(16, p)
   
