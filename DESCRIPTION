@@ -1,8 +1,8 @@
 Package: MultBiplotR
 Type: Package
 Title: MULTivariate Analysis Using BIPLOTs
-Version: 0.3.4.0
-Date: 2017-06-01
+Version: 0.3.4.3
+Date: 2018-01-23
 Author: Jose Luis Vicente-Villardon
 Maintainer: Jose Luis Vicente-Villardon <villardon@usal.es>
 Description: Several Multivariate Techniques from a biplot perspective. It is the translation into R of the preveious package MultBiplot developed in Matlab.
