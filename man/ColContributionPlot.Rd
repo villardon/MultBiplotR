@@ -2,10 +2,10 @@
 \alias{ColContributionPlot}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Plots the contributios of a biplot
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Plots the contributios of a biplot
 }
 \usage{
 ColContributionPlot(bip, A1 = 1, A2 = 2, Colors = NULL, Labs = NULL, MinQuality = 0, CorrelationScale = FALSE, ContributionScale = TRUE, AddSigns2Labs = TRUE, ...)
