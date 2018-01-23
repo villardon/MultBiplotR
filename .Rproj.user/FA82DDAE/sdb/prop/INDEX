@@ -114,7 +114,10 @@
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2FPCA.Biplot.R="395D9B77"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2FPCA.Bootstrap.R="9A7CCDA6"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2FPLSR.R="3217F24F"
+<<<<<<< HEAD
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2FPLSR1Bin.R="16D5C509"
+=======
+>>>>>>> 2486501fb3c7540cbf97786e5b60adeb4f7b08bb
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2FPLSR1BinFit.R="4946EE80"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2FPLSRBinary.R="A7A4681F"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2FPLSRMethods.R="67FF03FE"
@@ -182,7 +185,10 @@
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2Fsummary.ContinuousBiplot.R="14A41D3E"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2Fsummary.PCA.Bootstrap.R="C878803D"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2Fsummary.PLSR.R="7B197E59"
+<<<<<<< HEAD
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2Fsummary.PLSR1Bin.R="4ABCAEC0"
+=======
+>>>>>>> 2486501fb3c7540cbf97786e5b60adeb4f7b08bb
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2Fsummary.Principal.Coordinates.R="8AABFC2E"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2Fsummary.RidgeBinaryLogistic.R="C314B3C6"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2Fsummary.Statis.R="194BCAE8"
