@@ -1,3 +1,4 @@
+="======"
 %2FVolumes%2FEL%20ESP%C3%8DRITU%2FParte%20R%2FF%20inal.R="87A480B"
 %2Fprivate%2Fvar%2Ffolders%2Fyv%2F6xmdfk696x989zzyxwgks5sh0000gn%2FT%2Fcom.microsoft.Outlook%2FOutlook%20Temp%2FUnfoldins_politics.R="8F571D5A"
 %2Fprivate%2Fvar%2Ffolders%2Fyv%2F6xmdfk696x989zzyxwgks5sh0000gn%2FT%2Fcom.microsoft.Outlook%2FOutlook%20Temp%2Fclasificacion.R="84288663"
@@ -114,10 +115,7 @@
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2FPCA.Biplot.R="395D9B77"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2FPCA.Bootstrap.R="9A7CCDA6"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2FPLSR.R="3217F24F"
-<<<<<<< HEAD
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2FPLSR1Bin.R="16D5C509"
-=======
->>>>>>> 2486501fb3c7540cbf97786e5b60adeb4f7b08bb
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2FPLSR1BinFit.R="4946EE80"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2FPLSRBinary.R="A7A4681F"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2FPLSRMethods.R="67FF03FE"
@@ -185,10 +183,7 @@
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2Fsummary.ContinuousBiplot.R="14A41D3E"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2Fsummary.PCA.Bootstrap.R="C878803D"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2Fsummary.PLSR.R="7B197E59"
-<<<<<<< HEAD
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2Fsummary.PLSR1Bin.R="4ABCAEC0"
-=======
->>>>>>> 2486501fb3c7540cbf97786e5b60adeb4f7b08bb
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2Fsummary.Principal.Coordinates.R="8AABFC2E"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2Fsummary.RidgeBinaryLogistic.R="C314B3C6"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2FR%2Fsummary.Statis.R="194BCAE8"
@@ -198,6 +193,7 @@
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2Fman%2FCanonicalBiplot.Rd="16DD67A1"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2Fman%2FCanonicalDistanceAnalysis.Rd="5F48C5C1"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2Fman%2FCanonicalStatisBiplot.Rd="BBDDAAFE"
+~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2Fman%2FColContributionPlot.Rd="253230CD"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2Fman%2FCrissCross.Rd="8589F476"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2Fman%2FDataframe2BinaryMatrix.Rd="6A4896EA"
 ~%2FDropbox%2F0%20ProgramasR%2FPaquetes%2FMultBiplotR%2Fman%2FExternalBinaryLogisticBiplot.Rd="229CD336"
