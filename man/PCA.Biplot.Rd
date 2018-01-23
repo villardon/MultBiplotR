@@ -105,5 +105,12 @@ plot(bip)
 ## Biplot with scales on the variables
 plot(bip, mode="s", margin=0.2)
 
+# Structure plot (Correlations)
+CorrelationCircle(bip)
+
+# Plot of the Variable Contributions
+ColContributionPlot(bip, cex=1)
+
+
 }
 
