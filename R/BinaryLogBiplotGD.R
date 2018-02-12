@@ -1,0 +1,91 @@
+# Logistic Biplot with Gradient Descent
+
+BinaryLogBiplotGD <- function(X, freq = matrix(1, nrow(X), 1),  dim = 2, tolerance = 1e-04,  penalization=0.01, 
+                              RotVarimax = FALSE, seed = NULL, OptimMethod="CG", Initial="random", ...) {
+  # joint algorithm for logistic biplots
+  X=as.matrix(X)
+  indnames=rownames(X)
+  varnames=colnames(X)
+  
+  n <- nrow(X)
+  p <- ncol(X)
+  
+  # Estimation of parameters A and B
+  r=dim
+  if (!is.null(seed)) set.seed(seed) # Set the seed for reproductibility
+  par=runif(n*r + p*(r+1))
+  ResLog=optim(par, fn=JLogBiplotReg, gr=grLogBiplotReg, X=X, r=r, lambda=penalization , method = OptimMethod)
+  par=ResLog$par
+  
+  A=matrix(par[1:(n*r)],n,r)
+  B=matrix(par[(n*r+1):(n*r + p*(r+1))], p, r+1)
+  
+  if (RotVarimax) {
+    varimax(B)
+    BB = varimax(B[, 1:dim + 1], normalize = FALSE)
+    A = A %*% BB$rotmat
+    B[, 1:dim + 1] = B[, 1:dim + 1] %*% BB$rotmat
+  }
+  
+  rownames(A)=indnames
+  colnames(A)=paste("dim",1:dim)
+  rownames(B)=varnames
+  colnames(B)=c("intercept", paste("dim",1:dim))
+  
+  
+  Res=list()
+  Res$Biplot="Binary Logistic (Gradient Descent)"
+  Res$Type= "Binary Logistic (Gradient Descent)"
+  Res$RowCoordinates=A
+  Res$ColumnParameters=B
+  
+  esp = cbind(rep(1,n), A) %*% t(B)
+  pred = exp(esp)/(1 + exp(esp))
+  
+  pred2 = matrix(as.numeric(pred > 0.5), n, p)
+  acier = matrix(as.numeric(round(X) == pred2), n, p)
+  acierfil = 100*apply(acier,1,sum)/p
+  aciercol = 100*apply(acier,2,sum)/n
+  
+  gfit = (sum(sum(acier))/(n * p)) * 100
+  
+  esp0 = matrix(rep(1,n), n,1) %*% B[, 1]
+  pred0 = exp(esp0)/(1 + exp(esp0))
+  
+  d1 = -2 * apply(X * log(pred0) + (1 - X) * log(1 - pred0),2,sum)
+  d2 = -2 * apply(X * log(pred) + (1 - X) * log(1 - pred),2,sum)
+  
+  d = d1 - d2
+  ps = matrix(0, p, 1)
+  for (j in 1:p) ps[j] = 1 - pchisq(d[j], 1)
+  
+  Res$NullDeviances=d1
+  Res$ModelDeviances=d2
+  Res$Deviances=d
+  Res$Dfs=rep(dim, p)
+  Res$pvalues=ps
+  Res$CoxSnell=1-exp(-1*Res$Deviances/n)
+  Res$Nagelkerke=Res$CoxSnell/(1-exp((Res$NullDeviances/(-2)))^(2/n))
+  Res$MacFaden=1-(Res$ModelDeviances/Res$NullDeviances)
+  
+  Res$TotalPercent=gfit
+  Res$ModelDevianceTotal=sum(Res$ModelDeviances)
+  Res$NullDevianceTotal=sum(Res$NullDeviances)
+  Res$DevianceTotal=sum(Res$Deviances)
+  
+  dd = sqrt(rowSums(cbind(1,Res$ColumnParameters[, 2:(dim + 1)])^2))
+  Res$Loadings = solve(diag(dd)) %*% Res$ColumnParameters[, 2:(dim + 1)]
+  Res$Tresholds = Res$ColumnParameters[, 1]/d
+  Res$Communalities = rowSums(Res$Loadings^2)
+  
+  nn=n*p
+  Res$TotCoxSnell=1-exp(-1*Res$DevianceTotal/nn)
+  Res$TotNagelkerke=Res$TotCoxSnell/(1-exp((Res$NullDevianceTotal/(-2)))^(2/nn))
+  Res$TotMacFaden=1-(Res$ModelDevianceTotal/Res$NullDevianceTotal)
+  Res$ClusterType="us"
+  Res$Clusters = as.factor(matrix(1,n, 1))
+  Res$ClusterColors="blue"
+  Res$ClusterNames="ClusterTotal"
+  class(Res) = "Binary.Logistic.Biplot"
+  return(Res)
+}

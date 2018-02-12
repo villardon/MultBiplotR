@@ -23,7 +23,8 @@ Dataframe2BinaryMatrix <- function(dataf, cuttype="Median", cut =NULL, BinFact=T
 			if (is.factor(dataf[[j]])) 
 				if ((length(levels(dataf[[j]])) == 2) & BinFact) {
 					x1 = matrix(as.numeric(dataf[[j]]) - 1, n, 1)
-					colnames(x1) <- paste(ColumnNames[j], "-", levels(dataf[[j]])[2], sep = "")
+					colnames(x1) <- ColumnNames[j]
+					# colnames(x1) <- paste(ColumnNames[j], "-", levels(dataf[[j]])[2], sep = "")
 				} else {
 					x1 = Factor2Binary(dataf[[j]], ColumnNames[j])
 				}

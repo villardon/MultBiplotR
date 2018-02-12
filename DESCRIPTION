@@ -1,7 +1,7 @@
 Package: MultBiplotR
 Type: Package
 Title: MULTivariate Analysis Using BIPLOTs
-Version: 0.3.4.3
+Version: 18.2.09
 Date: 2018-01-23
 Author: Jose Luis Vicente-Villardon
 Maintainer: Jose Luis Vicente-Villardon <villardon@usal.es>
@@ -9,7 +9,7 @@ Description: Several Multivariate Techniques from a biplot perspective. It is th
 License: GPL (>=2)
 Encoding: latin1
 Repository: CRAN
-Depends:R (>= 2.15.0), scales, geometry, deldir, mirt, GPArotation
+Depends:R (>= 2.15.0), scales, geometry, deldir, mirt, GPArotation, optimr, rgl
 Suggests: Hmisc
 Imports: MASS, lattice
 LazyData: yes

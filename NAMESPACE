@@ -20,9 +20,12 @@ export(InitialTransform, Circle, diagonal, DimensionLabels, Factor2Binary, GetBi
        plot.Supplementary.Variables, PlotBinaryVar, BinaryLogBiplotEM, CorrelationCircle, ScreePlot, UpdateMultBiplot, BinaryLogBiplotJoint, plot.Binary.Logistic.Biplot,
        BinaryLogBiplotMirt, ExpandCoord, CompressCoord, CanonicalStatisBiplot, summary.RidgeBinaryLogistic, print.RidgeBinaryLogistic,
        PCA.Bootstrap, ellipse, plot.PCA.Bootstrap, summary.PCA.Bootstrap, CalculateContributions, ColContributionPlot, PrinAxesFA,
-       summary.PLSR1Bin, AddOrdVars2Biplot, AddBinVars2Biplot, plot.ContSupVarsBiplot, plot.Supplementary.Variables, plot.BinSupVarsBiplot, plot.OrdSupVarsBiplot  )
+       summary.PLSR1Bin, AddOrdVars2Biplot, AddBinVars2Biplot, plot.ContSupVarsBiplot, plot.Supplementary.Variables, plot.BinSupVarsBiplot, plot.OrdSupVarsBiplot,
+       Orthog, GD.Biplot, JBiplotReg, grBiplotReg, JBiplotLASSO, grBiplotLASSO, JBiplotRegB, JBiplotRegA, grBiplotRegB, grBiplotRegA,
+       BinaryLogBiplotGD, sigmoide, JLogBiplotReg, grLogBiplotReg, JLogBiplotLASSO, grLogBiplotLASSO, JLogBiplotRegB, JLogBiplotRegA,
+       grLogBiplotRegB, grLogBiplotRegA)
 
-import(scales, geometry, deldir, mirt, GPArotation, rgl)
+import(scales, geometry, deldir, mirt, GPArotation, rgl, optimr)
 importFrom(MASS, kde2d)
 importFrom(MASS, lda)
 importFrom(lattice, splom)

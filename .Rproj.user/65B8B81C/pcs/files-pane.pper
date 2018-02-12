@@ -1,9 +1,13 @@
 {
-    "path" : "~/Dropbox/0 ProgramasR/Paquetes/MultBiplotR/R",
+    "path" : "~/Dropbox/0 ProgramasR/Paquetes/MultBiplotR/man",
     "sortOrder" : [
         {
             "ascending" : true,
             "columnIndex" : 2
+        },
+        {
+            "ascending" : false,
+            "columnIndex" : 4
         }
     ]
 }

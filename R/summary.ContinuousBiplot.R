@@ -19,7 +19,6 @@ summary.ContinuousBiplot <- function(object, ...) {
     tipo="Symmetrical Normalization (SQRT - Biplot)"
   if ((object$alpha>0) & (object$alpha<1) & (object$alpha != 0.5))
     tipo=paste("Custom Normalization (Biplot con \alpha = ",gamma,")")
-  print(tipo)
   cat("Transformation of the raw data:\n")
   print(object$Initial_Transformation)
   cat("Type of Biplot\n")
