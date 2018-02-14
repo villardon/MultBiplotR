@@ -1,5 +1,5 @@
 Unfolding <- function(A, ENV = NULL, TransAbund = "Gaussian", offset = 0.5, weight = "All_1", Constrained = FALSE, TransEnv = "Standardize columns", InitConfig = "SVD", 
-                      model = "Ratio", condition = "Columns", r = 2, maxiter = 100, tolerance = 1e-05, lambda = 1, omega = 0, plot = FALSE) {
+                      model = "Ratio", condition = "Columns", Algorithm="SMACOF", OptimMethod="CG", r = 2, maxiter = 100, tolerance = 1e-05, lambda = 1, omega = 0, plot = FALSE) {
   # offset is the quantity added to the zeros of the table
   models = c("Absolute", "Ratio", "Interval", "Ordinal")
   conditions = c("Matrix", "Columns")
@@ -7,6 +7,7 @@ Unfolding <- function(A, ENV = NULL, TransAbund = "Gaussian", offset = 0.5, weig
   TransAbunds = c("None", "Gaussian", "Column Percent", "Gaussian Columns", "Inverse Square Root", "Divide by Column Maximum")
   weights = c("All_1", "0 absences")
   TransEnvs = c("Raw Data", "Column centering", "Standardize columns")
+  Algorithms=c("SMACOF", "GD", "Genefold")
   
   SiteNames = rownames(A)
   SpeciesNames = colnames(A)
@@ -24,6 +25,8 @@ Unfolding <- function(A, ENV = NULL, TransAbund = "Gaussian", offset = 0.5, weig
     weight = weights[weight]
   if (is.numeric(TransEnv)) 
     TransEnv = TransEnvs[TransEnv]
+  if (is.numeric(Algorithm)) 
+    Algorithm = Algorithms[Algorithm]
   
   if (is.data.frame(A)) 
     A = as.matrix(A)
@@ -91,8 +94,14 @@ Unfolding <- function(A, ENV = NULL, TransAbund = "Gaussian", offset = 0.5, weig
   }
   
   # Calculating Unfolding coordinates
+  if (Algorithm=="SMACOF")
   Unfold = UnfoldingSMACOF(P, W = W, Constrained = Constrained, ENV = ENV, model = model, condition = condition, r = r, maxiter = maxiter, tolerance = tolerance, 
                            lambda = 1, omega = 0, X0 = X0, Y0 = Y0)
+  
+  if (Algorithm=="GD")
+    Unfold = UnfoldingGD(P, W = W, Constrained = Constrained, ENV = ENV, model = model, condition = condition, r = r, maxiter = maxiter, tolerance = tolerance, 
+                             lambda = 1, omega = 0, X0 = X0, Y0 = Y0, OptimMethod=OptimMethod)
+    
   Unfold$call <- match.call()
   Unfold$Abundances = A
   Unfold$Offset = offset

@@ -40,10 +40,10 @@ Supplementary Rows. (not working now)
 Supplementary Columns. (not working now)
 }
   \item{grouping}{
-%%     ~~Describe \code{grouping} here~~
+Grouping factor for the within groups transformation.
 }
   \item{tolerance}{
-Grouping factor for the within groups transformation.
+Tolerance for convergence
 }
   \item{num_max_iters}{
 Maximum number of iterations.
@@ -53,7 +53,7 @@ Initial Configuration
 }
 }
 \details{
-The function calculates a bilot using gradient descent methods. The function \code{optimr} is used 
+The function calculates a bilot using gradient descent methods. The function \code{optimr} is used to optimize the loss function. By default CG (Conjugate Gradient) method is used althoug other possibilities can be used.
 }
 \value{
 An object of class "ContinuousBiplot" is returned.
@@ -62,7 +62,7 @@ An object of class "ContinuousBiplot" is returned.
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
+Jose Luis Vicente Villardon
 }
 \note{
 %%  ~~further notes~~

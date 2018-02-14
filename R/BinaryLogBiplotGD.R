@@ -1,7 +1,7 @@
 # Logistic Biplot with Gradient Descent
 
 BinaryLogBiplotGD <- function(X, freq = matrix(1, nrow(X), 1),  dim = 2, tolerance = 1e-04,  penalization=0.01, 
-                              RotVarimax = FALSE, seed = NULL, OptimMethod="CG", Initial="random", ...) {
+                              RotVarimax = FALSE, seed = NULL, OptimMethod="CG", Initial="random", Orthogonalize="No", ...) {
   # joint algorithm for logistic biplots
   X=as.matrix(X)
   indnames=rownames(X)
@@ -12,13 +12,59 @@ BinaryLogBiplotGD <- function(X, freq = matrix(1, nrow(X), 1),  dim = 2, toleran
   
   # Estimation of parameters A and B
   r=dim
-  if (!is.null(seed)) set.seed(seed) # Set the seed for reproductibility
+  
+if (Algorithm == "Joint"){
+  if (!is.null(seed)) set.seed(seed) # Set the seed for reproductibility (Use when you want the same results for different repetitions)
   par=runif(n*r + p*(r+1))
   ResLog=optim(par, fn=JLogBiplotReg, gr=grLogBiplotReg, X=X, r=r, lambda=penalization , method = OptimMethod)
   par=ResLog$par
-  
   A=matrix(par[1:(n*r)],n,r)
   B=matrix(par[(n*r+1):(n*r + p*(r+1))], p, r+1)
+    if (Orthogonalize=="A") {
+      # A=InitialTransform(A)$X
+      A=Orthog(A)
+      parB=c(c(B))
+      resbipB <- optimr(parB, fn=JLogBiplotRegB, gr=grLogBiplotRegB, method=OptimMethod, X=X, A=A, r=r, lambda=penalization)
+      parB=resbipB$par
+      B=matrix(parB, p, r+1)
+    }
+  }
+  
+  
+  if (Algorithm == "Alternated"){
+    parA=runif(n*r)
+    resbipB <- optimr(parB, fn=JLogBiplotRegB, gr=grLogBiplotRegB, method=OptimMethod, X=X, A=A, r=r, lambda=penalization)
+    parB=resbipB$par
+    
+    J = sum((X - A %*% t(B))^2, na.rm = TRUE)/2 + lambda*sum(A^2, na.rm = TRUE)/2 + lambda*sum(B^2, na.rm = TRUE)/2
+    err=1
+    iter=0
+    
+    while( (err > tolerance) & (iter<num_max_iters)){
+      iter=iter+1
+      Jold=J
+      #Update A
+      resbipA <- optimr(parA, fn=JBiplotRegA, gr=grBiplotRegA, method=OptimMethod, X=X, B=B, lambda=lambda)
+      parA=resbipA$par
+      A=matrix(parA,n,r)
+      if (Orthogonalize) {
+        A=InitialTransform(A)$X
+        A=Orthog(A)}
+      #Update B
+      resbipB <- optimr(parB, fn=JBiplotRegB, gr=grBiplotRegB, method=OptimMethod, X=X, A=A, lambda=lambda)
+      parB=resbipB$par
+      B=matrix(parB, p, r)
+      J = sum((X - A %*% t(B))^2, na.rm = TRUE)/2 + lambda*sum(A^2, na.rm = TRUE)/2 + lambda*sum(B^2, na.rm = TRUE)/2
+      err=(Jold-J)/Jold
+      cat("\n",round(iter), round(J, 3), round(err,6))
+    }
+  }
+  
+  
+  
+  
+  
+  
   
   if (RotVarimax) {
     varimax(B)
@@ -26,6 +72,17 @@ BinaryLogBiplotGD <- function(X, freq = matrix(1, nrow(X), 1),  dim = 2, toleran
     A = A %*% BB$rotmat
     B[, 1:dim + 1] = B[, 1:dim + 1] %*% BB$rotmat
   }
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
   
   rownames(A)=indnames
   colnames(A)=paste("dim",1:dim)
