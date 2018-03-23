@@ -19,7 +19,6 @@ summary.Binary.Logistic.Biplot <- function(object){
   Total=c(object$DevianceTotal, object$TotalDf, object$p, object$TotNagelkerke, object$TotCoxSnell, object$TotMacFaden, object$TotR2, object$TotalPercent*100)
   RR=rbind(RR,Total)
   print(RR)
-  
   print("-----------")
   print("Thresholds, Loadings and Communalities")
   LO=cbind(object$Tresholds, object$Loadings, object$Communalities)

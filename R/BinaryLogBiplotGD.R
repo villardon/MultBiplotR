@@ -1,7 +1,7 @@
 # Logistic Biplot with Gradient Descent
 
-BinaryLogBiplotGD <- function(X, freq = matrix(1, nrow(X), 1),  dim = 2, tolerance = 1e-04,  penalization=0.01, 
-                              RotVarimax = FALSE, seed = NULL, OptimMethod="CG", Initial="random", Orthogonalize="No", ...) {
+BinaryLogBiplotGD <- function(X, freq = matrix(1, nrow(X), 1),  dim = 2, tolerance = 1e-04,  penalization=0.01, num_max_iters=100,
+                              RotVarimax = FALSE, seed = NULL, OptimMethod="CG", Initial="random", Orthogonalize=FALSE, Algorithm = "Joint", ...) {
   # joint algorithm for logistic biplots
   X=as.matrix(X)
   indnames=rownames(X)
@@ -21,22 +21,23 @@ if (Algorithm == "Joint"){
   A=matrix(par[1:(n*r)],n,r)
   B=matrix(par[(n*r+1):(n*r + p*(r+1))], p, r+1)
     if (Orthogonalize=="A") {
-      # A=InitialTransform(A)$X
       A=Orthog(A)
       parB=c(c(B))
       resbipB <- optimr(parB, fn=JLogBiplotRegB, gr=grLogBiplotRegB, method=OptimMethod, X=X, A=A, r=r, lambda=penalization)
       parB=resbipB$par
       B=matrix(parB, p, r+1)
     }
+  H=sigmoide(cbind(rep(1,n),A) %*% t(B))
   }
   
   
   if (Algorithm == "Alternated"){
     parA=runif(n*r)
-    resbipB <- optimr(parB, fn=JLogBiplotRegB, gr=grLogBiplotRegB, method=OptimMethod, X=X, A=A, r=r, lambda=penalization)
-    parB=resbipB$par
-    
-    J = sum((X - A %*% t(B))^2, na.rm = TRUE)/2 + lambda*sum(A^2, na.rm = TRUE)/2 + lambda*sum(B^2, na.rm = TRUE)/2
+    parB=runif(p*(r+1))
+    A=matrix(parA,n,r)
+    B=matrix(parB, p, r+1)
+    H=sigmoide(cbind(rep(1,n),A) %*% t(B))
+    J=sum(-1*X*log(H)-(1-X)*log(1-H), na.rm = TRUE)/2  + penalization*sum(A^2, na.rm = TRUE)/2 + penalization*sum(B[,-1]^2, na.rm = TRUE)/2
     err=1
     iter=0
     
@@ -44,27 +45,24 @@ if (Algorithm == "Joint"){
       iter=iter+1
       Jold=J
       #Update A
-      resbipA <- optimr(parA, fn=JBiplotRegA, gr=grBiplotRegA, method=OptimMethod, X=X, B=B, lambda=lambda)
+      resbipA <- optimr(parA, fn=JLogBiplotRegA, gr=grLogBiplotRegA, method=OptimMethod, X=X, B=B, lambda=penalization)
       parA=resbipA$par
       A=matrix(parA,n,r)
       if (Orthogonalize) {
         A=InitialTransform(A)$X
         A=Orthog(A)}
       #Update B
-      resbipB <- optimr(parB, fn=JBiplotRegB, gr=grBiplotRegB, method=OptimMethod, X=X, A=A, lambda=lambda)
+      resbipB <- optimr(parB, fn=JLogBiplotRegB, gr=grLogBiplotRegB, method=OptimMethod, X=X, A=A, lambda=penalization)
       parB=resbipB$par
-      B=matrix(parB, p, r)
-      J = sum((X - A %*% t(B))^2, na.rm = TRUE)/2 + lambda*sum(A^2, na.rm = TRUE)/2 + lambda*sum(B^2, na.rm = TRUE)/2
+      B=matrix(parB, p, r+1)
+      H=sigmoide(cbind(rep(1,n),A) %*% t(B))
+      J=sum(-1*X*log(H)-(1-X)*log(1-H), na.rm = TRUE)/2  + penalization*sum(A^2, na.rm = TRUE)/2 + penalization*sum(B[,-1]^2, na.rm = TRUE)/2
       err=(Jold-J)/Jold
       cat("\n",round(iter), round(J, 3), round(err,6))
     }
   }
   
-  
-  
-  
-  
-  
+
   
   if (RotVarimax) {
     varimax(B)
@@ -72,16 +70,6 @@ if (Algorithm == "Joint"){
     A = A %*% BB$rotmat
     B[, 1:dim + 1] = B[, 1:dim + 1] %*% BB$rotmat
   }
-  
-  
-  
-
-  
-  
-  
-  
-  
-  
   
   
   rownames(A)=indnames
@@ -139,6 +127,16 @@ if (Algorithm == "Joint"){
   Res$TotCoxSnell=1-exp(-1*Res$DevianceTotal/nn)
   Res$TotNagelkerke=Res$TotCoxSnell/(1-exp((Res$NullDevianceTotal/(-2)))^(2/nn))
   Res$TotMacFaden=1-(Res$ModelDevianceTotal/Res$NullDevianceTotal)
+  
+  Res$R2 = apply((X-H)^2,2, sum)/apply((X)^2,2, sum)
+  Res$TotR2 = sum((X-H)^2) /sum((X)^2)
+  pred= matrix(as.numeric(H>0.5),n , p)
+  verdad = matrix(as.numeric(X==pred),n , p)
+  Res$PercentsCorrec=apply(verdad, 2, sum)/n
+  Res$TotalPercent=sum(verdad)/(n*p)
+  Res$TotalDf = dim*p
+  Res$p=1-pchisq(Res$DevianceTotal, df = Res$TotalDf)
+  
   Res$ClusterType="us"
   Res$Clusters = as.factor(matrix(1,n, 1))
   Res$ClusterColors="blue"
@@ -146,3 +144,5 @@ if (Algorithm == "Joint"){
   class(Res) = "Binary.Logistic.Biplot"
   return(Res)
 }
+
+
