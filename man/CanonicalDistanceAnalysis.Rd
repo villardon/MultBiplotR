@@ -35,11 +35,11 @@ Should the individual points be Projected onto the representation For the moment
 \details{
 Performs a MANOVA and a Canonical Analysis based on of Distance Matrices (usally for continuous data). The MANOVA statistics is calculated from a decomposition of the distance matrix based on a factor of a external classification. The significance of the test is calculated using a premutation test. The approach depens only on the distances and then is useful with any kind of data.
 
-The Canonical Representation is calculated from a Principal Coordinates Analysis od the distance matrix among the means. Thus, it is only possible for continuous data. The PCoA representation can be "Standard" using the means directly, "Weighted" weighting each group with its sample size or using weighted Princiopal Components Analysy of the matrix of means.
+The Canonical Representation is calculated from a Principal Coordinates Analysis od the distance matrix among the means. Thus, it is only possible for continuous data. The PCoA representation can be "Standard" using the means directly, "Weighted" weighting each group with its sample size or using weighted Princiopal Components Analysis of the matrix of means.
 
-A measure of the quality of representation of the groups. When possible, the measure is also provided for the individual points.
+A measure of the quality of representation of the groups is provided. When possible, the measure is also provided for the individual points.
 
-Soon, a biplot representation will also be provided.
+Soon, a biplot representation will also be developed.
 }
 \value{
 An object of class "CanonicalDistanceAnalysis" with:
@@ -79,5 +79,6 @@ X=as.matrix(iris[1:4])
 D=ContinuousProximities(X,  coef = 1)
 CDA=CanonicalDistanceAnalysis(D, group, dimens=2)
 summary(CDA)
+plot(CDA)
 }
 

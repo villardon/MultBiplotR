@@ -67,7 +67,6 @@ CanonicalDistanceAnalysis <- function(Prox, group, dimens=2, Nsamples=1000, PCoA
   rownames(Y)=GroupNames
   st <- apply(Y^2, 1, sum)
   Result$MeanCoordinates=Y[,1:dimens]
-  print(apply(Result$MeanCoordinates,2,mean))
   colnames(Result$MeanCoordinates)=paste("Dim",1:dimens)
   qlr <- diag(1/st) %*% (Result$MeanCoordinates^2)
   Result$Qualities=round(qlr[, 1:dimens]*100, digits=2)
