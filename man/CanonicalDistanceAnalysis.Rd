@@ -59,6 +59,8 @@ An object of class "CanonicalDistanceAnalysis" with:
 }
 \references{
 Gower, J. C., & Krzanowski, W. J. (1999). Analysis of distance for structured multivariate data and extensions to multivariate analysis of variance. Journal of the Royal Statistical Society: Series C (Applied Statistics), 48(4), 505-519.
+
+Krzanowski, W. J. (2004). Biplots for multifactorial analysis of distance. Biometrics, 60(2), 517-524.
 }
 \author{
 Jose Luis Vicente Villardon
