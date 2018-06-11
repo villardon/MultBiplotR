@@ -2,7 +2,7 @@ plot.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margi
                                                  RowLabels = NULL, ColLabels = NULL, RowColors = NULL, ColColors = NULL, Mode = "s", TickLength= 0.01,
                                                  RowCex = 0.8, ColCex = 0.8, SmartLabels = FALSE, MinQualityRows = 0, MinQualityCols = 0, dp = 0, PredPoints=0, SizeQualRows = FALSE, 
                                                  SizeQualCols = FALSE, ColorQualRows = FALSE, ColorQualCols = FALSE, PchRows = NULL, PchCols = NULL, 
-                                                 PlotClus = FALSE, TypeClus = "ch", ClustConf=1,  Significant=FALSE, alpha=0.05, Bonferroni=FALSE, PlotSupVars = TRUE, ...) {
+                                                 PlotClus = FALSE, TypeClus = "ch", ClustConf=1,  Significant=TRUE, alpha=0.05, Bonferroni=TRUE, PlotSupVars = TRUE, ...) {
   
   a = x$RowCoordinates[,c(F1,F2)]
   n = dim(a)[1]
@@ -39,13 +39,14 @@ plot.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margi
   
   if (Significant){
     if (Bonferroni)
-      WhatCols= WhatCols & (x$VarInfo$Bonferroni<alpha)
+      WhatCols= WhatCols & ((x$pvalues*p)<alpha)
     else
-      WhatCols= WhatCols & (x$VarInfo$pvalues<alpha)
+      WhatCols= WhatCols & (x$pvalues<alpha)
+    
   }
   
 
-  #WhatCols=WhatCols & (x$VarInfo$Nagelkerke>MinQualityCols)
+  WhatCols=WhatCols & (x$R2>MinQualityCols)
   
   if (is.null(RowColors)) 
     RowColors = matrix("blue", n, 1)
@@ -148,7 +149,6 @@ plot.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margi
           g = matrix(c(x$ColumnParameters[j,F1+1], x$ColumnParameters[j,F2+1]),2,1)
           nn = (t(g) %*% g)
           scal <- (a[idp,] %*% g)/nn[1, 1]
-          
           Fpr <- scal %*% t(g)
           nrFpr <- nrow(Fpr)
           dlines(matrix(a[idp,],1,2) , Fpr, color=ColColors[j])
