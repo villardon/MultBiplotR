@@ -1,7 +1,7 @@
 CanonicalDistanceAnalysis <- function(Prox, group, dimens=2, Nsamples=1000, PCoA="Standard", ProjectInd=TRUE){
   cl <- match.call()
   if (!is.factor(group)) stop("The grouping variable must be a factor")
-  if (class(D)!="proximities") stop("The D argument must be an object with Proximities")
+  if (class(Prox)!="proximities") stop("The D argument must be an object with Proximities")
   D=Prox$Proximities
   PCoAs= c("Standard", "Weighted", "WPCA")
   if (is.numeric(PCoA)) PcoA=PCoAs(PCoA)
@@ -12,7 +12,7 @@ CanonicalDistanceAnalysis <- function(Prox, group, dimens=2, Nsamples=1000, PCoA
   GroupNames = levels(group)
   g = length(levels(group))
   n = dim(D)[1]
-  
+
   G = Factor2Binary(group) # Matrix of indicators
   ng=diag(t(G) %*% G)
   D=0.5*D^2
@@ -59,7 +59,7 @@ CanonicalDistanceAnalysis <- function(Prox, group, dimens=2, Nsamples=1000, PCoA
     H=(diag(n) - matrix(1, n, n)/n)
     B =  H %*% D %*% H
   })
-  
+
   solut <- svd(B)
   Result$ExplainedVariance = (solut$d/sum(solut$d)) * 100
   Y = solut$u %*% diag(sqrt(solut$d))
@@ -73,7 +73,7 @@ CanonicalDistanceAnalysis <- function(Prox, group, dimens=2, Nsamples=1000, PCoA
   rownames(Result$Qualities)=GroupNames
   colnames(Result$Qualities)=paste("Dim",1:dim(Result$Qualities)[2])
   Result$CummulativeQualities=t(apply(Result$Qualities,1,cumsum))
-  
+
  if (ProjectInd){
    x=as.matrix(Prox$Data)
    Means= diag(1/ng) %*% t(G) %*% x
@@ -84,6 +84,7 @@ CanonicalDistanceAnalysis <- function(Prox, group, dimens=2, Nsamples=1000, PCoA
   Yi=t(Yi)
   rownames(Yi)=rownames(D)
   Result$RowCoordinates=Yi
+  Result=AddCluster2Biplot(Result, ClusterType="us", Groups=group )
   class(Result)="CanonicalDistanceAnalysis"
   return(Result)
 }

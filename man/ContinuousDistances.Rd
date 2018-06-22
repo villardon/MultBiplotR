@@ -73,5 +73,6 @@ Jose Luis Vicente-Villardon
 \code{\link{PrincipalCoordinates}}
 }
 \examples{
-data(spiders)
+data(wine)
+dis=ContinuousDistances(wine[,4:21])
 }

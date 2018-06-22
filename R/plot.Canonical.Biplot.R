@@ -2,7 +2,7 @@ plot.Canonical.Biplot <- function(x, A1 = 1, A2 = 2, ScaleGraph = TRUE, PlotGrou
                                   WhatVars=NULL, WhatGroups=NULL, IndLabels=NULL, VarLabels=NULL, GroupLabels=NULL, AbbreviateLabels=FALSE,
                                   LabelInd=TRUE, LabelVars = TRUE, CexGroup=1, PchGroup=16, margin=0.1, AddLegend=FALSE, ShowAxes=FALSE, LabelAxes=FALSE, LabelGroups=TRUE,
                                   PlotCircle = TRUE, ConvexHulls = FALSE, TypeCircle = "M", ColorGroups = NULL, ColorVars = NULL, LegendPos="topright",
-                                  ColorInd = NULL, voronoi = TRUE, mode="a", TypeScale = "Complete", ValuesScale = "Original", 
+                                  ColorInd = NULL, voronoi = TRUE, mode="a", TypeScale = "Complete", ValuesScale = "Original",
                                   MinQualityVars = 0, dpg = 0, dpi=0, dp=0,  PredPoints=0, PlotAxis = FALSE, CexInd = NULL, CexVar = NULL,
                                   PchInd = NULL, PchVar = NULL, ColorVar=NULL, ShowAxis=FALSE, VoronoiColor="black", ShowBox=FALSE, ShowTitle=TRUE,
                                   PlotClus = FALSE, TypeClus = "ch", ClustConf = 1, ClustCenters = FALSE,  UseClusterColors = TRUE, CexClustCenters=1, ...) {
@@ -44,7 +44,7 @@ plot.Canonical.Biplot <- function(x, A1 = 1, A2 = 2, ScaleGraph = TRUE, PlotGrou
     scb = scb/x$p
     scf = sqrt(sqrt(scb/sca))
   }
-
+print(x$g)
   J = x$GroupCoordinates[, c(A1, A2)] * scf
   H = x$ColCoordinates[, c(A1, A2)]/scf
   V = x$RowCoordinates[, c(A1, A2)] * scf
@@ -52,11 +52,11 @@ plot.Canonical.Biplot <- function(x, A1 = 1, A2 = 2, ScaleGraph = TRUE, PlotGrou
   g = dim(J)[1]
   p = dim(H)[1]
   n = dim(V)[1]
-  
+
   if (is.null(GroupLabels)) GroupLabels=rownames(J)
   if (is.null(IndLabels)) IndLabels=rownames(V)
   if (is.null(VarLabels)) VarLabels=rownames(H)
-  
+
   if (AbbreviateLabels){
     GroupLabels=abbreviate(GroupLabels, minlength = 5L)
     IndLabels=abbreviate(IndLabels, minlength = 5L)
@@ -111,9 +111,9 @@ plot.Canonical.Biplot <- function(x, A1 = 1, A2 = 2, ScaleGraph = TRUE, PlotGrou
 
   if (is.null(ColorVar))
     ColorVar = rep("black", p)
-  
+
   if (!LabelVars) VarLabels=rep(" ", p)
-  
+
   if (!is.null(x$Sup_Individual_Coord)){VS=x$Sup_Individual_Coord*scf}
 
   if (ShowAxis) {
