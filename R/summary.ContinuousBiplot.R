@@ -1,4 +1,4 @@
-summary.ContinuousBiplot <- function(object, ...) {
+summary.ContinuousBiplot <- function(object, latex=FALSE, ...) {
   if (object$Type=="PCA")
     cat(" ###### Biplot for Principal Components Analysis #######\n\n")
   if (object$Type=="FA")
@@ -44,4 +44,11 @@ summary.ContinuousBiplot <- function(object, ...) {
   print(round(t(apply(object$RowContributions,1, cumsum)), digits=2))
   cat("\n\n\n Qualities of representation of the columns (Cummulative contributions) \n")
   print(round(t(apply(object$ColContributions,1, cumsum)), digits=2))
+  
+  
+  if (latex){
+    print(xtable(pp, caption="Explained Variance"))
+    print(xtable(round(object$RowContributions, digits=2), caption="Row Contributions Factor to element"))
+    print(xtable(round(object$ColContributions, digits=2), caption="Column Contributions Factor to element"))
+  }
 }

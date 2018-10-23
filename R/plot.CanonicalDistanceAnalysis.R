@@ -91,7 +91,11 @@ plot.CanonicalDistanceAnalysis<- function(x, A1 = 1, A2 = 2, ScaleGraph = TRUE, 
   P = rbind(P, c(xmax + (xmax - xmin) * margin, ymax + (ymax - ymin) * margin))
   XLabel=paste("Dimension", A1, " (", round(x$ExplainedVariance[A1], digits=2),"%)", sep="" )
   YLabel=paste("Dimension", A2, " (", round(x$ExplainedVariance[A2], digits=2),"%)", sep="" )
-  Main=paste("Canonical Distance Analysis (p-value =", x$pvalue,")")
+
+  if (x$Type == "PERMANOVA")
+    Main=paste("PERMANOVA (p-value =", round(x$pvalue, digits=5),")")
+  else
+    Main=paste("Canonical Distance Analysis (p-value =", round(x$pvalue, digits=5),")")
   plot(P[, 1], P[, 2], cex = 0, asp = 1, xlab = XLabel, ylab = YLabel, xaxt = xaxt, yaxt = yaxt, main=Main, axes=ShowAxes,  ...)
 
   if (PlotClus) {
@@ -104,11 +108,11 @@ plot.CanonicalDistanceAnalysis<- function(x, A1 = 1, A2 = 2, ScaleGraph = TRUE, 
   }
 
   if (PlotInd)
-    points(A[, 1], A[, 2], cex = CexInd, col = ColorInd, pch = PchInd, ...)
+    points(A[, 1], A[, 2], cex = CexInd, col = RowColors, pch = PchInd, ...)
 
   if (LabelInd)
     if (SmartLabels)
-      textsmart(cbind(A[, 1], A[, 2]), CexPoints = CexInd, ColorPoints = ColorInd, ...)
+      textsmart(cbind(A[, 1], A[, 2]), CexPoints = CexInd, ColorPoints = RowColors, ...)
   else text(A[, 1], A[, 2], rownames(A), cex = CexInd, col = ColorInd, pos = 1, ...)
 
   if (PlotGroups)

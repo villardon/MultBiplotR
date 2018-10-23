@@ -3,10 +3,13 @@ CanonicalDistanceAnalysis <- function(Prox, group, dimens=2, Nsamples=1000, PCoA
   if (!is.factor(group)) stop("The grouping variable must be a factor")
   if (class(Prox)!="proximities") stop("The D argument must be an object with Proximities")
   D=Prox$Proximities
+  print(PCoA)
   PCoAs= c("Standard", "Weighted", "WPCA")
   if (is.numeric(PCoA)) PcoA=PCoAs(PCoA)
   Result=list()
+
   Result$call=cl
+  Result$Type="CDA"
   Result$Distances=D
   Result$Groups=group
   GroupNames = levels(group)
@@ -15,11 +18,13 @@ CanonicalDistanceAnalysis <- function(Prox, group, dimens=2, Nsamples=1000, PCoA
 
   G = Factor2Binary(group) # Matrix of indicators
   ng=diag(t(G) %*% G)
+
   D=0.5*D^2
   F=diag(1/ng) %*% (t(G) %*% D %*% G) %*% diag(1/ng)
   f=matrix(diag(F),g,1)
   DE = (2*F - f %*% matrix(1, 1, g) - t(f %*% matrix(1, 1, g)))
   DE=0.5*DE
+
   TSS=sum(D)/n
   BSS=(t(ng) %*% DE %*% ng)/n
   WSS=TSS-BSS
@@ -50,10 +55,10 @@ CanonicalDistanceAnalysis <- function(Prox, group, dimens=2, Nsamples=1000, PCoA
 
   switch(PCoA, Standard = {
     H=(diag(g) - matrix(1, g, g)/g)
-    B =  H %*% F %*% H
+    B =  H %*% DE %*% H
   },Weighted = {
     H=(diag(g) - matrix(1, g, 1) %*% matrix(ng, 1, g)/n)
-    B = H %*% F %*% H
+    B = H %*% DE %*% H
   },WPCA = {
     # Not finished (Have to be revised before it can be used)
     H=(diag(n) - matrix(1, n, n)/n)
@@ -80,10 +85,11 @@ CanonicalDistanceAnalysis <- function(Prox, group, dimens=2, Nsamples=1000, PCoA
    Di=ContinuousProximities(Means, y=x, coef = Prox$Coefficient, r = Prox$r)$Proximities^2
    Y = Y[,1:dimens]
    Yi=-0.5 * solve(t(Y)%*%Y) %*% t(Y) %*% H %*% t(Di-matrix(1,n,1) %*% matrix(d0,1,g))
+   Yi=t(Yi)
+   rownames(Yi)=rownames(D)
+   Result$RowCoordinates=Yi
  }
-  Yi=t(Yi)
-  rownames(Yi)=rownames(D)
-  Result$RowCoordinates=Yi
+
   Result=AddCluster2Biplot(Result, ClusterType="us", Groups=group )
   class(Result)="CanonicalDistanceAnalysis"
   return(Result)

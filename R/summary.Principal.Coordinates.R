@@ -13,15 +13,15 @@ summary.Principal.Coordinates <- function(object, printdata=FALSE, printproximit
   print(paste("Transformation : ", object$Transformation))
   print("-----------")
   dims=dim(object$RowCoordinates)[2]
-  
+
   if (printdata){ print("-----------")
                   print("DATA")
                   print(object$Data)}
-  
+
   if (printproximities){ print("-----------")
                   print("PROXIMITIES")
                   print(object$Proximities)}
-  
+
   print("-----------")
   print("Eigenvalues and explained Variance")
   result=matrix(0,dims,3)
@@ -31,13 +31,13 @@ summary.Principal.Coordinates <- function(object, printdata=FALSE, printproximit
   rownames(result)=colnames(object$RowCoordinates)
   colnames(result)=c("Eigenvalues", "Variance Explained", "Cummulative")
   print(result)
-  
+
   if (printcoordinates){ print("-----------")
                          print("COORDINATES")
                          print(object$RowCoordinates)}
-  
+
   if (printqualities){ print("-----------")
                          print("QUALITIES OF REPRESENTATION")
                          print(object$RowQualities)}
- 
+ xtable(result, digits=c(0, 6,3,3))
 }

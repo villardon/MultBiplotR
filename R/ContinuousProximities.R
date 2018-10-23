@@ -5,7 +5,7 @@
 
 ContinuousProximities<- function(x, y=NULL, ysup=FALSE, transpose=FALSE, coef = "Pythagorean", r = 1) {
   
-  distances = c("Pythagorean", "Taxonomic", "City", "Minkowski", "Divergence", "dif_sum", "Camberra", "Bray_Curtis", "Soergel", "Ware_Hedges")
+  distances = c("Pythagorean", "Taxonomic", "City", "Minkowski", "Divergence", "dif_sum", "Camberra", "Bray_Curtis", "Soergel", "Ware_Hedges", "Gower")
   if (is.numeric(coef)) coef = distances[coef]
   
   if (!is.null(y)){

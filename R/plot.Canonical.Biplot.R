@@ -44,7 +44,7 @@ plot.Canonical.Biplot <- function(x, A1 = 1, A2 = 2, ScaleGraph = TRUE, PlotGrou
     scb = scb/x$p
     scf = sqrt(sqrt(scb/sca))
   }
-print(x$g)
+
   J = x$GroupCoordinates[, c(A1, A2)] * scf
   H = x$ColCoordinates[, c(A1, A2)]/scf
   V = x$RowCoordinates[, c(A1, A2)] * scf
@@ -240,7 +240,8 @@ print(x$g)
     })
     radius=radius*scf;
 
-    for (i in 1:x$g) Circle(radius[i], c(J[i, 1], J[i, 2]), col = ColorGroups[i])
+    for (i in 1:x$g) {
+      Circle(radius[i], c(J[i, 1], J[i, 2]), col = ColorGroups[i])}
   }
 
   if (ConvexHulls) {
