@@ -1,5 +1,6 @@
 Coinertia <- function(X , Y, ScalingX = 5, ScalingY = 5, dimsol=3){
-  
+  if (is.data.frame(X)) X=as.matrix(X)
+  if (is.data.frame(Y)) Y=as.matrix(Y)
   
   Coiner = list()
   Coiner$Title = "Coinertia Biplot"
@@ -8,7 +9,7 @@ Coinertia <- function(X , Y, ScalingX = 5, ScalingY = 5, dimsol=3){
   Coiner$Dimension=dimsol
   #Information about X
   Coiner$XINFO$Non_Scaled_Data = X
-  Coiner$XINFO$Scaling=ScalingX
+  Coiner$XINFO$Initial_Transformation=ScalingX
   Coiner$XINFO$Means = apply(X, 2, mean)
   Coiner$XINFO$Medians = apply(X, 2, median)
   Coiner$XINFO$Deviations = apply(X, 2, sd)
@@ -21,7 +22,7 @@ Coinertia <- function(X , Y, ScalingX = 5, ScalingY = 5, dimsol=3){
   
   #Information about Y
   Coiner$YINFO$Non_Scaled_Data = Y
-  Coiner$YINFO$Scaling=ScalingY
+  Coiner$YINFO$Initial_Transformation=ScalingY
   Coiner$YINFO$Means = apply(Y, 2, mean)
   Coiner$YINFO$Medians = apply(Y, 2, median)
   Coiner$YINFO$Deviations = apply(Y, 2, sd)
@@ -34,6 +35,8 @@ Coinertia <- function(X , Y, ScalingX = 5, ScalingY = 5, dimsol=3){
   X = InitialTransform(X, transform = ScalingX)$X
   Y = InitialTransform(X, transform = ScalingX)$X
   
+  Coiner$XINFO$Scaled_Data = X
+  Coiner$YINFO$Scaled_Data = Y
 
   I=dim(X)[1]
   J=dim(X)[2]
@@ -52,6 +55,8 @@ Coinertia <- function(X , Y, ScalingX = 5, ScalingY = 5, dimsol=3){
   # Covariances among the variables of both groups
   W=(t(X) %*% Y)/I
   
+  Coiner$Covariances=W
+  
   # Decomposition of the covariances
   COIN=svd(W)
   U=COIN$u[,1:dimsol]
@@ -65,9 +70,15 @@ Coinertia <- function(X , Y, ScalingX = 5, ScalingY = 5, dimsol=3){
   rownames(TablaInertia) = paste("Dimension", 1:dimsol)
   colnames(TablaInertia) = c("Eigenvalue", "Eplained Variance", "Cummulative")
   
+  Coiner$Inertia=TablaInertia
+  
+  
   #Individual Biplot for X
   AX=X %*% U
+  colnames(AX)=paste("Dim", 1:dimsol)
   BX=U
+  rownames(BX)=colnames(X)
+  colnames(BX)=paste("Dim", 1:dimsol)
   Xfitted=X %*% U %*% t(U)
   XFit=100*sum(Xfitted^2)/sum(X^2)
   
@@ -83,8 +94,8 @@ Coinertia <- function(X , Y, ScalingX = 5, ScalingY = 5, dimsol=3){
   AYW=Y %*% V %*% sqrt(Di)
   BXW=U %*% sqrt(D)
   BYW=V %*% sqrt(D)
-  
-  
+  class(Coiner)="Coinertia.SOL"
+  return(Coiner)
 }
 
 CoinertiaBiplot <- function(){
