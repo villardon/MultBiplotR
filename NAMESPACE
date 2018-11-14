@@ -23,7 +23,8 @@ export(InitialTransform, Circle, diagonal, DimensionLabels, Factor2Binary, GetBi
        summary.PLSR1Bin, AddOrdVars2Biplot, AddBinVars2Biplot, plot.ContSupVarsBiplot, plot.Supplementary.Variables, plot.BinSupVarsBiplot, plot.OrdSupVarsBiplot,
        Orthog, GD.Biplot, JBiplotReg, grBiplotReg, JBiplotLASSO, grBiplotLASSO, JBiplotRegB, JBiplotRegA, grBiplotRegB, grBiplotRegA,
        BinaryLogBiplotGD, sigmoide, JLogBiplotReg, grLogBiplotReg, JLogBiplotLASSO, grLogBiplotLASSO, JLogBiplotRegB, JLogBiplotRegA,
-       grLogBiplotRegB, grLogBiplotRegA, vec, Tuckals3, Coinertia)
+       grLogBiplotRegB, grLogBiplotRegA, vec, Tuckals3, Coinertia, PathwiseCoordinateOptimization, LASSORegression, plot.LASSOReg, NIPALSPCA,
+       Sparse.NIPALSPCA, NIPALS.Biplot, Truncated.NIPALSPCA)
 
 import(scales, geometry, deldir, mirt, GPArotation, rgl, optimr)
 importFrom(MASS, kde2d)
