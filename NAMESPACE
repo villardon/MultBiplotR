@@ -24,7 +24,7 @@ export(InitialTransform, Circle, diagonal, DimensionLabels, Factor2Binary, GetBi
        Orthog, GD.Biplot, JBiplotReg, grBiplotReg, JBiplotLASSO, grBiplotLASSO, JBiplotRegB, JBiplotRegA, grBiplotRegB, grBiplotRegA,
        BinaryLogBiplotGD, sigmoide, JLogBiplotReg, grLogBiplotReg, JLogBiplotLASSO, grLogBiplotLASSO, JLogBiplotRegB, JLogBiplotRegA,
        grLogBiplotRegB, grLogBiplotRegA, vec, Tuckals3, Coinertia, PathwiseCoordinateOptimization, LASSORegression, plot.LASSOReg, NIPALSPCA,
-       Sparse.NIPALSPCA, NIPALS.Biplot, Truncated.NIPALSPCA)
+       Sparse.NIPALSPCA, NIPALS.Biplot, Truncated.NIPALSPCA, PCA, plot.PCA, plot.ContinuousBiplot )
 
 import(scales, geometry, deldir, mirt, GPArotation, rgl, optimr)
 importFrom(MASS, kde2d)
@@ -37,6 +37,7 @@ S3method(print, ContinuousBiplot)
 S3method(plot, ellipse)
 S3method(plot, fraction)
 S3method(plot, MGC)
+S3method(plot, PCA)
 S3method(plot, PLSR)
 S3method(summary, PLSR)
 S3method(summary, MGC)
