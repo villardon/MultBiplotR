@@ -57,7 +57,7 @@ PLSR1BinFit <- function(Y, X, S=2, tolerance=0.000005, maxiter=100, show=FALSE, 
     # We have to take the constant into account
     if (cte){
     t0=matrix(1, nrow=I, ncol=1)
-    fit=RidgeBinaryLogistic(Y, t, penalization=penalization, cte=FALSE)
+    fit=RidgeBinaryLogistic(Y, t0, penalization=penalization, cte=FALSE)
     c0=fit$beta[1]
     xb=matrix(apply(X,2,mean), ncol=1)
     X=X-t0%*%t(xb)
