@@ -32,7 +32,8 @@ plot.Canonical.Biplot <- function(x, A1 = 1, A2 = 2, ScaleGraph = TRUE, PlotGrou
   else{
     xlabel = ""
     ylabel = ""
-    Title=paste("Canonical Biplot", " / ", A1, "-", A2, " (", round(x$Inertia[A1]+x$Inertia[A2], digits=2),"%)")
+     
+    Title=paste(x$Title, " / ", A1, "-", A2, " (", round(x$Inertia[A1]+x$Inertia[A2], digits=2),"%)")
   }
 
 

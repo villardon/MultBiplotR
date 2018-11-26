@@ -149,7 +149,6 @@ plot.ContinuousBiplot <- function(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 
   if (xmax <0 ) xmax=xmax*(-1)
   
   P = rbind(P, c(xmax + (xmax - xmin) * margin, ymax + (ymax - ymin) * margin))
-  P = rbind(P, c(xmin - (xmax - xmin) * margin, ymin - (ymax - ymin) * margin))
   plot(P[, 1], P[, 2], cex = 0, asp = 1, xaxt = xaxt, yaxt = yaxt, xlab="",ylab="", bty="n", ...)
   #op=par(mai=c(0,0,0.5,0))
   #op=par(mar=c(1, 1, 1, 1) + 0.1)

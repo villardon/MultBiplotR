@@ -1,5 +1,5 @@
 Genefold <- function(DATA, TRANSFORMATION = "ordinal", DIMENS = 2, LENGTHCONSTR = TRUE, LENGTHX = 1, VARCONSTR = TRUE, INITIAL = "rational", 
-	MAXITER = 100, CONVERGENCE = 1e-05, HISTORY = TRUE) {
+	MAXITER = 100, CONVERGENCE = 1e-05, HISTORY = FALSE, Constrained=FALSE) {
 	n = dim(DATA)[1]
 	m = dim(DATA)[2]
 	eps = 1e-12
@@ -41,6 +41,10 @@ Genefold <- function(DATA, TRANSFORMATION = "ordinal", DIMENS = 2, LENGTHCONSTR 
 		if (Diff < CONVERGENCE) 
 			conv = 1
 	}
+	
+	if (Constrained) 
+	  SOL$Analysis = "Constrained Unfolding - Genefold"
+	else SOL$Analysis  = "Unfolding - Genefold"
 
 	# Some goodness of fit indices and results
 	C1IP = 0

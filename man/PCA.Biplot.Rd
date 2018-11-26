@@ -1,5 +1,5 @@
 \name{PCA.Biplot}
-\alias{PCA.Biplot}
+\alias{PCA.Biplot, PCA.Analysis}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Classical PCA Biplot with added features.

@@ -14,6 +14,8 @@ ContinuousDistances <- function(x, y=NULL,  coef = "Pythagorean", r = 1) {
   NamesX=rownames(x)
   NamesY=rownames(y)
   
+  print(NamesX)
+  
   if (coef=="Gower") rank=apply(rbind(y,x),2,max)-apply(rbind(y,x),2,min)
   if (!(p==q)) stop("The matrices should have the same number of columns")
 

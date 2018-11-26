@@ -21,8 +21,9 @@ MDS <- function(Proximities, W=NULL, Model=c("Identity", "Ratio", "Interval", "O
   Proximities$sstress1=sol$sstress1
   Proximities$sstress2=sol$sstress2
   Proximities$rsq=sol$rsq
-  Proximities$Spearman=sol$rho
-  Proximities$Kendall=sol$tau
+  Proximities$rho=sol$rho
+  Proximities$tau=sol$tau
+  Proximities$Transformation=Model
   if (Bootstrap){
     Proximities$BootstrapInfo=BootstrapSmacof(P, W=W, nB=nB, dimsol=dimsol, Model=Model, maxiter=maxiter,  StandardizeDisparities=StandardizeDisparities, 
                                               maxerror=maxerror, ProcrustesRot=ProcrustesRot, method=BootstrapMethod, ShowIter=ShowIter)

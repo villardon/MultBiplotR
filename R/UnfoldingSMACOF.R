@@ -37,7 +37,7 @@ UnfoldingSMACOF <- function(P, W = matrix(1, dim(P)[1], dim(P)[2]), Constrained 
     X0 = Conf$X
     Y0 = Conf$Y
     history = rbind(history, c(k, errorest))
-    print(c(k, errorest))
+    #print(c(k, errorest))
   }
   
   rownames(Conf$X) = RowNames
@@ -66,8 +66,8 @@ UnfoldingSMACOF <- function(P, W = matrix(1, dim(P)[1], dim(P)[2]), Constrained 
   rownames(DH$Tol) = colnames(P)
   colnames(DH$Tol) = "Tolerance"
   if (Constrained) 
-    Analysis = "Constrained Unfolding"
-  else Analysis = "Unfolding"
+    Analysis = "Constrained Unfolding - SMACOF"
+  else Analysis = "Unfolding - SMACOF"
   
   Unfold = list()
   Unfold$call <- match.call()

@@ -24,7 +24,8 @@ export(InitialTransform, Circle, diagonal, DimensionLabels, Factor2Binary, GetBi
        Orthog, GD.Biplot, JBiplotReg, grBiplotReg, JBiplotLASSO, grBiplotLASSO, JBiplotRegB, JBiplotRegA, grBiplotRegB, grBiplotRegA,
        BinaryLogBiplotGD, sigmoide, JLogBiplotReg, grLogBiplotReg, JLogBiplotLASSO, grLogBiplotLASSO, JLogBiplotRegB, JLogBiplotRegA,
        grLogBiplotRegB, grLogBiplotRegA, vec, Tuckals3, Coinertia, PathwiseCoordinateOptimization, LASSORegression, plot.LASSOReg, NIPALSPCA,
-       Sparse.NIPALSPCA, NIPALS.Biplot, Truncated.NIPALSPCA, PCA, plot.PCA, plot.ContinuousBiplot )
+       Sparse.NIPALSPCA, NIPALS.Biplot, Truncated.NIPALSPCA, PCA.Analysis, plot.PCA.Analysis, plot.ContinuousBiplot, summary.PCA.Analysis,
+       Canonical.Variate.Analysis, plot.CVA, summary.CVA, countsToCases)
 
 import(scales, geometry, deldir, mirt, GPArotation, rgl, optimr)
 importFrom(MASS, kde2d)
@@ -37,10 +38,13 @@ S3method(print, ContinuousBiplot)
 S3method(plot, ellipse)
 S3method(plot, fraction)
 S3method(plot, MGC)
-S3method(plot, PCA)
+S3method(plot, PCA.Analysis)
+S3method(plot, CVA)
+S3method(summary, CVA)
 S3method(plot, PLSR)
 S3method(summary, PLSR)
 S3method(summary, MGC)
+S3method(summary, PCA.Analysis)
 S3method(summary, Ordinal.Logistic.Biplot)
 S3method(print, Ordinal.Logistic.Biplot)
 S3method(plot, Ordinal.Logistic.Biplot)

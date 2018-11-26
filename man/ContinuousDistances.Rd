@@ -1,5 +1,5 @@
 \name{ContinuousDistances}
-\alias{ContinuousDistances}
+\alias{ContinuousDistances, ContinuousProximities}
 \title{Distances for Continuous Data}
 
 

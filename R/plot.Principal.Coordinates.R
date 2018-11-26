@@ -6,10 +6,11 @@
 plot.Principal.Coordinates <- function(x, A1 = 1, A2 = 2, LabelRows=TRUE, WhatRows = NULL, RowCex=1, RowPch=16, 
                                        RowLabels = NULL, RowColors = NULL, ColColors=NULL, ColLabels=NULL, SizeQualInd = FALSE, SmartLabels = TRUE, 
                                        ColorQualInd = FALSE, ColorQual="black", PlotSup=TRUE, Bootstrap=FALSE, 
-                                       BootstrapPlot=c("Ellipse", "CovexHull", "Star"),
+                                       BootstrapPlot=c("Ellipse", "CovexHull", "Star"), margin=0, 
                                        PlotClus = FALSE, TypeClus = "ch", ClustConf = 1, CexClustCenters=1,
                                        ClustCenters = FALSE, UseClusterColors = TRUE, ShowAxis=FALSE, PlotBinaryMeans=FALSE,
-                                       MinIncidence=0, ShowBox=FALSE, ...){
+                                       MinIncidence=0, ShowBox=FALSE,  ColorSupContVars=NULL, ColorSupBinVars=NULL, ColorSupOrdVars=NULL,
+                                       TypeScale = "Complete", SupMode="s", PlotSupVars=FALSE, ...){
   
   if (is.null(ColColors)) 
     ColorVar = "black"
@@ -50,7 +51,10 @@ plot.Principal.Coordinates <- function(x, A1 = 1, A2 = 2, LabelRows=TRUE, WhatRo
     ylab=paste("Dim", A2)
   }
   
-  plot(a[, 1], a[, 2], cex = 0, asp = 1,  xaxt = xaxt, yaxt = yaxt, xlab=xlab,ylab=ylab, bty="n", ...)
+  P = rbind(a, c(xmax + (xmax - xmin) * margin, ymax + (ymax - ymin) * margin))
+  plot(P[, 1], P[, 2], cex = 0, asp = 1, xaxt = xaxt, yaxt = yaxt, xlab="",ylab="", bty="n", ...)
+  
+  # plot(a[, 1], a[, 2], cex = 0, asp = 1,  xaxt = xaxt, yaxt = yaxt, xlab=xlab,ylab=ylab, bty="n", ...)
   
   if (x$Analysis == "Principal Coordinates"){
     title(main = "Principal Coordinates", omi = c(0, 0, 0, 0))}
@@ -74,6 +78,10 @@ plot.Principal.Coordinates <- function(x, A1 = 1, A2 = 2, LabelRows=TRUE, WhatRo
   
   neje = dim(a)[2]
   points(a[, 1], a[, 2], col = RowColors, cex=WhatRows*RowCex, pch=RowPch, asp=1, ...)
+  
+  if (PlotSupVars) 
+    plot.Supplementary.Variables(x, F1=A1, F2=A2, xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, mode=SupMode, TypeScale=TypeScale, ColorSupContVars=ColorSupContVars, ColorSupBinVars=ColorSupBinVars, ColorSupOrdVars=ColorSupOrdVars )
+  
   
   if (LabelRows)  
       if (SmartLabels) 
