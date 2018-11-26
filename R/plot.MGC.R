@@ -41,7 +41,7 @@ plot.MGC <- function(x, vars=NULL, groups=x$Classification, CexPoints=0.2, Confi
     colores=rgb(COL)
     colores[which(x$Outliers==1)]="#000000"
     #pairs(dat, diag.panel = panel.NPdens, col= colores, main="MGC Plot", cex = CexPoints, ...)
-    splom(dat | (x$Classification))
+    #splom(dat | (x$Classification))
   }
 }
 

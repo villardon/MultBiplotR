@@ -30,7 +30,7 @@ export(InitialTransform, Circle, diagonal, DimensionLabels, Factor2Binary, GetBi
 import(scales, geometry, deldir, mirt, GPArotation, rgl, optimr)
 importFrom(MASS, kde2d)
 importFrom(MASS, lda)
-importFrom(lattice, splom)
+
 importFrom(rgl, plot3d)
 S3method(plot, ContinuousBiplot)
 S3method(plot, Unfolding)

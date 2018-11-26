@@ -11,7 +11,7 @@ Encoding: latin1
 Repository: CRAN
 Depends:R (>= 2.15.0), scales, geometry, deldir, mirt, GPArotation, optimr
 Suggests: Hmisc, rgl
-Imports: MASS, lattice
+Imports: MASS
 LazyData: yes
 Archs: i386, x64
 NeedsCompilation: no
