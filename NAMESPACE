@@ -25,7 +25,8 @@ export(InitialTransform, Circle, diagonal, DimensionLabels, Factor2Binary, GetBi
        BinaryLogBiplotGD, sigmoide, JLogBiplotReg, grLogBiplotReg, JLogBiplotLASSO, grLogBiplotLASSO, JLogBiplotRegB, JLogBiplotRegA,
        grLogBiplotRegB, grLogBiplotRegA, vec, Tuckals3, Coinertia, PathwiseCoordinateOptimization, LASSORegression, plot.LASSOReg, NIPALSPCA,
        Sparse.NIPALSPCA, NIPALS.Biplot, Truncated.NIPALSPCA, PCA.Analysis, plot.PCA.Analysis, plot.ContinuousBiplot, summary.PCA.Analysis,
-       Canonical.Variate.Analysis, plot.CVA, summary.CVA, countsToCases)
+       Canonical.Variate.Analysis, plot.CVA, summary.CVA, countsToCases, NormalityTests, Bartlett.Tests, BasicDescription, BoxPlotPanel,
+        ConfidenceInterval, ErrorBarPlotPanel, Games_Howell, HistogramPanel, Kruskal.Wallis.Tests, Levene.Tests, NormalityTests, PostHocGraph)
 
 import(scales, geometry, deldir, mirt, GPArotation, rgl, optimr)
 importFrom(MASS, kde2d)
