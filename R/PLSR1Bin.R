@@ -19,6 +19,7 @@ PLSR1Bin <- function(Y, X, S=2, InitTransform=5, grouping=NULL, tolerance=0.0000
   if (is.numeric(Y)) {Y= as.matrix(Y, I1,1)
   rownames(Y)<-rownames(X)
   colnames(Y)="Response"}
+  
   I2=dim(Y)[1]
   K=1
   inames=rownames(X)
@@ -37,6 +38,7 @@ PLSR1Bin <- function(Y, X, S=2, InitTransform=5, grouping=NULL, tolerance=0.0000
   else I=I1
   Data = InitialTransform(X, transform = InitTransform, grouping=grouping)
   X = Data$X
+
   if (InitTransform=="Within groups standardization") result$Deviations = Data$ColStdDevs
   result$ScaledX=X
   result$ScaledY=Y

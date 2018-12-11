@@ -6,7 +6,6 @@ PLSRfit <- function(Y, X, S=2, tolerance=0.000005, maxiter=100, show=FALSE){
   K=dim(Y)[2]
   I=I2
   
-  uini=svd(X)
   T=matrix(0, I1, S)
   U=matrix(0, I1, S)
   W=matrix(0, J, S)
@@ -25,7 +24,7 @@ PLSRfit <- function(Y, X, S=2, tolerance=0.000005, maxiter=100, show=FALSE){
   for (i in 1:S){
     error=1
     iter=0
-    u=matrix(uini$u[,i],I1,1)
+    u=matrix(X[,1],I1,1)
     while ((error>tolerance) & (iter<maxiter)){
       iter=iter+1
       w=(t(X) %*% u)/sum(u^2)

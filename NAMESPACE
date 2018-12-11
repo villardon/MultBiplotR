@@ -13,7 +13,7 @@ export(InitialTransform, Circle, diagonal, DimensionLabels, Factor2Binary, GetBi
        Convert2ThreeWay, MultiTableStatistics, MultiTableTransform, plot.Statis, SeparateVarTypes, AddSupVars2Biplot, AddContVars2Biplot,
        RidgeMultinomialLogisticRegression, RidgeMultinomialLogisticFit, DataFrame2Matrix4Regression, plot3dCanonicalBiplot, plot3d.ContinuousBiplot,
        RidgeOrdinalLogistic, OrdinalLogisticFit, PlotOrdinalResponses, OrdVarCoordinates, summary.ContinuousBiplot,
-       PLSR, PLSRfit, PLSR1BinFit, Biplot.PLSR, Biplot.PLSR1BIN, summary.PLSR, plot.PLSR,
+       PLSR, PLSRfit, PLSR1BinFit, PLSR1Bin, Biplot.PLSR, Biplot.PLSR1BIN, summary.PLSR, plot.PLSR,
        PrettyTicks, NiceNumber, FA.Biplot, UpdateX, UpdateY, Genefold, Initial, Loss, Updatea, VarDisk, UpdateGAMMA,
        indexC1, ColMeans, UnfoldingSMACOF, dhatsunfol, UpdateUnfol, UpdateUnfolConstr, TransfUnfold, GetConstUnfoldScales, 
        Unfolding, DistUnfold, lsqisotonic, CanonicalDistanceAnalysis, plot.CanonicalDistanceAnalysis, SelectVarsAnova, ContinuousProximities, SymmetricContinuousDistances,

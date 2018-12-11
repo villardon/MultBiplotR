@@ -41,7 +41,6 @@ JLogBiplotLASSO <- function(par, X, r, lambda) {
 }
 
 
-
 grLogBiplotLASSO <- function(par, X, r, lambda) { ## Gradient of 'fr'
   n=dim(X)[1]
   p=dim(X)[2]
@@ -55,8 +54,6 @@ grLogBiplotLASSO <- function(par, X, r, lambda) { ## Gradient of 'fr'
   grad=c(c(gradA),c(gradB))
   return(grad)
 }
-
-
 
 
 # Cost and gradients for the alternate algoritms

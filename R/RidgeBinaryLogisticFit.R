@@ -20,6 +20,7 @@ RidgeBinaryLogisticFit <- function(y, xd, freq, tolerance = 1e-05, maxiter = 100
     In = (t(xd) %*% vv %*% xd) + 2 * penalization * Imod
     U = t(xd) %*% ((y - mu) * freq) - 2 * penalization * Imod %*% betaold
     beta = betaold + ginv(In) %*% U
+
     err = sum(abs(betaold - beta))
   }
   return(beta)
