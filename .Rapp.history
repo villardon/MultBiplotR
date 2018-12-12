@@ -1,0 +1,1165 @@
+install.packages(c("scales", "geometry", "deldir", "rgl", "mirt", "GPARotation", "MASS", "kde2d", "lattice", "splom"))#
+install.packages("http://biplot.usal.es/classicalbiplot/multbiplot-in-r/multbiplotr_02tar.gz", repos = NULL, type="source")
+install.packages("http://biplot.usal.es/classicalbiplot/multbiplot-in-r/multbiplotr_02tar.gz", repos = NULL, type="source")
+library(rgl)
+install.packages("http://biplot.usal.es/classicalbiplot/multbiplot-in-r/multbiplotr_02tar.gz", repos = NULL, type="source")
+help(Unfolding)
+data("SpidersSp")#
+unf=Unfolding(SpidersSp)#
+plot(unf)
+install.packages("http://biplot.usal.es/classicalbiplot/multbiplot-in-r/multbiplotr_02tar.gz", repos = NULL, type="source")
+data("SpidersSp")#
+unf=Unfolding(SpidersSp)#
+plot(unf)
+data(SpidersSp)#
+unf=Unfolding(SpidersSp)#
+plot(unf)
+library(MultBiplotR)
+data(SpidersSp)#
+unf=Unfolding(SpidersSp)#
+plot(unf)
+a=c(1,1,1,0,0,0,0,0,0,1,1,1,-1,-1,-1,-1,-1,-1)
+a
+b=matrix(a,6,3)
+b
+solve(t(b)%*%b)
+b=matrix(c(-1,0,0, 0, -1, 0, 0,0, -1, 1,1 ,1)3,4)
+b=matrix(c(-1,0,0, 0, -1, 0, 0,0, -1, 1,1 ,1),3,4)
+b
+solve(t(b)%*%b)
+b=matrix(c(-1,0,0, 0, -1, 0, 1,1 ,1),3,4)
+b=matrix(c(-1,0,0, 0, -1, 0, 1,1 ,1),3,3)
+b
+solve(t(b)%*%b)
+source("https://bioconductor.org/biocLite.R")#
+biocLite("kimod")
+data(spiders)#
+Dis=BinaryProximities(spiders)#
+pco=PrincipalCoordinates(Dis)#
+Dis=BinaryProximities(spiders)#
+pco=PrincipalCoordinates(Dis, Bootstrap=TRUE)
+plot(¡pco)
+plot(pco)
+plot(pco, Bootstrap=T)
+data(wine)#
+X=wine[,4:21]#
+canbip=CanonicalBiplot(X, group=wine$Group)#
+plot(canbip, mode="s")
+bip
+help(PCA.Biplot)
+data(Protein)#
+bip=PCA.Biplot(Protein[,3:11])#
+plot(bip)
+BiplotGraphGUI <- function(bip, ...) {#
+	require(gWidgets)#
+	options(guiToolkit = "RGtk2")#
+	plotBip <- function(...) {#
+		margin = svalue(sl)#
+		plot(bip, margin = margin)#
+	}#
+	window <- gwindow("Biplot Controler")#
+	notebook <- gnotebook(cont = window)#
+	Disp <- ggroup(cont = notebook, label = gettext("Display"))#
+	tbl = glayout(container = Disp)#
+	size ( tbl ) <- c ( 500 , 200)#
+	tbl[1, 1] <- "Graph"#
+	tbl[1, 2] <- (sb <- gspinbutton(from = 0, to = 1, by = 0.05, value = 0.5, container = tbl, handler = plotBip))#
+	tbl[2, 1] <- "Margin"#
+	tbl[2, 2] <- (sl <- gslider(from = 0, to = 0.3, by = 0.05, value = 0, container = tbl, handler = plotBip))#
+}#
+#
+BiplotGraphGUI(bip)
+data(Protein)#
+bip=PCA.Biplot(Protein[,3:11])#
+plot(bip)
+BiplotGraphGUI <- function(bip, ...) {#
+	require(gWidgets)#
+	options(guiToolkit = "RGtk2")#
+	plotBip <- function(...) {#
+		margin = svalue(sl)#
+		plot(bip, margin = margin)#
+	}#
+	window <- gwindow("Biplot Controler")#
+	notebook <- gnotebook(cont = window)#
+	Disp <- ggroup(cont = notebook, label = gettext("Display"))#
+	tbl = glayout(container = Disp)#
+	size ( tbl ) <- c ( 500 , 200)#
+	tbl[1, 1] <- "Graph"#
+	tbl[1, 2] <- (sb <- gspinbutton(from = 0, to = 1, by = 0.05, value = 0.5, container = tbl, handler = plotBip))#
+	tbl[2, 1] <- "Margin"#
+	tbl[2, 2] <- (sl <- gslider(from = 0, to = 0.3, by = 0.05, value = 0, container = tbl, handler = plotBip))#
+}#
+#
+BiplotGraphGUI(bip)
+BiplotGraphGUI <- function(bip, ...) {#
+	require(gWidgets)#
+	options(guiToolkit = "RGtk2")#
+	plotBip <- function(...) {#
+		margin = svalue(sl)#
+		plot(bip, margin = margin)#
+	}#
+	window <- gwindow("Biplot Controler")#
+	notebook <- gnotebook(cont = window)#
+	Disp <- ggroup(cont = notebook, label = gettext("Display"))#
+	tbl = glayout(container = Disp)#
+	size ( tbl ) <- c ( 500 , 200)#
+	tbl[1, 1] <- "Graph"#
+	tbl[1, 2] <- (sb <- gspinbutton(from = 0, to = 0.3, by = 0.05, value = 0.0, container = tbl, handler = plotBip))#
+	tbl[2, 1] <- "Margin"#
+	tbl[2, 2] <- (sl <- gslider(from = 0, to = 0.3, by = 0.05, value = 0, container = tbl, handler = plotBip))#
+}#
+#
+BiplotGraphGUI(bip)
+BiplotGraphGUI <- function(bip, ...) {#
+	require(gWidgets)#
+	options(guiToolkit = "RGtk2")#
+	plotBip <- function(...) {#
+		margin = svalue(sb)#
+		plot(bip, margin = margin)#
+	}#
+	window <- gwindow("Biplot Controler")#
+	notebook <- gnotebook(cont = window)#
+	Disp <- ggroup(cont = notebook, label = gettext("Display"))#
+	tbl = glayout(container = Disp)#
+	size ( tbl ) <- c ( 500 , 200)#
+	tbl[1, 1] <- "Graph"#
+	tbl[1, 2] <- (sb <- gspinbutton(from = 0, to = 0.3, by = 0.05, value = 0.0, container = tbl, handler = plotBip))#
+	tbl[2, 1] <- "Margin"#
+	tbl[2, 2] <- (sl <- gslider(from = 0, to = 0.3, by = 0.05, value = 0, container = tbl, handler = plotBip))#
+}#
+#
+BiplotGraphGUI(bip)
+BiplotGraphGUI <- function(bip, ...) {#
+	require(gWidgets)#
+	options(guiToolkit = "RGtk2")#
+	plotBip <- function(...) {#
+		margin = svalue(sb)#
+		plot(bip, margin = margin)#
+	}#
+	window <- gwindow("Biplot Controler")#
+	notebook <- gnotebook(cont = window)#
+	Disp <- ggroup(cont = notebook, label = gettext("Display"))#
+	tbl = glayout(container = Disp)#
+	size ( tbl ) <- c ( 500 , 500)#
+	tbl[1, 1] <- "Graph"#
+	tbl[1, 2] <- (sb <- gspinbutton(from = 0, to = 0.3, by = 0.05, value = 0.0, container = tbl, handler = plotBip))#
+	tbl[2, 1] <- "Margin"#
+	tbl[2, 2] <- (sl <- gslider(from = 0, to = 0.3, by = 0.05, value = 0, container = tbl, handler = plotBip))#
+}#
+#
+BiplotGraphGUI(bip)
+BiplotGraphGUI <- function(bip, ...) {#
+	require(gWidgets)#
+	options(guiToolkit = "RGtk2")#
+	plotBip <- function(...) {#
+		margin = svalue(sb)#
+		plot(bip, margin = margin)#
+	}#
+	window <- gwindow("Biplot Controler")#
+	notebook <- gnotebook(cont = window)#
+	Disp <- ggroup(cont = notebook, label = gettext("Display"))#
+	tbl = glayout(container = Disp)#
+	size ( tbl ) <- c ( 500 , 500)#
+	tbl[1, 1] <- "Graph"#
+	tbl[1, 2] <- (sb <- gspinbutton(from = 0, to = 0.3, by = 0.05, value = 0.0, container = tbl, handler = plotBip))#
+	size ( sb ) <- c ( 500 , 500)#
+	tbl[2, 1] <- "Margin"#
+	tbl[2, 2] <- (sl <- gslider(from = 0, to = 0.3, by = 0.05, value = 0, container = tbl, handler = plotBip))#
+}#
+#
+BiplotGraphGUI(bip)
+BiplotGraphGUI <- function(bip, ...) {#
+	require(gWidgets)#
+	options(guiToolkit = "RGtk2")#
+	plotBip <- function(...) {#
+		margin = svalue(sb)#
+		plot(bip, margin = margin)#
+	}#
+	window <- gwindow("Biplot Controler")#
+	notebook <- gnotebook(cont = window)#
+	Disp <- ggroup(cont = notebook, label = gettext("Display"))#
+	tbl = glayout(container = Disp)#
+	size ( tbl ) <- c ( 20 , 100)#
+	tbl[1, 1] <- "Graph"#
+	tbl[1, 2] <- (sb <- gspinbutton(from = 0, to = 0.3, by = 0.05, value = 0.0, container = tbl, handler = plotBip))#
+	size ( sb ) <- c ( 500 , 500)#
+	tbl[2, 1] <- "Margin"#
+	tbl[2, 2] <- (sl <- gslider(from = 0, to = 0.3, by = 0.05, value = 0, container = tbl, handler = plotBip))#
+}#
+#
+BiplotGraphGUI(bip)
+BiplotGraphGUI <- function(bip, ...) {#
+	require(gWidgets)#
+	options(guiToolkit = "RGtk2")#
+	plotBip <- function(...) {#
+		margin = svalue(sb)#
+		plot(bip, margin = margin)#
+	}#
+	window <- gwindow("Biplot Controler")#
+	notebook <- gnotebook(cont = window)#
+	Disp <- ggroup(cont = notebook, label = gettext("Display"))#
+	tbl = glayout(container = Disp)#
+	size ( tbl ) <- c ( 500 , 500)#
+	tbl[1, 1] <- "Graph"#
+	tbl[1, 2] <- (sb <- gspinbutton(from = 0, to = 0.3, by = 0.05, value = 0.0, container = tbl, handler = plotBip))#
+	size ( sb ) <- c ( 20 , 100)#
+	tbl[2, 1] <- "Margin"#
+	tbl[2, 2] <- (sl <- gslider(from = 0, to = 0.3, by = 0.05, value = 0, container = tbl, handler = plotBip))#
+}#
+#
+BiplotGraphGUI(bip)
+BiplotGraphGUI <- function(bip, ...) {#
+	require(gWidgets)#
+	options(guiToolkit = "RGtk2")#
+	plotBip <- function(...) {#
+		margin = svalue(sb)#
+		plot(bip, margin = margin)#
+	}#
+	window <- gwindow("Biplot Controler")#
+	notebook <- gnotebook(cont = window)#
+	Disp <- ggroup(cont = notebook, label = gettext("Display"))#
+	tbl = glayout(container = Disp)#
+	size ( tbl ) <- c ( 500 , 500)#
+	tbl[1, 1] <- "Graph"#
+	tbl[1, 2] <- (sb <- gspinbutton(from = 0, to = 0.3, by = 0.05, value = 0.0, container = tbl, handler = plotBip))#
+	size ( sb ) <- c ( 100 , 20)#
+	tbl[2, 1] <- "Margin"#
+	tbl[2, 2] <- (sl <- gslider(from = 0, to = 0.3, by = 0.05, value = 0, container = tbl, handler = plotBip))#
+}#
+#
+BiplotGraphGUI(bip)
+GraphBiplotGUI <- function(bip, Toolkit= "RGtk2", ...) {#
+	require(gWidgets)#
+	options(guiToolkit = Toolkit)#
+#
+	plotBip <- function(...) {#
+		margin = svalue(marg)#
+		PlotRows = svalue(PlotR)#
+		PlotCols = svalue(PlotC)#
+		LabelRows = svalue(LabelR)#
+		LabelCols = svalue(LabelC)#
+		SizeR = svalue(LabelSizeR)#
+		SizeC = svalue(LabelSizeC)#
+		ShowBox = svalue(ShowBx)#
+		MinQuIn = svalue(MinQI)#
+		MinQuVa = svalue(MinQV)#
+		mode=svalue(bmode, index=TRUE)#
+		TYSC=svalue(vtype)#
+		vva=svalue(vval)#
+		SQI=svalue(SizeQI)#
+		SQV=svalue(SizeQV)#
+		CQI=svalue(ColorQI)#
+		CQV=svalue(ColorQV)#
+		A1=svalue(ax1, index=TRUE)#
+		A2=svalue(ax2, index=TRUE)#
+		n=dim(bip$Non_Scaled_Data)[1]#
+        p=dim(bip$Non_Scaled_Data)[2]#
+        WhatRows = matrix(0, n, 1)#
+        WhatRows[svalue(RS, index=TRUE)]=1#
+        WhatCols = matrix(0, p, 1)#
+        WhatCols[svalue(CS, index=TRUE)]=1#
+		DP=svalue(CP, index=TRUE)#
+		RP=svalue(RP, index=TRUE)#
+		PlCl=svalue(PlotClus)#
+		TypeClus=svalue(ClTy, index=TRUE)#
+		ClustConf=svalue(ClConf)#
+        ClustCenters=svalue(PlotClusC)#
+        UseClusterColors=svalue(UsClusC)#
+		plot(bip, A1=A1, A2=A2, margin = margin, PlotInd = PlotRows, PlotVars = PlotCols, LabelInd = LabelRows, #
+		LabelVars = LabelCols, CexInd = SizeR, CexVar = SizeC, ShowBox = ShowBox, MinQualityInds = MinQuIn, #
+		MinQualityVars = MinQuVa, mode=mode, TypeScale=TYSC, ValuesScale=vva, SizeQualInd = SQI, SizeQualVars=SQV, #
+		ColorQualInd = CQI, ColorQualVars=CQV, WhatInds=WhatRows, WhatVars=WhatCols, dp=DP, PredPoints=RP, #
+		PlotClus=PlCl, TypeClus=TypeClus, ClustConf= ClustConf, ClustCenters=ClustCenters, #
+		UseClusterColors= UseClusterColors)#
+	}#
+	# No consigo que funcione#
+	AddClus <- function(...) {#
+		ClusterType = svalue(TypeCl)#
+		NGroups = svalue(NumClus)#
+		bip=AddCluster2Biplot(bip, ClusterType= ClusterType,  NGroups= NGroups,  method="ward.D")#
+      return(bip)#
+      }#
+    n=dim(bip$Non_Scaled_Data)[1]#
+    p=dim(bip$Non_Scaled_Data)[2]#
+	window <- gwindow("Biplot Controler")#
+	notebook <- gnotebook(cont = window)#
+	size(notebook) <- c(500, 600)#
+	# Group for the original data#
+	DataFrame <- ggroup(cont = notebook, label = gettext("Data"), horizontal = FALSE)#
+	Datos=cbind(rownames(as.data.frame(bip$Non_Scaled_Data)),as.data.frame(bip$Non_Scaled_Data))#
+	colnames(Datos)=c("Rows", colnames(bip$Non_Scaled_Data))#
+	print(Datos)#
+	Table <- gdf(bip$Non_Scaled_Data, container= DataFrame, expand=TRUE)#
+	# Group for information about the biplot#
+	InfoFrame <- ggroup(cont = notebook, label = gettext("Biplot"), horizontal = FALSE)#
+	InCall = gframe(text = "Call", markup = FALSE, horizontal = TRUE, container = InfoFrame)#
+    gedit(as.character(bip$call), container= InCall, col="Blue")#
+    InTran = gframe(text = "Transformation of the data", markup = FALSE, horizontal = TRUE, container = InfoFrame)#
+    gedit(bip$Initial_Transformation, container= InTran)#
+    InType = gframe(text = "Type of coordinates:", markup = FALSE, horizontal = TRUE, container = InfoFrame)#
+      if (bip$alpha==2)#
+    tipo="Principal Normalization (HJ-Biplot) (Baricentric Scaling)"#
+  if (bip$alpha==1)#
+     tipo="Row Principal Normalization (RMP-Biplot)"#
+  if (bip$alpha==0)#
+    tipo="Column Principal Normalization (CMP-Biplot)"#
+  if (bip$alpha==0.5)#
+    tipo="Symmetrical Normalization (SQRT - Biplot)"#
+  if ((bip$alpha>0) & (bip$alpha<1) & (bip$alpha != 0.5))#
+    tipo=paste("Custom Normalization (Biplot con \alpha = ",gamma,")")#
+    gedit(tipo, container= InType, width=40)#
+    InIner = gframe(text = "Eigenvalues and Explained Variance (Inertia):", markup = FALSE, horizontal = TRUE, container = InfoFrame)#
+    pp=cbind(1:length(bip$EigenValues), bip$EigenValues, bip$Inertia, bip$CumInertia)#
+    colnames(pp)=c("Axis", "Eigenvalue", "Explained Variance", "Cummulative")#
+    TabVarExp <- gtable(pp, container= InIner, expand=TRUE)#
+    size(TabVarExp) <- c(400, 120)#
+    #Group for the Contributions#
+    CotribFrame <- ggroup(cont = notebook, label = gettext("Contributions"), horizontal = FALSE) #
+	# Group for main characteristics of the plot#
+	Disp <- ggroup(cont = notebook, label = gettext("Display"), horizontal = FALSE)#
+	AxisFrame = gframe(text = "Dimensions to Plot", markup = FALSE, horizontal = TRUE, container = Disp)#
+	gp00 = ggroup(container = AxisFrame)#
+    glabel("Dimension in Axis X:", container=gp00)#
+    flavors=1:bip$dim#
+    ax1 <- gcombobox(flavors, editable=FALSE, container=gp00, handler= plotBip)#
+    svalue(ax1, index=TRUE)<-1#
+#
+    gp01 = ggroup(container = AxisFrame)#
+    glabel("Dimension in Axis Y:", container=gp01)#
+    ax2 <- gcombobox(flavors, editable=FALSE, container=gp01, handler= plotBip)#
+    svalue(ax2, index=TRUE)<-2#
+	PlotFrame = gframe(text = "What to Plot", markup = FALSE, horizontal = FALSE, container = Disp)#
+	tbl = glayout(container = PlotFrame)#
+	size(tbl) <- c(400, 30)#
+	tbl[1, 1] <- (PlotR <- gcheckbox("Individuals", container = tbl, handler = plotBip))#
+	svalue(PlotR) <- TRUE#
+	size(PlotR) <- c(150, 20)#
+	tbl[1, 2] <- (PlotC <- gcheckbox("Variables", container = tbl, handler = plotBip))#
+	svalue(PlotC) <- TRUE#
+	size(PlotC) <- c(150, 20)#
+#
+	LabelFrame = gframe(text = "Label", markup = FALSE, horizontal = FALSE, container = Disp)#
+	tbl2 = glayout(container = LabelFrame)#
+	size(tbl2) <- c(400, 30)#
+	tbl2[1, 1] <- (LabelR <- gcheckbox("Individuals", container = tbl2, handler = plotBip))#
+	svalue(LabelR) <- TRUE#
+	size(LabelR) <- c(150, 20)#
+	tbl2[1, 2] <- (LabelC <- gcheckbox("Variables", container = tbl2, handler = plotBip))#
+	svalue(LabelC) <- TRUE#
+	size(LabelC) <- c(150, 20)#
+#
+	LabelSizeFrame = gframe(text = "Size", markup = FALSE, horizontal = FALSE, container = Disp)#
+	tbl3 = glayout(container = LabelSizeFrame)#
+	size(tbl3) <- c(400, 30)#
+	tbl3[1, 1] <- "Individuals: "#
+	tbl3[1, 2] <- (LabelSizeR <- gspinbutton(from = 0.1, to = 2, by = 0.1, value = 1, container = tbl3, handler = plotBip))#
+	tbl3[1, 3] <- "Variables: "#
+	tbl3[1, 4] <- (LabelSizeC <- gspinbutton(from = 0.1, to = 2, by = 0.1, value = 1, container = tbl3, handler = plotBip))#
+#
+	MarginFrame = gframe(text = "Margin", markup = FALSE, horizontal = FALSE, container = Disp)#
+	tbl4 = glayout(container = MarginFrame)#
+	tbl4[1, 1] <- (marg <- gspinbutton(from = 0, to = 0.3, by = 0.05, value = 0, container = tbl4, handler = plotBip))#
+	size(marg) <- c(100, 20)#
+	tbl4[1, 2] <- (ShowAx <- gcheckbox("Show Axis", container = tbl4, handler = plotBip))#
+	svalue(ShowAx) <- FALSE#
+	size(ShowAx) <- c(100, 20)#
+	tbl4[1, 3] <- (ShowBx <- gcheckbox("Show Box", container = tbl4, handler = plotBip))#
+	svalue(ShowBx) <- FALSE#
+	size(ShowBx) <- c(100, 20)#
+    ModeFrame = gframe(text = "Variables Mode on the Biplot", markup = FALSE, horizontal = FALSE, container = Disp)#
+    modes = c("Points", "Arrows", "Both ends", "Half line", "Half Line & Arrow", "Calibrated Axis")#
+    gp = ggroup(container = ModeFrame)#
+    glabel("Variables Mode:", container=gp)#
+    bmode <- gcombobox(modes, editable=FALSE, container= gp, handler= plotBip)#
+   svalue(bmode, index=TRUE) <- 2#
+   gp2 = ggroup(container = ModeFrame)#
+   types = c("Complete", "Standard Deviation", "Box Plot")#
+    glabel("Type of Scale:", container=gp2)#
+    vtype <- gcombobox(types, editable=FALSE, container= gp2, handler= plotBip)#
+   svalue(vtype, index=TRUE) <- 1#
+     gp3 = ggroup(container = ModeFrame)#
+   vals = c("Original", "Transformed")#
+    glabel("Values on the Scale:", container=gp3)#
+    vval <- gcombobox(vals, editable=FALSE, container= gp3, handler= plotBip)#
+   svalue(vval, index=TRUE) <- 1#
+   PlottedFrame <- ggroup(cont = notebook, label = gettext("Plotted"), horizontal = TRUE)#
+   TS = glayout(container = PlottedFrame)#
+   TS[1,1]<-"Rows"#
+   TS[2,1] <- (RS <- gcheckboxgroup(rownames(bip$Non_Scaled_Data), container= TS, handler= plotBip, use.table=TRUE))#
+   size(RS) <- c(200, 400)#
+   svalue(RS)=rep(TRUE,n)#
+   TS[1,2]<-"Columns"#
+   TS[2,2] <- (CS <- gcheckboxgroup(colnames(bip$Non_Scaled_Data), container= TS, handler= plotBip, use.table=TRUE))#
+   size(CS) <- c(200, 400)#
+   svalue(CS)=rep(TRUE,p)#
+    ProjFrame <- ggroup(cont = notebook, label = gettext("Projected"), horizontal = TRUE)#
+   TP = glayout(container = ProjFrame)#
+   TP[1,1]<-"Rows"#
+   TP[2,1] <- (RP <- gcheckboxgroup(rownames(bip$Non_Scaled_Data), container= TP, handler= plotBip, use.table=TRUE))#
+   size(RP) <- c(200, 400)#
+   svalue(RP)=rep(FALSE,n)#
+   TP[1,2]<-"Columns"#
+   TP[2,2] <- (CP <- gcheckboxgroup(colnames(bip$Non_Scaled_Data), container= TP, handler= plotBip, use.table=TRUE))#
+   size(CP) <- c(200, 400)#
+   svalue(CP)=rep(FALSE,p)#
+	Qualities <- ggroup(cont = notebook, label = gettext("Qualities"), horizontal = FALSE)#
+	QualIndFrame = gframe(text = "Individuals", markup = FALSE, horizontal = FALSE, container = Qualities)#
+	tbl5 = glayout(container = QualIndFrame)#
+	tbl5[1, 1] <- "Min quality to plot :    "#
+	tbl5[1, 2] <- (MinQI <- gspinbutton(from = 0, to = 1, by = 0.1, value = 0, container = tbl5, handler = plotBip))#
+	size(MinQI) <- c(100, 20)#
+	tbl5[2, 1] <- (SizeQI <- gcheckbox("Sizes by quality", container = tbl5, handler = plotBip))#
+    svalue(SizeQI) <- FALSE#
+    tbl5[3, 1] <- (ColorQI <- gcheckbox("Colors by quality", container = tbl5, handler = plotBip))#
+    svalue(ColorQI) <- FALSE#
+#
+	QualVarFrame = gframe(text = "Variables", markup = FALSE, horizontal = FALSE, container = Qualities)#
+    tbl6 = glayout(container = QualVarFrame)
+PCA.BiplotGUI <- function(X, Toolkit = "RGtk2", ...) {#
+	require(gWidgets)#
+	options(guiToolkit = Toolkit)#
+	DoBiplot <- function(...) {#
+		bip = PCA.Biplot(X)#
+		GraphBiplotGUI(bip)#
+	}#
+#
+	window <- gwindow("Classical Biplot (PCA)")#
+	notebook <- gnotebook(cont = window)#
+	size(notebook) <- c(500, 600)#
+#
+	# Group for the original data#
+	DataFrame <- ggroup(cont = notebook, label = gettext("Data"), horizontal = FALSE)#
+	Table <- gdf(X, container = DataFrame, expand = TRUE)#
+	# Group for the biplot definition#
+	Disp <- ggroup(cont = notebook, label = gettext("Biplot Definition"), horizontal = FALSE)#
+#
+	PrevFrame = gframe(text = "Previous Transformation", markup = FALSE, horizontal = TRUE, container = Disp)#
+	types = c("Log", "Logit", "None")#
+	prevtr <- gcombobox(types, editable = FALSE, container = PrevFrame)#
+	svalue(prevtr, index = TRUE) <- 3#
+#
+	SacalingFrame = gframe(text = "Previous Scaling", markup = FALSE, horizontal = TRUE, container = Disp)#
+	ContinuousDataTransform = c("Raw Data", "Substract the global mean", "Double centering", "Column centering", #
+		"Standardize columns", "Row centering", "Standardize rows", "Divide by the column means and center", "Normalized residuals from independence", #
+		"Divide by the range", "Within groups standardization", "Ranks")#
+	prevtsc <- gcombobox(ContinuousDataTransform, editable = FALSE, container = SacalingFrame)#
+	svalue(prevtsc, index = TRUE) <- 5#
+#
+	EstimFrame = gframe(text = "Estimation Method", markup = FALSE, horizontal = TRUE, container = Disp)#
+	estypes = c("Singular Value Decomposition", "Alternated Regressions", "Robust Alternated Regressions", "Eigenvectors of the Covariance Matrix")#
+	estim <- gcombobox(estypes, editable = FALSE, container = EstimFrame)#
+	svalue(estim, index = TRUE) <- 1#
+#
+	TypeBiplotFrame = gframe(text = "Biplot Type", markup = FALSE, horizontal = TRUE, container = Disp)#
+	TypeBi = glayout(container = TypeBiplotFrame)#
+  	size(TypeBi) <- c(400, 50)#
+	TypeBi[1, 1] <- "GH - CMP "#
+	TypeBi[1, 2] <- (LabelSizeR <- gslider(from = 0.0, to = 1, by = 0.05, value = 1, container = TypeBi))#
+	  	size(LabelSizeR) <- c(200, 30)#
+	TypeBi[1, 3] <- "JK - RMP"#
+	DimensionFrame = gframe(text = "Dimension of the solution", markup = FALSE, horizontal = TRUE, container = Disp)	#
+	Dimens <- gspinbutton(from = 2, to = 50, by = 1, value = 3, container = DimensionFrame)#
+    size(Dimens) <- c(100, 20)#
+    RunButt <- gbutton("Run Biplot", container = Disp, handler = DoBiplot)#
+    	PlottedFrame <- ggroup(cont = notebook, label = gettext("Selected"), horizontal = TRUE)#
+	TS = glayout(container = PlottedFrame)#
+	TS[1, 1] <- "Rows"#
+	TS[2, 1] <- (RS <- gcheckboxgroup(rownames(X), container = TS, use.table = TRUE))#
+	size(RS) <- c(220, 400)#
+	svalue(RS) = rep(TRUE, dim(X)[1])#
+	TS[1, 2] <- "Columns"#
+	TS[2, 2] <- (CS <- gcheckboxgroup(colnames(X), container = TS, use.table = TRUE))#
+	size(CS) <- c(220, 400)#
+	svalue(CS) = rep(TRUE, dim(X)[2])#
+	svalue(notebook) <- 2#
+}#
+#
+PCA.BiplotGUI(X)
+PCA.BiplotGUI <- function(X, Toolkit = "RGtk2", ...) {	#
+	require(MultBiplotR)#
+	require(gWidgets)#
+	options(guiToolkit = Toolkit)#
+	DoBiplot <- function(...) {#
+		bip = PCA.Biplot(X)#
+		GraphBiplotGUI(bip)#
+	}#
+#
+	window <- gwindow("Classical Biplot (PCA)")#
+	notebook <- gnotebook(cont = window)#
+	size(notebook) <- c(500, 600)#
+#
+	# Group for the original data#
+	DataFrame <- ggroup(cont = notebook, label = gettext("Data"), horizontal = FALSE)#
+	Table <- gdf(X, container = DataFrame, expand = TRUE)#
+	# Group for the biplot definition#
+	Disp <- ggroup(cont = notebook, label = gettext("Biplot Definition"), horizontal = FALSE)#
+#
+	PrevFrame = gframe(text = "Previous Transformation", markup = FALSE, horizontal = TRUE, container = Disp)#
+	types = c("Log", "Logit", "None")#
+	prevtr <- gcombobox(types, editable = FALSE, container = PrevFrame)#
+	svalue(prevtr, index = TRUE) <- 3#
+#
+	SacalingFrame = gframe(text = "Previous Scaling", markup = FALSE, horizontal = TRUE, container = Disp)#
+	ContinuousDataTransform = c("Raw Data", "Substract the global mean", "Double centering", "Column centering", #
+		"Standardize columns", "Row centering", "Standardize rows", "Divide by the column means and center", "Normalized residuals from independence", #
+		"Divide by the range", "Within groups standardization", "Ranks")#
+	prevtsc <- gcombobox(ContinuousDataTransform, editable = FALSE, container = SacalingFrame)#
+	svalue(prevtsc, index = TRUE) <- 5#
+#
+	EstimFrame = gframe(text = "Estimation Method", markup = FALSE, horizontal = TRUE, container = Disp)#
+	estypes = c("Singular Value Decomposition", "Alternated Regressions", "Robust Alternated Regressions", "Eigenvectors of the Covariance Matrix")#
+	estim <- gcombobox(estypes, editable = FALSE, container = EstimFrame)#
+	svalue(estim, index = TRUE) <- 1#
+#
+	TypeBiplotFrame = gframe(text = "Biplot Type", markup = FALSE, horizontal = TRUE, container = Disp)#
+	TypeBi = glayout(container = TypeBiplotFrame)#
+  	size(TypeBi) <- c(400, 50)#
+	TypeBi[1, 1] <- "GH - CMP "#
+	TypeBi[1, 2] <- (LabelSizeR <- gslider(from = 0.0, to = 1, by = 0.05, value = 1, container = TypeBi))#
+	  	size(LabelSizeR) <- c(200, 30)#
+	TypeBi[1, 3] <- "JK - RMP"#
+	DimensionFrame = gframe(text = "Dimension of the solution", markup = FALSE, horizontal = TRUE, container = Disp)	#
+	Dimens <- gspinbutton(from = 2, to = 50, by = 1, value = 3, container = DimensionFrame)#
+    size(Dimens) <- c(100, 20)#
+    RunButt <- gbutton("Run Biplot", container = Disp, handler = DoBiplot)#
+    	PlottedFrame <- ggroup(cont = notebook, label = gettext("Selected"), horizontal = TRUE)#
+	TS = glayout(container = PlottedFrame)#
+	TS[1, 1] <- "Rows"#
+	TS[2, 1] <- (RS <- gcheckboxgroup(rownames(X), container = TS, use.table = TRUE))#
+	size(RS) <- c(220, 400)#
+	svalue(RS) = rep(TRUE, dim(X)[1])#
+	TS[1, 2] <- "Columns"#
+	TS[2, 2] <- (CS <- gcheckboxgroup(colnames(X), container = TS, use.table = TRUE))#
+	size(CS) <- c(220, 400)#
+	svalue(CS) = rep(TRUE, dim(X)[2])#
+	svalue(notebook) <- 2#
+}#
+#
+PCA.BiplotGUI(X)
+PCA.BiplotGUI <- function(X, Toolkit = "RGtk2", ...) {	#
+	library(MultBiplotR)#
+	require(gWidgets)#
+	options(guiToolkit = Toolkit)#
+	DoBiplot <- function(...) {#
+		bip = PCA.Biplot(X)#
+		GraphBiplotGUI(bip)#
+	}#
+#
+	window <- gwindow("Classical Biplot (PCA)")#
+	notebook <- gnotebook(cont = window)#
+	size(notebook) <- c(500, 600)#
+#
+	# Group for the original data#
+	DataFrame <- ggroup(cont = notebook, label = gettext("Data"), horizontal = FALSE)#
+	Table <- gdf(X, container = DataFrame, expand = TRUE)#
+	# Group for the biplot definition#
+	Disp <- ggroup(cont = notebook, label = gettext("Biplot Definition"), horizontal = FALSE)#
+#
+	PrevFrame = gframe(text = "Previous Transformation", markup = FALSE, horizontal = TRUE, container = Disp)#
+	types = c("Log", "Logit", "None")#
+	prevtr <- gcombobox(types, editable = FALSE, container = PrevFrame)#
+	svalue(prevtr, index = TRUE) <- 3#
+#
+	SacalingFrame = gframe(text = "Previous Scaling", markup = FALSE, horizontal = TRUE, container = Disp)#
+	ContinuousDataTransform = c("Raw Data", "Substract the global mean", "Double centering", "Column centering", #
+		"Standardize columns", "Row centering", "Standardize rows", "Divide by the column means and center", "Normalized residuals from independence", #
+		"Divide by the range", "Within groups standardization", "Ranks")#
+	prevtsc <- gcombobox(ContinuousDataTransform, editable = FALSE, container = SacalingFrame)#
+	svalue(prevtsc, index = TRUE) <- 5#
+#
+	EstimFrame = gframe(text = "Estimation Method", markup = FALSE, horizontal = TRUE, container = Disp)#
+	estypes = c("Singular Value Decomposition", "Alternated Regressions", "Robust Alternated Regressions", "Eigenvectors of the Covariance Matrix")#
+	estim <- gcombobox(estypes, editable = FALSE, container = EstimFrame)#
+	svalue(estim, index = TRUE) <- 1#
+#
+	TypeBiplotFrame = gframe(text = "Biplot Type", markup = FALSE, horizontal = TRUE, container = Disp)#
+	TypeBi = glayout(container = TypeBiplotFrame)#
+  	size(TypeBi) <- c(400, 50)#
+	TypeBi[1, 1] <- "GH - CMP "#
+	TypeBi[1, 2] <- (LabelSizeR <- gslider(from = 0.0, to = 1, by = 0.05, value = 1, container = TypeBi))#
+	  	size(LabelSizeR) <- c(200, 30)#
+	TypeBi[1, 3] <- "JK - RMP"#
+	DimensionFrame = gframe(text = "Dimension of the solution", markup = FALSE, horizontal = TRUE, container = Disp)	#
+	Dimens <- gspinbutton(from = 2, to = 50, by = 1, value = 3, container = DimensionFrame)#
+    size(Dimens) <- c(100, 20)#
+    RunButt <- gbutton("Run Biplot", container = Disp, handler = DoBiplot)#
+    	PlottedFrame <- ggroup(cont = notebook, label = gettext("Selected"), horizontal = TRUE)#
+	TS = glayout(container = PlottedFrame)#
+	TS[1, 1] <- "Rows"#
+	TS[2, 1] <- (RS <- gcheckboxgroup(rownames(X), container = TS, use.table = TRUE))#
+	size(RS) <- c(220, 400)#
+	svalue(RS) = rep(TRUE, dim(X)[1])#
+	TS[1, 2] <- "Columns"#
+	TS[2, 2] <- (CS <- gcheckboxgroup(colnames(X), container = TS, use.table = TRUE))#
+	size(CS) <- c(220, 400)#
+	svalue(CS) = rep(TRUE, dim(X)[2])#
+	svalue(notebook) <- 2#
+}#
+#
+PCA.BiplotGUI(X)
+GraphBiplotGUI <- function(bip, Toolkit = "RGtk2", ...) {#
+	require(gWidgets)#
+	options(guiToolkit = Toolkit)#
+#
+	plotBip <- function(...) {#
+		margin = svalue(marg)#
+		PlotRows = svalue(PlotR)#
+		PlotCols = svalue(PlotC)#
+		LabelRows = svalue(LabelR)#
+		LabelCols = svalue(LabelC)#
+		SizeR = svalue(LabelSizeR)#
+		SizeC = svalue(LabelSizeC)#
+		ShowBox = svalue(ShowBx)#
+		MinQuIn = svalue(MinQI)#
+		MinQuVa = svalue(MinQV)#
+		mode = svalue(bmode, index = TRUE)#
+		TYSC = svalue(vtype)#
+		vva = svalue(vval)#
+		SQI = svalue(SizeQI)#
+		SQV = svalue(SizeQV)#
+		CQI = svalue(ColorQI)#
+		CQV = svalue(ColorQV)#
+		A1 = svalue(ax1, index = TRUE)#
+		A2 = svalue(ax2, index = TRUE)#
+		n = dim(bip$Non_Scaled_Data)[1]#
+		p = dim(bip$Non_Scaled_Data)[2]#
+		WhatRows = matrix(0, n, 1)#
+		WhatRows[svalue(RS, index = TRUE)] = 1#
+		WhatCols = matrix(0, p, 1)#
+		WhatCols[svalue(CS, index = TRUE)] = 1#
+		DP = svalue(CP, index = TRUE)#
+		RP = svalue(RP, index = TRUE)#
+		PlCl = svalue(PlotClus)#
+		TypeClus = svalue(ClTy, index = TRUE)#
+		ClustConf = svalue(ClConf)#
+		ClustCenters = svalue(PlotClusC)#
+		UseClusterColors = svalue(UsClusC)#
+#
+		plot(bip, A1 = A1, A2 = A2, margin = margin, PlotInd = PlotRows, PlotVars = PlotCols, LabelInd = LabelRows, #
+			LabelVars = LabelCols, CexInd = SizeR, CexVar = SizeC, ShowBox = ShowBox, MinQualityInds = MinQuIn, #
+			MinQualityVars = MinQuVa, mode = mode, TypeScale = TYSC, ValuesScale = vva, SizeQualInd = SQI, SizeQualVars = SQV, #
+			ColorQualInd = CQI, ColorQualVars = CQV, WhatInds = WhatRows, WhatVars = WhatCols, dp = DP, PredPoints = RP, #
+			PlotClus = PlCl, TypeClus = TypeClus, ClustConf = ClustConf, ClustCenters = ClustCenters, UseClusterColors = UseClusterColors)#
+	}#
+	# No consigo que funcione#
+	AddClus <- function(...) {#
+		ClusterType = svalue(TypeCl)#
+		NGroups = svalue(NumClus)#
+		bip = AddCluster2Biplot(bip, ClusterType = ClusterType, NGroups = NGroups, method = "ward.D")#
+		print(bip$Clusters)#
+		return(bip)#
+	}#
+	n = dim(bip$Non_Scaled_Data)[1]#
+	p = dim(bip$Non_Scaled_Data)[2]#
+#
+	window <- gwindow("Biplot Controler")#
+	notebook <- gnotebook(cont = window)#
+	size(notebook) <- c(500, 600)#
+#
+	# Group for the original data#
+	DataFrame <- ggroup(cont = notebook, label = gettext("Data"), horizontal = FALSE)#
+	Table <- gdf(bip$Non_Scaled_Data, container = DataFrame, expand = TRUE)#
+#
+	# Group for information about the biplot#
+	InfoFrame <- ggroup(cont = notebook, label = gettext("Biplot"), horizontal = FALSE)#
+	InCall = gframe(text = "Call", markup = FALSE, horizontal = TRUE, container = InfoFrame)#
+	gedit(as.character(bip$call), container = InCall, col = "Blue")#
+	InTran = gframe(text = "Transformation of the data", markup = FALSE, horizontal = TRUE, container = InfoFrame)#
+	gedit(bip$Initial_Transformation, container = InTran)#
+	InType = gframe(text = "Type of coordinates:", markup = FALSE, horizontal = TRUE, container = InfoFrame)#
+	if (bip$alpha == 2) #
+		tipo = "Principal Normalization (HJ-Biplot) (Baricentric Scaling)"#
+	if (bip$alpha == 1) #
+		tipo = "Row Principal Normalization (RMP-Biplot)"#
+	if (bip$alpha == 0) #
+		tipo = "Column Principal Normalization (CMP-Biplot)"#
+	if (bip$alpha == 0.5) #
+		tipo = "Symmetrical Normalization (SQRT - Biplot)"#
+	if ((bip$alpha > 0) & (bip$alpha < 1) & (bip$alpha != 0.5)) #
+		tipo = paste("Custom Normalization (Biplot con \alpha = ", gamma, ")")#
+	gedit(tipo, container = InType, width = 40)#
+#
+	InIner = gframe(text = "Eigenvalues and Explained Variance (Inertia):", markup = FALSE, horizontal = TRUE, #
+		container = InfoFrame)#
+	pp = cbind(1:length(bip$EigenValues), bip$EigenValues, bip$Inertia, bip$CumInertia)#
+	colnames(pp) = c("Axis", "Eigenvalue", "Explained Variance", "Cummulative")#
+	TabVarExp <- gtable(pp, container = InIner, expand = TRUE)#
+	size(TabVarExp) <- c(400, 120)#
+#
+	#Group for the Contributions#
+	CotribFrame <- ggroup(cont = notebook, label = gettext("Contributions"), horizontal = TRUE)#
+	TabCont = glayout(container = CotribFrame)#
+	TabCont[1, 1] <- (TabRowContr <- gdf(bip$RowContributions, container = CotribFrame, expand = TRUE))#
+	size(TabRowContr) <- c(300, 400)#
+	TabCont[1, 2] <- (TabColContr <- gdf(bip$ColContributions, container = CotribFrame, expand = TRUE))#
+	size(TabColContr) <- c(300, 400)#
+	# Group for main characteristics of the plot#
+	Disp <- ggroup(cont = notebook, label = gettext("Display"), horizontal = FALSE)#
+#
+	AxisFrame = gframe(text = "Dimensions to Plot", markup = FALSE, horizontal = TRUE, container = Disp)#
+	gp00 = ggroup(container = AxisFrame)#
+	glabel("Dimension in Axis X:", container = gp00)#
+	flavors = 1:bip$dim#
+	ax1 <- gcombobox(flavors, editable = FALSE, container = gp00, handler = plotBip)#
+	svalue(ax1, index = TRUE) <- 1#
+#
+	gp01 = ggroup(container = AxisFrame)#
+	glabel("Dimension in Axis Y:", container = gp01)#
+	ax2 <- gcombobox(flavors, editable = FALSE, container = gp01, handler = plotBip)#
+	svalue(ax2, index = TRUE) <- 2#
+	PlotFrame = gframe(text = "What to Plot", markup = FALSE, horizontal = FALSE, container = Disp)#
+	tbl = glayout(container = PlotFrame)#
+	size(tbl) <- c(400, 30)#
+	tbl[1, 1] <- (PlotR <- gcheckbox("Individuals", container = tbl, handler = plotBip))#
+	svalue(PlotR) <- TRUE#
+	size(PlotR) <- c(150, 20)#
+	tbl[1, 2] <- (PlotC <- gcheckbox("Variables", container = tbl, handler = plotBip))#
+	svalue(PlotC) <- TRUE#
+	size(PlotC) <- c(150, 20)#
+#
+	LabelFrame = gframe(text = "Label", markup = FALSE, horizontal = FALSE, container = Disp)#
+	tbl2 = glayout(container = LabelFrame)#
+	size(tbl2) <- c(400, 30)#
+	tbl2[1, 1] <- (LabelR <- gcheckbox("Individuals", container = tbl2, handler = plotBip))#
+	svalue(LabelR) <- TRUE#
+	size(LabelR) <- c(150, 20)#
+	tbl2[1, 2] <- (LabelC <- gcheckbox("Variables", container = tbl2, handler = plotBip))#
+	svalue(LabelC) <- TRUE#
+	size(LabelC) <- c(150, 20)#
+#
+	LabelSizeFrame = gframe(text = "Size", markup = FALSE, horizontal = FALSE, container = Disp)#
+	tbl3 = glayout(container = LabelSizeFrame)#
+	size(tbl3) <- c(400, 30)#
+	tbl3[1, 1] <- "Individuals: "#
+	tbl3[1, 2] <- (LabelSizeR <- gspinbutton(from = 0.1, to = 2, by = 0.1, value = 1, container = tbl3, handler = plotBip))#
+	tbl3[1, 3] <- "Variables: "#
+	tbl3[1, 4] <- (LabelSizeC <- gspinbutton(from = 0.1, to = 2, by = 0.1, value = 1, container = tbl3, handler = plotBip))#
+#
+	MarginFrame = gframe(text = "Margin", markup = FALSE, horizontal = FALSE, container = Disp)#
+	tbl4 = glayout(container = MarginFrame)#
+	tbl4[1, 1] <- (marg <- gspinbutton(from = 0, to = 0.3, by = 0.05, value = 0, container = tbl4, handler = plotBip))#
+	size(marg) <- c(100, 20)#
+	tbl4[1, 2] <- (ShowAx <- gcheckbox("Show Axis", container = tbl4, handler = plotBip))#
+	svalue(ShowAx) <- FALSE#
+	size(ShowAx) <- c(100, 20)#
+	tbl4[1, 3] <- (ShowBx <- gcheckbox("Show Box", container = tbl4, handler = plotBip))#
+	svalue(ShowBx) <- FALSE#
+	size(ShowBx) <- c(100, 20)#
+#
+	ModeFrame = gframe(text = "Variables Mode on the Biplot", markup = FALSE, horizontal = FALSE, container = Disp)#
+	modes = c("Points", "Arrows", "Both ends", "Half line", "Half Line & Arrow", "Calibrated Axis")#
+	gp = ggroup(container = ModeFrame)#
+	glabel("Variables Mode:", container = gp)#
+	bmode <- gcombobox(modes, editable = FALSE, container = gp, handler = plotBip)#
+	svalue(bmode, index = TRUE) <- 2#
+#
+	gp2 = ggroup(container = ModeFrame)#
+	types = c("Complete", "Standard Deviation", "Box Plot")#
+	glabel("Type of Scale:", container = gp2)#
+	vtype <- gcombobox(types, editable = FALSE, container = gp2, handler = plotBip)#
+	svalue(vtype, index = TRUE) <- 1#
+#
+	gp3 = ggroup(container = ModeFrame)#
+	vals = c("Original", "Transformed")#
+	glabel("Values on the Scale:", container = gp3)#
+	vval <- gcombobox(vals, editable = FALSE, container = gp3, handler = plotBip)#
+	svalue(vval, index = TRUE) <- 1#
+#
+	PlottedFrame <- ggroup(cont = notebook, label = gettext("Plotted"), horizontal = TRUE)#
+	TS = glayout(container = PlottedFrame)#
+	TS[1, 1] <- "Rows"#
+	TS[2, 1] <- (RS <- gcheckboxgroup(rownames(bip$Non_Scaled_Data), container = TS, handler = plotBip, use.table = TRUE))#
+	size(RS) <- c(300, 400)#
+	svalue(RS) = rep(TRUE, n)#
+	TS[1, 2] <- "Columns"#
+	TS[2, 2] <- (CS <- gcheckboxgroup(colnames(bip$Non_Scaled_Data), container = TS, handler = plotBip, use.table = TRUE))#
+	size(CS) <- c(300, 400)#
+	svalue(CS) = rep(TRUE, p)#
+#
+	ProjFrame <- ggroup(cont = notebook, label = gettext("Projected"), horizontal = TRUE)#
+	TP = glayout(container = ProjFrame)#
+	TP[1, 1] <- "Rows"#
+	TP[2, 1] <- (RP <- gcheckboxgroup(rownames(bip$Non_Scaled_Data), container = TP, handler = plotBip, use.table = TRUE))#
+	size(RP) <- c(200, 400)#
+	svalue(RP) = rep(FALSE, n)#
+	TP[1, 2] <- "Columns"#
+	TP[2, 2] <- (CP <- gcheckboxgroup(colnames(bip$Non_Scaled_Data), container = TP, handler = plotBip, use.table = TRUE))#
+	size(CP) <- c(200, 400)#
+	svalue(CP) = rep(FALSE, p)#
+	Qualities <- ggroup(cont = notebook, label = gettext("Qualities"), horizontal = FALSE)#
+	QualIndFrame = gframe(text = "Individuals", markup = FALSE, horizontal = FALSE, container = Qualities)#
+	tbl5 = glayout(container = QualIndFrame)#
+	tbl5[1, 1] <- "Min quality to plot :    "#
+	tbl5[1, 2] <- (MinQI <- gspinbutton(from = 0, to = 1, by = 0.1, value = 0, container = tbl5, handler = plotBip))#
+	size(MinQI) <- c(100, 20)#
+	tbl5[2, 1] <- (SizeQI <- gcheckbox("Sizes by quality", container = tbl5, handler = plotBip))#
+	svalue(SizeQI) <- FALSE#
+	tbl5[3, 1] <- (ColorQI <- gcheckbox("Colors by quality", container = tbl5, handler = plotBip))#
+	svalue(ColorQI) <- FALSE#
+#
+	QualVarFrame = gframe(text = "Variables", markup = FALSE, horizontal = FALSE, container = Qualities)#
+	tbl6 = glayout(container = QualVarFrame)#
+	tbl6[1, 1] <- "Min quality to plot :    "#
+	tbl6[1, 2] <- (MinQV <- gspinbutton(from = 0, to = 1, by = 0.1, value = 0, container = tbl6, handler = plotBip))#
+	size(MinQV) <- c(100, 20)#
+	tbl6[2, 1] <- (SizeQV <- gcheckbox("Sizes by quality", container = tbl6, handler = plotBip))#
+	svalue(SizeQV) <- FALSE#
+	tbl6[3, 1] <- (ColorQV <- gcheckbox("Colors by quality", container = tbl6, handler = plotBip))#
+	svalue(ColorQV) <- FALSE#
+#
+	Clusters <- ggroup(cont = notebook, label = gettext("Clusters"), horizontal = FALSE)#
+#
+	PlotCFrame = gframe(text = "Plot Clusters", markup = FALSE, horizontal = FALSE, container = Clusters)#
+	PlotClus <- gcheckbox("Display Clusters", container = PlotCFrame, handler = plotBip)#
+	svalue(PlotClus) <- FALSE#
+	PlotClusC <- gcheckbox("Plot Cluster Centers", container = PlotCFrame, handler = plotBip)#
+	svalue(PlotClusC) <- FALSE#
+	UsClusC <- gcheckbox("Use Cluster Colors", container = PlotCFrame, handler = plotBip)#
+	svalue(UsClusC) <- FALSE#
+	TypeCFrame = gframe(text = "Type of Clusters Plot", markup = FALSE, horizontal = FALSE, container = Clusters)#
+	types = c("Convex Hull", "Ellipse", "Star")#
+	ClTy <- gcombobox(types, editable = FALSE, container = TypeCFrame, handler = plotBip)#
+	svalue(ClTy, index = TRUE) <- 1#
+#
+	ConfCFrame = gframe(text = "Confidence", markup = FALSE, horizontal = FALSE, container = Clusters)#
+	ClConf <- gspinbutton(from = 0, to = 1, by = 0.05, value = 1, container = ConfCFrame, handler = plotBip)#
+	svalue(ClConf) <- 1#
+	NewCluster = gframe(text = "Add New Cluster", markup = FALSE, horizontal = FALSE, container = Clusters)#
+	types = c("Hierarchical", "K-Means", "Gaussian Mixture", "User Privided")#
+	TypeCl <- gcombobox(types, editable = FALSE, container = NewCluster)#
+	svalue(ClTy, index = TRUE) <- 1#
+	ngc = ggroup(container = NewCluster)#
+	glabel("Number of Groups:", container = ngc)#
+	NumClus <- gspinbutton(from = 2, to = 15, by = 1, value = 2, container = ngc)#
+	ClusButt <- gbutton("ok", container = NewCluster, handler = AddClus)#
+#
+	svalue(notebook) <- 2#
+	plotBip()#
+}#
+library(MultBiplotR)#
+GraphBiplotGUI(bip)
+PCA.BiplotGUI <- function(X, Toolkit = "RGtk2", ...) {#
+	require(gWidgets)#
+	options(guiToolkit = Toolkit)#
+	DoBiplot <- function(...) {#
+		bip = PCA.Biplot(X)#
+		GraphBiplotGUI(bip)#
+	}#
+#
+	window <- gwindow("Classical Biplot (PCA)")#
+	notebook <- gnotebook(cont = window)#
+	size(notebook) <- c(500, 600)#
+#
+	# Group for the original data#
+	DataFrame <- ggroup(cont = notebook, label = gettext("Data"), horizontal = FALSE)#
+	Table <- gdf(X, container = DataFrame, expand = TRUE)#
+	# Group for the biplot definition#
+	Disp <- ggroup(cont = notebook, label = gettext("Biplot Definition"), horizontal = FALSE)#
+#
+	PrevFrame = gframe(text = "Previous Transformation", markup = FALSE, horizontal = TRUE, container = Disp)#
+	types = c("Log", "Logit", "None")#
+	prevtr <- gcombobox(types, editable = FALSE, container = PrevFrame)#
+	svalue(prevtr, index = TRUE) <- 3#
+#
+	SacalingFrame = gframe(text = "Previous Scaling", markup = FALSE, horizontal = TRUE, container = Disp)#
+	ContinuousDataTransform = c("Raw Data", "Substract the global mean", "Double centering", "Column centering", #
+		"Standardize columns", "Row centering", "Standardize rows", "Divide by the column means and center", "Normalized residuals from independence", #
+		"Divide by the range", "Within groups standardization", "Ranks")#
+	prevtsc <- gcombobox(ContinuousDataTransform, editable = FALSE, container = SacalingFrame)#
+	svalue(prevtsc, index = TRUE) <- 5#
+#
+	EstimFrame = gframe(text = "Estimation Method", markup = FALSE, horizontal = TRUE, container = Disp)#
+	estypes = c("Singular Value Decomposition", "Alternated Regressions", "Robust Alternated Regressions", "Eigenvectors of the Covariance Matrix")#
+	estim <- gcombobox(estypes, editable = FALSE, container = EstimFrame)#
+	svalue(estim, index = TRUE) <- 1#
+#
+	TypeBiplotFrame = gframe(text = "Biplot Type", markup = FALSE, horizontal = TRUE, container = Disp)#
+	TypeBi = glayout(container = TypeBiplotFrame)#
+	size(TypeBi) <- c(400, 50)#
+	TypeBi[1, 1] <- "GH - CMP "#
+	TypeBi[1, 2] <- (LabelSizeR <- gslider(from = 0, to = 1, by = 0.05, value = 1, container = TypeBi))#
+	size(LabelSizeR) <- c(200, 30)#
+	TypeBi[1, 3] <- "JK - RMP"#
+#
+	DimensionFrame = gframe(text = "Dimension of the solution", markup = FALSE, horizontal = TRUE, container = Disp)#
+	Dimens <- gspinbutton(from = 2, to = 50, by = 1, value = 3, container = DimensionFrame)#
+	size(Dimens) <- c(100, 20)#
+#
+	RunButt <- gbutton("Run Biplot", container = Disp, handler = DoBiplot)#
+#
+	PlottedFrame <- ggroup(cont = notebook, label = gettext("Selected"), horizontal = TRUE)#
+	TS = glayout(container = PlottedFrame)#
+	TS[1, 1] <- "Rows"#
+	TS[2, 1] <- (RS <- gcheckboxgroup(rownames(X), container = TS, use.table = TRUE))#
+	size(RS) <- c(220, 400)#
+	svalue(RS) = rep(TRUE, dim(X)[1])#
+	TS[1, 2] <- "Columns"#
+	TS[2, 2] <- (CS <- gcheckboxgroup(colnames(X), container = TS, use.table = TRUE))#
+	size(CS) <- c(220, 400)#
+	svalue(CS) = rep(TRUE, dim(X)[2])#
+#
+	svalue(notebook) <- 2#
+}#
+#
+PCA.BiplotGUI(X)
+GraphBiplotGUI <- function(bip, Toolkit = "RGtk2", ...) {#
+	require(gWidgets)#
+	options(guiToolkit = Toolkit)#
+#
+	plotBip <- function(...) {#
+		margin = svalue(marg)#
+		PlotRows = svalue(PlotR)#
+		PlotCols = svalue(PlotC)#
+		LabelRows = svalue(LabelR)#
+		LabelCols = svalue(LabelC)#
+		SizeR = svalue(LabelSizeR)#
+		SizeC = svalue(LabelSizeC)#
+		ShowBox = svalue(ShowBx)#
+		MinQuIn = svalue(MinQI)#
+		MinQuVa = svalue(MinQV)#
+		mode = svalue(bmode, index = TRUE)#
+		TYSC = svalue(vtype)#
+		vva = svalue(vval)#
+		SQI = svalue(SizeQI)#
+		SQV = svalue(SizeQV)#
+		CQI = svalue(ColorQI)#
+		CQV = svalue(ColorQV)#
+		A1 = svalue(ax1, index = TRUE)#
+		A2 = svalue(ax2, index = TRUE)#
+		n = dim(bip$Non_Scaled_Data)[1]#
+		p = dim(bip$Non_Scaled_Data)[2]#
+		WhatRows = matrix(0, n, 1)#
+		WhatRows[svalue(RS, index = TRUE)] = 1#
+		WhatCols = matrix(0, p, 1)#
+		WhatCols[svalue(CS, index = TRUE)] = 1#
+		DP = svalue(CP, index = TRUE)#
+		RP = svalue(RP, index = TRUE)#
+		PlCl = svalue(PlotClus)#
+		TypeClus = svalue(ClTy, index = TRUE)#
+		ClustConf = svalue(ClConf)#
+		ClustCenters = svalue(PlotClusC)#
+		UseClusterColors = svalue(UsClusC)#
+#
+		plot(bip, A1 = A1, A2 = A2, margin = margin, PlotInd = PlotRows, PlotVars = PlotCols, LabelInd = LabelRows, #
+			LabelVars = LabelCols, CexInd = SizeR, CexVar = SizeC, ShowBox = ShowBox, MinQualityInds = MinQuIn, #
+			MinQualityVars = MinQuVa, mode = mode, TypeScale = TYSC, ValuesScale = vva, SizeQualInd = SQI, SizeQualVars = SQV, #
+			ColorQualInd = CQI, ColorQualVars = CQV, WhatInds = WhatRows, WhatVars = WhatCols, dp = DP, PredPoints = RP, #
+			PlotClus = PlCl, TypeClus = TypeClus, ClustConf = ClustConf, ClustCenters = ClustCenters, UseClusterColors = UseClusterColors)#
+	}#
+	# No consigo que funcione#
+	AddClus <- function(...) {#
+		ClusterType = svalue(TypeCl)#
+		NGroups = svalue(NumClus)#
+		bip = AddCluster2Biplot(bip, ClusterType = ClusterType, NGroups = NGroups, method = "ward.D")#
+		print(bip$Clusters)#
+		return(bip)#
+	}#
+	n = dim(bip$Non_Scaled_Data)[1]#
+	p = dim(bip$Non_Scaled_Data)[2]#
+#
+	window <- gwindow("Biplot Controler")#
+	notebook <- gnotebook(cont = window)#
+	size(notebook) <- c(500, 600)#
+#
+	# Group for the original data#
+	DataFrame <- ggroup(cont = notebook, label = gettext("Data"), horizontal = FALSE)#
+	Table <- gdf(bip$Non_Scaled_Data, container = DataFrame, expand = TRUE)#
+#
+	# Group for information about the biplot#
+	InfoFrame <- ggroup(cont = notebook, label = gettext("Biplot"), horizontal = FALSE)#
+	InCall = gframe(text = "Call", markup = FALSE, horizontal = TRUE, container = InfoFrame)#
+	gedit(as.character(bip$call), container = InCall, col = "Blue")#
+	InTran = gframe(text = "Transformation of the data", markup = FALSE, horizontal = TRUE, container = InfoFrame)#
+	gedit(bip$Initial_Transformation, container = InTran)#
+	InType = gframe(text = "Type of coordinates:", markup = FALSE, horizontal = TRUE, container = InfoFrame)#
+	if (bip$alpha == 2) #
+		tipo = "Principal Normalization (HJ-Biplot) (Baricentric Scaling)"#
+	if (bip$alpha == 1) #
+		tipo = "Row Principal Normalization (RMP-Biplot)"#
+	if (bip$alpha == 0) #
+		tipo = "Column Principal Normalization (CMP-Biplot)"#
+	if (bip$alpha == 0.5) #
+		tipo = "Symmetrical Normalization (SQRT - Biplot)"#
+	if ((bip$alpha > 0) & (bip$alpha < 1) & (bip$alpha != 0.5)) #
+		tipo = paste("Custom Normalization (Biplot con \alpha = ", gamma, ")")#
+	gedit(tipo, container = InType, width = 40)#
+#
+	InIner = gframe(text = "Eigenvalues and Explained Variance (Inertia):", markup = FALSE, horizontal = TRUE, #
+		container = InfoFrame)#
+	pp = cbind(1:length(bip$EigenValues), bip$EigenValues, bip$Inertia, bip$CumInertia)#
+	colnames(pp) = c("Axis", "Eigenvalue", "Explained Variance", "Cummulative")#
+	TabVarExp <- gtable(pp, container = InIner, expand = TRUE)#
+	size(TabVarExp) <- c(400, 120)#
+#
+	#Group for the Contributions#
+	CotribFrame <- ggroup(cont = notebook, label = gettext("Contributions"), horizontal = TRUE)#
+	TabCont = glayout(container = CotribFrame)#
+	TabCont[1, 1] <- (TabRowContr <- gdf(bip$RowContributions, container = CotribFrame, expand = TRUE))#
+	size(TabRowContr) <- c(300, 400)#
+	TabCont[1, 2] <- (TabColContr <- gdf(bip$ColContributions, container = CotribFrame, expand = TRUE))#
+	size(TabColContr) <- c(300, 400)#
+	# Group for main characteristics of the plot#
+	Disp <- ggroup(cont = notebook, label = gettext("Display"), horizontal = FALSE)#
+#
+	AxisFrame = gframe(text = "Dimensions to Plot", markup = FALSE, horizontal = TRUE, container = Disp)#
+	gp00 = ggroup(container = AxisFrame)#
+	glabel("Dimension in Axis X:", container = gp00)#
+	flavors = 1:bip$dim#
+	ax1 <- gcombobox(flavors, editable = FALSE, container = gp00, handler = plotBip)#
+	svalue(ax1, index = TRUE) <- 1#
+#
+	gp01 = ggroup(container = AxisFrame)#
+	glabel("Dimension in Axis Y:", container = gp01)#
+	ax2 <- gcombobox(flavors, editable = FALSE, container = gp01, handler = plotBip)#
+	svalue(ax2, index = TRUE) <- 2#
+	PlotFrame = gframe(text = "What to Plot", markup = FALSE, horizontal = FALSE, container = Disp)#
+	tbl = glayout(container = PlotFrame)#
+	size(tbl) <- c(400, 30)#
+	tbl[1, 1] <- (PlotR <- gcheckbox("Individuals", container = tbl, handler = plotBip))#
+	svalue(PlotR) <- TRUE#
+	size(PlotR) <- c(150, 20)#
+	tbl[1, 2] <- (PlotC <- gcheckbox("Variables", container = tbl, handler = plotBip))#
+	svalue(PlotC) <- TRUE#
+	size(PlotC) <- c(150, 20)#
+#
+	LabelFrame = gframe(text = "Label", markup = FALSE, horizontal = FALSE, container = Disp)#
+	tbl2 = glayout(container = LabelFrame)#
+	size(tbl2) <- c(400, 30)#
+	tbl2[1, 1] <- (LabelR <- gcheckbox("Individuals", container = tbl2, handler = plotBip))#
+	svalue(LabelR) <- TRUE#
+	size(LabelR) <- c(150, 20)#
+	tbl2[1, 2] <- (LabelC <- gcheckbox("Variables", container = tbl2, handler = plotBip))#
+	svalue(LabelC) <- TRUE#
+	size(LabelC) <- c(150, 20)#
+#
+	LabelSizeFrame = gframe(text = "Size", markup = FALSE, horizontal = FALSE, container = Disp)#
+	tbl3 = glayout(container = LabelSizeFrame)#
+	size(tbl3) <- c(400, 30)#
+	tbl3[1, 1] <- "Individuals: "#
+	tbl3[1, 2] <- (LabelSizeR <- gspinbutton(from = 0.1, to = 2, by = 0.1, value = 1, container = tbl3, handler = plotBip))#
+	tbl3[1, 3] <- "Variables: "#
+	tbl3[1, 4] <- (LabelSizeC <- gspinbutton(from = 0.1, to = 2, by = 0.1, value = 1, container = tbl3, handler = plotBip))#
+#
+	MarginFrame = gframe(text = "Margin", markup = FALSE, horizontal = FALSE, container = Disp)#
+	tbl4 = glayout(container = MarginFrame)#
+	tbl4[1, 1] <- (marg <- gspinbutton(from = 0, to = 0.3, by = 0.05, value = 0, container = tbl4, handler = plotBip))#
+	size(marg) <- c(100, 20)#
+	tbl4[1, 2] <- (ShowAx <- gcheckbox("Show Axis", container = tbl4, handler = plotBip))#
+	svalue(ShowAx) <- FALSE#
+	size(ShowAx) <- c(100, 20)#
+	tbl4[1, 3] <- (ShowBx <- gcheckbox("Show Box", container = tbl4, handler = plotBip))#
+	svalue(ShowBx) <- FALSE#
+	size(ShowBx) <- c(100, 20)#
+#
+	ModeFrame = gframe(text = "Variables Mode on the Biplot", markup = FALSE, horizontal = FALSE, container = Disp)#
+	modes = c("Points", "Arrows", "Both ends", "Half line", "Half Line & Arrow", "Calibrated Axis")#
+	gp = ggroup(container = ModeFrame)#
+	glabel("Variables Mode:", container = gp)#
+	bmode <- gcombobox(modes, editable = FALSE, container = gp, handler = plotBip)#
+	svalue(bmode, index = TRUE) <- 2#
+#
+	gp2 = ggroup(container = ModeFrame)#
+	types = c("Complete", "Standard Deviation", "Box Plot")#
+	glabel("Type of Scale:", container = gp2)#
+	vtype <- gcombobox(types, editable = FALSE, container = gp2, handler = plotBip)#
+	svalue(vtype, index = TRUE) <- 1#
+#
+	gp3 = ggroup(container = ModeFrame)#
+	vals = c("Original", "Transformed")#
+	glabel("Values on the Scale:", container = gp3)#
+	vval <- gcombobox(vals, editable = FALSE, container = gp3, handler = plotBip)#
+	svalue(vval, index = TRUE) <- 1#
+#
+	PlottedFrame <- ggroup(cont = notebook, label = gettext("Plotted"), horizontal = TRUE)#
+	TS = glayout(container = PlottedFrame)#
+	TS[1, 1] <- "Rows"#
+	TS[2, 1] <- (RS <- gcheckboxgroup(rownames(bip$Non_Scaled_Data), container = TS, handler = plotBip, use.table = TRUE))#
+	size(RS) <- c(200, 400)#
+	svalue(RS) = rep(TRUE, n)#
+	TS[1, 2] <- "Columns"#
+	TS[2, 2] <- (CS <- gcheckboxgroup(colnames(bip$Non_Scaled_Data), container = TS, handler = plotBip, use.table = TRUE))#
+	size(CS) <- c(200, 400)#
+	svalue(CS) = rep(TRUE, p)#
+#
+	ProjFrame <- ggroup(cont = notebook, label = gettext("Projected"), horizontal = TRUE)#
+	TP = glayout(container = ProjFrame)#
+	TP[1, 1] <- "Rows"#
+	TP[2, 1] <- (RP <- gcheckboxgroup(rownames(bip$Non_Scaled_Data), container = TP, handler = plotBip, use.table = TRUE))#
+	size(RP) <- c(200, 400)#
+	svalue(RP) = rep(FALSE, n)#
+	TP[1, 2] <- "Columns"#
+	TP[2, 2] <- (CP <- gcheckboxgroup(colnames(bip$Non_Scaled_Data), container = TP, handler = plotBip, use.table = TRUE))#
+	size(CP) <- c(200, 400)#
+	svalue(CP) = rep(FALSE, p)#
+	Qualities <- ggroup(cont = notebook, label = gettext("Qualities"), horizontal = FALSE)#
+	QualIndFrame = gframe(text = "Individuals", markup = FALSE, horizontal = FALSE, container = Qualities)#
+	tbl5 = glayout(container = QualIndFrame)#
+	tbl5[1, 1] <- "Min quality to plot :    "#
+	tbl5[1, 2] <- (MinQI <- gspinbutton(from = 0, to = 1, by = 0.1, value = 0, container = tbl5, handler = plotBip))#
+	size(MinQI) <- c(100, 20)#
+	tbl5[2, 1] <- (SizeQI <- gcheckbox("Sizes by quality", container = tbl5, handler = plotBip))#
+	svalue(SizeQI) <- FALSE#
+	tbl5[3, 1] <- (ColorQI <- gcheckbox("Colors by quality", container = tbl5, handler = plotBip))#
+	svalue(ColorQI) <- FALSE#
+#
+	QualVarFrame = gframe(text = "Variables", markup = FALSE, horizontal = FALSE, container = Qualities)#
+	tbl6 = glayout(container = QualVarFrame)#
+	tbl6[1, 1] <- "Min quality to plot :    "#
+	tbl6[1, 2] <- (MinQV <- gspinbutton(from = 0, to = 1, by = 0.1, value = 0, container = tbl6, handler = plotBip))#
+	size(MinQV) <- c(100, 20)#
+	tbl6[2, 1] <- (SizeQV <- gcheckbox("Sizes by quality", container = tbl6, handler = plotBip))#
+	svalue(SizeQV) <- FALSE#
+	tbl6[3, 1] <- (ColorQV <- gcheckbox("Colors by quality", container = tbl6, handler = plotBip))#
+	svalue(ColorQV) <- FALSE#
+#
+	Clusters <- ggroup(cont = notebook, label = gettext("Clusters"), horizontal = FALSE)#
+#
+	PlotCFrame = gframe(text = "Plot Clusters", markup = FALSE, horizontal = FALSE, container = Clusters)#
+	PlotClus <- gcheckbox("Display Clusters", container = PlotCFrame, handler = plotBip)#
+	svalue(PlotClus) <- FALSE#
+	PlotClusC <- gcheckbox("Plot Cluster Centers", container = PlotCFrame, handler = plotBip)#
+	svalue(PlotClusC) <- FALSE#
+	UsClusC <- gcheckbox("Use Cluster Colors", container = PlotCFrame, handler = plotBip)#
+	svalue(UsClusC) <- FALSE#
+	TypeCFrame = gframe(text = "Type of Clusters Plot", markup = FALSE, horizontal = FALSE, container = Clusters)#
+	types = c("Convex Hull", "Ellipse", "Star")#
+	ClTy <- gcombobox(types, editable = FALSE, container = TypeCFrame, handler = plotBip)#
+	svalue(ClTy, index = TRUE) <- 1#
+#
+	ConfCFrame = gframe(text = "Confidence", markup = FALSE, horizontal = FALSE, container = Clusters)#
+	ClConf <- gspinbutton(from = 0, to = 1, by = 0.05, value = 1, container = ConfCFrame, handler = plotBip)#
+	svalue(ClConf) <- 1#
+	NewCluster = gframe(text = "Add New Cluster", markup = FALSE, horizontal = FALSE, container = Clusters)#
+	types = c("Hierarchical", "K-Means", "Gaussian Mixture", "User Privided")#
+	TypeCl <- gcombobox(types, editable = FALSE, container = NewCluster)#
+	svalue(ClTy, index = TRUE) <- 1#
+	ngc = ggroup(container = NewCluster)#
+	glabel("Number of Groups:", container = ngc)#
+	NumClus <- gspinbutton(from = 2, to = 15, by = 1, value = 2, container = ngc)#
+	ClusButt <- gbutton("ok", container = NewCluster, handler = AddClus)#
+#
+	svalue(notebook) <- 2#
+	plotBip()#
+}#
+library(MultBiplotR)#
+GraphBiplotGUI(bip)
+X=iris[,1:4]#
+bip=PCA.Biplot(X)#
+PlotBiplotGUI(bip)
+PlotBiplotGUI(bip)
+library(MultBiplotR) #
+library(MultBiplotRGUI)
+data(Protein)
+MultBiplotRGUI()
+make_word_table
+FlexTable
+help(kurtosis)
+help(optim)
+if (!require(devtools))   #
+    install.packages("devtools")#
+library(devtools)#
+install_github("villardon/MultBiplotR", dependencies = TRUE)
+library(MultBiplotR)
+install.packages( "rpart", "partykit", "knn", "caret", "gbm", "neuralnet", "tree", "evtree", "randomForest", "e1071")
+getwd()
+getwd()
