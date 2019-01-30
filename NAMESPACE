@@ -10,7 +10,7 @@ export(InitialTransform, Circle, diagonal, DimensionLabels, Factor2Binary, GetBi
        ExtractTable, ExpandTable, Matrix2Proximities, EuclideanDistance, SMACOF, MDS, Dhats, BootstrapSmacof, MonotoneRegression, NominalDistances,
        Convert2ThreeWay, Three2TwoWay, TransformIni, StatisBiplot, ExpandTable, Hermquad, Multiquad,
        OrdLogBipEM, OrthogonalizeScores, plot.Ordinal.Logistic.Biplot, OrdVarBiplot, ConvertFactors2Integers, CategoricalProximities, CategoricalDistances, logit,
-       Convert2ThreeWay, MultiTableStatistics, MultiTableTransform, plot.Statis, SeparateVarTypes, AddSupVars2Biplot, AddContVars2Biplot,
+       Convert2ThreeWay, MultiTableStatistics, MultiTableTransform, plot.StatisBiplot, SeparateVarTypes, AddSupVars2Biplot, AddContVars2Biplot,
        RidgeMultinomialLogisticRegression, RidgeMultinomialLogisticFit, DataFrame2Matrix4Regression, plot3dCanonicalBiplot, plot3d.ContinuousBiplot,
        RidgeOrdinalLogistic, OrdinalLogisticFit, PlotOrdinalResponses, OrdVarCoordinates, summary.ContinuousBiplot,
        PLSR, PLSRfit, PLSR1BinFit, PLSR1Bin, Biplot.PLSR, Biplot.PLSR1BIN, summary.PLSR, plot.PLSR,
@@ -72,8 +72,9 @@ S3method(print, Principal.Coordinates)
 S3method(plot, Procrustes)
 S3method(plot, External.Binary.Logistic.Biplot)
 S3method(plot, PCoABootstrap)
-S3method(plot, Statis)
-S3method(summary, Statis)
+S3method(plot, StatisBiplot)
+S3method(summary, StatisBiplot)
+S3method(print, StatisBiplot)
 S3method(plot3d, ContinuousBiplot)
 S3method(plot, Unfolding)
 S3method(print, RidgeBinaryLogistic)

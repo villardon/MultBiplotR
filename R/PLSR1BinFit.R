@@ -18,7 +18,7 @@ PLSR1BinFit <- function(Y, X, S=2, tolerance=0.000005, maxiter=100, show=FALSE,
   
   freq=matrix(1,I,1)
   w=matrix(0,J,1)
-  # El algotitmo 1 se basa en Bastien et al.
+  # El algoritmo 1 se basa en Bastien et al.
   
   if (Algorithm==1){ 
     t0=matrix(1, nrow=I, ncol=1)

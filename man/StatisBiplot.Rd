@@ -28,7 +28,7 @@ Are the variables the same for all occasions? If so, Biplot trajectories for eac
 }
 \details{
 The procedure performs STATIS-ACT methodology for multiple tables with common rows and its associated biplot. When the variables are the same for all occasions trajectories for the variables can also be plotted.
-Basic plotting includes the consensus individuals and all the variables. Traditiona trajectories for individuals and biplot trajectories for variables (when adequate) are optional.
+Basic plotting includes the consensus individuals and all the variables. Traditional trajectories for individuals and biplot trajectories for variables (when adequate) are optional.
 }
 \value{
 An object of class StatisBiplot
@@ -63,7 +63,8 @@ plot(stbip)
 # Colors By Table
 plot(stbip, VarColorType="ByTable")
 # Colors By Variable
-plot(stbip, VarColorType="ByVar")
+plot(stbip, VarColorType="ByVar", mode="s",  MinQualityVars = 0.5)
 
+plot(stbip, PlotRowTraj = TRUE, PlotVars=FALSE)
 }
 

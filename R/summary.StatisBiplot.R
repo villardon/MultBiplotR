@@ -1,4 +1,4 @@
-summary.Statis <- function(object, ...) {
+summary.StatisBiplot <- function(object, ...) {
   
   cat("Call\n")
   print(object$call)
@@ -13,7 +13,7 @@ summary.Statis <- function(object, ...) {
 
 
 
-print.Statis <- function(object, ...) {
+print.StatisBiplot <- function(object, ...) {
   
   cat("Call\n")
   print(object$call)

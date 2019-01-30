@@ -207,6 +207,10 @@ StatisBiplot <- function(X, InitTransform = "Standardize columns", dimens=2, Sam
   BiplotStatis$ColCoordinates = BiplotStatis$ColCoordinates/scf
   BiplotStatis$Scale_Factor=scf
   
+  for (i in 1:nr){
+    StatisRes$TrajInd[[i]]=StatisRes$TrajInd[[i]]*scf
+  }
+  
   BiplotStatis$ClusterType="us"
   BiplotStatis$Clusters = as.factor(matrix(1,nrow(BiplotStatis$RowContributions), 1))
   BiplotStatis$ClusterColors="blue"
@@ -240,6 +244,6 @@ StatisBiplot <- function(X, InitTransform = "Standardize columns", dimens=2, Sam
   # study.
   StatisRes$Biplot$Structure = cor(StatisRes$Biplot$Non_Scaled_Data, StatisRes$Biplot$RowCoordinates)
   
-  class(StatisRes) = "Statis"
+  class(StatisRes) = "StatisBiplot"
   return(StatisRes)
 }

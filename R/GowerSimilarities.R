@@ -13,7 +13,6 @@ GowerSimilarities <- function(x, y=NULL, Classes=NULL, transformation="sqrt(1-S)
   
   ng=0
   
-  
   Numericas = which(Classes=="numeric")
   if (length(Numericas)>0){
     ng=ng+1
@@ -25,7 +24,6 @@ GowerSimilarities <- function(x, y=NULL, Classes=NULL, transformation="sqrt(1-S)
   NumSim=(length(Numericas) - NumDis)/length(Numericas)
   sim=sim+NumSim}
   
-
   Binarias=which(Classes=="binary")
   if (length(Binarias)>0){
     ng=ng+1
