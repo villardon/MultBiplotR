@@ -1,3 +1,3 @@
-predict.OrdinalLogisticRegression <- (model, newdata){
+predict.OrdinalLogisticRegression <- function(model, newdata){
   Beta=model$coefficients
 }
