@@ -1,4 +1,4 @@
-PLSR <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, scaleY=TRUE, tolerance=0.000005, maxiter=100, show=FALSE, Validation="Cross", nB=500){
+PLSR <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, scaleY=TRUE, tolerance=0.000005, maxiter=100, show=FALSE, Validation=NULL, nB=500){
   
   if (is.data.frame(X)) X=as.matrix(X)
   
@@ -151,6 +151,8 @@ PLSR <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, scal
       CrossR2[i]=diag(t(ExpectedY)%*%ExpectedY)/diag(t(Y1)%*%Y1)
       CrossParameters[,i]=fit$W%*% t(fit$C)
     }
+    
+    if (!is.null(Validation)){
     rownames(CrossParameters)=xnames
     
     result$Validation=Validation
@@ -164,6 +166,8 @@ PLSR <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, scal
     
     result$RegParameters=cbind(result$RegParameters, stdErr, Z , round(pval, digits=5), EI, ES)
     colnames(result$RegParameters)=c("Beta", "Std. Error", "Z", "p-val", "CI : Lower", "CI : Upper")
+    }
+    
   }
   
   
