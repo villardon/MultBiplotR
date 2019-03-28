@@ -1,5 +1,5 @@
 
-LogFrequencyBiplot <- function(x, Scaling=1, logoffset=1, freqoffset=logoffset,  ...){
+LogFrequencyBiplot <- function(x, Scaling=2, logoffset=1, freqoffset=logoffset,  ...){
    if (is.data.frame(x)) x=as.matrix(x)
    x=log(x+logoffset)
    W=x+freqoffset
@@ -22,7 +22,7 @@ LogFrequencyBiplot <- function(x, Scaling=1, logoffset=1, freqoffset=logoffset, 
    NewBiplot$Minima=apply(x,2,min)
    NewBiplot$Maxima=apply(x,2,max)
    NewBiplot$Gmean=mean(x)
-   
+   NewBiplot$alpha=0.5
    NewBiplot$Initial_Transformation = Scaling
    
    NewBiplot$Type="LogFreqBiplot"

@@ -42,7 +42,6 @@ CrissCross <- function(x,w=matrix(1,dim(x)[1],dim(x)[2]),dimens=2, a0=NULL, b0=N
   }
   
   
-  
   rowfit=matrix(0,n,dimens)
   colfit=matrix(0,p,dimens)
   dimfit=matrix(0,dimens,1)
@@ -74,7 +73,7 @@ CrissCross <- function(x,w=matrix(1,dim(x)[1],dim(x)[2]),dimens=2, a0=NULL, b0=N
     CrissCross$ncols=p
     CrissCross$nrowsSup=0
     CrissCross$ncolsSup=0
-    CrissCross$dim=dimens
+    CrissCross$Dimension=dimens
     CrissCross$EigenValues
     CrissCross$Inertia
     CrissCross$CumInertia
@@ -84,6 +83,8 @@ CrissCross <- function(x,w=matrix(1,dim(x)[1],dim(x)[2]),dimens=2, a0=NULL, b0=N
   CrissCross$RowContributions=rowfit*100
   CrissCross$ColContributions=colfit*100
   CrissCross$Scale_Factor=1
+  CrissCross$alpha=1
+  CrissCross$Dimension=dimens
   class(CrissCross) <- "ContinuousBiplot"
   return(CrissCross)
   

@@ -14,17 +14,20 @@ print.ContinuousBiplot <- function(x, ...){
   if (x$alpha==2)
     tipo="Principal Normalization (Baricentric Scaling)"
   if (x$alpha==1)
-tipo="Row Principal Normalization (RMP-Biplot)"
+  tipo="Row Principal Normalization (RMP-Biplot)"
   if (x$alpha==0)
     tipo="Column Principal Normalization (CMP-Biplot)"
   if (x$alpha==0.5)
     tipo="Symmetrical Normalization (SQRT - Biplot)"
   if ((x$alpha>0) & (x$alpha<1) & (x$alpha != 0.5))
     tipo=paste("Custom Normalization (Biplot con \alpha = ",gamma,")")
-print(tipo)
+  print(tipo)
   cat("\n Eigenvalues & Explained Variance (Inertia)\n")
+  
+  if (x$Type!="LogFreqBiplot"){
   pp=cbind(x$EigenValues[1:x$Dimension], x$Inertia[1:x$Dimension], x$CumInertia[1:x$Dimension])
   colnames(pp)=c("Eigenvalue", "Exp. Var", "Cummulative")
   print(pp)
+  }
   
 }

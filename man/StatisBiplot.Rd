@@ -65,6 +65,6 @@ plot(stbip, VarColorType="ByTable")
 # Colors By Variable
 plot(stbip, VarColorType="ByVar", mode="s",  MinQualityVars = 0.5)
 
-plot(stbip, PlotRowTraj = TRUE, PlotVars=FALSE)
+plot(stbip, PlotRowTraj = TRUE, PlotVars=FALSE, RowColors=1:36)
 }
 

@@ -153,7 +153,11 @@ plot.ContinuousBiplot <- function(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 
   #op=par(mai=c(0,0,0.5,0))
   #op=par(mar=c(1, 1, 1, 1) + 0.1)
   
-  title(main = paste(x$Title,"(Dim", A1,"(",round(x$Inertia[A1], digits=1),"%)-",A2,"(",round(x$Inertia[A2], digits=1),"%))")  , omi = c(0, 0, 0, 0))
+  if (x$Type!="LogFreqBiplot")
+    title(main = paste(x$Title,"(Dim", A1,"(",round(x$Inertia[A1], digits=1),"%)-",A2,"(",round(x$Inertia[A2], digits=1),"%))")  , omi = c(0, 0, 0, 0))
+  else
+    title(main = paste(x$Title,"(Dim", A1,"-",A2)  , omi = c(0, 0, 0, 0))
+    
   
   if (ShowBox) rect(xmin, ymin, xmax, ymax)
   
