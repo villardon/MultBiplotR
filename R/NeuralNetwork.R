@@ -17,5 +17,5 @@ NeuralNetCost <- function(X, Y, hidden, theta){
 
 
 NeuralNetwork <- function(X, y, hidden=c(5,2,3), InitPar=NULL, rang=0.5, maxiter=100){
-  if (is.null(InitPar))
+
 }
