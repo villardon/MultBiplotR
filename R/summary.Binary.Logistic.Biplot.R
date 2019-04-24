@@ -1,4 +1,4 @@
-summary.Binary.Logistic.Biplot <- function(object){
+summary.Binary.Logistic.Biplot <- function(object, Latex=FALSE){
   
   print("BINARY LOGISTIC BIPLOT")
   print(paste("Type of Biplot : ", object$Type))
@@ -13,10 +13,10 @@ summary.Binary.Logistic.Biplot <- function(object){
   print("-----------")
   print("COLUMNS FIT")
   
-  RR=cbind(object$Deviances, object$Dfs, object$pvalues, object$Nagelkerke, object$CoxSnell, object$MacFaden, object$R2, object$PercentsCorrec*100)
-  colnames(RR)=c("Deviance", "D.F", "P-val", "Nagelkerke", "Cox-Snell", "MacFaden", "R2", "% Correct")
+  RR=cbind(object$Deviances, object$Dfs, object$pvalues, object$Nagelkerke, object$CoxSnell, object$MacFaden, object$PercentsCorrec*100, object$Sensitivity*100, object$Specificity*100)
+  colnames(RR)=c("Deviance", "D.F", "P-val", "Nagelkerke", "Cox-Snell", "MacFaden", "% Correct", "Sensitivity", "Specificity")
   rownames(RR)=rownames(object$ColumnParameters)
-  Total=c(object$DevianceTotal, object$TotalDf, object$p, object$TotNagelkerke, object$TotCoxSnell, object$TotMacFaden, object$TotR2, object$TotalPercent*100)
+  Total=c(object$DevianceTotal, object$TotalDf, object$p, object$TotNagelkerke, object$TotCoxSnell, object$TotMacFaden, object$TotalPercent*100, object$TotalSensitivity*100, object$TotalSpecificity*100)
   RR=rbind(RR,Total)
   print(RR)
   print("-----------")
@@ -25,4 +25,10 @@ summary.Binary.Logistic.Biplot <- function(object){
   colnames(LO)=c("Thresholds", paste("Dim",1:dims,sep=""), "Communalities")
   rownames(LO)=rownames(object$ColumnParameters)
   print(LO)
+  
+  if (Latex){
+    xtable(RR, caption="Columns Fit")
+    
+    xtable(LO, caption="Factor Model")
+  }
 }

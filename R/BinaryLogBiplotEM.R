@@ -1,6 +1,6 @@
 BinaryLogBiplotEM <- function(x, freq=matrix(1,nrow(x),1), aini=NULL, dimens = 2, nnodos = 15, tol = 1e-04, maxiter = 100, penalization = 0.2) {
   # Nodos y ponderaciones de la cuadratura de Gauss-Hermite
-  Q = Multiquad(nnodos, dim)
+  Q = Multiquad(nnodos, dimens)
   X = Q$X
   A = Q$A
   q = dim(X)[1]

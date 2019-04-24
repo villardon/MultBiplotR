@@ -93,17 +93,16 @@ plot.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margi
   if ((margin < 0) | (margin > 0.3)) 
     margin = 0
   
-  xmin = min(a[, 1])
-  xmax = max(a[, 1])
-  ymin = min(a[, 2])
-  ymax = max(a[, 2])
-  P = rbind(a, c(xmin - (xmax - xmin) * margin, ymin - (ymax - ymin) * margin))
-
+  P=a
+  xmin = min(P[, 1])
+  xmax = max(P[, 1])
+  ymin = min(P[, 2])
+  ymax = max(P[, 2])
+  xrang=abs(xmax-xmin)
+  yrang=abs(ymax-ymin)
+  if (xmax <0 ) xmax=xmax*(-1)
   
-  # op=par(mai=c(0,0,0.5,0))
-  # op=par(mar=c(1, 1, 1, 1) + 0.1)
-  
-
+  P = rbind(P, c(xmax + (xmax - xmin) * margin, ymax + (ymax - ymin) * margin))
   plot(P[, 1], P[, 2], asp=1, xaxt = xaxt, yaxt = yaxt, cex=0, bty="n", xlab=paste("Dimension",F1), ylab=paste("Dimension",F2), main=x$Biplot, ...)
   
   if (PlotClus) {

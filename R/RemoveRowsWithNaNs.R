@@ -11,3 +11,4 @@ RemoveRowsWithNaNs <- function(x, cols=NULL) {
 sumisna <- function(x){
   return(sum(is.na(x)))
 }
+

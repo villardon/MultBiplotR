@@ -92,6 +92,13 @@ if (Algorithm == "Joint"){
   acierfil = 100*apply(acier,1,sum)/p
   aciercol = 100*apply(acier,2,sum)/n
   
+  presences=apply(Y, 2, sum)
+  absences=n-presences
+  sens = apply((acier==1) & (Y==1), 2, sum)/presences
+  spec = apply((acier==1) & (Y==0), 2, sum)/absences
+  totsens = sum((acier==1) & (Y==1))/sum(presences)
+  totspec = sum((acier==1) & (Y==0))/sum(absences)
+  
   gfit = (sum(sum(acier))/(n * p)) * 100
   
   esp0 = matrix(rep(1,n), n,1) %*% B[, 1]
@@ -134,6 +141,10 @@ if (Algorithm == "Joint"){
   verdad = matrix(as.numeric(X==pred),n , p)
   Res$PercentsCorrec=apply(verdad, 2, sum)/n
   Res$TotalPercent=sum(verdad)/(n*p)
+  Res$Sensitivity=sens
+  Res$Specificity=spec
+  Res$TotalSensitivity=totsens
+  Res$TotalSpecificity=totspec
   Res$TotalDf = dim*p
   Res$p=1-pchisq(Res$DevianceTotal, df = Res$TotalDf)
   
@@ -142,6 +153,7 @@ if (Algorithm == "Joint"){
   Res$ClusterColors="blue"
   Res$ClusterNames="ClusterTotal"
   class(Res) = "Binary.Logistic.Biplot"
+ 
   return(Res)
 }
 

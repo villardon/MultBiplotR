@@ -1,6 +1,5 @@
 
 OrdinalLogisticFit <- function(y, x = NULL, penalization = 0.1, tol = 1e-04, maxiter = 200, show = FALSE) {
-
 	n <- length(y)
 	if (is.null(x)) {
 		p = 0
@@ -41,7 +40,6 @@ if (J > 2) {
 			ETA = matrix(1, n, 1) %*% t(A)
 		else ETA = matrix(1, n, 1) %*% t(A) - x %*% Beta %*% matrix(1, 1, (J - 1))
 
-		
 		PIA = exp(ETA)/(1 + exp(ETA))
 		PIA = cbind(PIA, matrix(1, n, 1))
 		PI = matrix(0, n, J)
@@ -89,6 +87,7 @@ if (J > 2) {
 	model$nobs = n
 	model$J = J
 	model$nvar = p
+	model$Eta=ETA
 	model$fitted.values = PI
 	model$pred = matrix(max.col(PI), n, 1)
 	model$Covariaces = solve(HESS)

@@ -70,7 +70,7 @@ OrdLogBipEM <- function (Data, freq=NULL, dim = 2, nnodes = 15, tol = 0.0001, ma
   
   logLik = 0
   for (j in 1:p) {
-    model = RidgeOrdinalLogistic(x[, j], ability, tol = tol, maxiter = maxiterlogist, 
+    model = RidgeOrdinalLogistic(as.ordered(x[, j]), ability, tol = tol, maxiter = maxiterlogist, 
                        penalization = penalization, show = F)
     par$coefficients[j, ] = model$coefficients
     par$thresholds[j, 1:nrow(model$thresholds)] = model$thresholds
@@ -139,7 +139,7 @@ OrdLogBipEM <- function (Data, freq=NULL, dim = 2, nnodes = 15, tol = 0.0001, ma
   logLik = 0
   for (j in 1:p) {
     if (show) cat(" ", j)
-    model = RidgeOrdinalLogistic(x[, j], ability, tol = tol, maxiter = maxiterlogist, 
+    model = RidgeOrdinalLogistic(as.ordered(x[, j]), ability, tol = tol, maxiter = maxiterlogist, 
                                  penalization = penalization, show = F)
     par$coefficients[j, ] = model$coefficients
     par$thresholds[j, 1:nrow(model$thresholds)] = model$thresholds

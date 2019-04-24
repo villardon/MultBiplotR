@@ -1,7 +1,8 @@
 plot.Ordinal.Logistic.Biplot <- function(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 0, PlotVars = TRUE, PlotInd = TRUE, LabelVars = TRUE, LabelInd = TRUE, mode = "a", 
                                          CexInd = NULL, CexVar = NULL, ColorInd = NULL, ColorVar = NULL, SmartLabels = TRUE, MinQualityVars = 0, dp = 0, PredPoints=0, PlotAxis = FALSE, TypeScale = "Complete", 
                                          ValuesScale = "Original", SizeQualInd = FALSE, SizeQualVars = FALSE, ColorQualInd = FALSE, ColorQualVars = FALSE, PchInd = NULL, PchVar = NULL, 
-                                         PlotClus = FALSE, TypeClus="ch", ClustConf=1, ClustCenters=FALSE, UseClusterColors=TRUE, ClustLegend=TRUE, ClustLegendPos="topright", TextVarPos =1, ...){
+                                         PlotClus = FALSE, TypeClus="ch", ClustConf=1, ClustCenters=FALSE, UseClusterColors=TRUE, ClustLegend=TRUE, ClustLegendPos="topright", TextVarPos =1, 
+                                         PlotSupVars=FALSE, ...){
   modes=c("p", "a", "b", "h", "ah", "s")
   if (is.numeric(mode)) 
     mode = modes[mode]
@@ -129,6 +130,8 @@ plot.Ordinal.Logistic.Biplot <- function(x, A1 = 1, A2 = 2, ShowAxis = FALSE, ma
         }
   }
   
-
+  if (PlotSupVars) 
+    plot.Supplementary.Variables(x, F1=A1, F2=A2, xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, mode=mode)
+  
   
 }
