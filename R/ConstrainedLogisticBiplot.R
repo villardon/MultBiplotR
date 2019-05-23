@@ -5,6 +5,7 @@ ConstrainedLogisticBiplot <- function(Y, X, dim=2, Scaling=5,  tolerance = 1e-05
   q <- ncol(X)
   r=min(p,q)
   X=as.matrix(X)
+  Xo=X
   ContinuousDataTransform = c("Raw Data", "Substract the global mean", "Double centering", 
                               "Column centering", "Standardize columns", "Row centering", 
                               "Standardize rows", "Divide by the column means and center",
@@ -130,7 +131,7 @@ ConstrainedLogisticBiplot <- function(Y, X, dim=2, Scaling=5,  tolerance = 1e-05
   Res$ClusterColors="blue"
   Res$ClusterNames="ClusterTotal"
   class(Res) = "Binary.Logistic.Biplot"
-  Res=AddContVars2Biplot(Res,  X, dims=dim, Scaling = Scaling)
+  Res=AddContVars2Biplot(Res,  Xo, dims=dim, Scaling = Scaling)
   return(Res)
 }
 

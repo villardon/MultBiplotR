@@ -19,6 +19,7 @@ summary.Binary.Logistic.Biplot <- function(object, Latex=FALSE){
   Total=c(object$DevianceTotal, object$TotalDf, object$p, object$TotNagelkerke, object$TotCoxSnell, object$TotMacFaden, object$TotalPercent*100, object$TotalSensitivity*100, object$TotalSpecificity*100)
   RR=rbind(RR,Total)
   print(RR)
+  print(class(RR))
   print("-----------")
   print("Thresholds, Loadings and Communalities")
   LO=cbind(object$Tresholds, object$Loadings, object$Communalities)
@@ -26,9 +27,8 @@ summary.Binary.Logistic.Biplot <- function(object, Latex=FALSE){
   rownames(LO)=rownames(object$ColumnParameters)
   print(LO)
   
-  if (Latex){
-    xtable(RR, caption="Columns Fit")
+  if (Latex) xtable(RR, caption="Columns Fit")
     
-    xtable(LO, caption="Factor Model")
-  }
+  if (Latex)  xtable(LO, caption="Factor Model")
+  return(RR)
 }

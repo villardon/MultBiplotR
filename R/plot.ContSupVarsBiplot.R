@@ -1,7 +1,7 @@
 plot.ContSupVarsBiplot <- function(x, F1=1, F2=2, xmin = -3, xmax = 3, ymin = -3, ymax = 3, TypeScale = "Complete", 
                                    ValuesScale = "Original", mode="s", dp = 0, PredPoints=0, PchVar=1, ColorVar=NULL, ...){
  
-  if (is.null(ColorVar)) ColorVar=2
+  if (is.null(ColorVar)) ColorVar=3
   B=x$ColCoordinates[,c(F1,F2)]
   b0=x$b0
   VarLabels=rownames(x$ColCoordinates)

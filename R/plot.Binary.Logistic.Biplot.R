@@ -157,7 +157,7 @@ plot.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margi
   }
   
   if (PlotSupVars) 
-    plot.Supplementary.Variables(x, F1=F1, F2=F2, xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, mode=Mode)
+    plot.Supplementary.Variables(x, F1=F1, F2=F2, xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, mode=Mode, ColorSupContVars="red")
   
 # par(op)
 }
