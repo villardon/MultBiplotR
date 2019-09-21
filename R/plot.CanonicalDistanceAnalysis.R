@@ -93,7 +93,7 @@ plot.CanonicalDistanceAnalysis<- function(x, A1 = 1, A2 = 2, ScaleGraph = TRUE, 
   YLabel=paste("Dimension", A2, " (", round(x$ExplainedVariance[A2], digits=2),"%)", sep="" )
 
   if (x$Type == "PERMANOVA")
-    Main=paste("PERMANOVA (p-value =", round(x$pvalue, digits=5),")")
+    Main="PERMANOVA : Graphical representation"
   else
     Main=paste("Canonical Distance Analysis (p-value =", round(x$pvalue, digits=5),")")
   plot(P[, 1], P[, 2], cex = 0, asp = 1, xlab = XLabel, ylab = YLabel, xaxt = xaxt, yaxt = yaxt, main=Main, axes=ShowAxes,  ...)

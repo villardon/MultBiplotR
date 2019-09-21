@@ -10,8 +10,12 @@ PrincipalCoordinates <- function (Proximities, w = NULL, dimension = 2, toleranc
   if (!(class(Proximities)=="proximities")) stop("You need a proximities matrix")
   Dimnames=paste("Dim", 1:r)
   
-  dis=Proximities$Proximities
+  if (is.null(Proximities$Proximities))
+    dis=Proximities$D
+  else 
+    dis=Proximities$Proximities
   n <- dim(dis)[1]
+  print(n)
   if (is.null(w)) w = matrix(1, 1, n)/n
   else w= matrix(w/sum(w), nrow=1)
   

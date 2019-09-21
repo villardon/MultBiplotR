@@ -39,7 +39,7 @@ SimpleProcrustes <- function(X, Y, centre=FALSE) {
 	T = SVD$u %*% t(SVD$v)
 	s = tr(C %*% T)/ tr(t(Y) %*% J %*% Y)
 	t=apply((X-s*Y%*%T),2, sum) / ny
-    Z= s*Y %*% T + matrix(1,nx, 1) %*% t
+  Z= s*Y %*% T + matrix(1,nx, 1) %*% t
     
     Procrustes$Yrot=Z
     Procrustes$rotation=T

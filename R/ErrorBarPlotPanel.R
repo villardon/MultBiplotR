@@ -1,10 +1,13 @@
-ErrorBarPlotPanel <- function(X, groups=NULL, nrows=NULL, panel=TRUE, GroupsTogether=TRUE, Confidence=0.95, p.adjust.method="None", UseANOVA=FALSE){
+ErrorBarPlotPanel <- function(X, groups=NULL, nrows=NULL, panel=TRUE, GroupsTogether=TRUE, 
+                              Confidence=0.95, p.adjust.method="None", UseANOVA=FALSE, Colors="blue",
+                              Title="Error Bar Plot", ...){
   if (require(Hmisc)==FALSE){
     gmessage("You must install the package (Hmisc) to use error bars")
     gconfirm("Are we having fun?", handler = function(h,...)
       print("Yes"))
   }
 
+  if (is.vector(X)) X=matrix(X, ncol=1)
 
   separated=!panel
 
@@ -39,7 +42,7 @@ ErrorBarPlotPanel <- function(X, groups=NULL, nrows=NULL, panel=TRUE, GroupsToge
       nrows=round(sqrt(p))
 
     ncols=ceiling(p/nrows)
-
+   print(c(p, nrows, ncols))
     if (separated==FALSE)
       op=par(mfrow=c(nrows, ncols) ,oma = c(0, 0, 2, 0))
 
@@ -63,7 +66,7 @@ ErrorBarPlotPanel <- function(X, groups=NULL, nrows=NULL, panel=TRUE, GroupsToge
       for (i in 1:g){
         interv[i,]=int[i][[1]]
       }
-       errbar(Levels,Means,interv[,1],interv[,2], xlab=varnames[j])
+       errbar(Levels,Means,interv[,1],interv[,2], xlab=varnames[j], errbar.col=Colors, main=Title,  ...)
       title(varnames[j])
     }
 
@@ -100,9 +103,9 @@ ErrorBarPlotPanel <- function(X, groups=NULL, nrows=NULL, panel=TRUE, GroupsToge
         interv[j,]=int[j][[1]]
       }
       if (separated==TRUE) dev.new()
-      errbar(as.factor(varnames),Means,interv[,1],interv[,2], main=Levels[i])
+      errbar(as.factor(varnames),Means,interv[,1],interv[,2], main=Levels[i], errbar.col=Colors, main=Title, ...)
       title(Levels[i])
     }
   }
-  mtext("Error Bar Panel", outer = TRUE, cex = 1.5)
+  # mtext("Error Bar Panel", outer = TRUE, cex = 1.5)
 }

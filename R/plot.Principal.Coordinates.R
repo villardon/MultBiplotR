@@ -3,11 +3,11 @@
 # Universidad de Salamanca
 # Revisado: Noviembre/2016
 
-plot.Principal.Coordinates <- function(x, A1 = 1, A2 = 2, LabelRows=TRUE, WhatRows = NULL, RowCex=1, RowPch=16, 
+plot.Principal.Coordinates <- function(x, A1 = 1, A2 = 2, LabelRows=TRUE, WhatRows = NULL, RowCex=1, RowPch=16, Title="",
                                        RowLabels = NULL, RowColors = NULL, ColColors=NULL, ColLabels=NULL, SizeQualInd = FALSE, SmartLabels = TRUE, 
                                        ColorQualInd = FALSE, ColorQual="black", PlotSup=TRUE, Bootstrap=FALSE, 
                                        BootstrapPlot=c("Ellipse", "CovexHull", "Star"), margin=0, 
-                                       PlotClus = FALSE, TypeClus = "ch", ClustConf = 1, CexClustCenters=1,
+                                       PlotClus = FALSE, TypeClus = "ch", ClustConf = 1, CexClustCenters=1, LegendClust=TRUE,
                                        ClustCenters = FALSE, UseClusterColors = TRUE, ShowAxis=FALSE, PlotBinaryMeans=FALSE,
                                        MinIncidence=0, ShowBox=FALSE,  ColorSupContVars=NULL, ColorSupBinVars=NULL, ColorSupOrdVars=NULL,
                                        TypeScale = "Complete", SupMode="s", PlotSupVars=FALSE, ...){
@@ -57,15 +57,15 @@ plot.Principal.Coordinates <- function(x, A1 = 1, A2 = 2, LabelRows=TRUE, WhatRo
   # plot(a[, 1], a[, 2], cex = 0, asp = 1,  xaxt = xaxt, yaxt = yaxt, xlab=xlab,ylab=ylab, bty="n", ...)
   
   if (x$Analysis == "Principal Coordinates"){
-    title(main = "Principal Coordinates", omi = c(0, 0, 0, 0))}
+    title(main = paste("Principal Coordinates", Title, sep=" - "), omi = c(0, 0, 0, 0))}
   else{
-    title(main = "MDS", omi = c(0, 0, 0, 0))
+    title(main = paste("MDS", Title, sep=" - "), omi = c(0, 0, 0, 0))
   }
   
   if (ShowBox) rect(xmin, ymin, xmax, ymax)
   
   if (PlotClus) {
-    RowColors=PlotBiplotClusters(a, x$Clusters, TypeClus = TypeClus, ClusterColors = x$ClusterColors, ClusterNames=x$ClusterNames, centers = ClustCenters, ClustConf=ClustConf, CexClustCenters=CexClustCenters, ...)
+    RowColors=PlotBiplotClusters(a, x$Clusters, TypeClus = TypeClus, ClusterColors = x$ClusterColors, ClusterNames=x$ClusterNames, centers = ClustCenters, ClustConf=ClustConf, CexClustCenters=CexClustCenters, Legend=LegendClust, ...)
     if (x$ClusterType=="gm"){
       ColorInd2=rgb((x$P %*% t(col2rgb(x$ClusterColors)))/255)
       if (UseClusterColors) RowColors = ColorInd2
@@ -88,7 +88,7 @@ plot.Principal.Coordinates <- function(x, A1 = 1, A2 = 2, LabelRows=TRUE, WhatRo
         textsmart(cbind(a[, 1], a[, 2]), RowLabels, CexPoints = WhatRows*RowCex, ColorPoints = RowColors)
   else text(a[, 1], a[, 2], labels = RowLabels, cex=WhatRows*RowCex , col = RowColors)
   
-  if ((PlotBinaryMeans) & (x$TypeData=="Binary") &(!is.null(x$Data))){
+  if ((PlotBinaryMeans) & (x$TypeData=="Binary") & (!is.null(x$Data))){
     tot=apply(x$Data, 2, sum)
     cc= diag(1/tot) %*% t(x$Data) %*% a
     cc=cc[which(tot>MinIncidence),]
