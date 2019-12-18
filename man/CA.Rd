@@ -39,10 +39,9 @@ Jose Luis Vicente Villardon
 
 
 \examples{
-data(riano)
-Sp=riano[,3:15]
-Env=riano[,16:25]
-cabip=CA(Sp)
+data(SpidersSp)
+cabip=CA(SpidersSp)
+plot(cabip)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

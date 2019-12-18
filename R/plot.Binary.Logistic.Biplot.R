@@ -36,7 +36,7 @@ plot.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margi
       WhatCols=AllCols
     }
   WhatCols=as.logical(WhatCols)     
-  
+
   if (Significant){
     if (Bonferroni)
       WhatCols= WhatCols & ((x$pvalues*p)<alpha)
@@ -47,6 +47,9 @@ plot.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margi
   
 
   WhatCols=WhatCols & (x$R2>MinQualityCols)
+  
+  WhatCols[which((is.na(WhatCols)))]=FALSE
+
   
   if (is.null(RowColors)) 
     RowColors = matrix("blue", n, 1)
@@ -120,11 +123,12 @@ plot.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margi
   
 
   if (PlotVars){
-    for (i in 1:p)
+    for (i in 1:p){
       if (WhatCols[i]){
         PlotBinaryVar(b0=x$ColumnParameters[i,1], bi1=x$ColumnParameters[i,F1+1], bi2=x$ColumnParameters[i,F2+1], xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax, 
                       mode=Mode, Color = ColColors[i], label=ColLabels[i], tl=TickLength, CexPoint=ColCex[i])
       }
+    }
   }
   
   for (idp in dp){

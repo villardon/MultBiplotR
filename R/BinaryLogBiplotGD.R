@@ -92,12 +92,12 @@ if (Algorithm == "Joint"){
   acierfil = 100*apply(acier,1,sum)/p
   aciercol = 100*apply(acier,2,sum)/n
   
-  presences=apply(Y, 2, sum)
+  presences=apply(X, 2, sum)
   absences=n-presences
-  sens = apply((acier==1) & (Y==1), 2, sum)/presences
-  spec = apply((acier==1) & (Y==0), 2, sum)/absences
-  totsens = sum((acier==1) & (Y==1))/sum(presences)
-  totspec = sum((acier==1) & (Y==0))/sum(absences)
+  sens = apply((acier==1) & (X==1), 2, sum)/presences
+  spec = apply((acier==1) & (X==0), 2, sum)/absences
+  totsens = sum((acier==1) & (X==1))/sum(presences)
+  totspec = sum((acier==1) & (X==0))/sum(absences)
   
   gfit = (sum(sum(acier))/(n * p)) * 100
   

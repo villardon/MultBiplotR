@@ -175,7 +175,7 @@ plot.Canonical.Biplot <- function(x, A1 = 1, A2 = 2, ScaleGraph = TRUE, PlotGrou
   if (PlotGroups) {
     points(J[, 1], J[, 2], cex = CexGroup, pch = PchGroup, col = ColorGroups)
     if (LabelGroups)
-      text(J[, 1], J[, 2], GroupLabels, adj = 0, col = ColorGroups, cex = 1.5)
+      text(J[, 1], J[, 2], GroupLabels, adj = 0, col = ColorGroups, cex = CexGroup)
   }
 
   if (AddLegend) legend(LegendPos, rownames(J), fill = ColorGroups)

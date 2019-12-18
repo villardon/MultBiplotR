@@ -52,19 +52,19 @@ The following coefficients are calculated
 9.- Soergel = sum(abs(y[i,]-x[j,]))/sum(apply(rbind(y[i,],x[j,]),2,max))
 
 10.- Ware_hedges = sum(abs(y[i,]-x[j,]))/sum(apply(rbind(y[i,],x[j,]),2,max))
-
-
-
-  
 }
-\value{
-An object of class \code{proximities}.This has components:
-\item{comp1 }{Description of 'comp1'}
 
+\value{A list with:
+\item{Data}{A matrix with the initial data (x matrix).}
+\item{SupData}{A matrix with the supplementary data (y matrix).}
+\item{D}{The matrix of distances}
+\item{Coefficient}{The coefficient used.}
 }
+
 \references{
 Gower, J. C. (2006) Similarity dissimilarity and Distance, measures of. Encyclopedia of Statistical Sciences. 2nd. ed. Volume 12. Wiley
 }
+
 \author{
 Jose Luis Vicente-Villardon
 }

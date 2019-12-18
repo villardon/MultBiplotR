@@ -97,5 +97,6 @@ Jose Luis Vicente-Villardon
 }
 \examples{
 data(spiders)
+
 }
 
