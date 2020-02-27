@@ -1,4 +1,4 @@
-summary.Binary.Logistic.Biplot <- function(object, Latex=FALSE){
+summary.Binary.Logistic.Biplot <- function(object, Normal=TRUE, Latex=FALSE, Kable=FALSE){
   
   print("BINARY LOGISTIC BIPLOT")
   print(paste("Type of Biplot : ", object$Type))
@@ -19,16 +19,10 @@ summary.Binary.Logistic.Biplot <- function(object, Latex=FALSE){
   Total=c(object$DevianceTotal, object$TotalDf, object$p, object$TotNagelkerke, object$TotCoxSnell, object$TotMacFaden, object$TotalPercent*100, object$TotalSensitivity*100, object$TotalSpecificity*100)
   RR=rbind(RR,Total)
   print(RR)
-  print(class(RR))
-  print("-----------")
+  print("------------------------")
   print("Thresholds, Loadings and Communalities")
   LO=cbind(object$Tresholds, object$Loadings, object$Communalities)
   colnames(LO)=c("Thresholds", paste("Dim",1:dims,sep=""), "Communalities")
   rownames(LO)=rownames(object$ColumnParameters)
   print(LO)
-  
-  if (Latex) xtable(RR, caption="Columns Fit")
-    
-  if (Latex)  xtable(LO, caption="Factor Model")
-  return(RR)
 }

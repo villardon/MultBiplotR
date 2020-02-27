@@ -1,5 +1,5 @@
 PlotBinaryVar <- function(b0, bi1, bi2, xmin = -3, xmax = 3, ymin = -3, ymax = 3, label = "Point", mode = mode, CexPoint = 0.8, PchPoint = 1, Color = "blue",
-                          tl = 0.03, ts = "Probability", Position="Angle",  ...){
+                          tl = 0.01, ts = "Probability", Position="Angle",  ...){
   b1 = bi1/(bi1^2 + bi2^2)
   b2 = bi2/(bi1^2 + bi2^2)
   b = b2/b1
