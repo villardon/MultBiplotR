@@ -7,7 +7,9 @@ ConcEllipse <- function(data,confidence=1,npoints=100){
   d=matrix(0,n,1)
   for (i in 1:n)
     d[i]=sqrt(sum(K[i,]^2))
+  
   radius = quantile(d,confidence)
+  retained=which(d<radius)
   ang=seq(from=0, to=2*pi, by =(2*pi/npoints))
   z=matrix(0,(npoints+1), 2)
   for (j in 1:(npoints+1)){
@@ -17,7 +19,7 @@ ConcEllipse <- function(data,confidence=1,npoints=100){
   z=z %*% diag(DE$d) %*% t(DE$v)
   z[,1]=z[,1]+center[1]
   z[,2]=z[,2]+center[2]
-  res=list(data=data, confidence=confidence, ellipse=z, center=center)
+  res=list(data=data, confidence=confidence, ellipse=z, center=center, retained=retained, distances=d, radius=radius)
   class(res)="ellipse"
   return(res)
 }
