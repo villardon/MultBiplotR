@@ -1,11 +1,10 @@
 \name{Coinertia}
 \alias{Coinertia}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Coinertia
-%%  ~~function to do ... ~~
+\title{Coinertia Analysis.
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Calculates a Coinertia Analysis for two matrices of continuous data 
 }
 \usage{
 Coinertia(X, Y, ScalingX = 5, ScalingY = 5, dimsol = 3)
@@ -29,7 +28,7 @@ Dimension of the solution
 }
 }
 \details{
-Coinertia analysis for two raw data matrices.
+Coinertia analysis for two continuous data matrices.
 }
 \value{
 An object of class Coinertia.SOL
