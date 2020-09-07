@@ -1,7 +1,0 @@
-character(0)
-list(sec = 33.1282460689545, min = 28, hour = 10, mday = 10, mon = 8, year = 118, wday = 1, yday = 252, isdst = 0)
-character(0)
-character(0)
-character(0)
-character(0)
-character(0)

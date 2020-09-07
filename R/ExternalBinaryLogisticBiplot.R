@@ -39,6 +39,7 @@ ExternalBinaryLogisticBiplot <- function(Pco, IncludeConst=TRUE, penalization=0.
     Pco$TotalPercent=Pco$TotalPercent+sum(y==fit$Prediction)
   }
   rownames(Pco$ColumnParameters)=colnames(Pco$Data)
+  colnames(Pco$ColumnParameters)=paste("b",0:dimens, sep="")
   Pco$TotalPercent=Pco$TotalPercent/(n*p)
   Pco$DevianceTotal=sum(Res$Deviances)
   Pco$TotalDf=sum(Res$Dfs)
