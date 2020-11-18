@@ -57,9 +57,9 @@ plot.Principal.Coordinates <- function(x, A1 = 1, A2 = 2, LabelRows=TRUE, WhatRo
   # plot(a[, 1], a[, 2], cex = 0, asp = 1,  xaxt = xaxt, yaxt = yaxt, xlab=xlab,ylab=ylab, bty="n", ...)
   
   if (x$Analysis == "Principal Coordinates"){
-    title(main = paste("Principal Coordinates", Title, sep=" - "), omi = c(0, 0, 0, 0))}
+    title(main = paste("Principal Coordinates", Title, sep="   "), omi = c(0, 0, 0, 0))}
   else{
-    title(main = paste("MDS", Title, sep=" - "), omi = c(0, 0, 0, 0))
+    title(main = paste("MDS", Title, sep="   "), omi = c(0, 0, 0, 0))
   }
   
   if (ShowBox) rect(xmin, ymin, xmax, ymax)
