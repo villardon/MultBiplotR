@@ -15,7 +15,7 @@ PrincipalCoordinates <- function (Proximities, w = NULL, dimension = 2, toleranc
   else 
     dis=Proximities$Proximities
   n <- dim(dis)[1]
-  print(n)
+
   if (is.null(w)) w = matrix(1, 1, n)/n
   else w= matrix(w/sum(w), nrow=1)
   
@@ -27,7 +27,7 @@ PrincipalCoordinates <- function (Proximities, w = NULL, dimension = 2, toleranc
   Dw = diag(as.vector(w))
   
   B=sqrt(Dw) %*% b %*% sqrt(Dw)
-  
+
   solut <- svd(B)
   
   Inertia = (solut$d/sum(solut$d)) * 100

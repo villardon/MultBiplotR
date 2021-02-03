@@ -39,7 +39,6 @@ PLSR <- function(Y, X, S=2,  InitTransform=5, grouping=NULL,  centerY=TRUE, scal
   rownames(Y)<-rownames(X)
   
   
-  
   if (centerY & !scaleY){
     Y=TransformIni(Y,transform=4)
   }

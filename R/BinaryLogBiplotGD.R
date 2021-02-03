@@ -1,7 +1,8 @@
 # Logistic Biplot with Gradient Descent
 
-BinaryLogBiplotGD <- function(X, freq = matrix(1, nrow(X), 1),  dim = 2, tolerance = 1e-04,  penalization=0.01, num_max_iters=100,
-                              RotVarimax = FALSE, seed = NULL, OptimMethod="CG", Initial="random", Orthogonalize=FALSE, Algorithm = "Joint", ...) {
+BinaryLogBiplotGD <- function(X, freq = matrix(1, nrow(X), 1),  dim = 2, tolerance = 1e-04,  penalization=0.01, 
+                              num_max_iters=100, RotVarimax = FALSE, seed = 0, OptimMethod="CG", Initial="random",
+                              Orthogonalize=FALSE, Algorithm = "Joint", ...) {
   # joint algorithm for logistic biplots
   X=as.matrix(X)
   indnames=rownames(X)
@@ -13,8 +14,10 @@ BinaryLogBiplotGD <- function(X, freq = matrix(1, nrow(X), 1),  dim = 2, toleran
   # Estimation of parameters A and B
   r=dim
   
-if (Algorithm == "Joint"){
   if (!is.null(seed)) set.seed(seed) # Set the seed for reproductibility (Use when you want the same results for different repetitions)
+  
+  
+if (Algorithm == "Joint"){
   par=runif(n*r + p*(r+1))
   ResLog=optim(par, fn=JLogBiplotReg, gr=grLogBiplotReg, X=X, r=r, lambda=penalization , method = OptimMethod)
   par=ResLog$par

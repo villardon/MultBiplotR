@@ -1,8 +1,10 @@
-plot.External.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margin=0.2, PlotVars = TRUE, PlotInd = TRUE, WhatRows = NULL, WhatCols = NULL, LabelRows=TRUE, LabelCols=TRUE,
-                                                 RowLabels = NULL, ColLabels = NULL, RowColors = NULL, ColColors = NULL, Mode = "s", TickLength= 0.01,
-                                                 RowCex = 0.8, ColCex = 0.8, SmartLabels = FALSE, MinQualityRows = 0, MinQualityCols = 0, dp = 0, PredPoints=0, SizeQualRows = FALSE, 
-                                                 SizeQualCols = FALSE, ColorQualRows = FALSE, ColorQualCols = FALSE, PchRows = NULL, PchCols = NULL, 
-                                                 PlotClus = FALSE, TypeClus = "ch", ClustConf=1,  Significant=FALSE, alpha=0.05, Bonferroni=FALSE, PlotSupVars = TRUE, ...) {
+plot.External.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margin=0.1, PlotVars = TRUE, PlotInd = TRUE, WhatRows = NULL, 
+                                                 WhatCols = NULL, LabelRows=TRUE, LabelCols=TRUE, RowLabels = NULL, ColLabels = NULL, 
+                                                 RowColors = NULL, ColColors = NULL, Mode = "s", TickLength= 0.01,
+                                                 RowCex = 0.8, ColCex = 0.8, SmartLabels = FALSE, MinQualityRows = 0, MinQualityCols = 0, 
+                                                 dp = 0, PredPoints=0, SizeQualRows = FALSE, ShowBox=FALSE, SizeQualCols = FALSE, ColorQualRows = FALSE,
+                                                 ColorQualCols = FALSE, PchRows = NULL, PchCols = NULL, PlotClus = FALSE, TypeClus = "ch", ClustConf=1,  
+                                                 Significant=FALSE, alpha=0.05, Bonferroni=FALSE, PlotSupVars = TRUE, ...) {
   
   a = x$RowCoordinates[,c(F1,F2)]
   n = dim(a)[1]
@@ -97,14 +99,17 @@ plot.External.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FAL
   ymin = min(a[, 2])
   ymax = max(a[, 2])
   P = rbind(a, c(xmin - (xmax - xmin) * margin, ymin - (ymax - ymin) * margin))
-  P = rbind(a, c(xmax + (xmax - xmin) * margin, ymax + (ymax - ymin) * margin))
+  P = rbind(P, c(xmax + (xmax - xmin) * margin, ymax + (ymax - ymin) * margin))
+  
+  
+  
   
   op=par(mai=c(0,0,0.5,0))
   op=par(mar=c(1, 1, 1, 1) + 0.1)
   
 
   plot(P[, 1], P[, 2], asp=1, xaxt = xaxt, yaxt = yaxt, cex=0, bty="n", xlab=paste("Dimension",F1), ylab=paste("Dimension",F2), main="External Logistic Biplot", ...)
-  
+  if (ShowBox) rect(xmin, ymin, xmax, ymax)
   if (PlotClus) {
     RowColors=PlotBiplotClusters(a, x$Clusters, TypeClus = "ch", ClusterColors = x$ClusterColors, ClusterNames=x$ClusterNames, centers = TRUE, ClustConf=ClustConf, ...)
   }

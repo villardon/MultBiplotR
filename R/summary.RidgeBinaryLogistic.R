@@ -11,8 +11,11 @@ summary.RidgeBinaryLogistic <- function(x, ...) {
     colnames(Coef)=c("Beta", "Std. Err.", "Z", "Pr(>|z|)", "Exp(B)")
   print(Coef)
   
-  cat("\n Classification Table")
+  cat("\n Classification Table\n")
   print(x$Classification)
+  
+  cat("\n Classification Table (percentages)\n")
+  print(round(prop.table(x$Classification, margin=1)*100, digits=2))
   cat("\n % Correct :",x$PercentCorrect*100)
   
   cat("\n\nNull deviance: ", x$NullDeviance, " on", n-1, "degrees of freedom")

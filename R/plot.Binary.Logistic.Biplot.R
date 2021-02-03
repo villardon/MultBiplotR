@@ -1,8 +1,13 @@
-plot.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margin=0, PlotVars = TRUE, PlotInd = TRUE, WhatRows = NULL, WhatCols = NULL, LabelRows=TRUE, LabelCols=TRUE,
-                                                 RowLabels = NULL, ColLabels = NULL, RowColors = NULL, ColColors = NULL, Mode = "s", TickLength= 0.01,
-                                                 RowCex = 0.8, ColCex = 0.8, SmartLabels = FALSE, MinQualityRows = 0, MinQualityCols = 0, dp = 0, PredPoints=0, SizeQualRows = FALSE, 
-                                                 SizeQualCols = FALSE, ColorQualRows = FALSE, ColorQualCols = FALSE, PchRows = NULL, PchCols = NULL, 
-                                                 PlotClus = FALSE, TypeClus = "ch", ClustConf=1,  Significant=TRUE, alpha=0.05, Bonferroni=TRUE, PlotSupVars = TRUE, ...) {
+plot.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margin=0, PlotVars = TRUE, 
+                                        PlotInd = TRUE, WhatRows = NULL, WhatCols = NULL, LabelRows=TRUE, 
+                                        LabelCols=TRUE, ShowBox=FALSE, RowLabels = NULL, ColLabels = NULL,
+                                        RowColors = NULL, ColColors = NULL, Mode = "s", TickLength= 0.01,
+                                        RowCex = 0.8, ColCex = 0.8, SmartLabels = FALSE, MinQualityRows = 0, 
+                                        MinQualityCols = 0, dp = 0, PredPoints=0, SizeQualRows = FALSE, 
+                                        SizeQualCols = FALSE, ColorQualRows = FALSE, ColorQualCols = FALSE, 
+                                        PchRows = NULL, PchCols = NULL, PlotClus = FALSE, TypeClus = "ch", 
+                                        ClustConf=1,  Significant=TRUE, alpha=0.05, Bonferroni=TRUE, PlotSupVars = TRUE, ...) 
+  {
   
   a = x$RowCoordinates[,c(F1,F2)]
   n = dim(a)[1]
@@ -49,7 +54,7 @@ plot.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margi
   WhatCols=WhatCols & (x$R2>MinQualityCols)
   
   WhatCols[which((is.na(WhatCols)))]=FALSE
-
+  print(WhatCols)
   
   if (is.null(RowColors)) 
     RowColors = matrix("blue", n, 1)
@@ -93,6 +98,8 @@ plot.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margi
     yaxt = "n"
   }
   
+ 
+  
   if ((margin < 0) | (margin > 0.3)) 
     margin = 0
   
@@ -105,8 +112,10 @@ plot.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margi
   yrang=abs(ymax-ymin)
   if (xmax <0 ) xmax=xmax*(-1)
   
-  P = rbind(P, c(xmax + (xmax - xmin) * margin, ymax + (ymax - ymin) * margin))
+  P = rbind(P, c(xmax + (xmax - xmin) * margin, ymax + (ymax - ymin) * margin), c(xmin - (xmax - xmin) * margin, ymin - (ymax - ymin) * margin))
   plot(P[, 1], P[, 2], asp=1, xaxt = xaxt, yaxt = yaxt, cex=0, bty="n", xlab=paste("Dimension",F1), ylab=paste("Dimension",F2), main=x$Biplot, ...)
+  
+  if (ShowBox) rect(xmin, ymin, xmax, ymax)
   
   if (PlotClus) {
     RowColors=PlotBiplotClusters(a, x$Clusters, TypeClus = "ch", ClusterColors = x$ClusterColors, ClusterNames=x$ClusterNames, centers = TRUE, ClustConf=ClustConf, ...)

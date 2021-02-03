@@ -26,7 +26,7 @@ DataFrame2Matrix4Regression <- function(X, last=TRUE, Intercept=FALSE){
       XN=cbind(XN,Z)
     }
   }
-  print(newnames)
+
   if (Intercept){
     XN=cbind(rep(1,n),XN)
     newnames=c("Intercept", newnames)

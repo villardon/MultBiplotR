@@ -27,7 +27,7 @@ export(InitialTransform, Circle, diagonal, DimensionLabels, Factor2Binary, GetBi
        Sparse.NIPALSPCA, NIPALS.Biplot, Truncated.NIPALSPCA, PCA.Analysis, plot.PCA.Analysis, plot.ContinuousBiplot, summary.PCA.Analysis,
        Canonical.Variate.Analysis, plot.CVA, summary.CVA, countsToCases, NormalityTests, Bartlett.Tests, BasicDescription, BoxPlotPanel,
        ConfidenceInterval, ErrorBarPlotPanel, Games_Howell, HistogramPanel, Kruskal.Wallis.Tests, Levene.Tests, NormalityTests, PostHocGraph,
-       ConstrainedLogisticBiplot, ConstrainedOrdinalLogisticBiplot)
+       ConstrainedLogisticBiplot, ConstrainedOrdinalLogisticBiplot, anova.RidgeBinaryLogistic)
 
 import(scales, geometry, deldir, mirt, GPArotation, rgl, optimr)
 importFrom(MASS, kde2d)
@@ -80,4 +80,5 @@ S3method(plot3d, ContinuousBiplot)
 S3method(plot, Unfolding)
 S3method(print, RidgeBinaryLogistic)
 S3method(summary, RidgeBinaryLogistic)
+S3method(anova, RidgeBinaryLogistic)
 S3method(summary, PLSR1Bin) 

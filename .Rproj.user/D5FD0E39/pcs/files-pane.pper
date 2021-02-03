@@ -1,9 +1,9 @@
 {
-    "path" : "~/Library/Mobile Documents/com~apple~CloudDocs/0 ProgramasR/Paquetes/MultBiplotR",
-    "sortOrder" : [
+    "path": "~/Library/Mobile Documents/com~apple~CloudDocs/0 ProgramasR/Paquetes/MultBiplotR/R",
+    "sortOrder": [
         {
-            "ascending" : true,
-            "columnIndex" : 2
+            "columnIndex": 2,
+            "ascending": true
         }
     ]
 }
