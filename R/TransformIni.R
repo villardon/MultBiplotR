@@ -57,7 +57,7 @@ TransformIni <- function(X, InitTransform="None", transform = "Standardize colum
     dc = apply(X,2,sum)
     esp = (t(t(dr)) %*% dc)/nt
     var = t(t(1 - dr/nt)) %*% (1 - dc/nt)
-    xp = ((xp - esp)/sqrt(esp))/sqrt(var)
+    X = ((X - esp)/sqrt(esp))/sqrt(var)
   },`Divide by the range`={
     Rangos=apply(X,2,max)-apply(X,2,min)
     X=X%*%diag(1/Rangos)

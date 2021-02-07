@@ -258,7 +258,7 @@ plot.Canonical.Biplot <- function(x, A1 = 1, A2 = 2, ScaleGraph = TRUE, PlotGrou
 
   if (voronoi) {
     tv = deldir(J[, 1], J[, 2], rw = c(xmin, xmax, ymin, ymax))
-    plot(tv, add = TRUE, wlines = "tess", xlim = c(xmin, xmax), ylim = c(ymin, ymax),col=VoronoiColor)
+    plot(tv, add = TRUE, wlines = "tess", xlim = c(xmin, xmax), ylim = c(ymin, ymax))
   }
 
   if (!is.null(x$ContSupVarsBiplot))
