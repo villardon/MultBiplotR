@@ -86,8 +86,7 @@ plot(unf, PlotTol=TRUE, PlotEnv = FALSE)
 plot(unf, PlotTol=TRUE, PlotEnv = TRUE)
 cbind(unf$QualityVars, unf$Var_Fit)
 unf2=Unfolding(SpidersSp, ENV=SpidersEnv, model="Ratio", Constrained = TRUE, condition="Matrix")
-plot(unf2, PlotTol=TRUE, PlotEnv = TRUE)
+plot(unf2, PlotTol=FALSE, PlotEnv = TRUE, mode="s")
 cbind(unf2$QualityVars, unf2$Var_Fit)
-
 }
 
