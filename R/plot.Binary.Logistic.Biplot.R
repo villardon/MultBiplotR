@@ -54,7 +54,6 @@ plot.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margi
   WhatCols=WhatCols & (x$R2>MinQualityCols)
   
   WhatCols[which((is.na(WhatCols)))]=FALSE
-  print(WhatCols)
   
   if (is.null(RowColors)) 
     RowColors = matrix("blue", n, 1)
@@ -100,7 +99,7 @@ plot.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margi
   
  
   
-  if ((margin < 0) | (margin > 0.3)) 
+  if ((margin < 0) | (margin > 0.5)) 
     margin = 0
   
   P=a
@@ -111,7 +110,7 @@ plot.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margi
   xrang=abs(xmax-xmin)
   yrang=abs(ymax-ymin)
   if (xmax <0 ) xmax=xmax*(-1)
-  
+  print(c(xmin, xmax, ymin, ymax))
   P = rbind(P, c(xmax + (xmax - xmin) * margin, ymax + (ymax - ymin) * margin), c(xmin - (xmax - xmin) * margin, ymin - (ymax - ymin) * margin))
   plot(P[, 1], P[, 2], asp=1, xaxt = xaxt, yaxt = yaxt, cex=0, bty="n", xlab=paste("Dimension",F1), ylab=paste("Dimension",F2), main=x$Biplot, ...)
   

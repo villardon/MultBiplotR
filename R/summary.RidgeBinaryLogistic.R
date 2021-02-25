@@ -17,7 +17,6 @@ summary.RidgeBinaryLogistic <- function(x, ...) {
   cat("\n Classification Table (percentages)\n")
   print(round(prop.table(x$Classification, margin=1)*100, digits=2))
   cat("\n % Correct :",x$PercentCorrect*100)
-  
   cat("\n\nNull deviance: ", x$NullDeviance, " on", n-1, "degrees of freedom")
   cat("\nResidual deviance: ", x$Deviance, " on", n-p, "degrees of freedom")
   cat("\nDifference: ", x$Dif, " on", p-1, "degrees of freedom (p=",x$p,")")
@@ -25,8 +24,6 @@ summary.RidgeBinaryLogistic <- function(x, ...) {
   cat("\nMacFaden: ", x$MacFaden)
   cat("\nCox-Snell: ", x$CoxSnell,"\n\n")
 }
-
-
 
 
 print.RidgeBinaryLogistic <- function(x, ...) {

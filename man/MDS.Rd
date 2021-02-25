@@ -22,7 +22,7 @@ An object of class proximities
 A matrix of weigths
 }
   \item{Model}{
-MDS model.
+MDS model. "Identity", "Ratio", "Interval" or "Ordinal".
 }
   \item{dimsol}{
 Dimension of the solution

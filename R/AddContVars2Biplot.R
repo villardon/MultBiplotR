@@ -22,8 +22,8 @@ AddContVars2Biplot <- function(bip,  X, dims=NULL, Scaling = 5, Fit=NULL){
   Biplot$Deviations = apply(X, 2, sd)
   Biplot$Minima = apply(X, 2, min)
   Biplot$Maxima = apply(X, 2, max)
-  Biplot$P25 = apply(X, 2, quantile)[2, ]
-  Biplot$P75 = apply(X, 2, quantile)[4, ]
+  Biplot$P25 = apply(X, 2, quantile, 0.25)
+  Biplot$P75 = apply(X, 2, quantile, 0.75)
   ContinuousDataTransform = c("Raw Data", "Substract the global mean", "Double centering", 
                               "Column centering", "Standardize columns", "Row centering", 
                               "Standardize rows", "Divide by the column means and center",

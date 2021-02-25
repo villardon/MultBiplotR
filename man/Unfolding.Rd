@@ -2,13 +2,13 @@
 \alias{Unfolding}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Unfolding para vegetacion
+Multidimensional Unfolding
 }
 \description{
-Unfolding para vegetacion
+Multidimensional Unfolding with some adaptations for vegetation analysis
 }
 \usage{
-Unfolding(A, ENV = NULL, TransAbund = "Gaussian", offset = 0.5, weight = "All_1", Constrained = FALSE, TransEnv = "Standardize columns", InitConfig = "SVD", model = "Ratio", condition = "Columns", r = 2, maxiter = 100, tolerance = 1e-05, lambda = 1, omega = 0, plot = FALSE)
+Unfolding(A, ENV = NULL, TransAbund = "Gaussian", offset = 0.5, weight = "All_1", Constrained = FALSE, TransEnv = "Standardize columns", InitConfig = "SVD", model = "Ratio", condition = "Columns", Algorithm = "SMACOF", OptimMethod = "CG", r = 2, maxiter = 100, tolerance = 1e-05, lambda = 1, omega = 0, plot = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -25,31 +25,37 @@ Initial transformation of the abundances : "None", "Gaussian", "Column Percent",
 offset is the quantity added to the zeros of the table
 }
   \item{weight}{
-%%     ~~Describe \code{weight} here~~
+A matrix of weights for each cell of the table
 }
   \item{Constrained}{
-%%     ~~Describe \code{Constrained} here~~
+Should fit a constrained analysis
 }
   \item{TransEnv}{
-%%     ~~Describe \code{TransEnv} here~~
+Transformation of the environmental variables
 }
   \item{InitConfig}{
-%%     ~~Describe \code{InitConfig} here~~
+Init configuration for the algorithm
 }
   \item{model}{
-%%     ~~Describe \code{model} here~~
+Type of model to be fitted: "Identity", "Ratio", "Interval" or "Ordinal".
 }
   \item{condition}{
-%%     ~~Describe \code{condition} here~~
+"Matrix", "Columns" to condition to the whole matrix or to each column
+}
+  \item{Algorithm}{
+Algorithm to fit the model: "SMACOF", "GD", "Genefold"
+}
+  \item{OptimMethod}{
+Optimization method for gradient descent
 }
   \item{r}{
-%%     ~~Describe \code{r} here~~
+Dimension of the solution
 }
   \item{maxiter}{
-%%     ~~Describe \code{maxiter} here~~
+Maximum number of iterations in the algorithm
 }
   \item{tolerance}{
-%%     ~~Describe \code{tolerance} here~~
+Tolerace for the algorithm
 }
   \item{lambda}{
 %%     ~~Describe \code{lambda} here~~
@@ -75,9 +81,13 @@ Jose Luis Vicente Villardon
 }
 
 \examples{
-data("SpidersSp")
-unf=Unfolding(SpidersSp)
-plot(unf)
-Genefold(SpidersSp)
+unf=Unfolding(SpidersSp, ENV=SpidersEnv, model="Ratio", Constrained = FALSE, condition="Matrix")
+plot(unf, PlotTol=TRUE, PlotEnv = FALSE)
+plot(unf, PlotTol=TRUE, PlotEnv = TRUE)
+cbind(unf$QualityVars, unf$Var_Fit)
+unf2=Unfolding(SpidersSp, ENV=SpidersEnv, model="Ratio", Constrained = TRUE, condition="Matrix")
+plot(unf2, PlotTol=TRUE, PlotEnv = TRUE)
+cbind(unf2$QualityVars, unf2$Var_Fit)
+
 }
 

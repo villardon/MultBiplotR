@@ -129,6 +129,8 @@ Unfolding <- function(A, ENV = NULL, TransAbund = "Gaussian", offset = 0.5, weig
     Unfold$Env_fit = sum(ESP^2)/sum(ENV^2)
     Unfold$Var_Fit = matrix(1, p, 1)
     rownames(Unfold$Var_Fit) <- VarNames
+
+    Unfold$QualityVars=cor(ENV, Unfold$X)^2
     for (j in 1:p) Unfold$Var_Fit[j] = sum(ESP[, j]^2)/sum(ENV[, j]^2)
   }
   

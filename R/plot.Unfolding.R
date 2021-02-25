@@ -15,8 +15,9 @@ plot.Unfolding <- function(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 0.1, Pl
   QualitySpecies = x$ColumnsFit
   
   QualitySites = (x$Sites_Quality[, A1] + x$Sites_Quality[, A2])/100
+
   
-  if (!is.null(x$B)) {
+  if (is.null(x$B)) {
     B = x$Env_Var_Scores[, c(A1, A2)]
     EnvNames = rownames(B)
     QualityVars = x$Var_Fit
@@ -124,6 +125,6 @@ plot.Unfolding <- function(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 0.1, Pl
       }
     
     if (PlotTol) 
-      for (i in 1:x$nspecies) Circle(x$Tolerance[i], origin = c(A[i, 1], A[i, 2]), color = "red")
-    
+      for (i in 1:x$nspecies) Circle(x$Tolerance[i], origin = c(A[i, 1], A[i, 2]), col = "red")
+
 }
