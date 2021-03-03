@@ -8,7 +8,9 @@ Plots an ordinal variable on the biplot
 Plots an ordinal variable on the biplot from its fitted parameters
 }
 \usage{
-OrdVarBiplot(bi1, bi2, threshold, xmin = -3, xmax = 3, ymin = -3, ymax = 3, label = "Point", mode = "a", CexMarks = 0.7, CexPoint = 0.8, PchPoint = 1, Color = "blue", tl = 0.03, textpos = 1, ...)
+OrdVarBiplot(bi1, bi2, threshold, xmin = -3, xmax = 3, ymin = -3, 
+ymax = 3, label = "Point", mode = "a", CexMarks = 0.7, CexPoint = 0.8, 
+PchPoint = 1, Color = "blue", tl = 0.03, textpos = 1, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

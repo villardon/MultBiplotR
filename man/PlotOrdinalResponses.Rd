@@ -8,7 +8,8 @@ Plot the response functions along the directions of best fit.
 Plot the response functions along the directions of best fit for the selected dimensions
 }
 \usage{
-PlotOrdinalResponses(olb, A1 = 1, A2 = 2, inf = -12, sup = 12, Legend = TRUE, WhatVars=NULL)
+PlotOrdinalResponses(olb, A1 = 1, A2 = 2, inf = -12, sup = 12, 
+Legend = TRUE, WhatVars=NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

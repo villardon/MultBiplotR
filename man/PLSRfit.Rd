@@ -8,7 +8,8 @@ Partial Least Squares Regression (PLSR)
 Fits a Partial Least Squares Regression (PLSR) to two continuous data matrices
 }
 \usage{
-PLSRfit(Y, X, S = 2, center = TRUE, scale = TRUE, tolerance = 5e-06, maxiter = 100, show = FALSE)
+PLSRfit(Y, X, S = 2, center = TRUE, scale = TRUE, tolerance = 5e-06,
+maxiter = 100, show = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

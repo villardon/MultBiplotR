@@ -40,16 +40,17 @@ ColContributionPlot <- function(bip, A1=1, A2=2, Colors=NULL, Labs=NULL, MinQual
     if (CorrelationScale){
       segments(0, i/10, 1, i/10, col= 'gray')
       segments(i/10, 0, i/10, 1, col= 'gray')
-      text((i/10), 0, labels=(i/10), cex=0.7, pos=1, col="gray")
-      text(0, (i/10), labels=(i/10), cex=0.7, pos=2, col="gray")}
+      text((i/10), 0, labels=(i/10), cex=0.7, pos=1, col="red")
+      text(0, (i/10), labels=(i/10), cex=0.7, pos=2, col="red")
+      }
     
     if (ContributionScale){
-      segments(0, sqrt(i/10), 1, sqrt(i/10), col= 'red')
-      segments(sqrt(i/10), 0, sqrt(i/10), 1, col= 'red')
-      text(sqrt(i/10), 1, labels=(i/10), cex=0.7, pos=3, col="red")
-      text(1, sqrt(i/10), labels=(i/10), cex=0.7, pos=4, col="red")
-      QuarterCircle(sqrt(i/10), lty=1, color="red", lwd=1.5)
-      text(sqrt(i/10)/sqrt(2), sqrt(i/10)/sqrt(2), srt=45, labels=(i/10), cex=0.7, pos=2, col="red")
+      segments(0, sqrt(i/10), 1, sqrt(i/10), col= 'gray')
+      segments(sqrt(i/10), 0, sqrt(i/10), 1, col= 'gray')
+      text(sqrt(i/10), 1, labels=(i/10), cex=0.7, pos=3, col="gray")
+      text(1, sqrt(i/10), labels=(i/10), cex=0.7, pos=4, col="gray")
+      QuarterCircle(sqrt(i/10), lty=1, color="gray", lwd=1.5)
+      text(sqrt(i/10)/sqrt(2), sqrt(i/10)/sqrt(2), srt=45, labels=(i/10), cex=0.7, pos=2, col="gray")
     }
   }
   

@@ -15,10 +15,9 @@ TransfUnfold <- function(f, trans, offset) {
     P = f %*% solve(diag(sumco))
   }
   if (trans == "Gaussian Columns") {
-    f= f + matrix(as.numeric(f == 0), n, m) * offset
+    f= as.matrix(f + matrix(as.numeric(f == 0), n, m) * offset)
     maxco = apply(f, 2, max)
-    P =sqrt(-2 * log(f %*% solve(diag(maxco))))
-    print(P)
+    P =sqrt(-2 * log(f %*% diag(1/maxco)))
   }
   if (trans == "Inverse Square Root") {
     P = 1/sqrt((f + matrix(as.numeric(f == 0), n, m) * offset))

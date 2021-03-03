@@ -1,4 +1,4 @@
-StatisBiplot <- function(X, InitTransform = "Standardize columns", dimens=2, SameVar=FALSE) {
+DualStatisBiplot <- function(X, InitTransform = "Standardize columns", dimens=2, SameInd=FALSE) {
   mycall=match.call()
   ContinuousDataTransform = c("Raw Data", "Substract the global mean", "Double centering", "Column centering", "Standardize columns", "Row centering", 
                               "Standardize rows", "Divide by the column means and center", "Normalized residuals from independence")
@@ -13,14 +13,14 @@ StatisBiplot <- function(X, InitTransform = "Standardize columns", dimens=2, Sam
     nri[i] = dim(X[[i]])[1]
     nci[i] = dim(X[[i]])[2]
   }
-  nr = nri[1]
-  if (sum(nri == nr) < ng) 
-    stop("The number of rows must be the same in all ocassions")
+  nc = nci[1]
+  if (sum(nci == nc) < ng) 
+    stop("The number of columns (variables) must be the same in all ocassions")
   
-  if (SameVar){
-    nc = nci[1]
-    if (sum(nci == nc) < ng) 
-      stop("The number of variables can not be the same in all ocassions (use SameVar=FALSE)")
+  if (SameInd){
+    nr = nri[1]
+    if (sum(nri == nr) < ng) 
+      stop("The number of individuals can not be the same in all ocassions (use SameInd=FALSE)")
   }
   #  Extracting the names of the occasions
   OccNames=names(X)
@@ -30,32 +30,32 @@ StatisBiplot <- function(X, InitTransform = "Standardize columns", dimens=2, Sam
   
   # Initial transformation of data and calculation of statistics for the biplot
   
-  BiplotStatis=MultiTableStatistics(X)
+  BiplotStatis=MultiTableStatistics(X, dual=TRUE)
   BiplotStatis$call <- mycall
-  BiplotStatis$Type="Statis"
-  BiplotStatis$Title="Biplot induced by Statis"
+  BiplotStatis$Type="DualStatis"
+  BiplotStatis$Title="Biplot induced by Dual-Statis"
   BiplotStatis$Initial_Transformation=InitTransform
-  BiplotStatis$nrows=nr
-  BiplotStatis$ncols=sum(nci)
+  BiplotStatis$nrows=sum(nri)
+  BiplotStatis$ncols=nc
   StatisRes=list()
-  StatisRes$Title="STATIS-ACT Biplot"
-  StatisRes$Type="STATIS-ACT"
+  StatisRes$Title="Dual STATIS-ACT Biplot"
+  StatisRes$Type="Dual STATIS-ACT"
   StatisRes$NTables=ng
-  StatisRes$NRows=nr
-  if (SameVar)
-    StatisRes$NVars=nc
+  StatisRes$NCols=nc
+  if (SameInd)
+    StatisRes$NRows=nr
   else
-    StatisRes$NVars=nci
+    StatisRes$NRows=nri
   
-  StatisRes$RowLabels=rownames(X[[1]])
+  StatisRes$VarLabels=colnames(X[[1]])
   StatisRes$TableLabels=names(X)
-  if (SameVar) StatisRes$VarLabels=colnames(X[[1]])
+  if (SameInd) StatisRes$RowLabels=rownames(X[[1]])
   
-  X=MultiTableTransform(X, InitTransform = InitTransform)
+  X=MultiTableTransform(X, InitTransform = InitTransform, dual=TRUE)
   #Calculation of the objects
   Wt = list()
   for (i in 1:ng) {
-    Wt[[i]] = X[[i]] %*% t(X[[i]])
+    Wt[[i]] = t(X[[i]]) %*% X[[i]]
   }
   
   # Calculation of the scalar products
@@ -81,7 +81,7 @@ StatisBiplot <- function(X, InitTransform = "Standardize columns", dimens=2, Sam
   Inter = svd(RV)
   StatisRes$EigInter = Inter$d
   names(StatisRes$EigInter)=paste("Dim",1:length(StudyNames))
-
+  
   StatisRes$InerInter=(Inter$d/sum(Inter$d))*100
   names(StatisRes$InerInter)=paste("Dim",1:length(StudyNames))
   StatisRes$InterStructure = -1 * Inter$u %*% diag(sqrt(Inter$d))
@@ -91,7 +91,7 @@ StatisBiplot <- function(X, InitTransform = "Standardize columns", dimens=2, Sam
   StatisRes$Weights = abs(Inter$u[, 1])/sum(abs(Inter$u[, 1]))
   
   # Compromise
-  W=matrix(0,nr,nr)
+  W=matrix(0,nc,nc)
   for (i in 1:ng)
     W=W + StatisRes$Weights[i]*Wt[[i]]
   StatisRes$Compromise=W
@@ -106,14 +106,14 @@ StatisBiplot <- function(X, InitTransform = "Standardize columns", dimens=2, Sam
   BiplotStatis$alpha=1
   BiplotStatis$Dimension=dimens
   # Compromise-Consensus Coordinates and contributions
-  BiplotStatis$RowCoordinates = Intra$u[,1:dimens] %*% diag(sqrt(Intra$d[1:dimens]))
+  BiplotStatis$ColCoordinates = Intra$u[,1:dimens] %*% diag(sqrt(Intra$d[1:dimens]))
   sf=apply((Intra$u[,1:r] %*% diag(sqrt(Intra$d[1:r])))^2,1,sum)
-  BiplotStatis$RowContributions=(diag(1/sf) %*% BiplotStatis$RowCoordinates^2)*100
-  rownames(BiplotStatis$RowCoordinates)=rownames(X[[1]])
-  colnames(BiplotStatis$RowCoordinates)=paste("Dim", 1:dimens)
-  rownames(BiplotStatis$RowContributions)=rownames(X[[1]])
-  colnames(BiplotStatis$RowContributions)=paste("Dim", 1:dimens)
-  
+  BiplotStatis$ColContributions=(diag(1/sf) %*% BiplotStatis$ColCoordinates^2)*100
+  rownames(BiplotStatis$ColCoordinates)=colnames(X[[1]])
+  colnames(BiplotStatis$ColCoordinates)=paste("Dim", 1:dimens)
+  rownames(BiplotStatis$ColContributions)=colnames(X[[1]])
+  colnames(BiplotStatis$ColContributions)=paste("Dim", 1:dimens)
+# ----------------Voy por aquí ---------
   # Trajectories for individuals (old kind)
   trajin=list()
   for (j in 1:ng)
@@ -159,7 +159,7 @@ StatisBiplot <- function(X, InitTransform = "Standardize columns", dimens=2, Sam
     sf=apply(trajvar[[j]]^2,1,sum)
     contvar[[j]] = (diag(1/sf) %*% trajvar[[j]]^2)*100
     rownames(contvar[[j]])=paste(colnames(X[[j]]), "-", StudyNames[j], sep="")
-      
+    
   }
   
   # Standard coodinates to represent on the biplot (RMP-Biplot)

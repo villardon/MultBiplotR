@@ -6,7 +6,9 @@
 Principal coordinates Analysis for a matrix of proximities obtained from binary, categorical, continuous or mixed data
 }
 \usage{
-PrincipalCoordinates(Proximities, dimension = 2, tolerance = 1e-04, Bootstrap=FALSE, BootstrapType=c("Distances", "Products"), nB=200, ProcrustesRot=TRUE, BootstrapMethod=c("Sampling", "Permutation"))
+PrincipalCoordinates(Proximities, dimension = 2, tolerance = 1e-04, Bootstrap=FALSE,
+BootstrapType=c("Distances", "Products"), nB=200, ProcrustesRot=TRUE, 
+BootstrapMethod=c("Sampling", "Permutation"))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
