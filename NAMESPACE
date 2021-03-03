@@ -32,24 +32,6 @@ export(InitialTransform, Circle, diagonal, DimensionLabels, Factor2Binary, GetBi
 import(scales, geometry, deldir, mirt, GPArotation, rgl, optimr)
 importFrom(MASS, kde2d)
 importFrom(MASS, lda)
-    importFrom("grDevices", "chull", "cm.colors", "col2rgb", "colors",
-               "dev.new", "heat.colors", "palette", "rainbow", "rgb",
-               "terrain.colors", "topo.colors")
-    importFrom("graphics", "abline", "arrows", "axis", "box", "boxplot",
-               "contour", "grid", "hist", "legend", "lines", "mtext",
-               "par", "points", "rect", "segments", "text", "title")
-    importFrom("methods", "show")
-    importFrom("stats", "as.dendrogram", "as.dist", "bartlett.test",
-               "complete.cases", "cor", "cutree", "dendrapply", "density",
-               "df", "dist", "dnorm", "factanal", "hclust", "heatmap",
-               "is.leaf", "isoreg", "kmeans", "kruskal.test", "manova",
-               "median", "model.extract", "model.frame", "model.matrix",
-               "optim", "optimise", "pchisq", "pf", "pnorm", "predict",
-               "ptukey", "qchisq", "qf", "qnorm", "qqnorm", "qt",
-               "quantile", "rnorm", "runif", "sd", "shapiro.test", "var",
-               "varimax")
-    importFrom("utils", "capture.output", "combn", "install.packages",
-               "installed.packages")
 
 importFrom(rgl, plot3d)
 S3method(plot, ContinuousBiplot)
@@ -100,5 +82,3 @@ S3method(print, RidgeBinaryLogistic)
 S3method(summary, RidgeBinaryLogistic)
 S3method(anova, RidgeBinaryLogistic)
 S3method(summary, PLSR1Bin) 
-
-

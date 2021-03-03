@@ -1,6 +1,6 @@
 \name{StatisBiplot}
 \alias{StatisBiplot}
-
+%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 STATIS-ACT for multiple tables with common rows and its associated Biplot
 }
@@ -14,7 +14,7 @@ StatisBiplot(X, InitTransform = "Standardize columns", dimens = 2,
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{X}{
-A list containing multiple tables with common rows.
+A list containing multiple tables with common rows
 }
   \item{InitTransform}{
 Initial transformation of the data matrices
@@ -29,8 +29,6 @@ Are the variables the same for all occasions? If so, Biplot trajectories for eac
 \details{
 The procedure performs STATIS-ACT methodology for multiple tables with common rows and its associated biplot. When the variables are the same for all occasions trajectories for the variables can also be plotted.
 Basic plotting includes the consensus individuals and all the variables. Traditional trajectories for individuals and biplot trajectories for variables (when adequate) are optional.
-The original matrix will be provided as a list each cell of the list is the data matrix for one ocassion
-the number of rows for each occasion must be the same
 }
 \value{
 An object of class StatisBiplot

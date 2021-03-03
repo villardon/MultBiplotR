@@ -1,4 +1,4 @@
-Unfolding <- function(A, ENV = NULL, TransAbund = "Gaussian Columns", offset = 0.5, weight = "All_1", Constrained = FALSE, TransEnv = "Standardize columns", InitConfig = "SVD", 
+Unfolding <- function(A, ENV = NULL, TransAbund = "Gaussian", offset = 0.5, weight = "All_1", Constrained = FALSE, TransEnv = "Standardize columns", InitConfig = "SVD", 
                       model = "Ratio", condition = "Columns", Algorithm="SMACOF", OptimMethod="CG", r = 2, maxiter = 100, tolerance = 1e-05, lambda = 1, omega = 0, plot = FALSE) {
   # offset is the quantity added to the zeros of the table
   models = c("Absolute", "Ratio", "Interval", "Ordinal")

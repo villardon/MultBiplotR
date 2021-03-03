@@ -1,3 +1,7 @@
+# The original matrix will be provided as a list 
+# each cell of the list is the data matrix for one ocassion
+# the number of rows for each occasion must be the same
+
 StatisBiplot <- function(X, InitTransform = "Standardize columns", dimens=2, SameVar=FALSE) {
   mycall=match.call()
   ContinuousDataTransform = c("Raw Data", "Substract the global mean", "Double centering", "Column centering", "Standardize columns", "Row centering", 
@@ -22,13 +26,13 @@ StatisBiplot <- function(X, InitTransform = "Standardize columns", dimens=2, Sam
     if (sum(nci == nc) < ng) 
       stop("The number of variables can not be the same in all ocassions (use SameVar=FALSE)")
   }
-  #  Extracting the names of the occasions
+  #  Extracting the names of the occassions
   OccNames=names(X)
   if (is.null(OccNames)) {
     for (i in 1:ng) OccNames= c(OccNames, paste("Occasion_",i,sep=""))
   }
   
-  # Initial transformation of data and calculation of statistics for the biplot
+  # Initial transformation of data and calculaton of statistics for the biplot
   
   BiplotStatis=MultiTableStatistics(X)
   BiplotStatis$call <- mycall
@@ -214,8 +218,8 @@ StatisBiplot <- function(X, InitTransform = "Standardize columns", dimens=2, Sam
   
   class(BiplotStatis) ="ContinuousBiplot"
   # If the variables are the same for all the occasions or studies
-  # additional trajectories for the variables can be constructed
-  # selecting conveniently the var coordinates. This are original
+  # aditional trajectories for the variables can be constructed
+  # selecting conveniently the c¡var coordinates. This are original
   # in our work, together with the simultaneous representation
   # of rows and columns.
   StatisRes$Biplot=BiplotStatis
@@ -227,7 +231,7 @@ StatisBiplot <- function(X, InitTransform = "Standardize columns", dimens=2, Sam
     for (i in 1:p){
       Traj=NULL
       for (j in 1:ng)
-        Traj=rbind(Traj , trajvar[[j]][i,1:dimens]/scf)
+        Traj=rbind(Traj , trajvar[[j]][i,1:dimens])
       rownames(Traj)=StudyNames
       colnames(Traj)=paste("Dim", 1:dimens)
       StatisRes$TrajVar[[i]]=Traj}

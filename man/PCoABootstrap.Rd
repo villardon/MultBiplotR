@@ -8,8 +8,7 @@ Plots an object of class PCoABootstrap
 Plots an object of class PCoABootstrap
 }
 \usage{
-\method{plot}{PCoABootstrap}(x, F1=1, F2=2, Move2Center=TRUE, 
-BootstrapPlot="Ellipse", confidence=0.95, Colors=NULL, ...)
+\method{plot}{PCoABootstrap}(x, F1=1, F2=2, Move2Center=TRUE, BootstrapPlot="Ellipse", confidence=0.95, Colors=NULL, ...)
 
 }
 %- maybe also 'usage' for other objects documented here.

@@ -38,7 +38,6 @@ dhatsunfol <- function(P, D, W = matrix(1, dim(P)[1], dim(P)[2]), modelo, condic
       DH1 = matrix(0, n, m)
       for (j in 1:m) {
         parametros[j] = sum(P[, j] * W[, j] * D[, j])/sum(P[, j] * W[, j] * P[, j])
-        parametros[j] = sum(P[, j] * W[, j] * D[, j])/sum(P[, j] * W[, j] * P[, j])
         DH1[, j] = P[, j] * parametros[j]
       }
     }
