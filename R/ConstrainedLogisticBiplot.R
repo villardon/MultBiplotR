@@ -21,6 +21,7 @@ ConstrainedLogisticBiplot <- function(Y, X, dim=2, Scaling=5,  tolerance = 1e-05
   
   Yh=matrix(0, n,p)
   Betas=matrix(0, q+1, p)
+  X=cbind(rep(1,n),X)
   for (i in 1:p){
     ajuste=RidgeBinaryLogistic(Y[,i], X, tolerance = tolerance, maxiter = maxiter, penalization = penalization)
     Yh[,i]=ajuste$linterm
@@ -28,7 +29,8 @@ ConstrainedLogisticBiplot <- function(Y, X, dim=2, Scaling=5,  tolerance = 1e-05
   }
   Betas=t(Betas)
   rownames(Betas)=colnames(Y)
-  colnames(Betas)=c("Intercept", colnames(X))
+  colnames(Betas)=colnames(X)
+  colnames(Betas)[1]="Intercept"
   Yh = InitialTransform(Yh, transform = 5)$X
   SD = svd(Yh)
   EV = SD$d[1:r]^2

@@ -16,7 +16,7 @@ CanonicalStatisBiplot <- function(X, Groups, InitTransform = "Standardize column
     stop("You must provide a factor with the groups")
   }
   
-  nst = length(X) #Number of groups
+  nst = length(X) #Number of occasions
   StudyNames=names(X)
   nri = matrix(0, nst, 1) #Number of rows in each group
   nci = matrix(0, nst, 1) #Number of cols in each group
@@ -27,6 +27,12 @@ CanonicalStatisBiplot <- function(X, Groups, InitTransform = "Standardize column
   nr = nri[1]
   if (sum(nri == nr) < nst) 
     stop("The number of rows must be the same in all ocassions")
+  if (SameVar){
+    nc = nci[1]
+    if (sum(nci == nc) < nst) 
+      stop("The number of variables can not be the same in all ocassions (use SameVar=FALSE)")
+  }
+  
   OccNames=names(X)
   if (is.null(OccNames)) {
     for (i in 1:nst) OccNames= c(OccNames, paste("Occasion_",i,sep=""))
@@ -43,9 +49,17 @@ CanonicalStatisBiplot <- function(X, Groups, InitTransform = "Standardize column
   StatisRes=list()
   StatisRes$Title="CANONICAL STATIS-ACT Biplot"
   StatisRes$Type="CANONICAL STATIS-ACT"
-  
+  StatisRes$NTables=nst
+  StatisRes$NRows=nr
+  if (SameVar)
+    StatisRes$NVars=nc
+  else
+    StatisRes$NVars=nci
   X=MultiTableTransform(X, InitTransform = InitTransform)
   
+  StatisRes$RowLabels=levels(Groups)
+  StatisRes$TableLabels=names(X)
+  if (SameVar) StatisRes$VarLabels=colnames(X[[1]])
   
   # Calculation of the means, between groups and within groups covariance matrices for each occassion
   Z = Factor2Binary(Groups)
@@ -91,7 +105,11 @@ CanonicalStatisBiplot <- function(X, Groups, InitTransform = "Standardize column
   Inter = svd(RV)
   StatisRes$EigInter = Inter$d
   StatisRes$InerInter=(Inter$d/sum(Inter$d))*100
+  names(StatisRes$EigInter)=paste("Dim",1:length(OccNames))
   StatisRes$InterStructure = -1 * Inter$u %*% diag(sqrt(Inter$d))
+  
+  rownames(StatisRes$InterStructure)=OccNames
+  colnames(StatisRes$InterStructure)=paste("Dim", 1:nst)
   
   # Weigths for the Compromise
   StatisRes$Weights = abs(Inter$u[, 1])/sum(abs(Inter$u[, 1]))
@@ -110,7 +128,8 @@ CanonicalStatisBiplot <- function(X, Groups, InitTransform = "Standardize column
   BiplotStatis$EigenValues=Intra$d[1:r]
   BiplotStatis$Inertia=(Intra$d[1:r]/sum(diag(Intra$d[1:r])))*100
   BiplotStatis$CumInertia = cumsum(BiplotStatis$Inertia)
-
+  BiplotStatis$alpha=1
+  BiplotStatis$Dimension=dimens
   # Compromise-Consensus Coordinates and contributions
   BiplotStatis$RowCoordinates = Intra$u[,1:dimens] %*% diag(sqrt(Intra$d[1:dimens]))
   sf=apply((Intra$u[,1:r] %*% diag(sqrt(Intra$d[1:r])))^2,1,sum)
@@ -130,7 +149,7 @@ CanonicalStatisBiplot <- function(X, Groups, InitTransform = "Standardize column
     Traj=NULL
     for (j in 1:nst)
       Traj=rbind(Traj , trajin[[j]][i,1:dimens])
-    rownames(Traj)=StudyNames
+    rownames(Traj)=OccNames
     colnames(Traj)=paste("Dim", 1:dimens)
     StatisRes$TrajInd[[i]]=Traj
   }
@@ -148,7 +167,7 @@ CanonicalStatisBiplot <- function(X, Groups, InitTransform = "Standardize column
     Traj=NULL
     for (j in 1:nst)
       Traj=rbind(Traj , contbt[[j]][i,1:dimens])
-    rownames(Traj)=StudyNames
+    rownames(Traj)=OccNames
     colnames(Traj)=paste("Dim", 1:dimens)
     StatisRes$ContribInd[[i]]=Traj
   }
@@ -206,6 +225,10 @@ CanonicalStatisBiplot <- function(X, Groups, InitTransform = "Standardize column
   BiplotStatis$ColCoordinates = BiplotStatis$ColCoordinates/scf
   BiplotStatis$Scale_Factor=scf
   
+  for (i in 1:nr){
+    StatisRes$TrajInd[[i]]=StatisRes$TrajInd[[i]]*scf
+  }
+  
   BiplotStatis$ClusterType="us"
   BiplotStatis$Clusters = as.factor(matrix(1,nrow(BiplotStatis$RowContributions), 1))
   BiplotStatis$ClusterColors="blue"
@@ -227,17 +250,20 @@ CanonicalStatisBiplot <- function(X, Groups, InitTransform = "Standardize column
       Traj=NULL
       for (j in 1:nst)
         Traj=rbind(Traj , trajvar[[j]][i,1:dimens])
+      #Traj=Traj/scf
       rownames(Traj)=StudyNames
       colnames(Traj)=paste("Dim", 1:dimens)
       StatisRes$TrajVar[[i]]=Traj}
     names(StatisRes$TrajVar)=colnames(X[[1]])
   }
   
+
+  
   # Calculation of the Inertia of each study (or occasion) accounted for the STATIS solution.
   # Comparing this with the inertia accounted by the biplot for each separate study
   # we have an index of the goodness of the consensus (or compromise) in explaining the 
   # study.
   
-  class(StatisRes) = "Statis"
+  class(StatisRes) = "StatisBiplot"
   return(StatisRes)
 }

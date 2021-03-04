@@ -19,6 +19,8 @@ UnfoldingSMACOF <- function(P, W = matrix(1, dim(P)[1], dim(P)[2]), Constrained 
   cv2 = sd(as.vector(DH$Dh))/mean(DH$Dh)
   pstress = sum(sum((W * (D - DH$Dh))^2))^lambda * (1 + omega/cv2)
   
+  Conf = UpdateUnfol(X0, Y0, W, DH$Dh)
+  
   errorest = 1
   k = 0
   history = NULL
@@ -37,7 +39,7 @@ UnfoldingSMACOF <- function(P, W = matrix(1, dim(P)[1], dim(P)[2]), Constrained 
     X0 = Conf$X
     Y0 = Conf$Y
     history = rbind(history, c(k, errorest))
-    #print(c(k, errorest))
+    print(c(k, errorest))
   }
   
   rownames(Conf$X) = RowNames
