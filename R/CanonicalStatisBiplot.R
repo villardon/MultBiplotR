@@ -224,7 +224,7 @@ CanonicalStatisBiplot <- function(X, Groups, InitTransform = "Standardize column
   BiplotStatis$RowCoordinates = BiplotStatis$RowCoordinates * scf
   BiplotStatis$ColCoordinates = BiplotStatis$ColCoordinates/scf
   BiplotStatis$Scale_Factor=scf
-  
+  print(scf)
   for (i in 1:nr){
     StatisRes$TrajInd[[i]]=StatisRes$TrajInd[[i]]*scf
   }
@@ -243,6 +243,8 @@ CanonicalStatisBiplot <- function(X, Groups, InitTransform = "Standardize column
   StatisRes$Biplot=BiplotStatis
   StatisRes$SameIndiv = TRUE
   StatisRes$SameVar = SameVar
+
+ 
   if (SameVar){
     p=nci[1]
     StatisRes$TrajVar=list()
@@ -250,9 +252,9 @@ CanonicalStatisBiplot <- function(X, Groups, InitTransform = "Standardize column
       Traj=NULL
       for (j in 1:nst)
         Traj=rbind(Traj , trajvar[[j]][i,1:dimens])
-      #Traj=Traj/scf
       rownames(Traj)=StudyNames
       colnames(Traj)=paste("Dim", 1:dimens)
+      Traj=Traj/scf
       StatisRes$TrajVar[[i]]=Traj}
     names(StatisRes$TrajVar)=colnames(X[[1]])
   }
