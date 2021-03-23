@@ -8,13 +8,21 @@ Plots an External Logistic Biplot for binary data
 Plot of an External Binary Logistic Biplot with many arguments controling different aspects of the representation
 }
 \usage{
-\method{plot}{External.Binary.Logistic.Biplot}(x, F1 = 1, F2 = 2, ShowAxis=FALSE, 
-margin=0.2, WhatRows = NULL, WhatCols = NULL, RowLabels = NULL, ColLabels = NULL, 
-RowColors = NULL, ColColors = NULL, Mode = "s", TickLength= 0.01, RowCex = 0.8, 
-ColCex = 0.8, SmartLabels = FALSE, MinQualityRows = 0, MinQualityCols = 0, dp = 0, 
-PredPoints=0, SizeQualRows = FALSE, SizeQualCols = FALSE, ColorQualRows = FALSE, 
-ColorQualCols = FALSE, PchRows = NULL, PchCols = NULL, PlotClus = FALSE, 
-TypeClus = "ch", ClustConf=1, Significant=FALSE, alpha=0.05, Bonferroni=FALSE, ...)
+\method{plot}{External.Binary.Logistic.Biplot}(x, F1 = 1, F2 = 2, 
+                    ShowAxis = FALSE, margin = 0.1,
+                    PlotVars = TRUE, PlotInd = TRUE, WhatRows = NULL,
+                    WhatCols = NULL, LabelRows = TRUE, LabelCols = TRUE,
+                    RowLabels = NULL, ColLabels = NULL, RowColors = NULL,
+                    ColColors = NULL, Mode = "s", TickLength = 0.01,
+                    RowCex = 0.8, ColCex = 0.8, SmartLabels = FALSE,
+                    MinQualityRows = 0, MinQualityCols = 0, dp = 0,
+                    PredPoints = 0, SizeQualRows = FALSE, ShowBox = FALSE,
+                    SizeQualCols = FALSE, ColorQualRows = FALSE,
+                    ColorQualCols = FALSE, PchRows = NULL, PchCols = NULL,
+                    PlotClus = FALSE, TypeClus = "ch", ClustConf = 1,
+                    Significant = FALSE, alpha = 0.05, Bonferroni = FALSE,
+                    PlotSupVars = TRUE, ...)
+                    
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -33,11 +41,23 @@ Should the axis be plotted?
   \item{margin}{
 Margin for the labels in some of the biplot modes (percentage of the plot width). Default is 0. Increase the value if the labels are not completely plotted.
 }
+  \item{PlotVars}{
+Should Variables be plotted
+}
+  \item{PlotInd}{
+Should Individuals be plotted 
+}
   \item{WhatRows}{
 A binary vector (0 and 1) that indicates if each individual row should be plotted or not 
 }
   \item{WhatCols}{
 A binary vector (0 and 1) that indicates if each individual column should be plotted or not 
+}
+  \item{LabelRows}{
+Should Variables be labelled
+}
+  \item{LabelCols}{
+Should Individuals be labelled 
 }
   \item{RowLabels}{
 A vector of Labels for the rows if you do not want to use the data labels
@@ -82,6 +102,9 @@ A vector with integers. The row points listed in the vector are projected onto a
   \item{SizeQualRows}{
 Should the size of the row points be related to their qualities of representation (predictiveness)?
 }
+  \item{ShowBox}{
+Should abox around the point be displayed?
+}
   \item{SizeQualCols}{
 Should the size of the column points be related to their qualities of representation (predictiveness)?
 }
@@ -114,7 +137,9 @@ Significance Level
 }
   \item{Bonferroni}{
 Should the Bonferroni correction be used
-}                                                       
+}   \item{PlotSupVars}{
+Should supplementary variables be plotted
+}    
 \item{...}{
 Any other graphical parameter you want to use
 }

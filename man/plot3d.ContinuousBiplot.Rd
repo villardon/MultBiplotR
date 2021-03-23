@@ -8,7 +8,20 @@ Plots a classical biplot for continuous data
 Plots a classical biplot for continuous data. 
 }
 \usage{
-\method{plot3d}{ContinuousBiplot}(x, A1 = 1, A2 = 2, A3 = 3, ShowAxis = TRUE, margin = 0, PlotVars = TRUE, PlotInd = TRUE, WhatInds = NULL, WhatVars = NULL, LabelVars = TRUE, LabelInd = TRUE, IndLabels = NULL, VarLabels = NULL, mode = "a", CexInd = NULL, CexVar = NULL, ColorInd = NULL, ColorVar = NULL, LabelPos = 1, SmartLabels = FALSE, MinQualityInds = 0, MinQualityVars = 0.3, dp = 0, PredPoints = 0, PlotAxis = FALSE, TypeScale = "Complete", ValuesScale = "Original", SizeQualInd = FALSE, SizeQualVars = FALSE, ColorQualInd = FALSE, ColorQualVars = FALSE, PchInd = NULL, PchVar = NULL, PlotClus = FALSE, TypeClus = "ch", ClustConf = 1, ClustCenters = FALSE, UseClusterColors = TRUE, PlotSupVars = TRUE, ...)
+\method{plot3d}{ContinuousBiplot}(x, A1 = 1, A2 = 2, A3 = 3, 
+ShowAxis = TRUE, margin = 0, PlotVars = TRUE, PlotInd = TRUE, 
+WhatInds = NULL, WhatVars = NULL, LabelVars = TRUE, 
+LabelInd = TRUE, IndLabels = NULL, VarLabels = NULL,
+mode = "a", CexInd = NULL, CexVar = NULL, ColorInd = NULL, 
+ColorVar = NULL, LabelPos = 1, SmartLabels = FALSE, 
+MinQualityInds = 0, MinQualityVars = 0.3, dp = 0, 
+PredPoints = 0, PlotAxis = FALSE, TypeScale = "Complete", 
+ValuesScale = "Original", SizeQualInd = FALSE, 
+SizeQualVars = FALSE, ColorQualInd = FALSE, 
+ColorQualVars = FALSE, PchInd = NULL, PchVar = NULL, 
+PlotClus = FALSE, TypeClus = "ch", ClustConf = 1, 
+ClustCenters = FALSE, UseClusterColors = TRUE, 
+PlotSupVars = TRUE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

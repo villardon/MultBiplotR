@@ -8,12 +8,15 @@ Summary of the solution of a Biplot for Continuous Data
 Summary of the solution of a Biplot for Continuous Data
 }
 \usage{
-\method{summary}{ContinuousBiplot}(object, ...)
+\method{summary}{ContinuousBiplot}(object, latex = FALSE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{object}{
 An object of class "ContinuousBiplot"
+}
+  \item{latex}{
+Should the results be in latex tables
 }
   \item{\dots}{
 Any aditional parameters

@@ -10,8 +10,8 @@ Highlights several groups or clusters on a biplot representation.
 \usage{
 PlotBiplotClusters(A, Groups = ones(c(nrow(A), 1)), TypeClus = "st",
                  ClusterColors = NULL, ClusterNames = NULL, centers =
-                 TRUE, ClustConf = 1, Legend = TRUE, LegendPos =
-                 "topright", ...)
+                 TRUE, ClustConf = 1, Legend = FALSE, LegendPos =
+                 "topright", CexClustCenters = 1,  ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -41,6 +41,9 @@ Should a legend be plotted
 }
   \item{LegendPos}{
 Position of the legend.
+}
+  \item{CexClustCenters}{
+Size of the cluster centres.
 }
   \item{...}{
 Any other graphical parameters 

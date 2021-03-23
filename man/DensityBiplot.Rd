@@ -8,7 +8,8 @@ Adds Non-parametric densities to a biplot. Separated densities are calculated fo
 Adds Non-parametric densities to a biplot. Separated densities are calculated for different clusters
 }
 \usage{
-DensityBiplot(X, y = NULL, grouplabels = NULL, ncontours = 6, groupcolors = NULL, ncolors=20, ColorType=4)
+DensityBiplot(X, y = NULL, grouplabels = NULL, ncontours = 6, 
+groupcolors = NULL, ncolors=20, ColorType=4)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

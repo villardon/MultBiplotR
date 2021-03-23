@@ -24,7 +24,7 @@ ExpandCoord <- function(Coord, table){
   if (!(class(table)=="TableFrequencies")) stop("You must provide a Table with Frequencies to extend")
   ncomp=dim(Coord)[1]
   nexp=sum(table$Frequencies)
-  x=matrix(0,nexp, p)
+  x=matrix(0,nexp, ncomp)
   for (i in 1:ncomp){
     indices=as.integer(table$EqualRows[[i]])
     for (j in 1:length(indices))

@@ -8,7 +8,11 @@ Binary Logistic Biplot with Gradient Descent Estimation
 Binary Logistic Biplot with Gradient Descent Estimation. An external optimization function is used to calculate the parameters.
 }
 \usage{
-BinaryLogBiplotGD(X, freq = matrix(1, nrow(X), 1), dim = 2, tolerance = 1e-04, penalization = 0.01, RotVarimax = FALSE, seed = NULL, OptimMethod = "CG", Initial = "random", ...)
+BinaryLogBiplotGD(X, freq = matrix(1, nrow(X), 1), dim = 2, tolerance =
+                   1e-07, penalization = 0.01, num_max_iters = 100,
+                   RotVarimax = FALSE, seed = 0, OptimMethod = "CG",
+                   Initial = "random", Orthogonalize = FALSE, Algorithm =
+                   "Joint", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -26,6 +30,9 @@ Tolerance for convergence of the algorithm.
   \item{penalization}{
 Ridge penalization constant.
 }
+  \item{num_max_iters}{
+Maximum number of iterations of the algorithm.
+}
   \item{RotVarimax}{
 Should the final solution be rotated.
 }
@@ -37,6 +44,12 @@ Optimization method used by \code{optimr}.
 }
   \item{Initial}{
 Initial configuration to start the iterations.
+}
+  \item{Orthogonalize}{
+Should te solution be orthogonalized?.
+}
+  \item{Algorithm}{
+Algorithm for esimation: Joint or alternated.
 }
   \item{\dots}{
 Aditional parameters used by the optimization function.
@@ -59,9 +72,6 @@ Jose Luis Vicente-Villardon
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 data(spiders)
 X=Dataframe2BinaryMatrix(spiders)

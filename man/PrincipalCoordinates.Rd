@@ -6,14 +6,17 @@
 Principal coordinates Analysis for a matrix of proximities obtained from binary, categorical, continuous or mixed data
 }
 \usage{
-PrincipalCoordinates(Proximities, dimension = 2, tolerance = 1e-04, Bootstrap=FALSE,
-BootstrapType=c("Distances", "Products"), nB=200, ProcrustesRot=TRUE, 
-BootstrapMethod=c("Sampling", "Permutation"))
+PrincipalCoordinates(Proximities, w = NULL, dimension = 2, tolerance = 1e-04, 
+Bootstrap = FALSE, BootstrapType = c("Distances", "Products"), nB = 200, 
+ProcrustesRot = TRUE, BootstrapMethod = c("Sampling", "Permutation"))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Proximities}{
 An object of class \code{proximities}.
+}
+  \item{w}{
+An set of weights.
 }
   \item{dimension}{
 Dimension of the solution

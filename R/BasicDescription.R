@@ -72,4 +72,6 @@ BasicDescription <- function(X, groups=NULL, SortByGroups=FALSE, na.rm=FALSE, In
   return(Descriptives)
 }
 
-
+Valid <- function(v){
+  length(Which)
+}

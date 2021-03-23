@@ -8,7 +8,10 @@ SMACOF
 SMACOF algorithm for symmetric proximity matrices
 }
 \usage{
-SMACOF(P, X = NULL, W = NULL, Model = c("Identity", "Ratio", "Interval", "Ordinal"), dimsol = 2, maxiter = 100, maxerror = 1e-06, StandardizeDisparities = TRUE, ShowIter = FALSE)
+SMACOF(P, X = NULL, W = NULL, 
+Model = c("Identity", "Ratio", "Interval", "Ordinal"), 
+dimsol = 2, maxiter = 100, maxerror = 1e-06, 
+StandardizeDisparities = TRUE, ShowIter = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

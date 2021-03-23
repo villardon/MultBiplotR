@@ -8,48 +8,59 @@ Plots an Unfolding Representation
 Plots an Unfolding Representation
 }
 \usage{
-\method{plot}{Unfolding}(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 0.1, PlotSites = TRUE, PlotSpecies = TRUE, PlotEnv = TRUE, LabelSites = TRUE, LabelSpecies = TRUE, LabelEnv = TRUE, SpeciesQuality = FALSE, MinQualityVars = 0, dp = 0, PlotAxis = FALSE, TypeScale = "Complete", ValuesScale = "Original", mode = "h", CexSites = NULL, CexSpecies = NULL, CexVar = NULL, ColorSites = NULL, ColorSpecies = NULL, ColorVar = NULL, PchSites = NULL, PchSpecies = NULL, PchVar = NULL, SizeQualSites = FALSE, SizeQualSpecies = FALSE, SizeQualVars = FALSE, ColorQualSites = FALSE, ColorQualSpecies = FALSE, ColorQualVars = FALSE, SmartLabels = FALSE, PlotTol = FALSE, ...)
+\method{plot}{Unfolding}(x, A1 = 1, A2 = 2, ShowAxis = FALSE,
+margin = 0.1, PlotSites = TRUE, PlotSpecies = TRUE, PlotEnv = TRUE,
+LabelSites = TRUE, LabelSpecies = TRUE, LabelEnv = TRUE, 
+SpeciesQuality = FALSE, MinQualityVars = 0, dp = 0, 
+PlotAxis = FALSE, TypeScale = "Complete", ValuesScale = "Original", 
+mode = "h", CexSites = NULL, CexSpecies = NULL, CexVar = NULL, 
+ColorSites = NULL, ColorSpecies = NULL, ColorVar = NULL, 
+PchSites = NULL, PchSpecies = NULL, PchVar = NULL, 
+SizeQualSites = FALSE, SizeQualSpecies = FALSE, 
+SizeQualVars = FALSE, ColorQualSites = FALSE, 
+ColorQualSpecies = FALSE, ColorQualVars = FALSE, SmartLabels = FALSE, 
+PlotTol = FALSE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-%%     ~~Describe \code{Unfold} here~~
+An object of class Unfolding
 }
   \item{A1}{
-%%     ~~Describe \code{A1} here~~
+Axis 1 of the representation.
 }
   \item{A2}{
-%%     ~~Describe \code{A2} here~~
+Axis 1 of the representation.
 }
   \item{ShowAxis}{
-%%     ~~Describe \code{ShowAxis} here~~
+Should the axis be shown?
 }
   \item{margin}{
-%%     ~~Describe \code{margin} here~~
+Margin for the plot (precentage)
 }
   \item{PlotSites}{
-%%     ~~Describe \code{PlotSites} here~~
+Should the sites be plotted?
 }
   \item{PlotSpecies}{
-%%     ~~Describe \code{PlotSpecies} here~~
+Should the species be plotted?
 }
   \item{PlotEnv}{
-%%     ~~Describe \code{PlotEnv} here~~
+Should the environmental variables be plotted?
 }
   \item{LabelSites}{
-%%     ~~Describe \code{LabelSites} here~~
+Should the sites be labelled?
 }
   \item{LabelSpecies}{
-%%     ~~Describe \code{LabelSpecies} here~~
+Should the species be labelled?
 }
   \item{LabelEnv}{
-%%     ~~Describe \code{LabelEnv} here~~
+Should the environmental variables be labelled?
 }
   \item{SpeciesQuality}{
 %%     ~~Describe \code{SpeciesQuality} here~~
 }
   \item{MinQualityVars}{
-%%     ~~Describe \code{MinQualityVars} here~~
+Minimum quality of a var to be plotted.
 }
   \item{dp}{
 %%     ~~Describe \code{dp} here~~
@@ -125,28 +136,19 @@ Plots an Unfolding Representation
 Plots an Unfolding Representation
 }
 \value{
-%%  ~Describe the value returned
+A plot of the unfolding representation
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
 \references{
-%% ~put references to the literature/web site here ~
+de Leeuw, J. (2005). Multidimensional unfolding. Encyclopedia of statistics in behavioral science.
 }
 \author{
-%%  ~~who you are~~
+Jose Luis Vicente-Villardon
 }
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \examples{
-
+# Not yet
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

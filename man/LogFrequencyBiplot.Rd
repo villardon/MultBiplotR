@@ -8,7 +8,7 @@ Weighted Biplot for a table of frequencies
 Biplot for the logarithms of the frequencies of a contingency table using the frequencies as weights.
 }
 \usage{
-LogFrequencyBiplot(x, Scaling = 1, logoffset = 1, freqoffset = logoffset, ...)
+LogFrequencyBiplot(x, Scaling = 2, logoffset = 1, freqoffset = logoffset, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -85,7 +85,4 @@ Jose Luis Vicente Villardon
 data(smoking)
 logbip=LogFrequencyBiplot(smoking, Scaling=1, logoffset=0, freqoffset=0)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+

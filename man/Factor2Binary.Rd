@@ -1,4 +1,4 @@
-\name{Factor2Binary}
+\name{Fact2Bin}
 \alias{Factor2Binary}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
@@ -33,7 +33,4 @@ Jose Luis Vicente Villardon
 y=factor(c(1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 2, 2, 2, 1, 1, 1))
 Factor2Binary(y)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+

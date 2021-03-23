@@ -8,7 +8,7 @@ Draws a circle
 Draws a circle for a given radius at the specified center with the given color
 }
 \usage{
-Circle(radius = 1, origin = c(0, 0), color = 1, ...)
+Circle(radius = 1, origin = c(0, 0), col = 1, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -18,7 +18,7 @@ radius of the circle
   \item{origin}{
 Centre of the circle
 }
-  \item{color}{
+  \item{col}{
 Color od the circle
 }
   \item{...}{

@@ -1,6 +1,6 @@
 # Logistic Biplot with Gradient Descent
 
-BinaryLogBiplotGD <- function(X, freq = matrix(1, nrow(X), 1),  dim = 2, tolerance = 1e-04,  penalization=0.01, 
+BinaryLogBiplotGD <- function(X, freq = matrix(1, nrow(X), 1),  dim = 2, tolerance = 1e-07,  penalization=0.01, 
                               num_max_iters=100, RotVarimax = FALSE, seed = 0, OptimMethod="CG", Initial="random",
                               Orthogonalize=FALSE, Algorithm = "Joint", ...) {
   # joint algorithm for logistic biplots
@@ -16,19 +16,17 @@ BinaryLogBiplotGD <- function(X, freq = matrix(1, nrow(X), 1),  dim = 2, toleran
   
   if (!is.null(seed)) set.seed(seed) # Set the seed for reproductibility (Use when you want the same results for different repetitions)
   
-  
-if (Algorithm == "Joint"){
+  if (Algorithm == "Joint"){
   par=runif(n*r + p*(r+1))
   ResLog=optim(par, fn=JLogBiplotReg, gr=grLogBiplotReg, X=X, r=r, lambda=penalization , method = OptimMethod)
   par=ResLog$par
   A=matrix(par[1:(n*r)],n,r)
   B=matrix(par[(n*r+1):(n*r + p*(r+1))], p, r+1)
-    if (Orthogonalize=="A") {
-      A=Orthog(A)
-      parB=c(c(B))
-      resbipB <- optimr(parB, fn=JLogBiplotRegB, gr=grLogBiplotRegB, method=OptimMethod, X=X, A=A, r=r, lambda=penalization)
-      parB=resbipB$par
-      B=matrix(parB, p, r+1)
+    if (Orthogonalize) {
+      SDA=svd(A)
+      A=SDA$u %*% diag(SDA$d)
+      rownames(A)=indnames
+      B[,-1]=t(t(SDA$v)%*% t(B[,-1]))
     }
   H=sigmoide(cbind(rep(1,n),A) %*% t(B))
   }
@@ -65,8 +63,6 @@ if (Algorithm == "Joint"){
     }
   }
   
-
-  
   if (RotVarimax) {
     varimax(B)
     BB = varimax(B[, 1:dim + 1], normalize = FALSE)
@@ -82,6 +78,13 @@ if (Algorithm == "Joint"){
   
   
   Res=list()
+  Res$Data=X
+  Res$Dimension=dim
+  Res$Penalization=penalization
+  Res$Tolerance=tolerance
+  Res$Seed=seed
+  Res$OptimMethod=OptimMethod
+  Res$Initial=Initial
   Res$Biplot="Binary Logistic (Gradient Descent)"
   Res$Type= "Binary Logistic (Gradient Descent)"
   Res$RowCoordinates=A
@@ -129,7 +132,7 @@ if (Algorithm == "Joint"){
   Res$DevianceTotal=sum(Res$Deviances)
   
   dd = sqrt(rowSums(cbind(1,Res$ColumnParameters[, 2:(dim + 1)])^2))
-  Res$Loadings = solve(diag(dd)) %*% Res$ColumnParameters[, 2:(dim + 1)]
+  Res$Loadings = diag(1/dd) %*% Res$ColumnParameters[, 2:(dim + 1)]
   Res$Tresholds = Res$ColumnParameters[, 1]/d
   Res$Communalities = rowSums(Res$Loadings^2)
   

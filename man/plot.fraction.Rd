@@ -8,7 +8,8 @@ Plots a fraction of the data as a cluster
 Plots a convex hull or a star  containing a specified percentage of the data. Used to plot clusters.
 }
 \usage{
-\method{plot}{fraction}(x, add = TRUE, center = FALSE, centerlabel = "Center", initial = FALSE, type = "ch", ...)
+\method{plot}{fraction}(x, add = TRUE, center = FALSE, 
+centerlabel = "Center", initial = FALSE, type = "ch", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

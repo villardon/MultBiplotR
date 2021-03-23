@@ -88,7 +88,7 @@ WPCA.Biplot <- function(X, CM=NULL, RM=NULL, alpha = 1, dimension = 3, Scaling =
   }
   # Calculating the Biplot
 
-  Y= matrixsqrt(CM) %*% X %*% matrixsqrt(MF)
+  Y= matrixsqrt(CM) %*% X %*% matrixsqrt(RM)
   rownames(Y)=rownames(X)
   colnames(Y)=colnames(X)
   SD = svd(Y, nu = dimension, nv = dimension)

@@ -9,7 +9,7 @@ Does the American public actively differentiate political stimuli along ideologi
 }
 \usage{data("PoliticalFigures")}
 \format{
-  A data frame with the dissimilarities among 13 political figurein the USA.
+  A data frame with the dissimilarities among 13 political figures in the USA.
   \describe{
     \item{\code{G._W._Bush}}{a numeric vector with the dissimilarities with the other figures}
     \item{\code{John_Kerry}}{a numeric vector with the dissimilarities with the other figures}
@@ -41,10 +41,6 @@ Jacoby, W. G., & Armstrong, D. A. (2014). Bootstrap Confidence Regions for Multi
 Jacoby, W. G., & Armstrong, D. A. (2014). Bootstrap Confidence Regions for Multidimensional Scaling Solutions. American Journal of Political Science, 58(1), 264-278.
 }
 \examples{
-data(PoliticalFigures)
-Dis=Matrix2Proximities(as.matrix(PoliticalFigures))
-sol=PrincipalCoordinates(Dis,  Bootstrap=TRUE)
-plot(sol)
-## maybe str(PoliticalFigures) ; plot(PoliticalFigures) ...
+# Not yet
 }
 \keyword{datasets}

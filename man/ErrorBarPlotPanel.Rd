@@ -8,7 +8,10 @@ Plots a panel of error bars
 Plots a panel of error bars to compare the means of several variables in the levels of a factor using confidence intervals.
 }
 \usage{
-ErrorBarPlotPanel(X, groups = NULL, nrows = NULL, panel = TRUE, GroupsTogether = TRUE, Confidence = 0.95, p.adjust.method = "None", UseANOVA = FALSE, Colors = "blue", Title = "Error Bar Plot", sort = TRUE, Selection = NULL, ...)
+ErrorBarPlotPanel(X, groups = NULL, nrows = NULL, panel = TRUE, 
+GroupsTogether = TRUE, Confidence = 0.95, p.adjust.method = "None", 
+UseANOVA = FALSE, Colors = "blue", Title = "Error Bar Plot", 
+sort = TRUE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -44,9 +47,6 @@ Title of the graph
 }
   \item{sort}{
 Should short the means before plotting
-}
-  \item{Selection}{
-A logical vector with the goups that shuld be pplotted
 }
   \item{\dots}{
 Other graphical parameters

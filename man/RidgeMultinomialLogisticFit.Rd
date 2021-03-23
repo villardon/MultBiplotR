@@ -9,7 +9,8 @@ This function does a logistic regression between a dependent variable y and
   of regression using ridge regression and penalization.
 }
 \usage{
-RidgeMultinomialLogisticFit(y, x, penalization = 0.2, tol = 1e-04, maxiter = 200, show = FALSE)
+RidgeMultinomialLogisticFit(y, x, penalization = 0.2, 
+tol = 1e-04, maxiter = 200, show = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

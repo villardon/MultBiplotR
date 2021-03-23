@@ -8,7 +8,8 @@ Mixture Gaussian Clustering
 Model based clustering using mixtures of gaussian distriutions. 
 }
 \usage{
-MGC(x, NG = 2, init = "km", RemoveOutliers=FALSE, ConfidOutliers=0.995, tolerance = 1e-07, maxiter = 100, show=TRUE, ...)
+MGC(x, NG = 2, init = "km", RemoveOutliers=FALSE, ConfidOutliers=0.995, 
+tolerance = 1e-07, maxiter = 100, show=TRUE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

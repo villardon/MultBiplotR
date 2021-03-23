@@ -9,21 +9,25 @@ Plots a biplot for continuous data.
 }
 \usage{
 \method{plot}{ContinuousBiplot}(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 0,
-                                  PlotVars = TRUE, PlotInd = TRUE, WhatInds = NULL,
-                                  WhatVars = NULL, LabelVars = TRUE, LabelInd = TRUE,
-                                  IndLabels = NULL, VarLabels = NULL, mode = "a", CexInd
-                                  = NULL, CexVar = NULL, ColorInd = NULL, ColorVar =
-                                    NULL, LabelPos = 1, SmartLabels = FALSE,
-                                  MinQualityInds = 0, MinQualityVars = 0, dp = 0,
-                                  PredPoints = 0, PlotAxis = FALSE, TypeScale =
-                                    "Complete", ValuesScale = "Original", SizeQualInd =
-                                    FALSE, SizeQualVars = FALSE, ColorQualInd = FALSE,
-                                  ColorQualVars = FALSE, PchInd = NULL, PchVar = NULL,
-                                  PlotClus = FALSE, TypeClus = "ch", ClustConf = 1,
-                                  ClustLegend = FALSE, ClustLegendPos = "topright",
-                                  ClustCenters = FALSE, UseClusterColors = TRUE, 
-                                  PlotSupVars = FALSE, ShowBox=FALSE, nticks=5, NonSelectedGray=FALSE, 
-                                  PlotUnitCircle=TRUE, PlotContribFA=TRUE, AddArrow=FALSE, ...)
+                    PlotVars = TRUE, PlotInd = TRUE, WhatInds = NULL,
+                    WhatVars = NULL, LabelVars = TRUE, LabelInd = TRUE,
+                    IndLabels = NULL, VarLabels = NULL, mode = "a", CexInd
+                    = NULL, CexVar = NULL, ColorInd = NULL, ColorVar =
+                    NULL, LabelPos = 1, SmartLabels = FALSE,
+                    AbbreviateLabels = FALSE, MinQualityInds = 0,
+                    MinQualityVars = 0, dp = 0, PredPoints = 0, PlotAxis =
+                    FALSE, TypeScale = "Complete", ValuesScale =
+                    "Original", SizeQualInd = FALSE, SizeQualVars = FALSE,
+                    ColorQualInd = FALSE, ColorQualVars = FALSE, PchInd =
+                    NULL, PchVar = NULL, PlotClus = FALSE, TypeClus =
+                    "ch", ClustConf = 1, ClustLegend = FALSE,
+                    ClustLegendPos = "topright", ClustCenters = FALSE,
+                    UseClusterColors = TRUE, CexClustCenters = 1,
+                    PlotSupVars = TRUE, SupMode = "a", ShowBox = FALSE,
+                    nticks = 5, NonSelectedGray = FALSE, PlotUnitCircle =
+                    TRUE, PlotContribFA = TRUE, AddArrow = FALSE,
+                    ColorSupContVars = NULL, ColorSupBinVars = NULL,
+                    ColorSupOrdVars = NULL, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -70,10 +74,10 @@ A set of labels for the variables. If NULL the default object labels are used
 Mode of the biplot: "p", "a", "b", "h", "ah" and "s".
 }
   \item{CexInd}{
-Size for the symbols and labels of the individuals
+Size for the symbols and labels of the individuals. Can be a single common size for all the points or a vector with individual sizes.
 }
   \item{CexVar}{
-Size for the symbols and labels of the variables
+Size for the symbols and labels of the variables. Can be a single common size for all the points or a vector with individual sizes.
 }
   \item{ColorInd}{
 Color for the symbols and labels of the individuals
@@ -86,6 +90,9 @@ Position of the labels in relation to the point. (Se the graphical parameter \co
 }
   \item{SmartLabels}{
 Plot the labels in a smart way
+}
+  \item{AbbreviateLabels}{
+Should labels be abbreviated?
 }
   \item{MinQualityInds}{
 Minimum quality of representation for an individual to be plotted
@@ -147,9 +154,16 @@ Should the cluster centers be plotted
  \item{UseClusterColors}{
 Should the cluster colors be used in the plot
 }
+ \item{CexClustCenters}{
+Size of the cluster centres
+}
   \item{PlotSupVars}{
 Should the supplementary variables be plotted?
+}   
+\item{SupMode}{
+Mode of the supplementary variables.
 } 
+
   \item{ShowBox}{
 Should a box around the poitns be plotted?
 } 
@@ -167,6 +181,15 @@ Plot circles in the biplot for a Factor Analysis with different values of the qu
 }
 \item{AddArrow}{
 Add an arrow to the representation of other modes of the biplot.
+}
+\item{ColorSupContVars}{
+Colors for the continuous supplementary variables.
+}
+\item{ColorSupBinVars}{
+Colors for the binary supplementary variables.
+}
+\item{ColorSupOrdVars}{
+Colors for the ordinal supplementary variables.
 }
 \item{...}{
 Any other graphical parameters 
@@ -230,11 +253,5 @@ Jose Luis Vicente Villardon
 \examples{
 data(Protein)
 bip=PCA.Biplot(Protein[,3:11])
-## Biplot with scales on the variables
 plot(bip, mode="s", margin=0.2, ShowAxis=FALSE)
-
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

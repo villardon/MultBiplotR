@@ -8,8 +8,9 @@ This function computes, with an alternated algorithm, the row and column paramet
 }
           
 \usage{
-OrdLogBipEM(Data, freq=NULL, dim = 2, nnodes = 15, tol = 0.0001, maxiter = 100, 
-maxiterlogist = 100, penalization = 0.2, show = FALSE, initial = 1, alfa = 1, 
+OrdLogBipEM(Data, freq=NULL, dim = 2, nnodes = 15, 
+tol = 0.0001, maxiter = 100, maxiterlogist = 100, 
+penalization = 0.2, show = FALSE, initial = 1, alfa = 1, 
 Orthogonalize=TRUE, Varimax=TRUE, ...) 
 }
 %- maybe also 'usage' for other objects documented here.
@@ -80,7 +81,8 @@ Jose Luis Vicente-Villardon
 \examples{
 \dontrun{
     data(Doctors)
-    olb = OrdLogBipEM(Doctors,dim = 2, nnodes = 10, initial=4,  tol = 0.001, maxiter = 100, penalization = 0.1, show=TRUE)
+    olb = OrdLogBipEM(Doctors,dim = 2, nnodes = 10, initial=4,
+    tol = 0.001, maxiter = 100, penalization = 0.1, show=TRUE)
     olb
     summary(olb)
     PlotOrdinalResponses(olb)

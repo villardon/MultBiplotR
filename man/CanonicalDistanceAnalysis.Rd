@@ -8,7 +8,8 @@ MANOVA and Canonical Analysis of Distances
 Performs a MANOVA and a Canonical Analysis based on of Distance Matrices (usally for continuous data)
 }
 \usage{
-CanonicalDistanceAnalysis(Prox, group, dimens = 3, Nsamples = 1000, PCoA = "Standard", ProjectInd = TRUE, ...)
+CanonicalDistanceAnalysis(Prox, group, dimens = 2, Nsamples = 1000, 
+PCoA = "Standard", ProjectInd = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -69,11 +70,6 @@ Jose Luis Vicente Villardon
 The MANOVA and the representation of the means can be applied to any Distance althoug the projection of the individuals can be made only for continuous data.
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-\code{\link{SelectvarsAnova}}
-}
 \examples{
 data(iris)
 group=iris[,5]

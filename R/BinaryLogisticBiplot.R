@@ -6,7 +6,6 @@ BinaryLogisticBiplot <- function(x, dim = 2, compress = FALSE, init = "mca", met
     rownames(x) <- paste("R",1:ntot, sep="")
   
   if (compress) {
-    print("Calculating frequency table")
     NewTable <- ExtractTable(x)
     x = NewTable$Patterns
     freq = NewTable$Frequencies
@@ -40,24 +39,24 @@ BinaryLogisticBiplot <- function(x, dim = 2, compress = FALSE, init = "mca", met
   }
   
   if (init=="mca"){
-    corr=CA(as.matrix(cbind(x, 1 - xord)),dim=dim)
+    corr=CA(as.matrix(x),dim=dim)
     a=corr$RowCoordinates[,1:dim]
   }
   
   print("Fitting the model") 
   
   switch(method, EM = {
-    LogBip = BinaryLogBiplotEM(x, freq, dim = 2, aini=a, nnodos = nnodos, tol = tol, maxiter = maxiter, penalization = penalization)
+    LogBip = BinaryLogBiplotEM(x, freq, dimens = dim, aini=a, nnodos = nnodos, tol = tol, maxiter = maxiter, penalization = penalization)
     if (compress) {LogBip$RowCoordinates = ExpandCoord(LogBip$RowCoordinates, NewTable)
     }
   }, Joint = {
-    LogBip = BinaryLogBiplotJoint(x, freq, dim = 2, aini=a, nnodos = nnodos, tol = tol, maxiter = maxiter, penalization = penalization)
+    LogBip = BinaryLogBiplotJoint(x, freq, dimens = dim, ainit=a, nnodos = nnodos, tolerance = tol, maxiter = maxiter, penalization = penalization)
   }, mirt = {
-    LogBip = BinaryLogBiplotJoint(x, freq, dim = 2, nnodos = nnodos, tol = tol, maxiter = maxiter, penalization = penalization)
+    LogBip = BinaryLogBiplotJoint(x, freq, dimens = dim, nnodos = nnodos, tolerance = tol, maxiter = maxiter, penalization = penalization)
   }, External = {
-    LogBip = BinaryLogBiplotJoint(x, freq, dim = 2, nnodos = nnodos, tol = tol, maxiter = maxiter, penalization = penalization)
+    LogBip = BinaryLogBiplotJoint(x, freq, dimens = dim, nnodos = nnodos, tolerance = tol, maxiter = maxiter, penalization = penalization)
   }, Gradient = {
-    LogBip = BinaryLogBiplotGradient(x, freq, dim = 2, nnodos = nnodos, tol = tol, maxiter = maxiter, penalization = penalization)
+    LogBip = BinaryLogBiplotGD(x, freq, dimens = dim, nnodos = nnodos, tolerance = tol, maxiter = maxiter, penalization = penalization)
   })
   
   LogBip$Type="Binary Logistic Biplot"

@@ -8,7 +8,13 @@ Multidimensional Unfolding
 Multidimensional Unfolding with some adaptations for vegetation analysis
 }
 \usage{
-Unfolding(A, ENV = NULL, TransAbund = "Gaussian", offset = 0.5, weight = "All_1", Constrained = FALSE, TransEnv = "Standardize columns", InitConfig = "SVD", model = "Ratio", condition = "Columns", Algorithm = "SMACOF", OptimMethod = "CG", r = 2, maxiter = 100, tolerance = 1e-05, lambda = 1, omega = 0, plot = FALSE)
+Unfolding(A, ENV = NULL, TransAbund = "Gaussian Columns", offset = 0.5, 
+weight = "All_1", Constrained = FALSE, 
+TransEnv = "Standardize columns", 
+InitConfig = "SVD", model = "Ratio", 
+condition = "Columns", Algorithm = "SMACOF", 
+OptimMethod = "CG", r = 2, maxiter = 100, 
+tolerance = 1e-05, lambda = 1, omega = 0, plot = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -68,8 +74,7 @@ Tolerace for the algorithm
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+ological data}
 \value{
 An object of class "Unfolding"
 }

@@ -71,8 +71,3 @@ n=nrow(D$Proximities)
 B=-0.5*(diag(n)-matrix(1,n,n)/n) %*% D$Proximities^2 %*% (diag(n)-matrix(1, n, n)/n) 
 DB=BootstrapScalar(B)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
-

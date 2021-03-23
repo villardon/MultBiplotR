@@ -220,8 +220,8 @@ DualStatisBiplot <- function(X, InitTransform = "Standardize columns", dimens=2,
   # of rows and columns.
   StatisRes$Biplot=BiplotStatis
   StatisRes$SameIndiv = TRUE
-  StatisRes$SameVar = SameVar
-  if (SameVar){
+  StatisRes$SameInd = SameInd
+  if (SameInd){
     p=nci[1]
     StatisRes$TrajVar=list()
     for (i in 1:p){

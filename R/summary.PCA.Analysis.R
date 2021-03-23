@@ -1,4 +1,4 @@
-summary.PCA.Analysis <-function(object, latex=FALSE){
+summary.PCA.Analysis <-function(object, latex=FALSE, ...){
   cat(" ###### Principal Components Analysis #######\n\n")
   cat("Transformation of the raw data:\n")
   print(object$Initial_Transformation)

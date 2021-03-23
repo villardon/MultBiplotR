@@ -1,4 +1,4 @@
-summary.Binary.Logistic.Biplot <- function(object, Normal=TRUE, Latex=FALSE, Kable=FALSE){
+summary.Binary.Logistic.Biplot <- function(object, Normal=TRUE, Latex=FALSE, Kable=FALSE, ...){
   
   print("BINARY LOGISTIC BIPLOT")
   print(paste("Type of Biplot : ", object$Type))

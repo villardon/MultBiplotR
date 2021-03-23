@@ -60,7 +60,6 @@ MILAN, L., & WHITTAKER, J. (1995). Application of the parametric bootstrap to mo
 Jose L. Vicente-Villardon, Jhonny R. Demey
 }
 
-
 \seealso{
 \code{\link{BootstrapScalar}}, ~~~
 }
@@ -69,7 +68,3 @@ data(spiders)
 D=BinaryProximities(spiders, coefficient="Jaccard", transformation="sqrt(1-S)")
 DB=BootstrapDistance(D$Proximities)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

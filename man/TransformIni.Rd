@@ -8,12 +8,15 @@ Initial transformation of a data matrix
 Initial transformation of data before the construction of a biplot. (or any other technique)
 }
 \usage{
-TransformIni(X, transform = "Standardize columns")
+TransformIni(X, InitTransform = "None", transform = "Standardize columns")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{X}{
 Original Raw Data Matrix
+}
+  \item{InitTransform}{
+Initial transform of the data (usually logarithm)
 }
   \item{transform}{
 Transformation to use. See details.

@@ -10,6 +10,6 @@ plot.OrdSupVarsBiplot <- function(x, F1=1, F2=2, xmin = -3, xmax = 3, ymin = -3,
   
   p = dim(x$ColumnParameters$coefficients)[1]
   for (j in 1:p)
-    OrdVarBiplot(B[j, 1], B[j, 2], thresholds[j,1:(x$Ncats[j]-1)], xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, mode=mode, label=rownames(B)[j], Color=ColorVar[i])
+    OrdVarBiplot(B[j, 1], B[j, 2], thresholds[j,1:(x$Ncats[j]-1)], xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, mode=mode, label=rownames(B)[j], Color=ColorVar[j])
 }
 

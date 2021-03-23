@@ -2,7 +2,9 @@
 \alias{WeightedPCoA}
 \title{Weighted Principal Coordinates Analysis}
 \usage{
-  WeightedPCoA(Proximities, weigths = matrix(1,dim(Proximities$Proximities)[1],1), dimension = 2, tolerance=0.0001)
+  WeightedPCoA(Proximities, 
+  weigths = matrix(1,dim(Proximities$Proximities)[1],1), 
+  dimension = 2, tolerance=0.0001)
 }
 \description{
   Weighted Principal Coordinates Analysis

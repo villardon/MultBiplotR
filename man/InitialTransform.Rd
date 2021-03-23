@@ -8,8 +8,9 @@ Initial transformation of data
 Initial transformation of data before the construction of a biplot. (or any other technique)
 }
 \usage{
-InitialTransform(X, sup.rows = NULL, sup.cols = NULL, transform =
-                 "Standardize columns")
+InitialTransform(X, sup.rows = NULL, sup.cols = NULL, 
+InitTransform = "None", transform = "Standardize columns", 
+grouping = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,8 +23,14 @@ Supplementary or illustrative rows.
   \item{sup.cols}{
 Supplementary or illustrative columns. 
 }
+  \item{InitTransform}{
+Pevious transformation (to use. See details)none or log.
+}
   \item{transform}{
 Transformation to use. See details.
+}
+  \item{grouping}{
+factor to stadadize with the within groups variability
 }
 }
 \details{

@@ -81,15 +81,16 @@ Jose Luis Vicente Villardon
 
 
 \seealso{
- \code{\link{PCA.Biplot}}, \code{\link{InitTransform}}
+ \code{\link{PCA.Biplot}}
 }
 \examples{
-X=wine[,4:21]
+\dontrun{X=wine[,4:21]
 grupo=wine$Group
 rownames(X)=paste(1:45, grupo, sep="-")
 pcaboot=PCA.Bootstrap(X, dimens=2, Scaling = "Standardize columns", B=1000)
 plot(pcaboot, ColorInd=as.numeric(grupo))
 summary(pcaboot)
+}
 }
 
 

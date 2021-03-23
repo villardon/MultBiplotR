@@ -1,34 +1,34 @@
-summary.RidgeBinaryLogistic <- function(x, ...) {
-  n=dim(x$x)[1]
-  p=dim(x$x)[2]
+summary.RidgeBinaryLogistic <- function(object, ...) {
+  n=dim(object$x)[1]
+  p=dim(object$x)[2]
   cat("\nBINARY LOGISTIC REGRESSION - with Ridge  penalization\n\n")
-  cat("Penalization :", x$Penalization, "\n")
+  cat("Penalization :", object$Penalization, "\n")
   cat("\n Coefficients: \n")
-  stderr=sqrt(diag(x$Covariances))
-  Z=x$beta/stderr
+  stderr=sqrt(diag(object$Covariances))
+  Z=object$beta/stderr
   Betap=(1-pnorm(abs(Z)))*2
-    Coef=cbind(round(x$beta,4), round(stderr, 4), round(Z, 3), round(Betap, 4), round(exp(x$beta),4))
+    Coef=cbind(round(object$beta,4), round(stderr, 4), round(Z, 3), round(Betap, 4), round(exp(object$beta),4))
     colnames(Coef)=c("Beta", "Std. Err.", "Z", "Pr(>|z|)", "Exp(B)")
   print(Coef)
   
   cat("\n Classification Table\n")
-  print(x$Classification)
+  print(object$Classification)
   
   cat("\n Classification Table (percentages)\n")
-  print(round(prop.table(x$Classification, margin=1)*100, digits=2))
-  cat("\n % Correct :",x$PercentCorrect*100)
-  cat("\n\nNull deviance: ", x$NullDeviance, " on", n-1, "degrees of freedom")
-  cat("\nResidual deviance: ", x$Deviance, " on", n-p, "degrees of freedom")
-  cat("\nDifference: ", x$Dif, " on", p-1, "degrees of freedom (p=",x$p,")")
-  cat("\nNagelkerke: ", x$Nagelkerke)
-  cat("\nMacFaden: ", x$MacFaden)
-  cat("\nCox-Snell: ", x$CoxSnell,"\n\n")
+  print(round(prop.table(object$Classification, margin=1)*100, digits=2))
+  cat("\n % Correct :",object$PercentCorrect*100)
+  cat("\n\nNull deviance: ", object$NullDeviance, " on", n-1, "degrees of freedom")
+  cat("\nResidual deviance: ", object$Deviance, " on", n-p, "degrees of freedom")
+  cat("\nDifference: ", object$Dif, " on", p-1, "degrees of freedom (p=",object$p,")")
+  cat("\nNagelkerke: ", object$Nagelkerke)
+  cat("\nMacFaden: ", object$MacFaden)
+  cat("\nCox-Snell: ", object$CoxSnell,"\n\n")
 }
 
 
-print.RidgeBinaryLogistic <- function(x, ...) {
+print.RidgeBinaryLogistic <- function(object, ...) {
   cat("\nBINARY LOGISTIC REGRESSION - with Ridge  penalization\n\n")
-  cat("Penalization", x$Penalization, "\n")
+  cat("Penalization", object$Penalization, "\n")
   cat("\n Coefficients: \n")
-  print(round(x$beta,4))
+  print(round(object$beta,4))
 }

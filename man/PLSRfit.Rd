@@ -8,7 +8,7 @@ Partial Least Squares Regression (PLSR)
 Fits a Partial Least Squares Regression (PLSR) to two continuous data matrices
 }
 \usage{
-PLSRfit(Y, X, S = 2, center = TRUE, scale = TRUE, tolerance = 5e-06,
+PLSRfit(Y, X, S = 2, tolerance = 5e-06,
 maxiter = 100, show = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -21,12 +21,6 @@ The Matrix of Independent Variables
 }
   \item{S}{
 Dimension of the solution. The default is 2
-}
-  \item{center}{
-Logical. Should the original data be ccentred.
-}
-  \item{scale}{
-Logical. Should the original data be scaled.
 }
   \item{tolerance}{
 Tolerance for the algorithm.
@@ -67,14 +61,3 @@ Wold, S., Sjöström, M., & Eriksson, L. (2001). PLS-regression: a basic tool of
 Jose Luis Vicente Villardon
 }
 
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-
-\examples{
-
-}
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

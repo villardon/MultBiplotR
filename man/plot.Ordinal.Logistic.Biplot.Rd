@@ -7,7 +7,17 @@ Plots an ordinal Logistic Biplot
 \description{
 Plots an ordinal Logistic Biplot}
 \usage{
-\method{plot}{Ordinal.Logistic.Biplot}(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 0, PlotVars = TRUE, PlotInd = TRUE, LabelVars = TRUE, LabelInd = TRUE, mode = "a", CexInd = NULL, CexVar = NULL, ColorInd = NULL, ColorVar = NULL, SmartLabels = TRUE, MinQualityVars = 0, dp = 0, PredPoints = 0, PlotAxis = FALSE, TypeScale = "Complete", ValuesScale = "Original", SizeQualInd = FALSE, SizeQualVars = FALSE, ColorQualInd = FALSE, ColorQualVars = FALSE, PchInd = NULL, PchVar = NULL, PlotClus = FALSE, TypeClus = "ch", ClustConf = 1, ClustCenters = FALSE, UseClusterColors = TRUE, ClustLegend = TRUE, ClustLegendPos = "topright", TextVarPos = 1, ...)
+\method{plot}{Ordinal.Logistic.Biplot}(x, A1 = 1, A2 = 2, 
+ShowAxis = FALSE, margin = 0, PlotVars = TRUE, PlotInd = TRUE, 
+LabelVars = TRUE, LabelInd = TRUE, mode = "a", CexInd = NULL, 
+CexVar = NULL, ColorInd = NULL, ColorVar = NULL, SmartLabels = TRUE,
+MinQualityVars = 0, dp = 0, PredPoints = 0, PlotAxis = FALSE, 
+TypeScale = "Complete", ValuesScale = "Original", 
+SizeQualInd = FALSE, SizeQualVars = FALSE, ColorQualInd = FALSE, 
+ColorQualVars = FALSE, PchInd = NULL, PchVar = NULL, 
+PlotClus = FALSE, TypeClus = "ch", ClustConf = 1, 
+ClustCenters = FALSE, UseClusterColors = TRUE, ClustLegend = TRUE,
+ClustLegendPos = "topright", TextVarPos = 1, PlotSupVars = FALSE,...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -115,6 +125,9 @@ Position of the legend
 }
   \item{TextVarPos}{
 Position of the labels for the variables
+}  
+\item{PlotSupVars}{
+Should the supplementary variables be plotted
 }
   \item{\dots}{
 Any other aditional parameters

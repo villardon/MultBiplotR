@@ -1,18 +1,13 @@
 \name{ContinuousDistances}
-\alias{ContinuousDistances, ContinuousProximities}
+\alias{ContinuousDistances}
 \title{Distances for Continuous Data}
-
-
 \description{
-Calculates distances among rows of a continuous data matrix or among the rows of two binary matrices. 
+Calculates distances among rows of a continuous data matrix or among the rows of two binary matrices.
 }
 \usage{
-  ContinuousDistances(x, y = NULL, coef = "Pythagorean",
-    normalizer = "SD", t = 1)
+  ContinuousDistances(x, y = NULL, coef = "Pythagorean", r = 1)
 }
 
-
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 Main data matrix. Distances among rows are calculated if y=NULL.
@@ -23,10 +18,7 @@ Supplementary data matrix. If not NULL the distances among the rows of x and y a
   \item{coef}{
 Distance coefficient. Use the name or the number(see details)
 }
-  \item{normalizer}{
-Quantity to normalize the distances
-}
-  \item{t}{
+  \item{r}{
 Exponent for the Minkowsky
 }
 }

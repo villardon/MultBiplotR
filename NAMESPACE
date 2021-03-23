@@ -17,28 +17,34 @@ export(InitialTransform, Circle, diagonal, DimensionLabels, Factor2Binary, GetBi
        PrettyTicks, NiceNumber, FA.Biplot, UpdateX, UpdateY, Genefold, Initial, Loss, Updatea, VarDisk, UpdateGAMMA,
        indexC1, ColMeans, UnfoldingSMACOF, dhatsunfol, UpdateUnfol, UpdateUnfolConstr, TransfUnfold, GetConstUnfoldScales, 
        Unfolding, DistUnfold, lsqisotonic, CanonicalDistanceAnalysis, plot.CanonicalDistanceAnalysis, SelectVarsAnova, ContinuousProximities, SymmetricContinuousDistances,
-       plot.Supplementary.Variables, PlotBinaryVar, BinaryLogBiplotEM, CorrelationCircle, ScreePlot, UpdateMultBiplot, BinaryLogBiplotJoint, plot.Binary.Logistic.Biplot,
+       plot.Supplementary.Variables, PlotBinaryVar, BinaryLogBiplotEM, CorrelationCircle, ScreePlot, BinaryLogBiplotJoint, plot.Binary.Logistic.Biplot,
        BinaryLogBiplotMirt, ExpandCoord, CompressCoord, CanonicalStatisBiplot, summary.RidgeBinaryLogistic, print.RidgeBinaryLogistic,
        PCA.Bootstrap, ellipse, plot.PCA.Bootstrap, summary.PCA.Bootstrap, CalculateContributions, ColContributionPlot, PrinAxesFA,
-       summary.PLSR1Bin, AddOrdVars2Biplot, AddBinVars2Biplot, plot.ContSupVarsBiplot, plot.Supplementary.Variables, plot.BinSupVarsBiplot, plot.OrdSupVarsBiplot,
+       summary.PLSR1Bin, AddOrdVars2Biplot, AddBinVars2Biplot, plot.ContSupVarsBiplot, plot.BinSupVarsBiplot, plot.OrdSupVarsBiplot,
        Orthog, GD.Biplot, JBiplotReg, grBiplotReg, JBiplotLASSO, grBiplotLASSO, JBiplotRegB, JBiplotRegA, grBiplotRegB, grBiplotRegA,
        BinaryLogBiplotGD, sigmoide, JLogBiplotReg, grLogBiplotReg, JLogBiplotLASSO, grLogBiplotLASSO, JLogBiplotRegB, JLogBiplotRegA,
        grLogBiplotRegB, grLogBiplotRegA, vec, Tuckals3, Coinertia, PathwiseCoordinateOptimization, LASSORegression, plot.LASSOReg, NIPALSPCA,
        Sparse.NIPALSPCA, NIPALS.Biplot, Truncated.NIPALSPCA, PCA.Analysis, plot.PCA.Analysis, plot.ContinuousBiplot, summary.PCA.Analysis,
        Canonical.Variate.Analysis, plot.CVA, summary.CVA, countsToCases, NormalityTests, Bartlett.Tests, BasicDescription, BoxPlotPanel,
        ConfidenceInterval, ErrorBarPlotPanel, Games_Howell, HistogramPanel, Kruskal.Wallis.Tests, Levene.Tests, NormalityTests, PostHocGraph,
-       ConstrainedLogisticBiplot, ConstrainedOrdinalLogisticBiplot, anova.RidgeBinaryLogistic, PlotTrajectory)
+       ConstrainedLogisticBiplot, ConstrainedOrdinalLogisticBiplot, anova.RidgeBinaryLogistic, PlotTrajectory, Valid)
 
-import(scales, geometry, deldir, mirt, GPArotation, rgl, optimr)
-importFrom(MASS, kde2d)
-importFrom(MASS, lda)
+    import(scales, geometry, deldir, mirt, GPArotation, optimr, dae, rgl, xtable, mvtnorm)
+    importFrom(dunn.test, dunn.test)
+    importFrom(car, leveneTest)
+    importFrom(lattice, levelplot)
+    importFrom(gplots, heatmap.2)
+    importFrom(rgl, plot3d)
+    importFrom(Hmisc, errbar)
+    importFrom(MASS, kde2d)
+    importFrom(MASS, lda)
     importFrom("grDevices", "chull", "cm.colors", "col2rgb", "colors",
                "dev.new", "heat.colors", "palette", "rainbow", "rgb",
                "terrain.colors", "topo.colors")
     importFrom("graphics", "abline", "arrows", "axis", "box", "boxplot",
                "contour", "grid", "hist", "legend", "lines", "mtext",
-               "par", "points", "rect", "segments", "text", "title")
-    importFrom("methods", "show")
+               "par", "points", "rect", "segments", "text", "title", "barplot")
+    importFrom("dae","fac.combine")
     importFrom("stats", "as.dendrogram", "as.dist", "bartlett.test",
                "complete.cases", "cor", "cutree", "dendrapply", "density",
                "df", "dist", "dnorm", "factanal", "hclust", "heatmap",
@@ -50,8 +56,9 @@ importFrom(MASS, lda)
                "varimax")
     importFrom("utils", "capture.output", "combn", "install.packages",
                "installed.packages")
+    
 
-importFrom(rgl, plot3d)
+
 S3method(plot, ContinuousBiplot)
 S3method(plot, Unfolding)
 S3method(print, ContinuousBiplot)
@@ -100,5 +107,13 @@ S3method(print, RidgeBinaryLogistic)
 S3method(summary, RidgeBinaryLogistic)
 S3method(anova, RidgeBinaryLogistic)
 S3method(summary, PLSR1Bin) 
+S3method(plot, LASSOReg)
+S3method(plot, PCA.Bootstrap)
+S3method(plot, PLSR)
+S3method(plot, BinSupVarsBiplot)
+S3method(plot, OrdSupVarsBiplot)
+S3method(plot, Supplementary.Variables)
+
+
 
 

@@ -8,7 +8,7 @@ Initial Transformation of a multi table object
 Initial Transformation of a multi table object
 }
 \usage{
-MultiTableTransform(X, InitTransform = "Standardize columns")
+MultiTableTransform(X, InitTransform = "Standardize columns", dual = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -17,6 +17,9 @@ Multi-table object
 }
   \item{InitTransform}{
 Initial Transformattion
+}
+  \item{dual}{
+Is the transformation for the dual versions?
 }
 }
 \details{
@@ -29,7 +32,4 @@ he table transformed
 Jose Luis Vicente Villardon
 }
 
-\examples{
-##---- Should be DIRECTLY executable !! ----
 
-}

@@ -8,9 +8,9 @@ Multidimensional Scaling
 Multidimensional Scaling using SMACOF algorithm and Bootstraping the coordinates.
 }
 \usage{
-MDS(Proximities, W = NULL, Model = c("Identity", "Ratio", "Interval", "Ordinal"), dimsol = 2, 
-maxiter = 100, maxerror = 1e-06, Bootstrap = FALSE, nB = 200, ProcrustesRot = TRUE, 
-BootstrapMethod = c("Sampling", "Permutation"), 
+MDS(Proximities, W = NULL, Model = c("Identity", "Ratio", "Interval", "Ordinal"), 
+dimsol = 2, maxiter = 100, maxerror = 1e-06, Bootstrap = FALSE, nB = 200, 
+ProcrustesRot = TRUE, BootstrapMethod = c("Sampling", "Permutation"), 
 StandardizeDisparities = FALSE, ShowIter = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.

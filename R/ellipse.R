@@ -1,4 +1,4 @@
-ellipse <- function(center=c(0,0), radius=c(1,1), angle= NULL, orient= diag(2), add=TRUE, ...){
+ellipse <- function(center=c(0,0), radius=c(1,1), angle= NULL, orient= diag(2), add=TRUE, npoints=100, ...){
   # angle in radians
   if (!is.null(angle)) orient=matrix(c(cos(angle), sin(angle), -1* sin(angle), cos(angle)), 2, 2)
   ang=seq(from=0, to=2*pi, by =(2*pi/npoints))

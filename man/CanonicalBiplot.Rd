@@ -1,5 +1,5 @@
 \name{CanonicalBiplot}
-\alias{CanonicalBiplot, Canonical.Variate.Analysis}
+\alias{CanonicalBiplot}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Biplot representation of a Canonical Variate Analysis or a Manova (Canonical-Biplot or MANOVA-Biplot)

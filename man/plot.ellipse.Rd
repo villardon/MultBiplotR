@@ -8,7 +8,8 @@ Plot a concentration ellipse.
 Plot a concentration ellipse obtained from \code{ConcEllipse}.
 }
 \usage{
-\method{plot}{ellipse}(x, add=TRUE, labeled= FALSE , center=FALSE, centerlabel="Center", initial=FALSE,  ...)
+\method{plot}{ellipse}(x, add=TRUE, labeled= FALSE , 
+center=FALSE, centerlabel="Center", initial=FALSE,  ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -62,7 +63,4 @@ plot(iris[,1], iris[,2],col=iris[,5], asp=1)
 E=ConcEllipse(dat, 0.95)
 plot(E, labeled=TRUE, center=TRUE)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+

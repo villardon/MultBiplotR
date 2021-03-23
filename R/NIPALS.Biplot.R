@@ -1,4 +1,4 @@
-NIPALS.Biplot <- function(X, alpha = 1, dimension = 3, Scaling = 5, Type="Sparse", sup.rows = NULL, sup.cols = NULL, grouping=NULL, ...) {
+NIPALS.Biplot <- function(X, alpha = 1, dimension = 3, Scaling = 5, Type="Sparse", grouping=NULL, ...) {
   
   # Vamos a probar si esta cosa se actualiza
   if (is.data.frame(X)) 
@@ -54,8 +54,7 @@ NIPALS.Biplot <- function(X, alpha = 1, dimension = 3, Scaling = 5, Type="Sparse
   Biplot$P25 = apply(X, 2, quantile)[2, ]
   Biplot$P75 = apply(X, 2, quantile)[4, ]
   Biplot$GMean = mean(X)
-  Biplot$Sup.Rows = sup.rows
-  Biplot$Sup.Cols = sup.cols
+  
   ContinuousDataTransform = c("Raw Data", "Substract the global mean", "Double centering", 
                               "Column centering", "Standardize columns", "Row centering", 
                               "Standardize rows", "Divide by the column means and center",
@@ -70,21 +69,11 @@ NIPALS.Biplot <- function(X, alpha = 1, dimension = 3, Scaling = 5, Type="Sparse
   rownames(X) = RowNames
   colnames(X) = VarNames
   Biplot$Scaled_Data = X
-  Biplot$Scaled_Sup.Rows = Data$sup.rows
-  Biplot$Scaled_Sup.Cols = Data$sup.cols
-  if (nfs > 0) {
-    rownames(Biplot$Scaled_Sup.Rows) <- rownames(sup.rows)
-    colnames(Biplot$Scaled_Sup.Rows) <- colnames(sup.rows)
-  }
-  if (ncs > 0) {
-    rownames(Biplot$Scaled_Sup.Cols) <- rownames(sup.cols)
-    colnames(Biplot$Scaled_Sup.Cols) <- colnames(sup.cols)
-  }
+  
   # Calculating the Biplot
   if (Type =="Sparse") SD = Sparse.NIPALSPCA(X, dimens = dimension, ...)
   if (Type =="Truncated") SD = Truncated.NIPALSPCA(X, dimens = dimension, ...)
   if (Type =="Regular") SD = NIPALSPCA(X, dimens = dimension, ...)
-  
   
   a = SD$u %*% diag(SD$d)
   b = SD$v
@@ -120,7 +109,7 @@ NIPALS.Biplot <- function(X, alpha = 1, dimension = 3, Scaling = 5, Type="Sparse
       cf[,k]=cfacum[,k] - cfacum[,(k-1)]
     }
   }
-  
+
   rownames(cfacum) = RowNames
   colnames(cfacum) = DimNames
   rownames(ccacum) = VarNames
@@ -157,19 +146,12 @@ NIPALS.Biplot <- function(X, alpha = 1, dimension = 3, Scaling = 5, Type="Sparse
   Biplot$CumInertia = CumInertia
   Biplot$V = SD$v
   Biplot$Structure = CorrXCP
-  if (nfs == 0) 
-    Biplot$RowCoordinates <- a
-  else Biplot$RowCoordinates <- rbind(a, as)
-  if (ncs == 0) 
-    Biplot$ColCoordinates <- b
-  else Biplot$ColCoordinates <- rbind(b, bs)
+  Biplot$RowCoordinates <- a
+  Biplot$ColCoordinates <- b
   # Contributions
-  if (nfs == 0) 
-    Biplot$RowContributions <- cf
-  else Biplot$RowContributions <- rbind(cf, cfs)
-  if (ncs == 0) 
-    Biplot$ColContributions <- cc
-  else Biplot$ColContributions <- rbind(cc, ccs)
+  Biplot$RowContributions <- cf
+  Biplot$ColContributions <- cc
+
   Biplot$Scale_Factor = scf
   Biplot$ClusterType="us"
   Biplot$Clusters = as.factor(matrix(1,nrow(Biplot$RowContributions), 1))

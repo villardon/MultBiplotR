@@ -13,12 +13,12 @@ summary.StatisBiplot <- function(object, ...) {
 
 
 
-print.StatisBiplot <- function(object, ...) {
+print.StatisBiplot <- function(x, ...) {
   
   cat("Call\n")
-  print(object$call)
+  print(x$call)
   cat("Correlations among occasions\n")
-  print(object$RV)
+  print(x$RV)
   cat("Biplot for Statis\n")
-  print(object$Biplot)
+  print(x$Biplot)
 }

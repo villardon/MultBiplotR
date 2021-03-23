@@ -8,7 +8,9 @@ Plots the contributios of a biplot
 Plots the contributios of a biplot
 }
 \usage{
-ColContributionPlot(bip, A1 = 1, A2 = 2, Colors = NULL, Labs = NULL, MinQuality = 0, CorrelationScale = FALSE, ContributionScale = TRUE, AddSigns2Labs = TRUE, ...)
+ColContributionPlot(bip, A1 = 1, A2 = 2, Colors = NULL, Labs = NULL, 
+MinQuality = 0, CorrelationScale = FALSE, ContributionScale = TRUE, 
+AddSigns2Labs = TRUE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

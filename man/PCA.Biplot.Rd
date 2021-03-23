@@ -1,5 +1,5 @@
 \name{PCA.Biplot}
-\alias{PCA.Biplot, PCA.Analysis}
+\alias{PCA.Biplot}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Classical PCA Biplot with added features.
@@ -8,7 +8,8 @@ Classical PCA Biplot with added features.
 Classical PCA Biplot with added features.
 }
 \usage{
-PCA.Biplot(X, alpha = 1, dimension = 3, Scaling = 4, sup.rows = NULL, sup.cols = NULL)
+PCA.Biplot(X, alpha = 1, dimension = 3, Scaling = 5, sup.rows = NULL, 
+          sup.cols = NULL, grouping = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -29,6 +30,9 @@ Supplementary or illustrative rows, if any.
 }
   \item{sup.cols}{
 Supplementary or illustrative rows, if any.
+}
+  \item{grouping}{
+A factor to standardize with the variability within groups
 }
 }
 \details{

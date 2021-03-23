@@ -8,13 +8,14 @@ Plots the Bootstrap information for Principal Components Analysis (PCA)
 Plots an object of class "PCA.Bootstrap"
 }
 
-
 \usage{
-\method{plot}{PCA.Bootstrap}(pcaboot, Eigenvalues = TRUE, Inertia = FALSE, EigenVectors = TRUE, Structure = TRUE, Squared = TRUE, Scores = TRUE, ColorInd = "black", TypeScores = "ch")
+\method{plot}{PCA.Bootstrap}(x, Eigenvalues = TRUE, 
+Inertia = FALSE, EigenVectors = TRUE, Structure = TRUE, 
+Squared = TRUE, Scores = TRUE, ColorInd = "black", TypeScores = "ch", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{pcaboot}{
+  \item{x}{
 An object of class "PCA.Bootstrap"
 }
   \item{Eigenvalues}{
@@ -40,6 +41,9 @@ Colors for the rows
 }
   \item{TypeScores}{
 Type of plot for the scores
+}
+  \item{...}{
+Any other graphical argument
 }
 }
 \details{

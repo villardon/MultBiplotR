@@ -13,7 +13,7 @@ GowerProximities<- function(x, y=NULL, Binary=NULL, Classes=NULL, transformation
   if (is.null(y)) NewY=NewX
   else{
     if (!is.data.frame(y)) stop("Suplementary data is not organized as a data frame")
-    NewY=AdaptDataFrame(Y, Binary=Binary, IntegerAsOrdinal=IntegerAsOrdinal)
+    NewY=AdaptDataFrame(y, Binary=Binary, IntegerAsOrdinal=IntegerAsOrdinal)
   }
   
   n = dim(NewX$X)[1]

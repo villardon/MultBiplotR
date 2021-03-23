@@ -8,7 +8,9 @@ Matrix to Proximities
 Converts a matrix of proximities into a Proximities object as used in Principal Coordinates or MDS
 }
 \usage{
-Matrix2Proximities(x, TypeData = "User Provided", Type = c("dissimilarity", "similarity", "products"), Coefficient = "None", Transformation = "None", Data = NULL)
+Matrix2Proximities(x, TypeData = "User Provided", 
+Type = c("dissimilarity", "similarity", "products"), 
+Coefficient = "None", Transformation = "None", Data = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -42,11 +44,3 @@ An object of class \code{Proximities} containing the proximities matrix and some
 Jose Luis Vicente Villardon
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-
-\examples{
-x=matrix(runif(20),10,2)
-D=EuclideanDistance(x)
-P=Matrix2Proximities(D)
-}

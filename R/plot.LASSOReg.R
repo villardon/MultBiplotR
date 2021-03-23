@@ -1,4 +1,4 @@
-plot.LASSOReg <- function(x){
+plot.LASSOReg <- function(x, ...){
   p=dim(x$Beta)[1]
   ymin=min(x$Beta)
   ymax=max(x$Beta)

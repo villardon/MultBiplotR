@@ -1,7 +1,4 @@
 Kruskal.Wallis.Tests <- function(X, groups, posthoc="none", alternative="two.sided", digits=4){
-  if (require(dunn.test)==FALSE){
-    gmessage("You must install the package (dunn.test) to use this menu")
-  }
 
   n=dim(X)[1]
   p=dim(X)[2]

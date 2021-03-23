@@ -8,12 +8,15 @@ Statistics for multiple tables
 Statistics for multiple tables
 }
 \usage{
-MultiTableStatistics(X)
+MultiTableStatistics(X, dual = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{X}{
 A multiple table
+}
+  \item{dual}{
+Is the transformation for the dual versions?
 }
 }
 \details{

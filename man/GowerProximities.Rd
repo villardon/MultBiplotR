@@ -5,7 +5,10 @@
   Gower Dissimilarities for mixed types of data
 }
 \usage{
-  GowerProximities(x, y=NULL, transformation=3)
+  GowerProximities(x, y = NULL, Binary = NULL, Classes = NULL,
+                   transformation = 3, IntegerAsOrdinal = FALSE, BinCoef
+                   = "Simple_Matching", ContCoef = "Gower", NomCoef =
+                   "GOW", OrdCoef = "GOW")
 }
 
 \arguments{
@@ -15,8 +18,29 @@ Main data. Distances among rows are calculated if y=NULL. Must be a data frame.
   \item{y}{
 Suplementary data matrix. If not NULL the distances among the rows of x and y are calculated. Must be a data frame with the same columns as x.
 }
-  \item{transformation}{
+  \item{Binary}{
+A vector containing the binary variables.
+}
+  \item{Classes}{
 Vector with column types. If NULL the data frame types are used.
+}
+  \item{transformation}{
+Transformation for the similarities.
+}
+  \item{IntegerAsOrdinal}{
+Should integer variables be used as ordinal?
+}
+  \item{BinCoef}{
+Coefficient for the binary data
+}
+  \item{ContCoef}{
+Coefficient for the continuous data
+}
+  \item{NomCoef}{
+Coefficient for the nominal data
+}
+  \item{OrdCoef}{
+Coefficient for the ordinal data
 }
 }
 

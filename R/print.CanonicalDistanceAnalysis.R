@@ -1,4 +1,4 @@
-print.CanonicalDistanceAnalysis <- function(x){
+print.CanonicalDistanceAnalysis <- function(x, ...){
   cat("Canonical Analysis of Distances\n")
   cat("Call\n")
   print(x$call)

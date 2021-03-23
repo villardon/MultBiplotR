@@ -11,7 +11,7 @@ for an occasion or group.
 
 }
 \usage{
-Convert2ThreeWay(x, groups, columns = TRUE)
+Convert2ThreeWay(x, groups, columns = FALSE, RowNames = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -23,6 +23,9 @@ A factor defining the groups
 }
   \item{columns}{
 Are the grouos defined for columns?
+}
+  \item{RowNames}{
+Names for the rows of each table.
 }
 }
 \details{

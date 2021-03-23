@@ -8,7 +8,7 @@ CANONICAL STATIS-ACT for multiple tables with common rows and its associated Bip
 The procedure performs STATIS-ACT methodology for multiple tables with common rows and its associated biplot
 }
 \usage{
-StatisBiplot(X, Groups, InitTransform = "Standardize columns", dimens = 2,
+CanonicalStatisBiplot(X, Groups, InitTransform = "Standardize columns", dimens = 2,
                  SameVar = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.

@@ -35,11 +35,27 @@ ExternalBinaryLogisticBiplot <- function(Pco, IncludeConst=TRUE, penalization=0.
     Res$Nagelkerke[i]=fit$Nagelkerke
     Res$R2[i]=fit$R2
     Res$PercentsCorrec[i]=fit$PercentCorrect
-    
     Pco$TotalPercent=Pco$TotalPercent+sum(y==fit$Prediction)
   }
   rownames(Pco$ColumnParameters)=colnames(Pco$Data)
   colnames(Pco$ColumnParameters)=paste("b",0:dimens, sep="")
+  
+  esp = cbind(rep(1,n), Pco$RowCoordinates) %*% t(Pco$ColumnParameters)
+  pred = exp(esp)/(1 + exp(esp))
+  
+  esp0 = matrix(rep(1,n), n,1) %*% Pco$ColumnParameters[, 1]
+  pred0 = exp(esp0)/(1 + exp(esp0))
+  
+  d1 = -2 * apply(Pco$Data * log(pred0) + (1 - Pco$Data) * log(1 - pred0),2,sum)
+  d2 = -2 * apply(Pco$Data * log(pred) + (1 - Pco$Data) * log(1 - pred),2,sum)
+  
+  d = d1 - d2
+  
+  dd = sqrt(rowSums(cbind(1,Pco$ColumnParameters[, 2:(dimens + 1)])^2))
+  Res$Loadings = diag(1/dd) %*% Pco$ColumnParameters[, 2:(dimens + 1)]
+  Res$Tresholds = Pco$ColumnParameters[, 1]/d
+  res$Communalities = rowSums(Res$Loadings^2)
+  
   Pco$TotalPercent=Pco$TotalPercent/(n*p)
   Pco$DevianceTotal=sum(Res$Deviances)
   Pco$TotalDf=sum(Res$Dfs)

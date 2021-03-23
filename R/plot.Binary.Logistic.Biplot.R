@@ -6,7 +6,8 @@ plot.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margi
                                         MinQualityCols = 0, dp = 0, PredPoints=0, SizeQualRows = FALSE, 
                                         SizeQualCols = FALSE, ColorQualRows = FALSE, ColorQualCols = FALSE, 
                                         PchRows = NULL, PchCols = NULL, PlotClus = FALSE, TypeClus = "ch", 
-                                        ClustConf=1,  Significant=TRUE, alpha=0.05, Bonferroni=TRUE, PlotSupVars = TRUE, ...) 
+                                        ClustConf=1,  Significant=TRUE, alpha=0.05, Bonferroni=TRUE, 
+                                        PlotSupVars = TRUE, AbbreviateLabels = FALSE, ...) 
   {
   
   a = x$RowCoordinates[,c(F1,F2)]
@@ -68,6 +69,11 @@ plot.Binary.Logistic.Biplot <- function(x, F1 = 1, F2 = 2, ShowAxis=FALSE, margi
   
   if (is.null(ColLabels)) 
     ColLabels = rownames(x$ColumnParameters)
+  
+  if (AbbreviateLabels){
+    RowLabels=abbreviate(RowLabels, minlength = 5L)
+    ColLabels=abbreviate(ColLabels, minlength = 5L)
+  }
   
   # Determining sizes and colors of the points
   if (length(RowCex == 1)) 

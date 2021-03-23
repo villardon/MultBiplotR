@@ -8,7 +8,12 @@ Biplot for continuous data based on gradient descent methods
 Biplot for continuous data based on gradient descent methods.
 }
 \usage{
-GD.Biplot(X, alpha = 1, dimension = 2, Scaling = 5, lambda = 0.01, OptimMethod = "CG", Orthogonalize = FALSE, Algorithm = "Alternated", sup.rows = NULL, sup.cols = NULL, grouping = NULL, tolerance = 1e-04, num_max_iters = 300, Initial = "random")
+GD.Biplot(X, dimension = 2, Scaling = 5, 
+         lambda = 0.01, OptimMethod = "CG", 
+         Orthogonalize = FALSE, Algorithm = "Alternated", 
+         sup.rows = NULL, sup.cols = NULL,
+         grouping = NULL, tolerance = 1e-04, 
+         num_max_iters = 300, Initial = "random")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -58,30 +63,18 @@ The function calculates a bilot using gradient descent methods. The function \co
 \value{
 An object of class "ContinuousBiplot" is returned.
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
 Jose Luis Vicente Villardon
 }
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 data("Protein")
 X=Protein[,3:11]
-gdbip=GD.Biplot(X, dimension=2, Algorithm="Joint", Orthogonalize=FALSE, lambda=0.3, Initial="random")
-plot(gdbip, ColorInd = y+1)
+gdbip=GD.Biplot(X, dimension=2, Algorithm="Joint", 
+Orthogonalize=FALSE, lambda=0.3, Initial="random")
+plot(gdbip)
 summary(gdbip)
-
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+

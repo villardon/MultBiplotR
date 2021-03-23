@@ -1,5 +1,6 @@
 
-AddOrdVars2Biplot <- function(bip, Y, tol = 0.000001, maxiterlogist = 100, penalization = 0.2, showiter = TRUE){
+AddOrdVars2Biplot <- function(bip, Y, tol = 0.000001, maxiterlogist = 100, penalization = 0.2, 
+                              showiter = TRUE, show=FALSE){
   
   nrow= dim(Y)[1]
   ncol= dim(Y)[2]

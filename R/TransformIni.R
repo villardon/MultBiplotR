@@ -19,8 +19,6 @@ TransformIni <- function(X, InitTransform="None", transform = "Standardize colum
   switch(InitTransform, `Log` = {
     if (sum(which(X<=0)) >0) stop("Initial log transformation is not compatible with negative or zero values")
     X = log(X)
-    if (nfs > 0) sup.rows = log(sup.rows)
-    if (ncs > 0) sup.cols = log(sup.cols)
   },`Logit` = {
     if (sum(which(X<=0)) >0) stop("Initial logit transformation is not compatible with negative values")
     X= X + 0.01 * (X==0) - 0.01 * (X==1)

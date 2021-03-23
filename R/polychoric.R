@@ -1,6 +1,5 @@
 polychoric <-function (x, y, ML = FALSE, control = list(), std.err = FALSE, 
-          maxcor = 0.9999) 
-{
+          maxcor = 0.9999) {
   f <- function(pars) {
     if (length(pars) == 1) {
       rho <- pars
@@ -19,7 +18,7 @@ polychoric <-function (x, y, ML = FALSE, control = list(), std.err = FALSE,
     P <- binBvn(rho, row.cuts, col.cuts)
     -sum(tab * log(P))
   }
-  tab <- if (missing(y)) 
+  tab <- if (missing(y))
     x
   else table(x, y)
   zerorows <- apply(tab, 1, function(x) all(x == 0))

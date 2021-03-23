@@ -5,7 +5,9 @@
   Gower Dissimilarities for mixed types of data
 }
 \usage{
-  GowerSimilarities(x, y=NULL, transformation="sqrt(1-S)") 
+  GowerSimilarities(x, y = NULL, Classes = NULL, transformation =
+                   "sqrt(1-S)", BinCoef = "Simple_Matching", ContCoef =
+                   "Gower", NomCoef = "GOW", OrdCoef = "GOW")
 }
 
 \arguments{
@@ -15,8 +17,23 @@ Main data. Distances among rows are calculated if y=NULL. Must be a data frame.
   \item{y}{
 Suplementary data matrix. If not NULL the distances among the rows of x and y are calculated. Must be a data frame with the same columns as x.
 }
+  \item{Classes}{
+Vector containing the classes of each variable.
+}
   \item{transformation}{
-Transformatio to apply to the similarities.
+Transformation to apply to the similarities.
+}
+  \item{BinCoef}{
+Coefficient for the binary data
+}
+  \item{ContCoef}{
+Coefficient for the continuous data
+}
+  \item{NomCoef}{
+Coefficient for the nominal data
+}
+  \item{OrdCoef}{
+Coefficient for the ordinal data
 }
 }
 

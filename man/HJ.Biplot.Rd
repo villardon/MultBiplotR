@@ -8,7 +8,8 @@ HJ Biplot with added features.
 HJ Biplot with added features.
 }
 \usage{
-HJ.Biplot(X, dimension = 3, Scaling = 4, sup.rows = NULL, sup.cols = NULL)
+HJ.Biplot(X, dimension = 3, Scaling = 5, sup.rows = NULL, 
+         sup.cols = NULL, grouping = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -27,6 +28,9 @@ Supplementary or illustrative rows, if any.
   \item{sup.cols}{
 Supplementary or illustrative rows, if any.
 }
+  \item{grouping}{
+factor to stadadize with the within groups variability
+}
 }
 \details{
 Biplots represent the rows and columns of a data matrix in reduced dimensions. Usually rows represent  individuals, objects or samples and columns are variables measured on them. The most classical versions can be thought as visualizations associated to Principal Components Analysis (PCA) or Factor Analysis (FA) obtained from a Singular Value Decomposition or a related method. From another point of view, Classical Biplots could be obtained from regressions and calibrations that are essentially an alternated least squares algorithm equivalent to an EM-algorithm when data are normal.
@@ -35,7 +39,6 @@ Biplots represent the rows and columns of a data matrix in reduced dimensions. U
 
 \value{
 An object of class ContinuousBiplot with the following components:
-
 
 \item{Title }{A general title}
 \item{Non_Scaled_Data }{Original Data Matrix}

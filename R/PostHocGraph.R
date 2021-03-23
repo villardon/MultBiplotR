@@ -15,10 +15,10 @@ PostHocGraph <- function(pvalmatrix, version=1, color=c("red3", "red","gray97"),
 
 
   if (version ==3){
-    require(lattice)
+    requireNamespace("lattice")
     op=par(mfrow=c(nrows, ncols))
   }
-  else require(gplots)
+  else requireNamespace("gplots")
   P=list()
 
   for (l in 1:nvar){

@@ -8,7 +8,7 @@ Adds supplementary continuous variables to a biplot object
 Adds supplementary continuous variables to a biplot object
 }
 \usage{
-AddContVars2Biplot(bip, X, Scaling = 5, Fit = NULL)
+AddContVars2Biplot(bip, X, dims = NULL, Scaling = 5, Fit = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -16,7 +16,10 @@ AddContVars2Biplot(bip, X, Scaling = 5, Fit = NULL)
 A biplot object
 }
   \item{X}{
-atrix containing the supplementary continuos variables
+Matrix containing the supplementary continuos variables
+}
+  \item{dims}{
+Dimension of the solution
 }
   \item{Scaling}{
 Transformation to apply to X

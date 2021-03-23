@@ -9,18 +9,24 @@ Plots a Canonical Biplot
 }
 \usage{
 \method{plot}{Canonical.Biplot}(x, A1 = 1, A2 = 2, ScaleGraph = TRUE, PlotGroups =
-                 TRUE, PlotVars = TRUE, PlotInd = TRUE, LabelInd =
-                 TRUE, CexGroup = 1, PchGroup = 16, margin = 0.1,
-                 AddLegend = TRUE, ShowAxes = FALSE, LabelAxes = TRUE,
-                 LabelGroups = TRUE, PlotCircle = TRUE, ConvexHulls =
-                 FALSE, TypeCircle = "M", ColorGroups = NULL, ColorVar
-                 = NULL, LegendPos = "topright", ColorInd = NULL,
-                 voronoi = TRUE, mode = "a", TypeScale = "Complete",
-                 ValuesScale = "Original", MinQualityVars = 0, dpg = 0,
-                 dp = 0, PredPoints = 0, PlotAxis = FALSE, CexInd =
-                 NULL, CexVar = NULL, PchInd = NULL, PchVar = NULL,
-                 ColorVar = NULL, ShowAxis = FALSE, VoronoiColor =
-                 "black", ShowBox=TRUE, ...)
+                    TRUE, PlotVars = TRUE, PlotInd = TRUE, WhatInds =
+                    NULL, WhatVars = NULL, WhatGroups = NULL, IndLabels =
+                    NULL, VarLabels = NULL, GroupLabels = NULL,
+                    AbbreviateLabels = FALSE, LabelInd = TRUE, LabelVars =
+                    TRUE, CexGroup = 1, PchGroup = 16, margin = 0.1,
+                    AddLegend = FALSE, ShowAxes = FALSE, LabelAxes =
+                    FALSE, LabelGroups = TRUE, PlotCircle = TRUE,
+                    ConvexHulls = FALSE, TypeCircle = "M", ColorGroups =
+                    NULL, ColorVars = NULL, LegendPos = "topright",
+                    ColorInd = NULL, voronoi = TRUE, mode = "a", TypeScale
+                    = "Complete", ValuesScale = "Original", MinQualityVars
+                    = 0, dpg = 0, dpi = 0, dp = 0, PredPoints = 0,
+                    PlotAxis = FALSE, CexInd = NULL, CexVar = NULL, PchInd
+                    = NULL, PchVar = NULL, ColorVar = NULL, ShowAxis =
+                    FALSE, VoronoiColor = "black", ShowBox = FALSE,
+                    ShowTitle = TRUE, PlotClus = FALSE, TypeClus = "ch",
+                    ClustConf = 1, ClustCenters = FALSE, UseClusterColors
+                    = TRUE, CexClustCenters = 1, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -45,8 +51,32 @@ Should the variables be plotted?
   \item{PlotInd}{
 Should the individuals be plotted?
 }
+  \item{WhatInds}{
+Logical vector to control what individuals (Rows) are plotted. (Can be also a binary vector)
+}
+  \item{WhatVars}{
+Logical vector to control what variables (Columns) are plotted. (Can be also a binary vector)
+}
+  \item{WhatGroups}{
+Logical vector to control what groups are plotted. (Can be also a binary vector)
+}
+\item{IndLabels}{
+A set of labels for the individuals. If NULL the default object labels are used
+}
+\item{VarLabels}{
+A set of labels for the variables. If NULL the default object labels are used
+}
+\item{GroupLabels}{
+A set of labels for the groups. If NULL the default object labels are used
+}
+  \item{AbbreviateLabels}{
+Should labels be abbreviated?
+}
   \item{LabelInd}{
 Should the individuals be labeled?
+}
+  \item{LabelVars}{
+Should the variables be labeled?
 }
   \item{CexGroup}{
 Sizes of the points for the groups
@@ -108,6 +138,9 @@ Minimum quality of representation for a variable to be plotted
   \item{dpg}{
 A set of indices with the variables that will show the projections of the gorups 
 }
+  \item{dpi}{
+A set of indices with the individuasl that will show the projections on the variables 
+}
   \item{dp}{
 A set of indices with the variables that will show the projections of the individuals
 }
@@ -141,6 +174,27 @@ Color for the Voronoi diagram
   \item{ShowBox}{
 Should a box around the poitns be plotted?
 } 
+  \item{ShowTitle}{
+Should the title be shown?
+}
+  \item{PlotClus}{
+Should the clusters be plotted?
+}
+  \item{TypeClus}{
+Type of plot for the clusters. ("ch"- Convex Hull, "el"- Ellipse or "st"- Star)
+}
+  \item{ClustConf}{
+Percent of points included in the cluster. only the ClusConf percent of the points nearest to the center will be used to calculate the cluster
+}
+  \item{ClustCenters}{
+Should the cluster centers be plotted?
+}
+ \item{UseClusterColors}{
+Should the cluster colors be used in the plot
+}
+ \item{CexClustCenters}{
+Size of the cluster centres
+}
   \item{...}{
 Any other graphical parameters 
 }

@@ -1,15 +1,15 @@
-print.Canonical.Biplot <- function(object, ...) {
+print.Canonical.Biplot <- function(x, ...) {
   cat(" ###### 1-WAY CANONICAL/MANOVA Biplot #######\n\n")
   cat("Call\n")
-  print(object$call)
+  print(x$call)
   cat("________________________________________________\n\n")
   cat("Eigenvalues and explained variance\n")
-  pp = cbind(1:length(object$EigenValues), object$EigenValues, object$Inertia, object$CumInertia)
+  pp = cbind(1:length(x$EigenValues), x$EigenValues, x$Inertia, x$CumInertia)
   colnames(pp) = c("Axis", "Eigenvalue", "Explained Variance", "Cummulative")
   print(pp)
   cat("________________________________________________\n\n")
-  cat(paste("Global contrast based on Wilks Lambda :", object$Wilksf, "\n"))
-  cat(paste("p-value :", object$Wilksp, "\n"))
+  cat(paste("Global contrast based on Wilks Lambda :", x$Wilksf, "\n"))
+  cat(paste("p-value :", x$Wilksp, "\n"))
   
-  if (!is.null(object$ContSupVarsBiplot))  cat("\nSome supplementary variables have been added (vector model)\n")
+  if (!is.null(x$ContSupVarsBiplot))  cat("\nSome supplementary variables have been added (vector model)\n")
 }

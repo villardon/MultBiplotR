@@ -61,7 +61,6 @@ PCA.Bootstrap <- function(X, dimens=2, Scaling = "Standardize columns", B=1000, 
       colnames(acpB$u)=dimnames
       rownames(acpB$v)=cnames
       colnames(acpB$v)=dimnames
-      
       res$EigVal[i,]=acpB$d
       res$Inertia[i,]=100*(acpB$d^2)/sum(acpB$d^2)
       res$Us[,,i]=acpB$u
@@ -79,15 +78,12 @@ PCA.Bootstrap <- function(X, dimens=2, Scaling = "Standardize columns", B=1000, 
     }
   }
   
-  
-  
   #Confidence Intervals for the EigenValues
   res$MedEigVal=apply(res$EigVal^2, 2,mean)
-  res$ICPercEigVal=apply(pcaboot$EigVal^2, 2,quantile, c(0.025, 0.975))
+  res$ICPercEigVal=apply(res$EigVal^2, 2,quantile, c(0.025, 0.975))
   sdev=apply(res$EigVal^2, 2,sd)
   res$ICBasEigVal=rbind(res$MedEigVal-1.96*sdev,res$MedEigVal+1.96*sdev)
  
-  
   class(res)="PCA.Bootstrap"
   return(res)
 }
