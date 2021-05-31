@@ -41,9 +41,6 @@ Fits binary variables to an existing biplot using penalized logistic regression.
 }
 \value{
 The biplot object with supplementary binary variables added.
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
 }
 \references{
 Vicente-Villardón, J. L., & Hernández-Sánchez, J. C. (2020). External Logistic Biplots for Mixed Types of Data. In Advanced Studies in Classification and Data Science (pp. 169-183). Springer, Singapore.

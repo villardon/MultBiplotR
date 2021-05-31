@@ -8,7 +8,9 @@ Binary logistic biplot with a gradient descent algorithm.
 Binary logistic biplot with a gradient descent algorithm.
 }
 \usage{
-BinaryLogBiplotJoint(x, freq = matrix(1, nrow(x), 1), dim = 2, ainit = NULL, tolerance = 1e-04, maxiter = 30, penalization = 0.2, maxcond = 7, RotVarimax = FALSE, lambda = 0.1, ...)
+BinaryLogBiplotJoint(x, freq = matrix(1, nrow(x), 1), dim = 2, 
+ainit = NULL, tolerance = 1e-04, maxiter = 30, penalization = 0.2, 
+maxcond = 7, RotVarimax = FALSE, lambda = 0.1, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -34,16 +36,16 @@ Maximum number of iterations.
 Penalization for the fit (ridge)
 }
   \item{maxcond}{
-%%     ~~Describe \code{maxcond} here~~
+Naximum condition number
 }
   \item{RotVarimax}{
-%%     ~~Describe \code{RotVarimax} here~~
+Should a Varimax Rotation be used?
 }
   \item{lambda}{
 %%     ~~Describe \code{lambda} here~~
 }
   \item{\dots}{
-%%     ~~Descri be \code{\dots} here~~
+Aditional arguments
 }
 }
 \details{

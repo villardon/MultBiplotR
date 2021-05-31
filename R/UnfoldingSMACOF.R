@@ -1,5 +1,6 @@
-UnfoldingSMACOF <- function(P, W = matrix(1, dim(P)[1], dim(P)[2]), Constrained = FALSE, ENV = NULL, model = "Ratio", condition = "Matrix", r = 2, maxiter = 100, 
-                            tolerance = 1e-05, lambda = 1, omega = 0, X0, Y0) {
+UnfoldingSMACOF <- function(P, W = matrix(1, dim(P)[1], dim(P)[2]), Constrained = FALSE, 
+                            ENV = NULL, model = "Ratio", condition = "Matrix", r = 2, maxiter = 100, 
+                            tolerance = 1e-05, lambda = 1, omega = 0, X0, Y0){
   # Formulas from Heiser (Ecology book)
   n = dim(P)[1]
   m = dim(P)[2]

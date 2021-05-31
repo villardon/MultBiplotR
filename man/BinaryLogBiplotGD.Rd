@@ -73,10 +73,10 @@ Jose Luis Vicente-Villardon
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \examples{
-data(spiders)
+\donttest{data(spiders)
 X=Dataframe2BinaryMatrix(spiders)
 
 logbip=BinaryLogBiplotGD(X,penalization=0.1)
 plot(logbip, Mode="a")
-summary(logbip)
+summary(logbip)}
 }

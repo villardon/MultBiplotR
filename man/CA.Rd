@@ -39,9 +39,9 @@ Jose Luis Vicente Villardon
 
 
 \examples{
-data(SpidersSp)
+\donttest{data(SpidersSp)
 cabip=CA(SpidersSp)
-plot(cabip)
+plot(cabip)}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

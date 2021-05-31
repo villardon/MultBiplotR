@@ -50,11 +50,6 @@ Plots the contributions on a plot that sows also the sum for both axes-
 }
 \value{
 The contribution plot
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
 }
 
 \author{
@@ -63,10 +58,10 @@ Jose Luis Vicente Villardon
 
 
 \examples{
-## Simple Biplot with arrows
+\donttest{## Simple Biplot with arrows
 data(Protein)
 bip=PCA.Biplot(Protein[,3:11])
 
 # Plot of the Variable Contributions
-ColContributionPlot(bip, cex=1)
+ColContributionPlot(bip, cex=1)}
 }

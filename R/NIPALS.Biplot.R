@@ -1,4 +1,4 @@
-NIPALS.Biplot <- function(X, alpha = 1, dimension = 3, Scaling = 5, Type="Sparse", grouping=NULL, ...) {
+NIPALS.Biplot <- function(X, alpha = 1, dimension = 3, Scaling = 5, Type="Regular", grouping=NULL, ...) {
   
   # Vamos a probar si esta cosa se actualiza
   if (is.data.frame(X)) 
@@ -15,33 +15,14 @@ NIPALS.Biplot <- function(X, alpha = 1, dimension = 3, Scaling = 5, Type="Sparse
   
   DimNames = "Dim 1"
   for (i in 2:dimension) DimNames = c(DimNames, paste("Dim", i))
-  if (is.null(sup.rows)) 
-    nfs = 0
-  else {
-    if (!(p == ncol(sup.rows))) 
-      stop("The #cols of the supplementary rows must be the same as the #cols of X")
-    nfs = nrow(sup.rows)
-    if (is.null(rownames(sup.rows))) 
-      rownames(sup.rows) <- rownames(sup.rows, do.NULL = FALSE, prefix = "IS")
-    colnames(sup.rows) <- VarNames
-  }
-  if (is.null(sup.cols)) 
-    ncs = 0
-  else {
-    if (!(n == nrow(sup.cols))) 
-      stop("The #rows of the supplementary columns must be the same as the #rows of X")
-    ncs = ncol(sup.cols)
-    if (is.null(colnames(sup.cols))) 
-      colnames(sup.cols) <- colnames(sup.cols, do.NULL = FALSE, prefix = "SV")
-    rownames(sup.cols) <- RowNames
-  }
+  
   Biplot = list()
 
   if (Type=="Sparse") Biplot$Title = "Sparse NIPALS Biplot"
   if (Type=="Truncated") Biplot$Title = "Truncated NIPALS Biplot"
   if (Type=="Regular") Biplot$Title = "NIPALS Biplot"
     
-  Biplot$Type = "PCA" 
+  Biplot$Type = "NIPALS" 
   Biplot$call <- match.call()
   Biplot$Non_Scaled_Data = X
   Biplot$alpha=alpha
@@ -63,7 +44,7 @@ NIPALS.Biplot <- function(X, alpha = 1, dimension = 3, Scaling = 5, Type="Sparse
   if (is.numeric(Scaling)) 
     Scaling = ContinuousDataTransform[Scaling]
   Biplot$Initial_Transformation = Scaling
-  Data = InitialTransform(X, sup.rows, sup.cols, transform = Scaling, grouping=grouping)
+  Data = InitialTransform(X, transform = Scaling, grouping=grouping)
   X = Data$X
   if (Scaling=="Within groups standardization") Biplot$Deviations = Data$ColStdDevs
   rownames(X) = RowNames
@@ -77,6 +58,7 @@ NIPALS.Biplot <- function(X, alpha = 1, dimension = 3, Scaling = 5, Type="Sparse
   
   a = SD$u %*% diag(SD$d)
   b = SD$v
+  
   rownames(a) <- RowNames
   colnames(a) <- DimNames
   rownames(b) <- VarNames
@@ -115,8 +97,8 @@ NIPALS.Biplot <- function(X, alpha = 1, dimension = 3, Scaling = 5, Type="Sparse
   rownames(ccacum) = VarNames
   colnames(ccacum) = DimNames
 
-  Inertia = round((EV/sum(X^2)) * 100, digits = 3)
-  CumInertia = round((EVacum/sum(X^2)) * 100, digits = 3)
+  Inertia = round((SD$d^2/sum(X^2)) * 100, digits = 3)
+  CumInertia = cumsum(Inertia)
   
   if (alpha <= 1) {
     sca = sum(a^2)
@@ -126,10 +108,6 @@ NIPALS.Biplot <- function(X, alpha = 1, dimension = 3, Scaling = 5, Type="Sparse
     scf = sqrt(sqrt(scb/sca))
     a = a * scf
     b = b/scf
-    if (nfs > 0) 
-      as = as * scf
-    if (ncs > 0) 
-      bs = bs/scf
   } else {
     b = b %*% diag(SD$d)
     scf = 1
@@ -137,10 +115,8 @@ NIPALS.Biplot <- function(X, alpha = 1, dimension = 3, Scaling = 5, Type="Sparse
   
   Biplot$nrows = n
   Biplot$ncols = p
-  Biplot$nrowsSup = nfs
-  Biplot$ncolsSup = ncs
   Biplot$dim = dimension
-  Biplot$EigenValues = EV
+  Biplot$EigenValues = SD$d^2
   Biplot$Inertia = Inertia
   
   Biplot$CumInertia = CumInertia

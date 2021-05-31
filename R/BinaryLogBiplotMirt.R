@@ -1,4 +1,4 @@
-BinaryLogBiplotMirt <- function(x, dimens = 2, tolerance = 1e-04, maxiter = 30, penalization=0.2,  Rotation = "varimax", pond = matrix(1, nrow(x), 1), ...) {
+BinaryLogBiplotMirt <- function(x, dimens = 2, tolerance = 1e-04, maxiter = 30, penalization=0.2,  Rotation = "varimax", ...){
   # joint algorithm for logistic biplots
   n <- nrow(x)
   p <- ncol(x)

@@ -48,7 +48,8 @@ Kruskal.Wallis.Tests <- function(X, groups, posthoc="none", alternative="two.sid
   testnames=names(Summary.posthoc)
   for (i in 1:length(Summary.posthoc)){
   txt=c(txt, capture.output(print(testnames[i])))
-  txt=c(txt, capture.output(print(t(Summary.posthoc[[i]]))))}
+  txt=c(txt, capture.output(print(t(Summary.posthoc[[i]]))))
+  }
   txt=c(txt, capture.output(cat("*************************************************************************\n\n")))
 
 

@@ -1,4 +1,6 @@
 PlotOrdinalResponses <- function(olb, A1=1, A2=2, inf = -12, sup = 12, Legend=TRUE, WhatVars=NULL){
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
   A = olb$RowCoordinates[, c(A1, A2)]
   B = olb$ColumnParameters$coefficients[, c(A1, A2)]
   names=rownames(B)
@@ -15,6 +17,4 @@ PlotOrdinalResponses <- function(olb, A1=1, A2=2, inf = -12, sup = 12, Legend=TR
   OrCoor=OrdVarCoordinates(tr=thresholds[j,1:(olb$Ncats[j]-1)], c(B[j, 1], B[j, 2]), 
                            inf = inf, sup = sup, plotresponse=T, label=names[j], labx=paste("Comunality =", olb$Communalities[j]), 
                            catnames=olb$CategoryNames[[j]], Legend=Legend)
-
-par(op)
 }

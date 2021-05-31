@@ -7,7 +7,7 @@ Unfolding <- function(A, ENV = NULL, TransAbund = "Gaussian Columns", offset = 0
   TransAbunds = c("None", "Gaussian", "Column Percent", "Gaussian Columns", "Inverse Square Root", "Divide by Column Maximum")
   weights = c("All_1", "0 absences")
   TransEnvs = c("Raw Data", "Column centering", "Standardize columns")
-  Algorithms=c("SMACOF", "GD", "Genefold")
+  Algorithms=c("SMACOF", "GD")
   
   SiteNames = rownames(A)
   SpeciesNames = colnames(A)

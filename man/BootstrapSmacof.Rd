@@ -82,16 +82,16 @@ MILAN, L., & WHITTAKER, J. (1995). Application of the parametric bootstrap to mo
 Jacoby, W. G., & Armstrong, D. A. (2014). Bootstrap Confidence Regions for Multidimensional Scaling Solutions. American Journal of Political Science, 58(1), 264-278.
 }
 \author{
-Jose L. Vicente-Villardon, Jhonny R. Demey
+Jose L. Vicente-Villardon
 }
 
 
 \seealso{
-\code{\link{BootstrapScalar}}, ~~~
+\code{\link{BootstrapScalar}}
 }
 \examples{
-data(spiders)
+\donttest{data(spiders)
 D=BinaryProximities(spiders, coefficient="Jaccard", transformation="sqrt(1-S)")
-DB=BootstrapDistance(D$Proximities)
+DB=BootstrapDistance(D$Proximities)}
 }
 

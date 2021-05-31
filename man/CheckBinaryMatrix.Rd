@@ -26,8 +26,8 @@ Jose Luis Vicente-Villardon
 }
 
 \examples{
-data(spiders)
+\donttest{data(spiders)
 sp=Dataframe2BinaryMatrix(spiders)
-CheckBinaryMatrix(sp)
+CheckBinaryMatrix(sp)}
 
 }

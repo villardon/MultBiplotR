@@ -1,5 +1,7 @@
-BinaryLogisticBiplot <- function(x, dim = 2, compress = FALSE, init = "mca", method = "EM", rotation = "none", nnodos = 15, tol = 1e-04, maxiter = 100, penalization = 0.2, 
-                                 similarity = "Simple_Matching", ...) {
+BinaryLogisticBiplot <- function(x, dim = 2, compress = FALSE, init = "mca", 
+                                 method = "EM", rotation = "none", 
+                                 tol = 1e-04, maxiter = 100, penalization = 0.2, 
+                                 similarity="Simple_Matching", ...) {
   ntot = dim(x)[1]
   
   if (is.null(rownames(x)))
@@ -26,12 +28,6 @@ BinaryLogisticBiplot <- function(x, dim = 2, compress = FALSE, init = "mca", met
     if (compress) a=a[NewTable$Unique,]
   }
   
-  if (init=="mirt"){
-    mod2 <- mirt(NewTable$Data,dim)
-    a <- fscores(mod2,method = "EAP", full.scores = TRUE)
-    if (compress) a=a[NewTable$Unique,]
-  }
-  
   if (init=="PCoA"){
     dis= BinaryProximities(x, coefficient=similarity)
     result=PrincipalCoordinates(dis, w = freq)
@@ -46,17 +42,19 @@ BinaryLogisticBiplot <- function(x, dim = 2, compress = FALSE, init = "mca", met
   print("Fitting the model") 
   
   switch(method, EM = {
-    LogBip = BinaryLogBiplotEM(x, freq, dimens = dim, aini=a, nnodos = nnodos, tol = tol, maxiter = maxiter, penalization = penalization)
+    LogBip = BinaryLogBiplotEM(x, freq, dimens = dim, aini=a,tol = tol, maxiter = maxiter, penalization = penalization, ...)
     if (compress) {LogBip$RowCoordinates = ExpandCoord(LogBip$RowCoordinates, NewTable)
     }
   }, Joint = {
-    LogBip = BinaryLogBiplotJoint(x, freq, dimens = dim, ainit=a, nnodos = nnodos, tolerance = tol, maxiter = maxiter, penalization = penalization)
+    LogBip = BinaryLogBiplotJoint(x, freq, dimens = dim, ainit=a, tolerance = tol, maxiter = maxiter, penalization = penalization, ...)
   }, mirt = {
-    LogBip = BinaryLogBiplotJoint(x, freq, dimens = dim, nnodos = nnodos, tolerance = tol, maxiter = maxiter, penalization = penalization)
+    LogBip = BinaryLogBiplotJoint(x, freq, dimens = dim, tolerance = tol, maxiter = maxiter, penalization = penalization, ...)
   }, External = {
-    LogBip = BinaryLogBiplotJoint(x, freq, dimens = dim, nnodos = nnodos, tolerance = tol, maxiter = maxiter, penalization = penalization)
-  }, Gradient = {
-    LogBip = BinaryLogBiplotGD(x, freq, dimens = dim, nnodos = nnodos, tolerance = tol, maxiter = maxiter, penalization = penalization)
+    LogBip = BinaryLogBiplotJoint(x, freq, dimens = dim, tolerance = tol, maxiter = maxiter, penalization = penalization, ...)
+  }, JointGD = {
+    LogBip = BinaryLogBiplotGD(x, freq, dimens = dim, tolerance = tol, maxiter = maxiter, penalization = penalization, ...)
+  },AlternatedGD = {
+    LogBip = BinaryLogBiplotGD(x, freq, dimens = dim, tolerance = tol, maxiter = maxiter, penalization = penalization, ...)
   })
   
   LogBip$Type="Binary Logistic Biplot"

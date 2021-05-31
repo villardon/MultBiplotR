@@ -3,7 +3,7 @@ dhatsunfol <- function(P, D, W = matrix(1, dim(P)[1], dim(P)[2]), modelo, condic
   m = dim(P)[2]
   models = c("Absolute", "Ratio", "Interval", "Ordinal")
   if (condicion == "Matrix") {
-    if (modelo == "Absolute") {
+    if (modelo == "Identity") {
       DH1 = P
       parametros = matrix(1, m, 1)
     }

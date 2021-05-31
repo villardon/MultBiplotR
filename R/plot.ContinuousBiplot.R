@@ -15,7 +15,10 @@ plot.ContinuousBiplot <- function(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 
                                   ClustCenters = FALSE,  UseClusterColors = TRUE, CexClustCenters=1,
                                   PlotSupVars = TRUE, SupMode="a", ShowBox=FALSE, nticks=5, NonSelectedGray=FALSE, 
                                   PlotUnitCircle=TRUE, PlotContribFA=TRUE, AddArrow=FALSE, 
-                                  ColorSupContVars=NULL, ColorSupBinVars=NULL, ColorSupOrdVars=NULL, ...){
+                                  ColorSupContVars="red", ColorSupBinVars="red", ColorSupOrdVars="red",
+                                  ModeSupContVars="a", ModeSupBinVars="a", ModeSupOrdVars="a", ...){
+  
+
   
   modes=c("p", "a", "b", "h", "ah", "s")
   if (is.numeric(mode)) 
@@ -228,7 +231,11 @@ plot.ContinuousBiplot <- function(x, A1 = 1, A2 = 2, ShowAxis = FALSE, margin = 
   }
   
   if (PlotSupVars) 
-    plot.Supplementary.Variables(x, F1=A1, F2=A2, xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, mode=SupMode, TypeScale=TypeScale, ColorSupContVars=ColorSupContVars, ColorSupBinVars=ColorSupBinVars, ColorSupOrdVars=ColorSupOrdVars )
+    plot.Supplementary.Variables(x, F1=A1, F2=A2, xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, mode=SupMode, 
+                                 TypeScale=TypeScale, ColorSupContVars=ColorSupContVars, ColorSupBinVars=ColorSupBinVars, 
+                                 ColorSupOrdVars=ColorSupOrdVars, ModeSupContVars=ModeSupContVars, ModeSupBinVars=ModeSupBinVars, 
+                                 ModeSupOrdVars=ModeSupOrdVars)
+ 
   
   if (PlotInd) 
     for (i in 1:n)

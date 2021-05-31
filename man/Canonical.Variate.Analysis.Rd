@@ -53,8 +53,8 @@ Jose Luis Vicente Villardon
 }
 
 \examples{
-data(wine)
+\donttest{data(wine)
 X=wine[,4:21]
 canbip=CanonicalBiplot(X, group=wine$Group)
-plot(canbip, mode="s")
+plot(canbip, mode="s")}
 }

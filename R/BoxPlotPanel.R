@@ -1,6 +1,7 @@
-BoxPlotPanel <- function(X, groups=NULL, nrows=NULL, panel=TRUE, notch=FALSE, GroupsTogether=TRUE){
+BoxPlotPanel <- function(X, groups=NULL, nrows=NULL, panel=TRUE, notch=FALSE, GroupsTogether=TRUE, ...){
   separated=!panel
-
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
   k=0
   n=dim(X)[1]
   p=dim(X)[2]
@@ -27,7 +28,7 @@ print(nrows)
 
     for (j in 1:p){
       if (separated==TRUE) dev.new()
-      boxplot(X[,j]~groups,notch=notch, main=varnames[j])}
+      boxplot(X[,j]~groups,notch=notch, main=varnames[j], ...)}
 
     if (separated==FALSE)
       par(op)
@@ -52,7 +53,7 @@ print(nrows)
       grupvar=as.factor(grupvar)
       levels(grupvar)=varnames
       if (separated==TRUE) dev.new()
-      boxplot(x~grupvar,notch=notch, main=Levels[i])}
+      boxplot(x~grupvar,notch=notch, main=Levels[i], ...)}
   }
 
 }

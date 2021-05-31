@@ -7,7 +7,7 @@ binBvn <- function(rho, row.cuts, col.cuts, bins=4){
   R <- matrix(c(1, rho, rho, 1), 2, 2)
   for (i in 1:r){
     for (j in 1:c){
-      P[i,j] <- mvtnorm::pmvnorm(lower=c(row.cuts[i], col.cuts[j]),
+      P[i,j] <- pmvnorm(lower=c(row.cuts[i], col.cuts[j]),
                                  upper=c(row.cuts[i+1], col.cuts[j+1]),
                                  corr=R)
     }

@@ -1,3 +1,8 @@
+# Autor: Jose Luis Vicente Villardon
+# Dpto. de Estadistica
+# Universidad de Salamanca
+# Revisado: Abril/2021
+
 RidgeBinaryLogistic <- function(y, X=NULL, data=NULL, freq = NULL, tolerance = 1e-05, maxiter = 100, 
                                 penalization = 0.2, cte = FALSE, ref="first", bootstrap=FALSE, nmB=100,
                                 RidgePlot=FALSE, MinLambda=0, MaxLambda=2, StepLambda=0.1) {
@@ -85,9 +90,8 @@ RidgeBinaryLogistic <- function(y, X=NULL, data=NULL, freq = NULL, tolerance = 1
   model$Classification=table(obs,pred)
   model$PercentCorrect = sum(pred == obs)/nn
   
-  
+  model$RidgePlot=RidgePlot
   if (RidgePlot){
-    print("RidgePlot")
     lambdas=seq(MinLambda, MaxLambda, StepLambda)
     nlamb=length(lambdas)
     betaslambda=matrix(0, nlamb, m)
@@ -101,17 +105,92 @@ RidgeBinaryLogistic <- function(y, X=NULL, data=NULL, freq = NULL, tolerance = 1
     abline(h=0)
     axis(1, pos=0)
     axis(2, pos=0)
+    model$lambdas=lambdas
+    model$betaslambda=betaslambda
 
   }
   
   if (bootstrap){
     model$bootstrap=TRUE
     betas=matrix(0, nmB, m)
+    Dif=rep(0,nmB)
+    CoxSnell=rep(0,nmB)
+    Nagelkerke=rep(0,nmB)
+    MacFaden=rep(0,nmB)
+    R2=rep(0,nmB)
+    PercentCorrect=rep(0,nmB)
     for (j in 1:nmB){
-      betas[j,] = RidgeBinaryLogisticFit(y, X, freq, tolerance = tolerance, maxiter = maxiter, penalization = penalization)
+      sample=sample.int(n,n, replace=TRUE)
+      yB=y[sample,]
+      XB=X[sample,]
+      beta0 = RidgeBinaryLogisticFit(yB, matrix(1,n,1), freq, tolerance = tolerance, maxiter = maxiter, penalization = penalization)
+      linterm0 = matrix(1,n,1) %*% beta0
+      fitted0 = exp(linterm0)/(1 + exp(linterm0))
+      Deviance0 = -2 * sum(y * log(fitted0)*freq + (1 - y) * log(1 - fitted0)*freq)
+      
+      beta = RidgeBinaryLogisticFit(yB, XB, freq, tolerance = tolerance, maxiter = maxiter, penalization = penalization)
+      betas[j,]=beta
+      
+      linterm = XB %*% beta
+      
+      fitted = exp(linterm)/(1 + exp(linterm))
+      residuals = yB - fitted
+      Prediction = as.numeric(fitted >= 0.5)
+      
+      Deviance = -2 * sum(yB * log(fitted) * freq + (1 - yB) * log(1 - fitted) * freq)
+      Dif[j]=(Deviance0 - Deviance)
+      nn=sum(freq)
+      CoxSnell[j]=1-exp(-1*Dif[j]/nn)
+      Nagelkerke[j]=CoxSnell[j]/(1-exp((Deviance0/(-2)))^(2/nn))
+      MacFaden[j]=1-(Deviance/Deviance0)
+      SSRes=sum((residuals^2)*freq)
+      SSTot=sum((y^2)*freq)
+      R2[j] = 1 - (sum((residuals^2)*freq)/sum((y^2)*freq))
+      obs=NULL
+      pred=NULL
+      for (i in 1:n){
+        obs=c(obs,rep(yB[i],freq[i]))
+        pred=c(pred, rep(Prediction[i],freq[i]))
+      }
+      PercentCorrect[j] = sum(pred == obs)/nn
+      
     }
+    bootstrap=list()
+    bootstrap$Betas=betas
+    colnames(bootstrap$Betas)=colnames(X)
+    bootstrap$Deviance=Dif
+    bootstrap$CoxSnell=CoxSnell
+    bootstrap$Nagelkerke=Nagelkerke
+    bootstrap$MacFaden=MacFaden
+    bootstrap$R2=R2
+    bootstrap$PercentCorrect=PercentCorrect
+    model$Replicates=bootstrap
   }
+
   class(model) <- "RidgeBinaryLogistic"
   return(model)
 }
 
+plot.RidgeBinaryLogistic <- function(x, Type=c("Ridge", "BootBeta", "BootPerc", "BootR2", "Model"), ...){
+  m=dim(x$X)[2]
+  if (Type=="Ridge"){
+    if (!x$RidgePlot) stop("The ridge plot was not calculated")
+    plot(x$lambdas, x$betaslambda[,1], type="l", xlim=c(0,max(x$lambdas)), ylim=c(min(x$betaslambda),max(x$betaslambda)), panel.first=grid(), axes=F)
+    for (j in 2:m)
+      points(x$lambdas, x$betaslambda[,j], type="l", col=j)
+  }
+  if (Type=="BootBeta"){
+    boxplot(x$Replicates$Betas, main="Parameters of the model")
+  }
+  if (Type=="BootPerc"){
+    boxplot(x$Replicates$PercentCorrect, main="Percent of correct classification")
+  }
+  if (Type=="BootPerc"){
+    PseudoR2=cbind(x$Replicates$CoxSnell, x$Replicates$Nagelkerke, x$Replicates$MacFaden, x$Replicates$R2)
+    colnames(PseudoR2)=c("Cox-Snell", "Nagelkerke", "MacFaden", "R2")
+    boxplot(PseudoR2, main="Pseudo R2 measures")
+  }
+  if (Type=="Model"){
+    plot(x$linterm, x$fitted, type="l,", main="Logistic curve")
+  }
+}

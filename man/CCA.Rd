@@ -50,10 +50,10 @@ Jose Luis vicente Villardon
 }
 
 \examples{
-data(riano)
+\donttest{data(riano)
 Sp=riano[,3:15]
 Env=riano[,16:25]
 ccabip=CCA(Sp, Env)
-plot(ccabip)
+plot(ccabip)}
 }
 

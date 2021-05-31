@@ -2,6 +2,9 @@ ErrorBarPlotPanel <- function(X, groups=NULL, nrows=NULL, panel=TRUE, GroupsToge
                               Confidence=0.95, p.adjust.method="None", UseANOVA=FALSE, Colors="blue",
                               Title="Error Bar Plot",  sort=TRUE, ...){
 
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
+  
   if (is.vector(X)) X=matrix(X, ncol=1)
 
   separated=!panel
@@ -69,7 +72,7 @@ ErrorBarPlotPanel <- function(X, groups=NULL, nrows=NULL, panel=TRUE, GroupsToge
         interv=interv[oi,]
         Colors=Colors[oi]
       }
-       errbar(Levels,Means,interv[,1],interv[,2], xlab=varnames[j], errbar.col=Colors, main=Title,  ...)
+       Hmisc::errbar(Levels,Means,interv[,1],interv[,2], xlab=varnames[j], errbar.col=Colors, main=Title,  ...)
       title(varnames[j])
     }
 

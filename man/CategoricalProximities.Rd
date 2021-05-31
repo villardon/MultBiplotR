@@ -45,8 +45,8 @@ Jose Luis Vicente Villardon
 }
 
 \examples{
-data(Doctors)
+\donttest{data(Doctors)
 Dis=CategoricalProximities(Doctors, SUP=NULL, coefficient="GOW" , transformation=3)
 pco=PrincipalCoordinates(Dis)
-plot(pco, RowCex=0.7, RowColors=as.integer(Doctors[[1]]), RowLabels=as.character(Doctors[[1]]))
+plot(pco, RowCex=0.7, RowColors=as.integer(Doctors[[1]]), RowLabels=as.character(Doctors[[1]]))}
 }

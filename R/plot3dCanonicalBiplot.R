@@ -1,9 +1,9 @@
 plot3dCanonicalBiplot <- function(Bip, A1 = 1, A2 = 2, A3=3,  ScaleGraph = TRUE, PlotGroups = TRUE, PlotVars = TRUE, PlotInd = TRUE, 
                                   LabelInd=TRUE, CexGroup=1, PchGroup=16 , margin=0.1, AddLegend=FALSE, ShowAxes=FALSE, LabelAxes=TRUE, LabelGroups=TRUE,
                                   PlotCircle = TRUE, ConvexHulls = FALSE, TypeCircle = "M", ColorGroups = NULL, ColorVars = NULL, LegendPos="topright",
-                                  ColorInd = NULL, voronoi = TRUE, mode="a", TypeScale = "Complete", ValuesScale = "Original",
+                                  ColorInd = NULL, mode="a", TypeScale = "Complete", ValuesScale = "Original",
                                   MinQualityVars = 0, dpg = 0, dpi=0,  PredPoints=0, PlotAxis = FALSE, CexInd = NULL, CexVar = NULL,
-                                  PchInd = NULL, PchVar = NULL, ColorVar=NULL, ShowAxis=TRUE, VoronoiColor="black", ColorAxis="gray", ...) {
+                                  PchInd = NULL, PchVar = NULL, ColorVar=NULL, ShowAxis=TRUE, ColorAxis="gray", ...) {
   
   modes=c("p", "a", "b", "h", "ah", "s")
   if (is.numeric(mode)) 
@@ -200,11 +200,6 @@ plot3dCanonicalBiplot <- function(Bip, A1 = 1, A2 = 2, A3=3,  ScaleGraph = TRUE,
       ts.surf <- t(convhulln(XP))
       rgl.triangles(XP[ts.surf,1],XP[ts.surf,2],XP[ts.surf,3],col=ColorGroups[i],alpha=.5)
     }
-  }
-  
-  if (voronoi) {
-    tv = deldir(J[, A1], J[, A2], rw = c(xmin, xmax, ymin, ymax))
-    plot(tv, add = TRUE, wlines = "tess", xlim = c(xmin, xmax), ylim = c(ymin, ymax),col=VoronoiColor)
   }
   if (ShowAxis) abclines3d(0, 0, 0, a = diag(3), col = ColorAxis, linewiidth=2)
   

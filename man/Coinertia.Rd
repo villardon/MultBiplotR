@@ -49,14 +49,12 @@ Jose Luis Vicente Villardon
 
 \examples{
 
-SSI$Year == "a2006"
+\donttest{SSI$Year == "a2006"
 SSI2D=SSI[SSI$Year == "a2006",3:23]
 rownames(SSI2D)=as.character(SSI$Country[SSI$Year == "a2006"])
-
 SSIHuman2D=SSI2D[,1:9]
 SSIEnvir2D=SSI2D[,10:16]
 SSIEcon2D=SSI2D[,17:21]
-
-Coin=Coinertia(SSIHuman2D, SSIEnvir2D)
+Coin=Coinertia(SSIHuman2D, SSIEnvir2D)}
 
 }

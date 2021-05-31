@@ -1,7 +1,7 @@
 # Autor: Jose Luis Vicente Villardon
 # Dpto. de Estadistica
 # Universidad de Salamanca
-# Revisado: Noviembre/2016
+# Revisado: Marzo/2021
 
 plot.Principal.Coordinates <- function(x, A1 = 1, A2 = 2, LabelRows=TRUE, WhatRows = NULL, RowCex=1, RowPch=16, Title="",
                                        RowLabels = NULL, RowColors = NULL, ColColors=NULL, ColLabels=NULL, SizeQualInd = FALSE, SmartLabels = TRUE, 

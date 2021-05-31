@@ -1,4 +1,4 @@
-Biplot.PLSR <- function(plsr, ... ){
+Biplot.PLSR <- function(plsr){
   X=plsr$X
   Y=plsr$Y
   

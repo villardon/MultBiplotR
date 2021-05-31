@@ -57,14 +57,14 @@ Ringrose, T. J. (1992). Bootstrapping and correspondence analysis in archaeology
 MILAN, L., & WHITTAKER, J. (1995). Application of the parametric bootstrap to models that incorporate a singular value decomposition. Applied statistics, 44(1), 31-49.
 }
 \author{
-Jose L. Vicente-Villardon, Jhonny R. Demey
+Jose L. Vicente-Villardon
 }
 
 \seealso{
 \code{\link{BootstrapScalar}}, ~~~
 }
 \examples{
-data(spiders)
+\donttest{data(spiders)
 D=BinaryProximities(spiders, coefficient="Jaccard", transformation="sqrt(1-S)")
-DB=BootstrapDistance(D$Proximities)
+DB=BootstrapDistance(D$Proximities)}
 }

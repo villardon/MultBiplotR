@@ -1,4 +1,4 @@
-Biplot.PLSR1BIN <- function(plsr, ... ){
+Biplot.PLSR1BIN <- function(plsr){
   X=plsr$X
   Y=plsr$Y
   

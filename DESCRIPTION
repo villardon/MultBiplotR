@@ -1,13 +1,13 @@
 Package: MultBiplotR
 Type: Package
-Title: MULTivariate Analysis Using BIPLOTs
-Version: 21.03.04
-Date: 2021-03-04
+Title: Multivariate Analysis Using Biplots in R
+Version: 1.3.30
+Date: 2021-03-30
 Author: Jose Luis Vicente-Villardon
 Maintainer: Jose Luis Vicente-Villardon <villardon@usal.es>
-Description: Several Multivariate Techniques from a biplot perspective. It is the translation into R of the preveious package MultBiplot developed in Matlab.
+Description: Several multivariate techniques from a biplot perspective. It is the translation (with many improvements) into R of the previous package developed in 'Matlab'. The package contains some of the main developments of my team during the last 30 years together with some more standard techniques. Package includes: Classical Biplots, HJ-Biplot, Canonical Biplots, MANOVA Biplots, Correspondence Analysis, Canonical Correspondence Analysis, Canonical STATIS-ACT, Logistic Biplots for binary and ordinal data, Multidimensional Unfolding, External Biplots for Principal Coordinates Analysis or Multidimensional Scaling, among many others. References can be found in the help of each procedure.
 License: GPL (>=2)
-Encoding: latin1
+Encoding: UTF-8
 Repository: CRAN
 Depends:R (>= 4.0.0)
 Suggests: 

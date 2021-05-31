@@ -34,6 +34,6 @@ Jose Luis Vicente Villardon
  \code{\link{AddContVars2Biplot}}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
+# Not yet
 
 }

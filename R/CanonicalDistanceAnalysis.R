@@ -3,7 +3,6 @@ CanonicalDistanceAnalysis <- function(Prox, group, dimens=2, Nsamples=1000, PCoA
   if (!is.factor(group)) stop("The grouping variable must be a factor")
   if (class(Prox)!="proximities") stop("The D argument must be an object with Proximities")
   D=Prox$Proximities
-  print(PCoA)
   PCoAs= c("Standard", "Weighted", "WPCA")
   if (is.numeric(PCoA)) PcoA=PCoAs(PCoA)
   Result=list()
@@ -50,19 +49,17 @@ CanonicalDistanceAnalysis <- function(Prox, group, dimens=2, Nsamples=1000, PCoA
   }
 
   # Result$SamplingDist=SamplingDist
-  Result$pvalue=sum((SamplingDist - Fexp)>0)/Nsamples
+  Result$pvalue=sum((SamplingDist - c(Fexp))>0)/Nsamples
   Result$Nsamples= Nsamples
 
   switch(PCoA, Standard = {
     H=(diag(g) - matrix(1, g, g)/g)
-    B =  H %*% DE %*% H
+    B = -1 * H %*% F %*% H
   },Weighted = {
     H=(diag(g) - matrix(1, g, 1) %*% matrix(ng, 1, g)/n)
-    B = H %*% DE %*% H
+    B =-1 * H %*% F %*% H
   },WPCA = {
     # Not finished (Have to be revised before it can be used)
-    H=(diag(n) - matrix(1, n, n)/n)
-    B =  H %*% D %*% H
   })
 
   solut <- svd(B)

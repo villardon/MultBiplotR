@@ -116,8 +116,8 @@ Jose Luis Vicente-Villardon
 \code{\link{BinaryDistances}}, \code{\link{Dataframe2BinaryMatrix}}
 }
 \examples{
-data(spiders)
+\donttest{data(spiders)
 D=BinaryProximities(spiders, coefficient="Jaccard", transformation="sqrt(1-S)")
-D2=BinaryProximities(spiders, coefficient=3, transformation=3)
+D2=BinaryProximities(spiders, coefficient=3, transformation=3)}
 }
 

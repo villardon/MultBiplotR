@@ -37,6 +37,10 @@ Additional parameters to summary.
 \details{
 This function is a method for the generic function summary() for class "Principal.Coordinates". It can be invoked by calling summary(x) for an object x of the appropriate class.
 }
+
+\value{
+The summary
+}
 \author{Jose Luis Vicente-Villardon
 }
 

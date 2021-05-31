@@ -17,7 +17,7 @@ Truncated.NIPALSPCA <- function(X, dimens=2,  tol=0.000001, maxiter=1000, lambda
       v=matrix(t(u) %*% E, ncol=1)/sum(u^2)
       
       v=v/sqrt(sum(v^2))
-      v=v * (v >lambda)
+      v=v * (abs(v) >lambda)
       v=v/sqrt(sum(v^2))
       u=E %*% v
       # u=u/sqrt(sum(u^2))

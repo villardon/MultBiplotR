@@ -56,9 +56,10 @@ Jose Luis Vicente Villardon
 }
 
 \examples{
-data(spiders)
+\donttest{data(spiders)
 Dis=BinaryProximities(spiders)
 pco=PrincipalCoordinates(Dis, Bootstrap=TRUE, BootstrapType="Products")
 plot(pco, Bootstrap=TRUE)
+}
 }
 

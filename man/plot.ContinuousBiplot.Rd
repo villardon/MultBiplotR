@@ -27,7 +27,8 @@ Plots a biplot for continuous data.
                     nticks = 5, NonSelectedGray = FALSE, PlotUnitCircle =
                     TRUE, PlotContribFA = TRUE, AddArrow = FALSE,
                     ColorSupContVars = NULL, ColorSupBinVars = NULL,
-                    ColorSupOrdVars = NULL, ...)
+                    ColorSupOrdVars = NULL,ModeSupContVars=NULL, 
+                    ModeSupBinVars=NULL, ModeSupOrdVars=NULL, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -80,10 +81,10 @@ Size for the symbols and labels of the individuals. Can be a single common size 
 Size for the symbols and labels of the variables. Can be a single common size for all the points or a vector with individual sizes.
 }
   \item{ColorInd}{
-Color for the symbols and labels of the individuals
+Color for the symbols and labels of the individuals. Can be a single common color for all the points or a vector with individual colors.
 }
   \item{ColorVar}{
-Color for the symbols and labels of the variables
+Color for the symbols and labels of the variables. Can be a single common color for all the points or a vector with individual colors.
 }
   \item{LabelPos}{
 Position of the labels in relation to the point. (Se the graphical parameter \code{pos} )
@@ -95,13 +96,13 @@ Plot the labels in a smart way
 Should labels be abbreviated?
 }
   \item{MinQualityInds}{
-Minimum quality of representation for an individual to be plotted
+Minimum quality of representation for an individual to be plotted.
 }
   \item{MinQualityVars}{
-Minimum quality of representation for a variable to be plotted
+Minimum quality of representation for a variable to be plotted.
 }
   \item{dp}{
-A set of indices with the variables that will show the projections of the individuals
+A set of indices with the variables that will show the projections of the individuals.
 }
 \item{PredPoints}{
 A vector with integers. The row points listed in the vector are projected onto all the variables.
@@ -191,8 +192,17 @@ Colors for the binary supplementary variables.
 \item{ColorSupOrdVars}{
 Colors for the ordinal supplementary variables.
 }
+\item{ModeSupContVars}{
+Mode for the continuous supplementary variables.
+}
+\item{ModeSupBinVars}{
+Mode for the binary supplementary variables.
+}
+\item{ModeSupOrdVars}{
+Mode for the ordinal supplementary variables.
+}
 \item{...}{
-Any other graphical parameters 
+Any other graphical parameters.
 }
 }
 \details{

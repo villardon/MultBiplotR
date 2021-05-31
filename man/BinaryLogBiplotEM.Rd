@@ -8,7 +8,8 @@ Binary logistic biplot with the EM algorithm.
 Binary logistic biplot with the EM algorithm
 }
 \usage{
-BinaryLogBiplotEM(x, freq = matrix(1, nrow(x), 1), aini = NULL, dimens = 2, nnodos = 15, tol = 1e-04, maxiter = 100, penalization = 0.2)
+BinaryLogBiplotEM(x, freq = matrix(1, nrow(x), 1), aini = NULL,
+dimens = 2, nnodos = 15, tol = 1e-04, maxiter = 100, penalization = 0.2)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -51,7 +52,7 @@ Jose Luis Vicente-Villardon
 }
 
 \examples{
-# not yet
+# Not yet
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

@@ -2,7 +2,7 @@
 \alias{ContinuousDistances}
 \title{Distances for Continuous Data}
 \description{
-Calculates distances among rows of a continuous data matrix or among the rows of two binary matrices.
+Calculates distances among rows of a continuous data matrix or among the rows of two continuous matrices.
 }
 \usage{
   ContinuousDistances(x, y = NULL, coef = "Pythagorean", r = 1)
@@ -65,6 +65,6 @@ Jose Luis Vicente-Villardon
 \code{\link{PrincipalCoordinates}}
 }
 \examples{
-data(wine)
-dis=ContinuousDistances(wine[,4:21])
+\donttest{data(wine)
+dis=ContinuousDistances(wine[,4:21])}
 }

@@ -54,7 +54,7 @@ ExternalBinaryLogisticBiplot <- function(Pco, IncludeConst=TRUE, penalization=0.
   dd = sqrt(rowSums(cbind(1,Pco$ColumnParameters[, 2:(dimens + 1)])^2))
   Res$Loadings = diag(1/dd) %*% Pco$ColumnParameters[, 2:(dimens + 1)]
   Res$Tresholds = Pco$ColumnParameters[, 1]/d
-  res$Communalities = rowSums(Res$Loadings^2)
+  Res$Communalities = rowSums(Res$Loadings^2)
   
   Pco$TotalPercent=Pco$TotalPercent/(n*p)
   Pco$DevianceTotal=sum(Res$Deviances)

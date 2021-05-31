@@ -64,13 +64,14 @@ Jose Luis Vicente Villardon
 For clusters not provided by the user the function uses the standard procedures in  \code{hclust} and \code{kmeans}.
 }
 \examples{
+\donttest{
 data(Protein)
 bip=PCA.Biplot(Protein[,3:11])
 plot(bip)
 # Add user defined clusters containing the region (North, South, Center)
 bip=AddCluster2Biplot(bip, ClusterType="us", Groups=Protein$Region)
 plot(bip, mode="a", margin=0.1, PlotClus=TRUE)
-\dontrun{
+
 # Hierarchical clustering on the biplot coordinates using the Ward method
 bip=AddCluster2Biplot(bip, ClusterType="hi", method="ward.D")
 op <- par(mfrow=c(1,2))

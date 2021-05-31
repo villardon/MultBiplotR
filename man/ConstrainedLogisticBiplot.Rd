@@ -8,7 +8,8 @@ Constrained Binary Logistic Biplot
 Constrained Binary Logistic Biplot or Redundancy Analysis for Binary Data based on logistic responses
 }
 \usage{
-ConstrainedLogisticBiplot(Y, X, dim = 2, Scaling = 5, tolerance = 1e-05, maxiter = 100, penalization = 0.1)
+ConstrainedLogisticBiplot(Y, X, dim = 2, Scaling = 5, tolerance = 1e-05, 
+maxiter = 100, penalization = 0.1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -24,6 +25,7 @@ Dimension of the Solution
   \item{Scaling}{
 Transformation of the columns of the predictor matrix.
 }
+  \item{tolerance}{
 Tolerance for the algorithm
 }
   \item{maxiter}{
@@ -33,6 +35,7 @@ Maximum number of iterations.
 Penalization for the fit (ridge)
 }
 }
+
 \details{
 Constrained Binary Logistic Biplot or Redundancy Analysis for Binary Data based on logistic responses.
 }
@@ -49,12 +52,3 @@ Jose Luis Vicente-Villardon
 \examples{
 # not yet
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory (show via RShowDoc("KEYWORDS")):
-% \keyword{ ~kwd1 }
-% \keyword{ ~kwd2 }
-% Use only one keyword per line.
-% For non-standard keywords, use \concept instead of \keyword:
-% \concept{ ~cpt1 }
-% \concept{ ~cpt2 }
-% Use only one concept per line.

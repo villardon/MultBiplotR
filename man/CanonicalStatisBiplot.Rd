@@ -55,13 +55,13 @@ Jose Luis Vicente Villardon
 }
 
 \examples{
-data(Chemical)
+\donttest{data(Chemical)
 x= Chemical[37:144,5:9]
 weeks=as.factor(as.numeric(Chemical$WEEKS[37:144]))
 levels(weeks)=c("W2" , "W3", "W4")
 X=Convert2ThreeWay(x,weeks, columns=FALSE)
 Groups=Chemical$Treatment[1:36]
 canstbip=CanonicalStatisBiplot(X, Groups, SameVar = TRUE)
-plot(canstbip, mode="s", PlotVars=TRUE, ShowBox=TRUE)
+plot(canstbip, mode="s", PlotVars=TRUE, ShowBox=TRUE)}
 }
 

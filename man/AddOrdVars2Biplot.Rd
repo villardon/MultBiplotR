@@ -8,7 +8,8 @@ Adds supplementary ordinal variables to an existing biplot objects.
 Adds supplementary ordinal variables to an existing biplot objects.
 }
 \usage{
-AddOrdVars2Biplot(bip, Y, tol = 1e-06, maxiterlogist = 100, penalization = 0.2, showiter = TRUE, show = FALSE)
+AddOrdVars2Biplot(bip, Y, tol = 1e-06, maxiterlogist = 100, 
+penalization = 0.2, showiter = TRUE, show = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

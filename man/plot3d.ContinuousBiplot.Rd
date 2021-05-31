@@ -165,9 +165,7 @@ Jose Luis Vicente Villardon
 \examples{
 data(Protein)
 bip=PCA.Biplot(Protein[,3:11])
-## Biplot with scales on the variables
 plot3d.ContinuousBiplot(bip, mode="s", margin=0.2, ShowAxis=FALSE)
-
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

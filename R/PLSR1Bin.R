@@ -1,5 +1,6 @@
 PLSR1Bin <- function(Y, X, S=2, InitTransform=5, grouping=NULL, tolerance=0.000005,
-                        maxiter=100, show=FALSE, penalization=0, cte =TRUE, Algorithm=1){
+                     maxiter=100, show=FALSE, penalization=0, cte =TRUE, Algorithm=1,
+                     OptimMethod="CG"){
   
   if (is.data.frame(X)) X=as.matrix(X)
   if (!CheckBinaryVector(Y)) stop("The response must be binary (0 or 1)")

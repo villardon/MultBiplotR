@@ -25,6 +25,6 @@ Jose luis Vicente Villardon
 }
 
 \examples{
-x=c(0, 0, 0, 0,  1, 1, 1, 2)
-CheckBinaryVector(x)
+\donttest{x=c(0, 0, 0, 0,  1, 1, 1, 2)
+CheckBinaryVector(x)}
 }

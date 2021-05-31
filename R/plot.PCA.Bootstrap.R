@@ -1,6 +1,6 @@
 
 plot.PCA.Bootstrap <- function(x, Eigenvalues=TRUE, Inertia=FALSE, EigenVectors=TRUE, Structure=TRUE, Squared=TRUE, Scores=TRUE, ColorInd="black", TypeScores="ch", ... ){
-  require(Hmisc)
+  requireNamespace("Hmisc")
   rnames=rownames(x$InitialData)
   cnames=colnames(x$InitialData)
   if (Eigenvalues){
@@ -17,8 +17,6 @@ plot.PCA.Bootstrap <- function(x, Eigenvalues=TRUE, Inertia=FALSE, EigenVectors=
     abline(0,0, lty="dashed", col="green")
     title(main="5% CI for the Eigenvalues based on Moments")
   }
-  
-
   
   dimens=dim(x$Vs)[2]
   

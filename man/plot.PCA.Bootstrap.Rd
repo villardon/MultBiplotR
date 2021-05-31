@@ -65,7 +65,7 @@ Daudin, J. J., Duby, C., & Trecourt, P. (1988). Stability of principal component
 
 Chateau, F., & Lebart, L. (1996). Assessing sample variability in the visualization techniques related to principal component analysis: bootstrap and alternative simulation methods. COMPSTAT, Physica-Verlag, 205-210.
 
-Babamoradi, H., van den Berg, F., & Rinnan, Å. (2013). Bootstrap based confidence limits in principal component analysis—A case study. Chemometrics and Intelligent Laboratory Systems, 120, 97-105.
+Babamoradi, H., van den Berg, F., & Rinnan, Å. (2013). Bootstrap based confidence limits in principal component analysis: A case study. Chemometrics and Intelligent Laboratory Systems, 120, 97-105.
 
 Fisher, A., Caffo, B., Schwartz, B., & Zipunnikov, V. (2016). Fast, exact bootstrap principal component analysis for p> 1 million. Journal of the American Statistical Association, 111(514), 846-860.
 
@@ -79,11 +79,11 @@ Jose Luis Vicente Villardon
 \code{\link{PCA.Bootstrap}}
 }
 \examples{
-X=wine[,4:21]
+\donttest{X=wine[,4:21]
 grupo=wine$Group
 rownames(X)=paste(1:45, grupo, sep="-")
 pcaboot=PCA.Bootstrap(X, dimens=2, Scaling = "Standardize columns", B=1000)
 plot(pcaboot, ColorInd=as.numeric(grupo))
-summary(pcaboot)
+summary(pcaboot)}
 }
 

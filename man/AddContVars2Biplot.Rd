@@ -42,6 +42,6 @@ Jose Luis Vicente Villardon
 \code{\link{AddSupVars2Biplot}}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
+# Not yet
 
 }

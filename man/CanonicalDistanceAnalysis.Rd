@@ -71,12 +71,12 @@ The MANOVA and the representation of the means can be applied to any Distance al
 }
 
 \examples{
-data(iris)
+\donttest{data(iris)
 group=iris[,5]
 X=as.matrix(iris[1:4])
 D=ContinuousProximities(X,  coef = 1)
 CDA=CanonicalDistanceAnalysis(D, group, dimens=2)
 summary(CDA)
-plot(CDA)
+plot(CDA)}
 }
 

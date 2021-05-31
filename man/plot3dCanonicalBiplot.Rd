@@ -13,11 +13,11 @@ PlotGroups = TRUE, PlotVars = TRUE, PlotInd = TRUE, LabelInd = TRUE,
 CexGroup = 1, PchGroup = 16, margin = 0.1, AddLegend = FALSE, 
 ShowAxes = FALSE, LabelAxes = TRUE, LabelGroups = TRUE, PlotCircle = TRUE, 
 ConvexHulls = FALSE, TypeCircle = "M", ColorGroups = NULL, ColorVars = NULL,
-LegendPos = "topright", ColorInd = NULL, voronoi = TRUE, mode = "a", 
+LegendPos = "topright", ColorInd = NULL, mode = "a", 
 TypeScale = "Complete", ValuesScale = "Original", MinQualityVars = 0, 
 dpg = 0, dpi = 0, PredPoints = 0, PlotAxis = FALSE, CexInd = NULL, 
 CexVar = NULL, PchInd = NULL, PchVar = NULL, ColorVar = NULL, 
-ShowAxis = TRUE, VoronoiColor = "black", ColorAxis = "gray", ...)
+ShowAxis = TRUE, ColorAxis = "gray", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -90,9 +90,6 @@ Position of the legend.
   \item{ColorInd}{
 User colors for the individuals. Default colors will be used if NULL.
 }
-  \item{voronoi}{
-Should the voronoi diagram with the prediction regións for each group be plotted?
-}
  \item{mode}{
 Mode of the biplot: "p", "a", "b", "h", "ah" and "s".
 }
@@ -135,9 +132,6 @@ Colors of the points for variables.
   \item{ShowAxis}{
 Should axis scales be shown?
 }
-  \item{VoronoiColor}{
-Color for the Voronoi diagram
-}
   \item{ColorAxis}{
 Color of the axis
 }
@@ -160,8 +154,8 @@ Jose Luis Vicente Villardon
 \code{\link{plot.Canonical.Biplot}}
 }
 \examples{
-data(wine)
+\donttest{data(wine)
 X=wine[,4:21]
 canbip=CanonicalBiplot(X, group=wine$Group)
-# plot3dCanonicalBiplot(canbip, TypeCircle="M")
+plot3dCanonicalBiplot(canbip, TypeCircle="M")}
 }
