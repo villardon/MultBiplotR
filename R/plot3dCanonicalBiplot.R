@@ -126,8 +126,6 @@ plot3dCanonicalBiplot <- function(Bip, A1 = 1, A2 = 2, A3=3,  ScaleGraph = TRUE,
   M=matrix(c(xmax, 0,0, 0, ymax, 0, 0, 0, zmax), 3,3)
   text3d(M, texts=c(xlabel, ylabel, zlabel), col=ColorAxis)
   
-  # rgl.bbox(color = c("#333377", "white"), emission = "#333377", 
-  #          specular = "#3333FF", shininess = 5, alpha = 0.8 )
   # bbox3d(color = c("#333377", "black"), emission = "#333377", 
   #        specular = "#3333FF", shininess = 5, alpha = 0.8)
   # #   
@@ -198,7 +196,7 @@ plot3dCanonicalBiplot <- function(Bip, A1 = 1, A2 = 2, A3=3,  ScaleGraph = TRUE,
       XP = V[which(Bip$groups == lev[i]), ]
       XP = cbind(XP[, A1], XP[, A2], XP[, A3])
       ts.surf <- t(convhulln(XP))
-      rgl.triangles(XP[ts.surf,1],XP[ts.surf,2],XP[ts.surf,3],col=ColorGroups[i],alpha=.5)
+      triangles3d(XP[ts.surf,1],XP[ts.surf,2],XP[ts.surf,3],col=ColorGroups[i],alpha=.5)
     }
   }
   if (ShowAxis) abclines3d(0, 0, 0, a = diag(3), col = ColorAxis, linewiidth=2)
